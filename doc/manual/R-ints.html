@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.4.1 (2017-06-30).
+<!-- This manual is for R, version 3.4.2 (2017-09-28).
 
 Copyright (C) 1999-2016 R Core Team
 
@@ -288,7 +288,7 @@ Next: <a href="#R-Internal-Structures" accesskey="n" rel="next">R Internal Struc
 <p>This is a guide to the internal structures of R and coding standards for
 the core team working on R itself.
 </p>
-<p>This manual is for R, version 3.4.1 (2017-06-30).
+<p>This manual is for R, version 3.4.2 (2017-09-28).
 </p>
 <p>Copyright &copy; 1999&ndash;2016 R Core Team
 </p>
@@ -1667,7 +1667,7 @@ such strings into the <code>CHARSXP</code> cache.
 systems are capable of producing UTF-8 strings and this is the nearest
 we have to a universal format.  For those that do not (for example those
 lacking a powerful enough <code>iconv</code>), it is likely that they work in
-Latin-1, the old R assumption. The the parser can return a
+Latin-1, the old R assumption. Then the parser can return a
 UTF-8-encoded string if it encounters a &lsquo;<samp>\uxxx</samp>&rsquo; escape for a
 Unicode point that cannot be represented in the current charset.  (This
 needs MBCS support, and was only enabled<a name="DOCF9" href="#FOOT9"><sup>9</sup></a> on
@@ -1692,13 +1692,14 @@ were encoded in Latin-1 rather than Adobe Symbol: this is selected by
 <code>wantSymbolUTF8 = NA_LOGICAL</code>.
 </p>
 <p>Windows has no UTF-8 locales, but rather expects to work with
-UCS-2<a name="DOCF10" href="#FOOT10"><sup>10</sup></a> strings.
-R (being written in standard C) would not work internally with UCS-2
-without extensive changes.  The <samp>Rgui</samp> console<a name="DOCF11" href="#FOOT11"><sup>11</sup></a> uses UCS-2 internally, but communicates with the R
-engine in the native encoding.  To allow UTF-8 strings to be printed in
-UTF-8 in <samp>Rgui.exe</samp>, an escape convention is used (see header file
-<samp>rgui_UTF8.h</samp>) which is used by <code>cat</code>, <code>print</code> and
-autoprinting.
+UCS-2<a name="DOCF10" href="#FOOT10"><sup>10</sup></a>
+strings.  R (being written in standard C) would not work internally
+with UCS-2 without extensive changes.  The <samp>Rgui</samp>
+console<a name="DOCF11" href="#FOOT11"><sup>11</sup></a> uses UCS-2 internally,
+but communicates with the R engine in the native encoding.  To allow
+UTF-8 strings to be printed in UTF-8 in <samp>Rgui.exe</samp>, an escape
+convention is used (see header file <samp>rgui_UTF8.h</samp>) by
+<code>cat</code>, <code>print</code> and autoprinting.
 </p>
 <p>&lsquo;Unicode&rsquo; (UCS-2LE) files are common in the Windows world, and
 <code>readLines</code> and <code>scan</code> will read them into UTF-8 strings on
@@ -5783,11 +5784,9 @@ pseudo-<code>SEXPTYPE</code>s.</p>
 <code>USE_UTF8_IF_POSSIBLE</code> in file <samp>src/main/gram.c</samp>.</p>
 <h3><a name="FOOT10" href="#DOCF10">(10)</a></h3>
 <p>or UTF-16 if support for surrogates is enabled in the OS,
-which it is not normally so at least for Western versions of Windows,
-despite some claims to the contrary on the Microsoft website.</p>
+which it used not to be when encoding support was added to R.</p>
 <h3><a name="FOOT11" href="#DOCF11">(11)</a></h3>
-<p>but not the
-GraphApp toolkit.</p>
+<p>but not the GraphApp toolkit.</p>
 <h3><a name="FOOT12" href="#DOCF12">(12)</a></h3>
 <p>This can also create
 non-S4 objects, as in <code>new(&quot;integer&quot;)</code>.</p>
