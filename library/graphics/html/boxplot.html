@@ -20,9 +20,9 @@ boxplot(x, ...)
 
 ## S3 method for class 'formula'
 boxplot(formula, data = NULL, ..., subset, na.action = NULL,
-        xlab = paste(names(mf)[-response], collapse = " : "),
-        ylab = names(mf)[ response],
-        add = FALSE, ann = !add,
+        xlab = mklab(y_var = horizontal),
+        ylab = mklab(y_var =!horizontal),
+        add = FALSE, ann = !add, horizontal = FALSE,
         drop = FALSE, sep = ".", lex.order = FALSE)
 
 ## Default S3 method:
@@ -283,16 +283,18 @@ sets).
 <pre>
 ## boxplot on a formula:
 boxplot(count ~ spray, data = InsectSprays, col = "lightgray")
-# *add* notches (somewhat funny here):
+# *add* notches (somewhat funny here &lt;--&gt; warning "notches .. outside hinges"):
 boxplot(count ~ spray, data = InsectSprays,
         notch = TRUE, add = TRUE, col = "blue")
 
-boxplot(decrease ~ treatment, data = OrchardSprays,
-        log = "y", col = "bisque")
+boxplot(decrease ~ treatment, data = OrchardSprays, col = "bisque",
+        log = "y")
+## horizontal=TRUE, switching  y &lt;--&gt; x :
+boxplot(decrease ~ treatment, data = OrchardSprays, col = "bisque",
+        log = "x", horizontal=TRUE)
 
 rb &lt;- boxplot(decrease ~ treatment, data = OrchardSprays, col = "bisque")
 title("Comparing boxplot()s and non-robust mean +/- SD")
-
 mn.t &lt;- tapply(OrchardSprays$decrease, OrchardSprays$treatment, mean)
 sd.t &lt;- tapply(OrchardSprays$decrease, OrchardSprays$treatment, sd)
 xi &lt;- 0.3 + seq(rb$n)
@@ -334,5 +336,5 @@ boxplot(len ~ dose:supp, data = ToothGrowth,
 ## more examples in  help(bxp)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>graphics</em> version 3.6.0 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>graphics</em> version 3.6.1 <a href="00Index.html">Index</a>]</div>
 </body></html>

@@ -136,7 +136,7 @@ minus <i>p</i>.</p>
 <h3>Author(s)</h3>
 
 <p>Martin Maechler did the present class implementation; Rousseeuw
-et al did the underlying code.</p>
+et al did the underlying original code.</p>
 
 
 <h3>References</h3>
@@ -174,15 +174,15 @@ and <code><a href="../../sfsmisc/html/ellipsePoints.html">ellipsePoints</a></cod
 <pre>
 x &lt;- rnorm(100)
 xy &lt;- unname(cbind(x, rnorm(100) + 2*x + 10))
-exy &lt;- ellipsoidhull(xy)
-exy # &gt;&gt; calling print.ellipsoid()
+exy. &lt;- ellipsoidhull(xy)
+exy. # &gt;&gt; calling print.ellipsoid()
 
 plot(xy, main = "ellipsoidhull(&lt;Gauss data&gt;) -- 'spanning points'")
-lines(predict(exy), col="blue")
-points(rbind(exy$loc), col = "red", cex = 3, pch = 13)
+lines(predict(exy.), col="blue")
+points(rbind(exy.$loc), col = "red", cex = 3, pch = 13)
 
 exy &lt;- ellipsoidhull(xy, tol = 1e-7, ret.wt = TRUE, ret.sq = TRUE)
-str(exy) # had small `tol', hence many iterations
+str(exy) # had small 'tol', hence many iterations
 (ii &lt;- which(zapsmall(exy $ wt) &gt; 1e-6))
 ## --&gt; only about 4 to 6  "spanning ellipsoid" points
 round(exy$wt[ii],3); sum(exy$wt[ii]) # weights summing to 1
@@ -190,5 +190,5 @@ points(xy[ii,], pch = 21, cex = 2,
        col="blue", bg = adjustcolor("blue",0.25))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>cluster</em> version 2.0.8 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>cluster</em> version 2.1.0 <a href="00Index.html">Index</a>]</div>
 </body></html>

@@ -374,11 +374,13 @@ Finally locking (and restoration on error) can be suppressed by
 <span class="option">--no-lock</span>.
 
 </p>
-<p>For a macOS or Windows binary install, no locking is done by
-default.  Setting argument <code>lock</code> to <code>TRUE</code> (it defaults to
-the value of <code><a href="../../base/html/options.html">getOption</a>("install.lock", FALSE)</code>) will use
-per-directory locking as described for source installs: if the value
-is <code>"pkglock"</code> per-package locking will be used.
+<p>For a macOS binary install, no locking is done by default.  Setting
+argument <code>lock</code> to <code>TRUE</code> (it defaults to the value of
+<code><a href="../../base/html/options.html">getOption</a>("install.lock", FALSE)</code>) will use per-directory
+locking as described for source installs.  For Windows binary install,
+per-directory locking is used by default (<code>lock</code> defaults to the
+value of <code><a href="../../base/html/options.html">getOption</a>("install.lock", TRUE)</code>).  If the value is
+<code>"pkglock"</code> per-package locking will be used.
 </p>
 <p>If package locking is used on Windows with <code>libs_only = TRUE</code> and
 the installation fails, the package will be restored to its previous
@@ -493,5 +495,5 @@ install.packages(c("ncdf4", "RNetCDF"),
 
 ## End(Not run)</pre>
 
-<hr /><div style="text-align: center;">[Package <em>utils</em> version 3.6.0 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>utils</em> version 3.6.1 <a href="00Index.html">Index</a>]</div>
 </body></html>
