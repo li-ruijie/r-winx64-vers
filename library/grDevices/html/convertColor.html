@@ -120,8 +120,8 @@ colors in graphics.
 
 <pre>
 ## The displayable colors from four planes of Lab space
-ab &lt;- expand.grid(a = (-10:15)*10,
-                  b = (-15:10)*10)
+ab &lt;- as.matrix(expand.grid(a = (-10:15)*10,
+                            b = (-15:10)*10))
 require(graphics); require(stats) # for na.omit
 par(mfrow = c(2, 2), mar = .1+c(3, 3, 3, .5), mgp = c(2,  .8,  0))
 
@@ -164,5 +164,5 @@ stopifnot(all.equal(cols, # converting back.. getting the original:
                     check.attributes = FALSE))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>grDevices</em> version 3.5.2 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>grDevices</em> version 3.5.3 <a href="00Index.html">Index</a>]</div>
 </body></html>

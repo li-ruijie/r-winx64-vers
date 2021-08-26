@@ -25,7 +25,7 @@ findGlobals(fun, merge = TRUE)
 <table summary="R argblock">
 <tr valign="top"><td><code>fun</code></td>
 <td>
-<p>closure.</p>
+<p>function object; usually a closure.</p>
 </td></tr>
 <tr valign="top"><td><code>merge</code></td>
 <td>
@@ -45,7 +45,8 @@ of <code>assign</code> and <code>rm</code>).
 <h3>Value</h3>
 
 <p>Character vector if <code>merge</code> is true; otherwise, a list with
-<code>functions</code> and <code>variables</code> components.
+<code>functions</code> and <code>variables</code> character vector components.
+Character vectors are of length zero For non-closures.
 </p>
 
 
@@ -61,5 +62,5 @@ findGlobals(findGlobals)
 findGlobals(findGlobals, merge = FALSE)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>codetools</em> version 0.2-15 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>codetools</em> version 0.2-16 <a href="00Index.html">Index</a>]</div>
 </body></html>
