@@ -110,11 +110,11 @@ this will overwrite an existing element of <code>to</code>.  This is subject
 to the limitations of the OS's corresponding system call (see
 something like <code>man 2 rename</code> on a Unix-alike): in particular
 in the interpretation of &lsquo;file&rsquo;: most platforms will not rename
-files across file systems.  (On Windows, <code>file.rename</code> can move
-files but not directories between volumes.)  On platforms which allow
-directories to be renamed, typically neither or both of <code>from</code>
-and <code>to</code> must a directory, and if <code>to</code> exists it must be an
-empty directory.
+files from one file system to another.  (On Windows,
+<code>file.rename</code> can rename files but not directories across
+volumes.)  On platforms which allow directories to be renamed,
+typically neither or both of <code>from</code> and <code>to</code> must a
+directory, and if <code>to</code> exists it must be an empty directory.
 </p>
 <p><code>file.append</code> attempts to append the files named by its
 second argument to those named by its first.  The <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> subscript
@@ -209,7 +209,8 @@ symbolic link): many tools will remove the target and its contents.
 code.  This is especially important for <code>file.rename</code>, which has
 OS-specific restrictions (and note that the session temporary
 directory is commonly on a different file system from the working
-directory).
+directory): it is only portable to use <code>file.rename</code> to change
+file name(s) within a single directory.
 </p>
 
 
@@ -270,5 +271,5 @@ unlink("tmp", recursive = TRUE)
 file.remove("A", "B", "C")
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 3.4.3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 3.4.4 <a href="00Index.html">Index</a>]</div>
 </body></html>

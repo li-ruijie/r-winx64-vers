@@ -46,6 +46,6 @@ Author: Douglas Bates [aut],
     Regents of the University of California),
   R Core Team [ctb] (base R matrix implementation)
 Repository: CRAN
-Date/Publication: 2017-11-20 18:58:27 UTC
-Built: R 3.4.3; x86_64-w64-mingw32; 2017-12-06 09:29:45 UTC; windows
+Date/Publication: 2017-11-30 18:13:21 UTC
+Built: R 3.4.4; x86_64-w64-mingw32; 2018-03-15 14:53:48 UTC; windows
 Archs: i386, x64

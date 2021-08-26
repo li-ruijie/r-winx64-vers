@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.4.3 (2017-11-30).
+<!-- This manual is for R, version 3.4.4 (2018-03-15).
 
-Copyright (C) 1999-2016 R Core Team
+Copyright (C) 1999-2018 R Core Team
 
 Permission is granted to make and distribute verbatim copies of this
 manual provided the copyright notice and this permission notice are
@@ -288,9 +288,9 @@ Next: <a href="#R-Internal-Structures" accesskey="n" rel="next">R Internal Struc
 <p>This is a guide to the internal structures of R and coding standards for
 the core team working on R itself.
 </p>
-<p>This manual is for R, version 3.4.3 (2017-11-30).
+<p>This manual is for R, version 3.4.4 (2018-03-15).
 </p>
-<p>Copyright &copy; 1999&ndash;2016 R Core Team
+<p>Copyright &copy; 1999&ndash;2018 R Core Team
 </p>
 <blockquote>
 <p>Permission is granted to make and distribute verbatim copies of this
@@ -4686,10 +4686,11 @@ is available to those who first install recording to a log, then call
 <dt><code>_R_CHECK_SUGGESTS_ONLY_</code>
 <a name="index-_005fR_005fCHECK_005fSUGGESTS_005fONLY_005f"></a>
 </dt>
-<dd><p>If set to a true value, running examples, tests and vignettes is done
-with <code>.libPaths()</code> containing just a temporary library directory
-and <code>.Library</code>.  The temporary library is populated by symbolic
-links<a name="DOCF23" href="#FOOT23"><sup>23</sup></a> to the installed copies of
+<dd><p>If set to a true value, running examples, tests and
+vignettes<a name="DOCF23" href="#FOOT23"><sup>23</sup></a> is done with
+<code>.libPaths()</code> containing just a temporary library directory and
+<code>.Library</code>.  The temporary library is populated by symbolic
+links<a name="DOCF24" href="#FOOT24"><sup>24</sup></a> to the installed copies of
 all the Depends/Imports and (for the second only) Suggests packages
 which are not in <code>.Library</code>.  (As an exception, packages in a
 &lsquo;<samp>VignetteBuilder</samp>&rsquo; field are always made available.)
@@ -4936,7 +4937,7 @@ other commonly-used repositories.
 </p>
 <p>Another variable which enables stricter checks is to set
 <code>R_CHECK_CONSTANTS</code> to <code>5</code>.  This checks that
-nothing<a name="DOCF24" href="#FOOT24"><sup>24</sup></a> changes the values of &lsquo;constants&rsquo;<a name="DOCF25" href="#FOOT25"><sup>25</sup></a> in R
+nothing<a name="DOCF25" href="#FOOT25"><sup>25</sup></a> changes the values of &lsquo;constants&rsquo;<a name="DOCF26" href="#FOOT26"><sup>26</sup></a> in R
 code.  This is best used in conjunction with setting
 <code>R_JIT_STRATEGY</code> to <code>3</code>, which checks code on first use (by
 default most code is only checked after byte-compilation on second use).
@@ -5126,7 +5127,7 @@ a sequence of <code>(pdf)latex</code>, <code>bibtex</code> and
 </p>
 <p>This process has been rather vulnerable to the versions of the external
 software used: particular issues have been <code>texi2dvi</code> and
-<samp>texinfo.tex</samp> updates, mismatches between the two<a name="DOCF26" href="#FOOT26"><sup>26</sup></a>,
+<samp>texinfo.tex</samp> updates, mismatches between the two<a name="DOCF27" href="#FOOT27"><sup>27</sup></a>,
 versions of the LaTeX package &lsquo;<samp>hyperref</samp>&rsquo; and quirks in index
 production.  The licenses used for LaTeX and latterly &lsquo;<samp>texinfo</samp>&rsquo;
 prohibit us from including &lsquo;known good&rsquo; versions in the R
@@ -5280,7 +5281,7 @@ vectors.
 <p>The remaining interfaces will need to cope with the changed
 <code>VECTOR_SEXPREC</code> types.  It seems likely that in most cases lengths
 are accessed by the <code>length</code> and <code>LENGTH</code>
-functions<a name="DOCF27" href="#FOOT27"><sup>27</sup></a>  The current approach is to keep these returning 32-bit lengths and
+functions<a name="DOCF28" href="#FOOT28"><sup>28</sup></a>  The current approach is to keep these returning 32-bit lengths and
 introduce &lsquo;long&rsquo; versions <code>xlength</code> and <code>XLENGTH</code> which return
 <code>R_xlen_t</code> values.
 </p>
@@ -5827,18 +5828,20 @@ for this.</p>
 <p>under Windows, junction points, or copies if
 environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p>
 <h3><a name="FOOT23" href="#DOCF23">(23)</a></h3>
-<p>see the previous footnote.</p>
+<p>but not re-building vignettes.</p>
 <h3><a name="FOOT24" href="#DOCF24">(24)</a></h3>
+<p>see the previous footnote.</p>
+<h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
 <p>The usual culprits are calls to compiled code
 <em>via</em> <code>.Call</code> or <code>.External</code> which alter their
 arguments.</p>
-<h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
+<h3><a name="FOOT26" href="#DOCF26">(26)</a></h3>
 <p>things which the
 byte compiler assumes do not change, e.g. function bodies.</p>
-<h3><a name="FOOT26" href="#DOCF26">(26)</a></h3>
+<h3><a name="FOOT27" href="#DOCF27">(27)</a></h3>
 <p>Linux
 distributions tend to unbundle <samp>texinfo.tex</samp> from &lsquo;<samp>texinfo</samp>&rsquo;.</p>
-<h3><a name="FOOT27" href="#DOCF27">(27)</a></h3>
+<h3><a name="FOOT28" href="#DOCF28">(28)</a></h3>
 <p>but <code>LENGTH</code> is a macro under some internal
 uses.</p>
 </div>

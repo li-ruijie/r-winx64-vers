@@ -52,7 +52,7 @@ using namespace std;
 /*-- Mathlib as part of R --  define this for standalone : */
 /* #undef MATHLIB_STANDALONE */
 
-#define R_VERSION_STRING "3.4.3"
+#define R_VERSION_STRING "3.4.4"
 
 #ifndef HAVE_EXPM1
 # define HAVE_EXPM1 1
@@ -601,6 +601,9 @@ double	bessel_y_ex(double, double, double *);
 #ifndef HAVE_HYPOT
 double 	hypot(double, double);
 #endif
+/* This is a legacy declaration: the entry point was removed in
+   R 2.14.0 (2011-10).  But the declaration was still used by a package
+   in 2018-03 */
 double 	pythag(double, double);
 #ifndef HAVE_EXPM1
 double  expm1(double); /* = exp(x)-1 {care for small x} */
