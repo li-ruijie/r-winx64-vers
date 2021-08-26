@@ -56,6 +56,10 @@ gam2objective           Objective functions for GAM smoothing parameter
                         estimation
 gamObject               Fitted gam object
 gamSim                  Simulate example data for GAMs
+gamlss.etamu            Transform derivatives wrt mu to derivatives wrt
+                        linear predictor
+gamlss.gH               Calculating derivatives of log-likelihood wrt
+                        regression coefficients
 gamm                    Generalized Additive Mixed Models
 gaulss                  Gaussian location-scale model family
 get.var                 Get named variable or evaluate expression from
@@ -176,6 +180,8 @@ tensor.prod.model.matrix
                         Utility functions for constructing tensor
                         product smooths
 trichol                 Choleski decomposition of a tri-diagonal matrix
+trind.generator         Generates index arrays for upper triangular
+                        storage
 uniquecombs             find the unique rows in a matrix
 vcov.gam                Extract parameter (estimator) covariance matrix
                         from GAM fit

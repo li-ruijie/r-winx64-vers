@@ -55,6 +55,8 @@ gam.side	gam.side
 gam.vcomp	gam.vcomp
 gam2derivative	gam2objective
 gam2objective	gam2objective
+gamlss.etamu	gamlss.etamu
+gamlss.gH	gamlss.gH
 gamm	gamm
 gamObject	gamObject
 gamSim	gamSim
@@ -198,6 +200,7 @@ tensor.prod.penalties	tensor.prod.model.matrix
 ti	te
 tprs	smooth.construct.tp.smooth.spec
 trichol	trichol
+trind.generator	trind.generator
 tw	Tweedie
 Tweedie	Tweedie
 uniquecombs	uniquecombs
