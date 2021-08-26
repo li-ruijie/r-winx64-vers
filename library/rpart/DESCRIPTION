@@ -28,5 +28,5 @@ Author: Terry Therneau [aut],
 Maintainer: Brian Ripley <ripley@stats.ox.ac.uk>
 Repository: CRAN
 Date/Publication: 2015-06-29 17:14:54
-Built: R 3.2.4; x86_64-w64-mingw32; 2016-03-17 19:04:47 UTC; windows
+Built: R 3.2.5; x86_64-w64-mingw32; 2016-04-14 17:29:27 UTC; windows
 Archs: i386, x64
