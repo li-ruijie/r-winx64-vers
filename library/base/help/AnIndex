@@ -257,6 +257,7 @@ as.data.frame.list	as.data.frame
 as.data.frame.logical	as.data.frame
 as.data.frame.matrix	as.data.frame
 as.data.frame.model.matrix	as.data.frame
+as.data.frame.noquote	as.data.frame
 as.data.frame.numeric	as.data.frame
 as.data.frame.numeric_version	numeric_version
 as.data.frame.ordered	as.data.frame
@@ -987,6 +988,7 @@ paste	paste
 paste0	paste
 path.expand	path.expand
 path.package	find.package
+pcre_config	pcre_config
 pentagamma	base-defunct
 pi	Constants
 pipe	connections

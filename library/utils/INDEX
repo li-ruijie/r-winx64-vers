@@ -128,8 +128,8 @@ rtags                   An Etags-like Tagging Utility for R
 savehistory             Load or Save or Display the Commands History
 select.list             Select Items from a List
 sessionInfo             Collect Information About the Current R Session
-setInternet2            Set or disable the use of Internet Explorer for
-                        Internet access.
+setInternet2            Set or disable the use of Windows internal
+                        functions for Internet access.
 setRepositories         Select Package Repositories
 setWindowTitle          Set or get the Window Title, or Set the
                         Statusbar

@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.1.2 (2014-10-31).
+<!-- This manual is for R, version 3.1.3 (2015-03-09).
 
-Copyright (C) 2000-2014 R Core Team
+Copyright (C) 2000-2015 R Core Team
 
 Permission is granted to make and distribute verbatim copies of this
 manual provided the copyright notice and this permission notice are
@@ -204,7 +204,6 @@ p {
   <ul class="no-bullet">
     <li><a name="toc-Reading-from-sockets-1" href="#Reading-from-sockets">8.1 Reading from sockets</a></li>
     <li><a name="toc-Using-download_002efile-1" href="#Using-download_002efile">8.2 Using <code>download.file</code></a></li>
-    <li><a name="toc-CORBA-interface-1" href="#CORBA-interface">8.3 <acronym>CORBA</acronym> interface</a></li>
   </ul></li>
   <li><a name="toc-Reading-Excel-spreadsheets-1" href="#Reading-Excel-spreadsheets">9 Reading Excel spreadsheets</a></li>
   <li><a name="toc-References-1" href="#References">Appendix A References</a></li>
@@ -224,9 +223,9 @@ Next: <a href="#Acknowledgements" accesskey="n" rel="next">Acknowledgements</a>,
 
 <p>This is a guide to importing and exporting data to and from R.
 </p>
-<p>This manual is for R, version 3.1.2 (2014-10-31).
+<p>This manual is for R, version 3.1.3 (2015-03-09).
 </p>
-<p>Copyright &copy; 2000&ndash;2014 R Core Team
+<p>Copyright &copy; 2000&ndash;2015 R Core Team
 </p>
 <blockquote>
 <p>Permission is granted to make and distribute verbatim copies of this
@@ -293,7 +292,6 @@ principal authors of the packages mentioned are
 </p>
 <blockquote>
 <table>
-<tr><td><strong>CORBA</strong></td><td>Duncan Temple Lang</td></tr>
 <tr><td><a href="http://CRAN.R-project.org/package=DBI"><strong>DBI</strong></a></td><td>David A. James</td></tr>
 <tr><td><a href="http://CRAN.R-project.org/package=dataframes2xls"><strong>dataframes2xls</strong></a></td><td>Guido van Steen</td></tr>
 <tr><td><a href="http://CRAN.R-project.org/package=foreign"><strong>foreign</strong></a></td><td>Thomas Lumley, Saikat DebRoy, Douglas Bates, Duncan Murdoch and Roger Bivand</td></tr>
@@ -1486,8 +1484,8 @@ being made available for the commercial DBMSs.
 non-relational databases and even text files (possibly compressed).
 Open Database Connectivity (<acronym>ODBC</acronym>) is a standard to use all of
 these data sources.  It originated on Windows (see
-<a href="http://www.microsoft.com/data/odbc/">http://www.microsoft.com/data/odbc/</a>) but is also implemented on
-Linux/Unix/OS X.
+<a href="http://msdn.microsoft.com/en-us/library/ms710252%28v=vs.85%29.aspx">http://msdn.microsoft.com/en-us/library/ms710252%28v=vs.85%29.aspx</a>)
+but is also implemented on Linux/Unix/OS X.
 </p>
 <p>All of the packages described later in this chapter provide clients to
 client/server databases.  The database can reside on the same machine or
@@ -1659,7 +1657,7 @@ proposal for a unified &lsquo;front-end&rsquo; package <a href="http://CRAN.R-pr
 <a href="http://CRAN.R-project.org/package=RSQLite"><strong>RSQLite</strong></a> (which works with the bundled DBMS <code>SQLite</code>,
 <a href="http://www.sqlite.org">http://www.sqlite.org</a>),  <a href="http://CRAN.R-project.org/package=RJDBC"><strong>RJDBC</strong></a> (which uses Java and can
 connect to any DBMS that has a JDBC driver) and <a href="http://CRAN.R-project.org/package=RpgSQL"><strong>RpgSQL</strong></a> (a
-specialist interface to PostgreSQL built on top of <a href="http://CRAN.R-project.org/package=RJBDC"><strong>RJBDC</strong></a>).
+specialist interface to PostgreSQL built on top of <a href="http://CRAN.R-project.org/package=RJDBC"><strong>RJDBC</strong></a>).
 </p>
 <p>The BioConductor project has updated <strong>RdbiPgSQL</strong> (formerly on
 <acronym>CRAN</acronym> ca 2000), a first-generation interface to PostgreSQL.
@@ -1990,7 +1988,7 @@ Next: <a href="#dBase-files-_0028DBF_0029" accesskey="n" rel="next">dBase files 
 <p>Packages <a href="http://CRAN.R-project.org/package=hdf5"><strong>hdf5</strong></a>, <a href="http://CRAN.R-project.org/package=h5r"><strong>h5r</strong></a>, Bioconductor&rsquo;s <strong>rhdf5</strong>,
 <a href="http://CRAN.R-project.org/package=RNetCDF"><strong>RNetCDF</strong></a>, <a href="http://CRAN.R-project.org/package=ncdf"><strong>ncdf</strong></a> and <a href="http://CRAN.R-project.org/package=ncdf4"><strong>ncdf4</strong></a> on <acronym>CRAN</acronym> provide
 interfaces to <acronym>NASA</acronym>&rsquo;s HDF5 (Hierarchical Data Format, see
-<a href="http://hdf.ncsa.uiuc.edu/HDF5/">http://hdf.ncsa.uiuc.edu/HDF5/</a>) and to UCAR&rsquo;s netCDF data files
+<a href="http://www.hdfgroup.org/HDF5/">http://www.hdfgroup.org/HDF5/</a>) and to UCAR&rsquo;s netCDF data files
 (network Common Data Form, see
 <a href="http://www.unidata.ucar.edu/packages/netcdf/">http://www.unidata.ucar.edu/packages/netcdf/</a>).
 </p>
@@ -2028,7 +2026,10 @@ equivalents Visual dBase, Visual Objects and Visual FoxPro (see
 a header and then a series of fields and so is most similar to an R
 data frame.  The data itself is stored in text format, and can include
 character, logical and numeric fields, and other types in later versions
-(see <a href="http://clicketyclick.dk/docs/data_types.html">http://clicketyclick.dk/docs/data_types.html</a>).
+(see for example
+<a href="http://www.digitalpreservation.gov/formats/fdd/fdd000325.shtml">http://www.digitalpreservation.gov/formats/fdd/fdd000325.shtml</a>
+and
+<a href="http://www.clicketyclick.dk/databases/xbase/format/index.html">http://www.clicketyclick.dk/databases/xbase/format/index.html</a>).
 </p>
 <a name="index-read_002edbf"></a>
 <a name="index-write_002edbf"></a>
@@ -2522,8 +2523,6 @@ Next: <a href="#Reading-Excel-spreadsheets" accesskey="n" rel="next">Reading Exc
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Using-download_002efile" accesskey="2">Using download.file</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#CORBA-interface" accesskey="3">CORBA interface</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
 </table>
 
 <p>Some limited facilities are available to exchange data at a lower level
@@ -2559,7 +2558,7 @@ is suggested that socket connections are used instead.
 <a name="Using-download_002efile"></a>
 <div class="header">
 <p>
-Next: <a href="#CORBA-interface" accesskey="n" rel="next">CORBA interface</a>, Previous: <a href="#Reading-from-sockets" accesskey="p" rel="prev">Reading from sockets</a>, Up: <a href="#Network-interfaces" accesskey="u" rel="up">Network interfaces</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="#Reading-from-sockets" accesskey="p" rel="prev">Reading from sockets</a>, Up: <a href="#Network-interfaces" accesskey="u" rel="up">Network interfaces</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Using-download_002efile-1"></a>
 <h3 class="section">8.2 Using <code>download.file</code></h3>
@@ -2571,49 +2570,6 @@ directly from a URL, either by explicitly using <code>url</code> to open a
 connection, or implicitly using it by giving a URL as the <code>file</code>
 argument.
 </p>
-<hr>
-<a name="CORBA-interface"></a>
-<div class="header">
-<p>
-Previous: <a href="#Using-download_002efile" accesskey="p" rel="prev">Using download.file</a>, Up: <a href="#Network-interfaces" accesskey="u" rel="up">Network interfaces</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
-</div>
-<a name="CORBA-interface-1"></a>
-<h3 class="section">8.3 <acronym>CORBA</acronym> interface</h3>
-<a name="index-CORBA"></a>
-
-<p><acronym>CORBA</acronym> (Common Object Request Broker Architecture) is similar
-to <acronym>DCOM</acronym>, allowing applications to call methods, or operations,
-in server objects running in other applications, potentially programmed
-in different languages and running on different machines.  There is a
-<strong>CORBA</strong> package available from the Omegahat project (at
-<a href="http://www.omegahat.org/RSCORBA/">http://www.omegahat.org/RSCORBA/</a>), currently for Unix but a
-Windows version looks to be possible.
-</p>
-<p>This package allows R commands to be used to locate available
-<acronym>CORBA</acronym> servers, query the methods they provide, and dynamically
-invoke methods on these objects.  R values given as arguments in
-these calls are exported in the call and made available to that
-operation invocation.  Primitive data types (vectors and lists) are
-exported by default, while more complex objects are exported by
-reference.  Examples of using this include communicating with the
-Gnumeric (<a href="http://www.gnumeric.org">http://www.gnumeric.org</a>) spreadsheet, and also
-interacting with the data visualization system
-<a href="http://www.ggobi.org">ggobi</a>.
-</p>
-<p>One can also create <acronym>CORBA</acronym> servers within R, allowing other
-applications to call these methods.  For example, one might offer access
-to a particular dataset or to some of R&rsquo;s modelling software.  This
-is done dynamically by combining R data objects and functions.  This
-allows one to explicitly export data and functionality from R.
-</p>
-<p>One can also use the <strong>CORBA</strong> package to achieve distributed,
-parallel computing in R.  One R session acts as a manager and
-dispatches tasks to different servers running in other R worker
-sessions.  This uses the ability to invoke asynchronous or background
-CORBA calls in R.  More information is available from the Omegahat
-project at <a href="http://www.omegahat.org/RSCORBA/">http://www.omegahat.org/RSCORBA/</a>.
-</p>
-
 
 <hr>
 <a name="Reading-Excel-spreadsheets"></a>
@@ -2730,7 +2686,7 @@ with C++.</em> Addison-Wesley.
 </p>
 <p>B. Momjian (2000) <em>PostgreSQL: Introduction and Concepts.</em>
 Addison-Wesley.
-Also downloadable at <a href="http://www.postgresql.org/docs/awbook.html">http://www.postgresql.org/docs/awbook.html</a>.
+Also available at <a href="http://momjian.us/main/writings/pgsql/aw_pgsql_book/">http://momjian.us/main/writings/pgsql/aw_pgsql_book/</a>.
 </p>
 <p>B. D. Ripley (2001) Connections. \<em>R News</em>, <strong>1/1</strong>, 16&ndash;7.
   \<a href="http://www.r-project.org/doc/Rnews/Rnews_2001-1.pdf">http://www.r-project.org/doc/Rnews/Rnews_2001-1.pdf</a>
@@ -3051,7 +3007,6 @@ Previous: <a href="#Function-and-variable-index" accesskey="p" rel="prev">Functi
 <tr><td></td><td valign="top"><a href="#index-Connections-1">Connections</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Types-of-connections">Types of connections</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Connections-2">Connections</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Output-to-connections">Output to connections</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Connections-3">Connections</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Listing-and-manipulating-connections">Listing and manipulating connections</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-CORBA">CORBA</a>:</td><td>&nbsp;</td><td valign="top"><a href="#CORBA-interface">CORBA interface</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-CSV-files">CSV files</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Export-to-text-files">Export to text files</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-CSV-files-1">CSV files</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Variations-on-read_002etable">Variations on read.table</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
