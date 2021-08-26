@@ -31,6 +31,7 @@ codocClasses	codoc
 codocData	codoc
 compactPDF	compactPDF
 CRAN_check_details	CRANtools
+CRAN_check_issues	CRANtools
 CRAN_check_results	CRANtools
 CRAN_memtest_notes	CRANtools
 CRAN_package_db	CRANtools

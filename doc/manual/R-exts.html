@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.4.0 (2017-04-21).
+<!-- This manual is for R, version 3.4.1 (2017-06-30).
 
 Copyright (C) 1999-2016 R Core Team
 
@@ -438,7 +438,7 @@ Next: <a href="#Acknowledgements" accesskey="n" rel="next">Acknowledgements</a> 
 R add-on packages, writing R documentation, R&rsquo;s system and
 foreign language interfaces, and the R <acronym>API</acronym>.
 </p>
-<p>This manual is for R, version 3.4.0 (2017-04-21).
+<p>This manual is for R, version 3.4.1 (2017-06-30).
 </p>
 <p>Copyright &copy; 1999&ndash;2016 R Core Team
 </p>
@@ -1242,8 +1242,8 @@ suppose an example<a name="DOCF10" href="#FOOT10"><sup>10</sup></a> from
 package <strong>foo</strong> uses a dataset from package <strong>bar</strong>. Then it is not
 necessary to have <strong>bar</strong> use <strong>foo</strong> unless one wants to execute
 all the examples/tests/vignettes: it is useful to have <strong>bar</strong>, but
-not necessary.  Version requirements can be specified, and will be used
-by <code>R CMD check</code>.
+not necessary.  Version requirements can be specified but should be
+checked by the code which uses the package.
 </p>
 <p>Finally, the &lsquo;<samp>Enhances</samp>&rsquo; field lists packages &ldquo;enhanced&rdquo; by the
 package at hand, e.g., by providing methods for classes from these
@@ -3000,12 +3000,11 @@ Previous: <a href="#Using-C_002b_002b14-code" accesskey="p" rel="prev">Using C++
 
 <p>Experimental support for C++17 has been added to R version 3.4.0. The
 <samp>configure</samp> script tests a subset of C++17 features.  At the time
-of writing (March 2017) both <code>clang 4.0.0</code> and the pre-release
-version <code>gcc 7.0.1 (20170314)</code> pass these tests (with flags
-<samp>-std=gnu++1z</samp> and <samp>-std=gnu++17</samp> respectively chosen by
-the <samp>configure</samp> script).  Note that the C++17 feature tests are
-incomplete and are subject to change in future R versions as compiler
-support for the standard improves.
+of writing (March 2017) both <code>clang 4.0.0</code> and <code>gcc 7.1</code> pass
+these tests (with flags <samp>-std=gnu++1z</samp> and <samp>-std=gnu++17</samp>
+respectively chosen by the <samp>configure</samp> script).  Note that the
+C++17 feature tests are incomplete and are subject to change in future
+R versions as compiler support for the standard improves.
 </p>
 <p>The variables associated with the C++17 compiler use the prefix
 &lsquo;<samp>CXX17</samp>&rsquo;.  Hence to use C++17 code in a package, the package&rsquo;s
@@ -4821,10 +4820,10 @@ know how fast or how heavily loaded an R platform might be.  At best
 you can test a ratio of times, and even that is fraught with
 difficulties.
 
-</li><li> Do not test the exact format of R error messages: They change, and
-they can be translated.
+</li><li> Do not test the exact format of R messages (from R itself or from
+other packages): They change, and they can be translated.
 
-<p>Worse, packages have tested the exact format of system error messages,
+<p>Packages have even tested the exact format of system error messages,
 which are platform-dependent and perhaps locale-dependent.
 </p>
 </li><li> If you use functions such as <code>View</code>, remember that in testing there
@@ -5173,14 +5172,25 @@ Some compilers/OSes include other system headers in their headers which
 are not required by the standards, and so code may compile on such
 systems and not on others.  (A prominent example is the C++11 header
 <code>&lt;random&gt;</code> which is indirectly included by <code>&lt;algorithm&gt;</code> by
-<code>g++</code>.  Another frequent issue is the C header <code>&lt;time.h&gt;</code>
-which is included by other headers on Linux and Windows but not macOS nor
-Solaris.)  Another common issue is that <code>malloc</code>, <code>calloc</code>,
-<code>realloc</code> and <code>free</code> are defined by C99 in the header
-<samp>stdlib.h</samp> and (in the <code>std::</code> namespace) by C++ header
-<samp>cstdlib</samp>.  Some earlier implementations used a header
-<samp>malloc.h</samp>, but that is not portable and does not exist on macOS.
+<code>g++</code>.  Another issue is the C header <code>&lt;time.h&gt;</code> which is
+included by other headers on Linux and Windows but not macOS nor
+Solaris.)
 
+<p>Note that <code>malloc</code>, <code>calloc</code>, <code>realloc</code> and <code>free</code>
+are defined by C99 in the header <samp>stdlib.h</samp> and (in the
+<code>std::</code> namespace) by C++ header <samp>cstdlib</samp>.  Some earlier
+implementations used a header <samp>malloc.h</samp>, but that is not portable
+and does not exist on macOS.
+</p>
+<p>This also applies to types such as <code>ssize_t</code>.  The POSIX standards
+say that is declared in headers <code>unistd.h</code> and <code>sys/types.h</code>,
+and the latter is often included indirectly by other headers on some
+but not all systems.
+</p>
+<p>Similarly for constants: for example <code>SIZE_MAX</code> is defined in
+<code>stdint.h</code> alongside <code>size_t</code> (according to the C99 standard:
+it is not part of C++98).
+</p>
 </li><li> For C++ code, be careful to specify namespaces where needed.  Many
 functions are defined by the standards to be in the <code>std</code>
 namespace, but <code>g++</code> puts many such also in the C++ main
@@ -5227,8 +5237,9 @@ before including any system headers, but it is better to only use
 all-upper-case names which have a unique prefix such as the package name.
 
 </li><li> <code>typedef</code>s in OS headers can conflict with those in the package:
-two examples are <code>ulong</code> on several OSes and <code>index_t</code> on
-Solaris.
+examples include <code>ulong</code> on several OSes and <code>index_t</code> and
+<code>single</code> on Solaris.  (Note that these may conflict with other uses
+as identifiers, e.g. defining a C++ function called <code>single</code>.)
 
 </li><li> If you use OpenMP, check carefully that you have followed the advice in
 the subsection on <a href="#OpenMP-support">OpenMP support</a>.  In particular, any use of
@@ -5242,7 +5253,7 @@ OpenMP in C/C++ code will need to use
 needs to be conditioned.
 </p>
 <p>And do not hardcode <samp>-lgomp</samp>: not only is that specific to the
-GCC family of compilers, using the correct linker flag sets up the
+GCC family of compilers, using the correct linker flag often sets up the
 run-time path to the library.
 </p>
 </li><li> Package authors commonly assume things are part of C99 when they are
@@ -5279,9 +5290,9 @@ they were introduced in C++11 if at all.  Recent examples from
 functions <code>strdup</code> and <code>strncasecmp</code> and constants <code>M_PI</code>
 and <code>M_LN2</code> (see the previous item).  R has long provided
 <code>fmax2</code>, <code>fmin2</code>, <code>fround</code>, <code>ftrunc</code>,
-<code>lgammafn</code>, <code>log1p</code> (if needed) and many of the X/Open
-constants, declared in header <samp>Rmath.h</samp>.  Uses of <code>erf</code> can be
-replaced by <code>pnorm</code> (see the R help page for the latter).
+<code>lgammafn</code> and many of the X/Open constants, declared in header
+<samp>Rmath.h</samp>.  Uses of <code>erf</code> can be replaced by <code>pnorm</code> (see
+the R help page for the latter).
 </p>
 </li><li> Using <code>alloca</code> portably is tricky: it is neither an ISO C nor a
 POSIX function.  An adequately portable preamble is
@@ -6265,6 +6276,14 @@ need someone to interact with.)  Note that code included in
 be declared in the <samp>DESCRIPTION</samp> file.  It is good practice to
 include a comment in the <code>\donttest</code> section explaining why it is
 needed.
+</p>
+<p>As from R 3.4.0, output from code between comments
+</p><div class="example">
+<pre class="example">## IGNORE_RDIFF_BEGIN
+## IGNORE_RDIFF_END
+</pre></div>
+<p>is ignored when comparing check output to reference output (a
+<samp>-Ex.Rout.save</samp> file).
 </p>
 <a name="index-_005ckeyword"></a>
 </dd>
@@ -8808,8 +8827,8 @@ produced: for <code>gdb</code> or <code>lldb</code> you could use
 <p>(See
 <a href="https://code.google.com/p/address-sanitizer/wiki/AddressSanitizer#gdb">https://code.google.com/p/address-sanitizer/wiki/AddressSanitizer#gdb</a>.)
 </p>
-<p>Recent versions<a name="DOCF113" href="#FOOT113"><sup>113</sup></a> added the flag
-<samp>-fsanitize-address-use-after-scope</samp>: see
+<p>Recent versions<a name="DOCF113" href="#FOOT113"><sup>113</sup></a>
+added the flag <samp>-fsanitize-address-use-after-scope</samp>: see
 <a href="https://github.com//google//sanitizers//wiki//AddressSanitizerUseAfterScope">https://github.com//google//sanitizers//wiki//AddressSanitizerUseAfterScope</a>.
 </p>
 <table summary="" class="menu" border="0" cellspacing="0">
@@ -11041,8 +11060,8 @@ For example (from the internal code for <code>optim</code>)
 <pre class="example">    PROTECT_INDEX ipx;
 
     ....
-    s = PROTECT_WITH_INDEX(eval(OS-&gt;R_fcall, OS-&gt;R_env), &amp;ipx);
-    s = REPROTECT(coerceVector(s, REALSXP), ipx);
+    PROTECT_WITH_INDEX(s = eval(OS-&gt;R_fcall, OS-&gt;R_env), &amp;ipx);
+    REPROTECT(s = coerceVector(s, REALSXP), ipx);
 </pre></div>
 
 <p>Note that it is dangerous to mix <code>UNPROTECT_PTR</code> with
@@ -11246,7 +11265,7 @@ considerably faster to store the result and index that.
     SET_VECTOR_ELT(dimnames, 1, getAttrib(y, R_NamesSymbol));
     setAttrib(ans, R_DimNamesSymbol, dimnames);
 </pre><pre class="example">
-</pre><pre class="example">    UNPROTECT(3);
+</pre><pre class="example">    UNPROTECT(2);
     return ans;
 }
 </pre></div>
@@ -12588,7 +12607,7 @@ is created by
 
 <p>Note the symbol given to identify the usage of the external pointer, and
 the use of the finalizer.  Since the final argument when registering the
-finalizer is <code>TRUE</code>, the finalizer will be run at the of the
+finalizer is <code>TRUE</code>, the finalizer will be run at the end of the
 R session (unless it crashes).  This is used to close and clean up
 the connection to the database.  The finalizer code is simply
 </p>
@@ -16743,9 +16762,8 @@ currently shipped by Apple.</p>
 <a href="https://llvm.org/svn/llvm-project/compiler-rt/trunk/lib/asan/scripts/asan_symbolize.py">https://llvm.org/svn/llvm-project/compiler-rt/trunk/lib/asan/scripts/asan_symbolize.py</a>:
 it makes use of <code>llvm-symbolizer</code> if available.</p>
 <h3><a name="FOOT113" href="#DOCF113">(113)</a></h3>
-<p>This is expected to be in <code>gcc</code> 7 and
-<code>clang</code> 4.0.0.  Currently for <code>gcc</code> it is implied by
-<samp>-fsanitize=address</samp>.</p>
+<p>including <code>gcc</code> 7.1 and <code>clang</code>
+4.0.0: for <code>gcc</code> it is implied by <samp>-fsanitize=address</samp>.</p>
 <h3><a name="FOOT114" href="#DOCF114">(114)</a></h3>
 <p>On some
 platforms the runtime library, <strong>libubsan</strong>, needs to be installed

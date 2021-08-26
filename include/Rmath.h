@@ -52,7 +52,7 @@ using namespace std;
 /*-- Mathlib as part of R --  define this for standalone : */
 /* #undef MATHLIB_STANDALONE */
 
-#define R_VERSION_STRING "3.4.0"
+#define R_VERSION_STRING "3.4.1"
 
 #ifndef HAVE_EXPM1
 # define HAVE_EXPM1 1
@@ -629,9 +629,11 @@ double  lgamma1p(double);/* accurate log(gamma(x+1)), small x (0 < x < 0.5) */
    We can add a check for that via the value of
    __STDC_IEC_60559_FUNCS__ (>= 201506L).
 */
+#if !(defined(__STDC_IEC_60559_FUNCS__) && __STDC_IEC_60559_FUNCS__ >= 201506L)
 double cospi(double);
 double sinpi(double);
 double tanpi(double);
+#endif
 
 /* Compute the log of a sum or difference from logs of terms, i.e.,
  *
