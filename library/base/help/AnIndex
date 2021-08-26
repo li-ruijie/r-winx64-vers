@@ -523,6 +523,7 @@ diag<-	diag
 diff	diff
 diff.Date	diff
 diff.default	diff
+diff.difftime	difftime
 diff.POSIXt	diff
 difftime	difftime
 digamma	Special
