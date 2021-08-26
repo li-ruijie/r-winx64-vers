@@ -108,7 +108,13 @@ will be similar to the 0/1 status variable of a survival time.
 <p>The function adds three new variables to the output data set: 
 <code>tstart</code>, <code>tstop</code>, and <code>id</code>.  The <code>options</code> argument
 can be used to change these names.
-The <code>na.rm</code> option affects creation of time-dependent covariates.
+If <code>data1</code> contains the <code>tstart</code> variable then that is used as
+the starting point for the created time intervals, otherwise the initial
+interval for each id will begin at 0 by default.
+This will lead to an invalid interval and subsequent error if say a
+death time were &lt;= 0.
+</p>
+<p>The <code>na.rm</code> option affects creation of time-dependent covariates.
 Should a data row in <code>data2</code> that has a missing value for the
 variable be ignored (na.rm=FALSE, default) or should it generate an
 observation with a value of NA?  The default value leads to
@@ -184,5 +190,5 @@ pbc2 &lt;- tmerge(pbc2, pbcseq, id=id, ascites = tdc(day, ascites),
 fit &lt;- coxph(Surv(tstart, tstop, endpt==2) ~ protime + log(bili), data=pbc2)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.41-3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.42-3 <a href="00Index.html">Index</a>]</div>
 </body></html>

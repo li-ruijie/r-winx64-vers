@@ -27,10 +27,10 @@ This will be the order in which <code>col</code>, <code>lty</code>, etc are used
 <pre>
 ## S3 method for class 'survfit'
 plot(x, conf.int=, mark.time=FALSE, 
- mark=3, col=1, lty=1, lwd=1, cex=1, log=FALSE, xscale=1, yscale=1,  
+ pch=3, col=1, lty=1, lwd=1, cex=1, log=FALSE, xscale=1, yscale=1,  
  firstx=0, firsty=1, xmax, ymin=0, fun, 
  xlab="", ylab="", xaxs="S",  conf.times, conf.cap=.005,
- conf.offset=.012, ...)
+ conf.offset=.012, mark, ...)
 </pre>
 
 
@@ -56,16 +56,18 @@ do so if there is only 1 curve, i.e., no strata.
 
 <p>controls the labeling of the curves.  If set to <code>FALSE</code>, no
 labeling is done. 
-If <code>TRUE</code>, then curves are marked at each censoring time which
-is not also a death time.  If <code>mark.time</code> is a 
-numeric vector, then curves are marked at the specified time points. 
+If <code>TRUE</code>, then curves are marked at each censoring time.
+If <code>mark</code> is a
+numeric vector then curves are marked at the specified time points. 
 </p>
 </td></tr>
-<tr valign="top"><td><code>mark</code></td>
+<tr valign="top"><td><code>pch</code></td>
 <td>
 
-<p>vector of mark parameters, which will be used to label the curves. 
-The <code>lines</code> help file contains examples of the possible marks. 
+<p>vector of characters which will be used to label the curves. 
+The <code>points</code> help file contains examples of the possible marks.
+A single string such as &quot;abcd&quot; is treated as a vector
+<code>c("a", "b", "c", "d")</code>.
 The vector is reused cyclically if it is shorter than the number of
 curves.  If it is present this implies <code>mark.time = TRUE</code>.
 </p>
@@ -211,6 +213,10 @@ region. If this is a single number then each curve's bars are offset
 by this amount from the prior curve's bars, if it is a vector the values are
 used directly.</p>
 </td></tr>
+<tr valign="top"><td><code>mark</code></td>
+<td>
+<p>a historical alias for <code>pch</code></p>
+</td></tr>
 <tr valign="top"><td><code>...</code></td>
 <td>
 <p>for future methods</p>
@@ -276,5 +282,5 @@ plot(lsurv2, lty=2:3, fun="cumhaz",
 	xlab="Months", ylab="Cumulative Hazard") 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.41-3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.42-3 <a href="00Index.html">Index</a>]</div>
 </body></html>

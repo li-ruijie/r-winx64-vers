@@ -277,6 +277,8 @@ terms less the number of spline terms).
 </p>
 <p>This routine is less stable than &lsquo;gam&rsquo; for the same dataset.
 </p>
+<p>With <code>discrete=TRUE</code>, <code>te</code> terms are efficiently computed, but <code>t2</code> are not.
+</p>
 <p>The negbin family is only supported for the *known theta* case.
 </p>
 
@@ -313,9 +315,7 @@ terms less the number of spline terms).
 library(mgcv)
 ## See help("mgcv-parallel") for using bam in parallel
 
-## Some examples are marked 'Not run' purely to keep 
-## checking load on CRAN down. Sample sizes are small for 
-## the same reason.
+## Sample sizes are small for fast run times.
 
 set.seed(3)
 dat &lt;- gamSim(1,n=25000,dist="normal",scale=20)
@@ -340,8 +340,16 @@ system.time(b1 &lt;- bam(y ~ s(x0,bs=bs)+s(x1,bs=bs)+s(x2,bs=bs,k=k),
             data=dat,family=poisson()))
 b1
 
+## Similar using faster discrete method...
+
+ 
+system.time(b2 &lt;- bam(y ~ s(x0,bs=bs,k=k)+s(x1,bs=bs,k=k)+s(x2,bs=bs,k=k)+
+            s(x3,bs=bs,k=k),data=dat,family=poisson(),discrete=TRUE))
+b2
+
+
 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-23 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-24 <a href="00Index.html">Index</a>]</div>
 </body></html>

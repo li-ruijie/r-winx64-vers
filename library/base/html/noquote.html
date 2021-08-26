@@ -19,7 +19,7 @@
 noquote(obj, right = FALSE)
 
 ## S3 method for class 'noquote'
-print(x, ...)
+print(x, quote = FALSE, right = FALSE, ...)
 
 ## S3 method for class 'noquote'
 c(..., recursive = FALSE)
@@ -44,7 +44,7 @@ whether or not strings should be right aligned.</p>
 <td>
 <p>an object of class <code>"noquote"</code>.</p>
 </td></tr>
-<tr valign="top"><td><code>...</code></td>
+<tr valign="top"><td><code>quote, ...</code></td>
 <td>
 <p>further options passed to next methods, such as <code><a href="print.html">print</a></code>.</p>
 </td></tr>
@@ -62,6 +62,10 @@ whether or not strings should be right aligned.</p>
 method (<code>"[.noquote"</code>) which ensures that the class is not lost
 by subsetting.  The print method (<code>print.noquote</code>) prints
 character strings <em>without</em> quotes (<code>"\dots"</code>).
+</p>
+<p>If <code>right</code> is specified in a call <code>print(x, right=*)</code>, it
+takes precedence over a possible <code>right</code> setting of <code>x</code>,
+e.g., created by <code>x &lt;- noquote(*, right=TRUE)</code>.
 </p>
 <p>These functions exist both as utilities and as an example of using (S3)
 <code><a href="class.html">class</a></code> and object orientation.
@@ -101,11 +105,7 @@ chmat &lt;- as.matrix(format(stackloss)) # a "typical" character matrix
 chmat &lt;- noquote(chmat, right = TRUE)
 chmat
 
-
-
-
-
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 3.5.0 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 3.5.1 <a href="00Index.html">Index</a>]</div>
 </body></html>
