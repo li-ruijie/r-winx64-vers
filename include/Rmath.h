@@ -1,6 +1,6 @@
 /* -*- C -*-
  *  Mathlib : A C Library of Special Functions
- *  Copyright (C) 1998-2015  The R Core Team
+ *  Copyright (C) 1998-2016  The R Core Team
  *  Copyright (C) 2004       The R Foundation
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -34,14 +34,14 @@
 /* Note that on some systems we need to include math.h before the
    defines below. */
 #ifndef NO_C_HEADERS
-# define __STDC_WANT_IEC_60559_TYPES_EXT__ 1
+# define __STDC_WANT_IEC_60559_FUNCS_EXT__ 1
 # include <math.h>
 #endif
 
 /*-- Mathlib as part of R --  define this for standalone : */
 /* #undef MATHLIB_STANDALONE */
 
-#define R_VERSION_STRING "3.2.3"
+#define R_VERSION_STRING "3.2.4"
 
 #ifndef HAVE_EXPM1
 # define HAVE_EXPM1 1
