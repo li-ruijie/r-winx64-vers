@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 4.0.3 (2020-10-10).
+<!-- This manual is for R, version 4.0.4 (2021-02-15).
 
-Copyright (C) 2000-2020 R Core Team
+Copyright (C) 2000-2021 R Core Team
 
 Permission is granted to make and distribute verbatim copies of this
 manual provided the copyright notice and this permission notice are
@@ -242,9 +242,9 @@ Next: <a href="#Acknowledgements" accesskey="n" rel="next">Acknowledgements</a> 
 
 <p>This is a guide to importing and exporting data to and from R.
 </p>
-<p>This manual is for R, version 4.0.3 (2020-10-10).
+<p>This manual is for R, version 4.0.4 (2021-02-15).
 </p>
-<p>Copyright &copy; 2000&ndash;2020 R Core Team
+<p>Copyright &copy; 2000&ndash;2021 R Core Team
 </p>
 <blockquote>
 <p>Permission is granted to make and distribute verbatim copies of this
@@ -1555,7 +1555,7 @@ being made available for the commercial DBMSs.
 non-relational databases and even text files (possibly compressed).
 Open Database Connectivity (<acronym>ODBC</acronym>) is a standard to use all of
 these data sources.  It originated on Windows (see
-<a href="https://msdn.microsoft.com/en-us/library/ms710252%28v=vs.85%29.aspx">https://msdn.microsoft.com/en-us/library/ms710252%28v=vs.85%29.aspx</a>)
+<a href="https://docs.microsoft.com/en-us/sql/odbc/microsoft-open-database-connectivity-odbc">https://docs.microsoft.com/en-us/sql/odbc/microsoft-open-database-connectivity-odbc</a>)
 but is also implemented on Linux/Unix/macOS.
 </p>
 <p>All of the packages described later in this chapter provide clients to
@@ -1726,12 +1726,12 @@ proposal for a unified &lsquo;front-end&rsquo; package <a href="https://CRAN.R-p
 &lsquo;back-end&rsquo;, the most developed of which is <a href="https://CRAN.R-project.org/package=RMySQL"><strong>RMySQL</strong></a>.  Also on
 <acronym>CRAN</acronym> are the back-ends <a href="https://CRAN.R-project.org/package=ROracle"><strong>ROracle</strong></a>,
 <a href="https://CRAN.R-project.org/package=RPostgreSQL"><strong>RPostgreSQL</strong></a> and <a href="https://CRAN.R-project.org/package=RSQLite"><strong>RSQLite</strong></a> (which works with the
-bundled DBMS <code>SQLite</code>, <a href="https://www.sqlite.org">https://www.sqlite.org</a>) and
+bundled DBMS <code>SQLite</code>, <a href="https://www.sqlite.org/index.html">https://www.sqlite.org/index.html</a>) and
 <a href="https://CRAN.R-project.org/package=RJDBC"><strong>RJDBC</strong></a> (which uses Java and can connect to any DBMS that has a
 JDBC driver).
 </p>
 
-<p><strong>PL/R</strong> (<a href="http://joeconway.com/plr/"><code>http://joeconway.com/plr</code></a>) is a project to embed R into
+<p><strong>PL/R</strong> (<a href="https://joeconway.com/plr/"><code>https://joeconway.com/plr</code></a>) is a project to embed R into
 PostgreSQL.
 </p>
 <p>Package <a href="https://CRAN.R-project.org/package=RMongo"><strong>RMongo</strong></a> provides an R interface to a Java client for
@@ -2092,7 +2092,7 @@ Borland which has a binary flat-file format that became popular, with
 file extension <samp>.dbf</samp>.  It has been adopted for the &rsquo;Xbase&rsquo; family
 of databases, covering dBase, Clipper, FoxPro and their Windows
 equivalents Visual dBase, Visual Objects and Visual FoxPro (see
-<a href="https://www.clicketyclick.dk/databases/xbase/format">https://www.clicketyclick.dk/databases/xbase/format</a>).
+<a href="https://www.clicketyclick.dk/databases/xbase/format/">https://www.clicketyclick.dk/databases/xbase/format/</a>).
 A dBase file contains
 a header and then a series of fields and so is most similar to an R
 data frame.  The data itself is stored in text format, and can include
@@ -2674,7 +2674,7 @@ possibility.
 </p>
 <p>If you do not have Excel, many other programs are able to read such
 spreadsheets and export in a text format on both Windows and Unix, for
-example Gnumeric (<a href="http://www.gnome.org/projects/gnumeric/">http://www.gnome.org/projects/gnumeric/</a>) and
+example Gnumeric (<a href="http://www.gnumeric.org">http://www.gnumeric.org</a>) and
 OpenOffice (<a href="https://www.openoffice.org">https://www.openoffice.org</a>).  You can also
 cut-and-paste between the display of a spreadsheet in such a program and
 R: <code>read.table</code> will read from the R console or, under Windows,

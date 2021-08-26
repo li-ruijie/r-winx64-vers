@@ -100,7 +100,7 @@ depends on the platform:
 <ul>
 <li><p> On a Unix-alike method <code>"libcurl"</code> is used except
 <code>"internal"</code> for <span class="samp">file://</span> URLs, where <code>"libcurl"</code>
-uses the library of that name (<a href="https://curl.haxx.se/libcurl/">https://curl.haxx.se/libcurl/</a>).
+uses the library of that name (<a href="https://curl.se/libcurl/">https://curl.se/libcurl/</a>).
 </p>
 </li>
 <li><p> On Windows the <code>"wininet"</code> method is used apart from for
@@ -111,7 +111,7 @@ uses the library of that name (<a href="https://curl.haxx.se/libcurl/">https://c
 <p>Support for method <code>"libcurl"</code> is optional on Windows: use
 <code><a href="../../base/html/capabilities.html">capabilities</a>("libcurl")</code> to see if it is supported on
 your build.  It uses an external library of that name
-(<a href="https://curl.haxx.se/libcurl/">https://curl.haxx.se/libcurl/</a>) against which <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> can be compiled.
+(<a href="https://curl.se/libcurl/">https://curl.se/libcurl/</a>) against which <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> can be compiled.
 </p>
 </li></ul>
 
@@ -163,9 +163,17 @@ and <code>"libcurl"</code> methods only.
 </p>
 <p>The timeout for many parts of the transfer can be set by the option
 <code>timeout</code> which defaults to 60 seconds.  This is often
-insufficient for downloads of large files (hundreds of MB or more) and
+insufficient for downloads of large files (50MB or more) and
 so should be increased when <code>download.file</code> is used in packages
-to do so.
+to do so.  Note that the user can set the default timeout by the
+environment variable <span class="env">R_DEFAULT_INTERNET_TIMEOUT</span> in recent
+versions of <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span>, so to ensure that this is not decreased packages should
+use something like
+</p>
+<pre>
+    options(timeout = max(300, getOption("timeout")))
+  </pre>
+<p>(It is unrealistic to require download times of less than 1s/MB.)
 </p>
 <p>The level of detail provided during transfer can be set by the
 <code>quiet</code> argument and the <code>internet.info</code> option: the details
@@ -199,10 +207,10 @@ between text and binary files and for text transfers changes <code>\n</code>
 line endings to <code>\r\n</code> (aka &lsquo;<span class="file">CRLF</span>&rsquo;).
 </p>
 <p>On Windows, if <code>mode</code> is not supplied (<code><a href="../../base/html/missing.html">missing</a>()</code>)
-and <code>url</code> ends in one of
-<code>.gz</code>, <code>.bz2</code>, <code>.xz</code>, <code>.tgz</code>, <code>.zip</code>,
-<code>.rda</code>, <code>.rds</code> or <code>.RData</code>, <code>mode = "wb"</code> is set
-such that a binary transfer is done to help unwary users.
+and <code>url</code> ends in one of <code>.gz</code>, <code>.bz2</code>, <code>.xz</code>,
+<code>.tgz</code>, <code>.zip</code>, <code>.jar</code>, <code>.rda</code>, <code>.rds</code> or
+<code>.RData</code>, <code>mode = "wb"</code> is set so that a binary transfer
+is done to help unwary users.
 </p>
 <p>Code written to download binary files must use <code>mode = "wb"</code> (or
 <code>"ab"</code>), but the problems incurred by a text transfer will only
@@ -265,7 +273,7 @@ further prompt per download.
 <span class="env">no_proxy</span>, <span class="env">http_proxy</span> and <span class="env">ftp_proxy</span>, and for the last
 two a contents of <code>[user:password@]machine[:port]</code> where the
 parts in brackets are optional.  See
-<a href="https://curl.haxx.se/libcurl/c/libcurl-tutorial.html">https://curl.haxx.se/libcurl/c/libcurl-tutorial.html</a> for details.
+<a href="https://curl.se/libcurl/c/libcurl-tutorial.html">https://curl.se/libcurl/c/libcurl-tutorial.html</a> for details.
 </p>
 
 
@@ -275,7 +283,7 @@ parts in brackets are optional.  See
 try to verify the site certificates.  This is usually done using the CA
 root certificates installed by the OS (although we have seen instances
 in which these got removed rather than updated). For further information
-see <a href="https://curl.haxx.se/docs/sslcerts.html">https://curl.haxx.se/docs/sslcerts.html</a>.
+see <a href="https://curl.se/docs/sslcerts.html">https://curl.se/docs/sslcerts.html</a>.
 </p>
 <p>This is an issue for <code>method = "libcurl"</code> on Windows, where the
 OS does not provide a suitable CA certificate bundle, so by default on
@@ -287,7 +295,7 @@ installation of <span style="font-family: Courier New, Courier; color: #666666;"
 &lsquo;<span class="file"><var>R_HOME</var>/etc/curl-ca-bundle.crt</span>&rsquo; and sets
 <span class="env">CURL_CA_BUNDLE</span> to point to it if that environment variable is not
 already set.)  For an updated certificate bundle, see
-<a href="https://curl.haxx.se/docs/sslcerts.html">https://curl.haxx.se/docs/sslcerts.html</a>.
+<a href="https://curl.se/docs/sslcerts.html">https://curl.se/docs/sslcerts.html</a>.
 Currently one can download a copy from
 <a href="https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt">https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt</a>
 and set <span class="env">CURL_CA_BUNDLE</span> to the full path to the downloaded file.
@@ -341,11 +349,11 @@ the <code>"libcurl"</code> or <code>"wininet"</code> methods.
 user/password authentication if proper values are stored in the
 configuration file for <code>wget</code>.
 </p>
-<p><code>wget</code> (<a href="http://www.gnu.org/software/wget/">http://www.gnu.org/software/wget/</a>) is commonly
+<p><code>wget</code> (<a href="https://www.gnu.org/software/wget/">https://www.gnu.org/software/wget/</a>) is commonly
 installed on Unix-alikes (but not macOS).  Windows binaries are
 available from Cygwin, gnuwin32 and elsewhere.
 </p>
-<p><code>curl</code> (<a href="https://curl.haxx.se/">https://curl.haxx.se/</a>) is installed on macOS and
+<p><code>curl</code> (<a href="https://curl.se/">https://curl.se/</a>) is installed on macOS and
 commonly on Unix-alikes.  Windows binaries are available at that URL.
 </p>
 
@@ -364,5 +372,5 @@ and <code>internet.info</code> options used by some of the methods.
 comprehensive facilities to download from URLs.
 </p>
 
-<hr /><div style="text-align: center;">[Package <em>utils</em> version 4.0.3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>utils</em> version 4.0.4 <a href="00Index.html">Index</a>]</div>
 </body></html>

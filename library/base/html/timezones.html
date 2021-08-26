@@ -167,10 +167,10 @@ the currently selected Olson/IANA database.  The system-specific
 location in the file system varies,
 e.g. &lsquo;<span class="file">/usr/share/zoneinfo</span>&rsquo; (Linux, macOS, FreeBSD),
 &lsquo;<span class="file">/usr/share/lib/zoneinfo</span>&rsquo; (Solaris, AIX), ....  It is likely
-that there is a file named something like &lsquo;<span class="file">zone.tab</span>&rsquo; under that
-directory listing the locations known as time-zone names (but not for
-example <code>EST5EDT</code>).  See also
-<a href="https://en.wikipedia.org/wiki/Zone.tab">https://en.wikipedia.org/wiki/Zone.tab</a>.
+that there is a file named something like &lsquo;<span class="file">zone1970.tab</span>&rsquo; or
+(older) &lsquo;<span class="file">zone.tab</span>&rsquo; under that directory listing the locations
+known as time-zone names (but not for example <code>EST5EDT</code>).  See
+also <a href="https://en.wikipedia.org/wiki/Zone.tab">https://en.wikipedia.org/wiki/Zone.tab</a>.
 </p>
 <p>Where <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> was configured with option <span class="option">--with-internal-tzcode</span>
 (the default on Windows: recommended on Solaris), the database at
@@ -180,8 +180,10 @@ also the default on macOS but there whichever is more recent of the
 system database at &lsquo;<span class="file">/var/db/timezone/zoneinfo</span>&rsquo; and that
 distributed with <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> is used by default.  Environment variable
 <span class="env">TZDIR</span> can be used to point to a different &lsquo;<span class="file">zoneinfo</span>&rsquo;
-database: value <code>"internal"</code> indicates that the database from the
-<span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> sources and <code>"macOS"</code> indicates the system database.
+database: value <code>"internal"</code> indicates the database from the
+<span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> sources and <code>"macOS"</code> indicates the system database. (Setting
+either of those values would not be recognized by other software using
+<span class="env">TZDIR</span>.)
 </p>
 <p>Setting <span class="env">TZDIR</span> is also supported by the native services on some
 OSes, e.g. Linux using <code>glibc</code> except in secure modes.
@@ -296,5 +298,5 @@ table(lengths(Osl))# most are pairs, some triplets
 str(Osl[lengths(Osl) &gt;= 3])# "America" South and North ...
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.0.3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.0.4 <a href="00Index.html">Index</a>]</div>
 </body></html>

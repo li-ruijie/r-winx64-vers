@@ -172,7 +172,7 @@ builds of <span style="font-family: Courier New, Courier; color: #666666;"><b>R<
 <tr valign="top"><td><code>longdouble.eps, longdouble.neg.eps, longdouble.digits, ...</code></td>
 <td>
 <p>when
-<code><a href="capabilities.html">capabilities</a>["long.double"]</code> is true, there are 10 such
+<code><a href="capabilities.html">capabilities</a>("long.double")</code> is true, there are 10 such
 <code>"longdouble.&lt;kind&gt;"</code> values, specifying the <code>long double</code>
 property corresponding to its <code>"double.*"</code> counterpart, above, see
 also &lsquo;Note&rsquo;.</p>
@@ -182,7 +182,7 @@ also &lsquo;Note&rsquo;.</p>
 
 <h3>Note</h3>
 
-<p>In the (typical) case where <code><a href="capabilities.html">capabilities</a>["long.double"]</code> is
+<p>In the (typical) case where <code><a href="capabilities.html">capabilities</a>("long.double")</code> is
 true, <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> uses the <code>long double</code> C type in quite a few places internally
 for accumulators in e.g. <code><a href="sum.html">sum</a></code>, reading non-integer
 numeric constants into (binary) double precision numbers, or arithmetic
@@ -201,12 +201,18 @@ double type of IEC 60559, padded to the double alignment used on the
 platform &mdash; this seems to be the case for the common <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> platforms
 using ix86 and x86_64 chips.
 </p>
+<p>Note that it is legal for a platform to have a <code>long double</code> C
+type which is identical to the <code>double</code> type &mdash; this happens on
+ARM cpus.  In that case <code><a href="capabilities.html">capabilities</a>("long.double")</code> will
+be false but <code>.Machine</code> may contain <code>"longdouble.&lt;kind&gt;"</code>
+elements.
+</p>
 
 
 <h3>Source</h3>
 
 <p>Uses a C translation of Fortran code in the reference, modified by the
-R Core Team to defeat over-optimization in recent compilers.
+R Core Team to defeat over-optimization in modern compilers.
 </p>
 
 
@@ -233,5 +239,5 @@ doi: <a href="https://doi.org/10.1145/50063.51907">10.1145/50063.51907</a>.
 noquote(unlist(format(.Machine)))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.0.3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.0.4 <a href="00Index.html">Index</a>]</div>
 </body></html>

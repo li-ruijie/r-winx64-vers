@@ -109,7 +109,7 @@ large values of <code>scale</code> since the actual generation is done for
 </p>
 <p>The length of the result is determined by <code>n</code> for
 <code>rgamma</code>, and is the maximum of the lengths of the
-numerical arguments for the other functions.  
+numerical arguments for the other functions.
 </p>
 <p>The numerical arguments other than <code>n</code> are recycled to the
 length of the result.  Only the first elements of the logical
@@ -121,7 +121,7 @@ arguments are used.
 
 <p>The S (Becker <em>et al</em>, 1988) parametrization was via <code>shape</code>
 and <code>rate</code>: S had no <code>scale</code> parameter. It is an error
-to supply and <code>scale</code> and <code>rate</code>.
+to supply both <code>scale</code> and <code>rate</code>.
 </p>
 <p><code>pgamma</code> is closely related to the incomplete gamma function.  As
 defined by Abramowitz and Stegun 6.5.1 (and by &lsquo;Numerical
@@ -229,5 +229,5 @@ pgamma(5e-324, 0.001)  # on most machines 5e-324 is the smallest
 table(rgamma(1e4, 0.001) == 0)/1e4
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>stats</em> version 4.0.3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>stats</em> version 4.0.4 <a href="00Index.html">Index</a>]</div>
 </body></html>

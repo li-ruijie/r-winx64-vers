@@ -7,6 +7,122 @@
 
 <h2>R News</h2>
 
+<h3><img src="../help/figures/../../html/Rlogo.svg" class="toplogo" alt="[R logo]" /> CHANGES IN R 4.0.4</h3>
+
+
+
+<h4>NEW FEATURES</h4>
+
+
+<ul>
+<li><p> File &lsquo;<span class="file">share/texmf/tex/latex/jss.cls</span>&rsquo; has been updated
+to work with LaTeX versions since Oct 2020.
+</p>
+</li>
+<li><p> Unicode character width tables (as used by
+<code>nchar(, type = "w")</code>) have been updated to Unicode 12.1
+by Brodie Gaslam (<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17781">PR#17781</a>), including many emoji.
+</p>
+</li>
+<li><p> The internal table for <code>iswprint</code> (used on Windows,
+macOS and AIX) has been updated to include many recent Unicode
+characters.
+</p>
+</li></ul>
+
+
+
+
+<h4>INSTALLATION on a UNIX-ALIKE</h4>
+
+
+<ul>
+<li><p> If an external BLAS is specified by <span class="option">--with-blas=foo</span>
+or <em>via</em> environment variable <span class="env">BLAS_LIBS</span> is not found,
+this is now a configuration error.  The previous behaviour was not
+clear from the documentation: it was to continue the search as if
+<span class="option">--with-blas=yes</span> was specified.
+</p>
+</li></ul>
+
+
+
+
+<h4>BUG FIXES</h4>
+
+
+<ul>
+<li> <p><code>all.equal(x,y)</code> now &ldquo;sees&rdquo; the two different
+<code>NA</code>s in factors, thanks to Bill Dunlap and others in
+<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17897">PR#17897</a>.
+</p>
+</li>
+<li> <p><code>(~ NULL)[1]</code> and similar formula subsetting now works,
+thanks to a report and patch by Henrik Bengtsson in <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17935">PR#17935</a>.
+Additionally, subsetting leaving an empty formula now works too,
+thanks to suggestions by Suharto Anggono.
+</p>
+</li>
+<li> <p><code>.traceback(n)</code> keeps source references again, as before
+<span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 4.0.0, fixing a regression; introduced by the <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17580">PR#17580</a>, reported
+including two patch proposals by Brodie Gaslam.
+</p>
+</li>
+<li> <p><code>unlist(plst, recursive=FALSE)</code> no longer drops content
+for pairlists with list components, thanks to the report and patch
+by Suharto Anggono in <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17950">PR#17950</a>.
+</p>
+</li>
+<li> <p><code>iconvlist()</code> now also works on MUSL based (Linux)
+systems, from a report and patch suggestion by Wesley Chan in
+<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17970">PR#17970</a>.
+</p>
+</li>
+<li> <p><code>round()</code> and <code>signif()</code> no longer tolerate wrong
+argument names, notably in 1-argument calls; reported by Shane
+Mueller on R-devel (mailing list); later reported as <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17976">PR#17976</a>.
+</p>
+</li>
+<li> <p><code>.Machine</code> has <code>longdouble.*</code> elements only if
+<code>capabilities("long.double")</code> is true, as documented.
+(Previously they were included if the platform had <code>long
+	double</code> identical to <code>double</code>, as ARM does.)
+</p>
+</li>
+<li> <p><code>p.adjust(numeric(), n=0)</code> now works, fixing <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18002">PR#18002</a>.
+</p>
+</li>
+<li> <p><code>identical(x,y)</code> no longer prints &quot;Unknown Type ..&quot; for
+<code>typeof(x) == "..."</code> objects.
+</p>
+</li>
+<li><p> Fix (auto-)<code>print()</code>ing of named complex vectors, see
+<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17868">PR#17868</a> and <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18019">PR#18019</a>.
+</p>
+</li>
+<li> <p><code>all.equal(&lt;language&gt;, &lt;...&gt;)</code> now works, fixing <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18029">PR#18029</a>.
+</p>
+</li>
+<li> <p><code>as.data.frame.list(L, row.names=NULL)</code> now behaves in line
+with <code>data.frame()</code>, disregarding names of components of
+<code>L</code>, fixing <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18034">PR#18034</a>, reported by Kevin Tappe.
+</p>
+</li>
+<li> <p><code>checkRdaFiles(ff)$version</code> is now correct also when
+<code>ff</code> contains files of different versions, thanks to a report
+and patch from Sebastian Meyer in <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18041">PR#18041</a>.
+</p>
+</li>
+<li><p> macOS: Quartz device live drawing could fail (no plot is shown)
+if the system changes the drawing context after view update (often
+the case since macOS Big Sur). System log may show
+&quot;CGContextDelegateCreateForContext: invalid context&quot; error.
+</p>
+</li></ul>
+
+
+
+
 <h3><img src="../help/figures/../../html/Rlogo.svg" class="toplogo" alt="[R logo]" /> CHANGES IN R 4.0.3</h3>
 
 
@@ -31,7 +147,7 @@ why a package might not be found.
 </p>
 </li>
 <li><p> The default value for <code>options("timeout")</code> can be set
-from enviromnent variable <span class="env">R_DEFAULT_INTERNET_TIMEOUT</span>, still
+from environment variable <span class="env">R_DEFAULT_INTERNET_TIMEOUT</span>, still
 defaulting to 60 (seconds) if that is not set or invalid.
 </p>
 <p>This may be needed when child <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> processes are doing downloads,

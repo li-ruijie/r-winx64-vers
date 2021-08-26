@@ -476,7 +476,7 @@ can be found at
 
      John M. Chambers (2008), "Software for Data Analysis: Programming
      with R". Springer, New York, ISBN 978-0-387-75935-7,
-     <http://statweb.stanford.edu/~jmc4/Rbook/>.
+     <https://statweb.stanford.edu/~jmc4/Rbook/>.
 
      Peter Dalgaard (2008), "Introductory Statistics with R", 2nd
      edition.  Springer, ISBN 978-0-387-79053-4,
@@ -736,13 +736,13 @@ S.
 
    * John M. Chambers (1998), "Programming with Data," New York:
      Springer, ISBN 0-387-98503-4
-     (<http://statweb.stanford.edu/~jmc4/Sbook/>).
+     (<https://statweb.stanford.edu/~jmc4/Sbook/>).
 
      This "_Green Book_" describes version 4 of S, a major revision of S
      designed by John Chambers to improve its usefulness at every stage
      of the programming process.
 
-   See <http://statweb.stanford.edu/~jmc4/papers/96.7.ps> for further
+   See <https://statweb.stanford.edu/~jmc4/papers/96.7.ps> for further
 information on the "Evolution of the S Language".
 
 3.2 What is S-PLUS?
@@ -2227,7 +2227,7 @@ second edition).  This appendix is a free download from
    For more information, see e.g. David Goldberg (1991), "What Every
 Computer Scientist Should Know About Floating-Point Arithmetic", _ACM
 Computing Surveys_, *23/1*, 5-48, also available via
-<http://www.validlab.com/goldberg/paper.pdf>.
+<https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html>.
 
    Here is another example, this time using addition:
 
