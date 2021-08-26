@@ -424,7 +424,8 @@ warning                 Warning Messages
 warnings                Print Warning Messages
 weekdays                Extract Parts of a POSIXt or Date Object
 which                   Which indices are TRUE?
-which.min               Where is the Min() or Max() ?
+which.min               Where is the Min() or Max() or first TRUE or
+                        FALSE ?
 with                    Evaluate an Expression in a Data Environment
 withVisible             Return both a value and its visibility
 write                   Write Data to a File

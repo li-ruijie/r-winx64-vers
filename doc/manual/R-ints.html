@@ -6,6 +6,25 @@
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="top" href="#Top">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for R, version 3.0.2 (2013-09-25).
+
+Copyright (C) 1999-2013 R Core Team
+
+     Permission is granted to make and distribute verbatim copies of
+     this manual provided the copyright notice and this permission
+     notice are preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+     this manual under the conditions for verbatim copying, provided
+     that the entire resulting derived work is distributed under the
+     terms of a permission notice identical to this one.
+
+     Permission is granted to copy and distribute translations of this
+     manual into another language, under the above conditions for
+     modified versions, except that this permission notice may be
+     stated in a translation approved by the R Core Team.
+   -->
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
   pre.display { font-family:inherit }
@@ -206,13 +225,12 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#dir">(dir)</a>
 <p>This is a guide to the internal structures of R and coding standards for
 the core team working on R itself.
 
-   <p>The current version of this document is 3.0.1 (2013-05-16).
-
-   <p>
+   <p>This manual is for R, version 3.0.2 (2013-09-25).
 
    <p>Copyright &copy; 1999&ndash;2013 R Core Team
 
-   <p>Permission is granted to make and distribute verbatim copies of this
+   <blockquote>
+Permission is granted to make and distribute verbatim copies of this
 manual provided the copyright notice and this permission notice are
 preserved on all copies.
 
@@ -225,7 +243,7 @@ permission notice identical to this one.
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation
 approved by the R Core Team. 
-<!--  ^- read that -->
+</blockquote>
 
 <ul class="menu">
 <li><a accesskey="1" href="#R-Internal-Structures">R Internal Structures</a>
@@ -512,7 +530,7 @@ indicate a calling handler.
 encoding.  Bit 1 indicates that the <code>CHARSXP</code> should be treated as
 a set of bytes, not necessarily representing a character in any known
 encoding.  Bits 2, 3 and 6 are used to indicate that it is known to be
-in Latin-1, UTF-8 or ASCII respectively.
+in Latin-1, UTF-8 or <acronym>ASCII</acronym> respectively.
 
    <p>Bit 5 for a <code>CHARSXP</code> indicates that it is hashed by its address,
 that is <code>NA_STRING</code> or is in the <code>CHARSXP</code> cache (this is not
@@ -1294,12 +1312,13 @@ of the file (a single LF-terminated line) which the lower-level versions
 do not.
 
    <p><code>save</code> and <code>saveRDS</code> allow various forms of compression, and
-<samp><span class="command">gzip</span></samp> compression is the default (except for ASCII saves). 
-Compression is applied to the whole file stream, including the headers,
-so serialized files can be uncompressed or re-compressed by external
-programs.  Both <code>load</code> and <code>readRDS</code> can read <samp><span class="command">gzip</span></samp>,
-<samp><span class="command">bzip2</span></samp> and <samp><span class="command">xz</span></samp> forms of compression when reading from
-a file, and <samp><span class="command">gzip</span></samp> compression when reading from a connection.
+<samp><span class="command">gzip</span></samp> compression is the default (except for <acronym>ASCII</acronym>
+saves).  Compression is applied to the whole file stream, including the
+headers, so serialized files can be uncompressed or re-compressed by
+external programs.  Both <code>load</code> and <code>readRDS</code> can read
+<samp><span class="command">gzip</span></samp>, <samp><span class="command">bzip2</span></samp> and <samp><span class="command">xz</span></samp> forms of compression
+when reading from a file, and <samp><span class="command">gzip</span></samp> compression when reading
+from a connection.
 
    <p>R has used the same serialization format since R 1.4.0 in December
 2001.  Earlier formats are still supported via <code>load</code> and
@@ -1382,7 +1401,7 @@ types) are written as-is and not padded to a multiple of four bytes.
 doubles formatted with <code>%.16g</code> (plus <code>NA</code>, <code>Inf</code> and
 <code>-Inf</code>) and bytes with <code>%02x</code>.  Strings are written using
 standard escapes (e.g. <code>\t</code> and <code>\013</code>) for non-printing and
-non-ASCII bytes.
+non-<acronym>ASCII</acronym> bytes.
 
 <div class="node">
 <a name="Encodings-for-CHARSXPs"></a>
@@ -1419,10 +1438,10 @@ if this is known, either via the <code>encoding</code> argument to
 the R command line.  (Other ways are recorded on the help page for
 <code>Encoding</code>.)
 
-   <p>It is not necessary to declare the encoding of ASCII strings as they
-will work in any locale.  ASCII strings should never have a marked
-encoding, as any encoding will be ignored when entering such strings
-into the <code>CHARSXP</code> cache.
+   <p>It is not necessary to declare the encoding of <acronym>ASCII</acronym> strings
+as they will work in any locale.  <acronym>ASCII</acronym> strings should never
+have a marked encoding, as any encoding will be ignored when entering
+such strings into the <code>CHARSXP</code> cache.
 
    <p>The rationale behind considering only UTF-8 and Latin-1 was that most
 systems are capable of producing UTF-8 strings and this is the nearest
@@ -1488,7 +1507,7 @@ examples still exist).
    <p><a name="index-mkCharLenCE-75"></a>The cache records the encoding of the string as well as the bytes: all
 requests to create a <code>CHARSXP</code> should be <em>via</em> a call to
 <code>mkCharLenCE</code>.  Any encoding given in <code>mkCharLenCE</code> call will
-be ignored if the string's bytes are all ASCII characters.
+be ignored if the string's bytes are all <acronym>ASCII</acronym> characters.
 
 <div class="node">
 <a name="Warnings-and-errors"></a>
@@ -2892,14 +2911,14 @@ process, e.g. by a <code>system</code> call.
 system has a single root directory (and other physical file systems are
 mounted onto logical directories under that root), Windows has separate
 roots for each physical or logical file system (‘volume’), organized
-under <em>drives</em> (with file paths starting <code>D:</code> for an ASCII
-letter, case-insensitively) and <em>network shares</em> (with paths like
-<code>\netname\topdir\myfiles\a file</code>.  There is a current drive, and
-path names without a drive part are relative to the current drive. 
-Further, each drive has a current directory, and relative paths are
-relative to that current directory, on a particular drive if one is
-specified.  So <samp><span class="file">D:dir\file</span></samp> and <samp><span class="file">D:</span></samp> are valid path
-specifications (the last being the current directory on drive
+under <em>drives</em> (with file paths starting <code>D:</code> for an
+<acronym>ASCII</acronym> letter, case-insensitively) and <em>network shares</em>
+(with paths like <code>\netname\topdir\myfiles\a file</code>.  There is a
+current drive, and path names without a drive part are relative to the
+current drive.  Further, each drive has a current directory, and
+relative paths are relative to that current directory, on a particular
+drive if one is specified.  So <samp><span class="file">D:dir\file</span></samp> and <samp><span class="file">D:</span></samp> are valid
+path specifications (the last being the current directory on drive
 <samp><span class="file">D:</span></samp>).
 
 <!-- basename        Wchar   na -->
@@ -4009,7 +4028,7 @@ already set.
                <li><samp><span class="file">/usr/local/bin</span></samp> is appended to <samp><span class="env">PATH</span></samp> since that is where
 <samp><span class="command">gfortran</span></samp> is installed.
 
-               <li>The default HTML browser is switched to the one in <samp><span class="command">R.app</span></samp>.
+               <li>The default <acronym>HTML</acronym> browser is switched to the one in <samp><span class="command">R.app</span></samp>.
 
                <li>Various widgets are switched to the versions provided in
 <samp><span class="command">R.app</span></samp>: these include graphical menus, the data editor (but not
@@ -4082,119 +4101,123 @@ ISO C++ warnings.
 Default: false. 
 <br><dt><code>_R_CHECK_FORCE_SUGGESTS_</code><a name="index-g_t_005fR_005fCHECK_005fFORCE_005fSUGGESTS_005f-113"></a><dd>If true, give an error if suggested packages are not available. 
 Default: true (but false for CRAN submission checks). 
-<br><dt><code>_R_CHECK_RD_CONTENTS_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fCONTENTS_005f-114"></a><dd>If true, check <samp><span class="file">Rd</span></samp> files for auto-generated content which needs editing,
-and missing argument documentation. 
+<br><dt><code>_R_CHECK_RD_CONTENTS_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fCONTENTS_005f-114"></a><dd>If true, check <samp><span class="file">Rd</span></samp> files for auto-generated content which needs
+editing, and missing argument documentation. 
 Default: true. 
-<br><dt><code>_R_CHECK_RD_STYLE_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fSTYLE_005f-115"></a><dd>If true, check whether <samp><span class="file">Rd</span></samp> usage entries for S3 methods use the full
+<br><dt><code>_R_CHECK_RD_LINE_WIDTHS_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fLINE_005fWIDTHS_005f-115"></a><dd>If true, check <samp><span class="file">Rd</span></samp> line widths in usage and examples sections. 
+Default: false (but true for CRAN submission checks). 
+<br><dt><code>_R_CHECK_RD_STYLE_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fSTYLE_005f-116"></a><dd>If true, check whether <samp><span class="file">Rd</span></samp> usage entries for S3 methods use the full
 function name rather than the appropriate <code>\method</code> markup. 
 Default: true. 
-<br><dt><code>_R_CHECK_RD_XREFS_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fXREFS_005f-116"></a><dd>If true, check the cross-references in <samp><span class="file">.Rd</span></samp> files. 
+<br><dt><code>_R_CHECK_RD_XREFS_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fXREFS_005f-117"></a><dd>If true, check the cross-references in <samp><span class="file">.Rd</span></samp> files. 
 Default: true. 
-<br><dt><code>_R_CHECK_SUBDIRS_NOCASE_</code><a name="index-g_t_005fR_005fCHECK_005fSUBDIRS_005fNOCASE_005f-117"></a><dd>If true, check the case of directories such as <samp><span class="file">R</span></samp> and <samp><span class="file">man</span></samp>. 
-Default: true
-<br><dt><code>_R_CHECK_SUBDIRS_STRICT_</code><a name="index-g_t_005fR_005fCHECK_005fSUBDIRS_005fSTRICT_005f-118"></a><dd>Initial setting for <samp><span class="option">--check-subdirs</span></samp>. 
+<br><dt><code>_R_CHECK_SUBDIRS_NOCASE_</code><a name="index-g_t_005fR_005fCHECK_005fSUBDIRS_005fNOCASE_005f-118"></a><dd>If true, check the case of directories such as <samp><span class="file">R</span></samp> and <samp><span class="file">man</span></samp>. 
+Default: true. 
+<br><dt><code>_R_CHECK_SUBDIRS_STRICT_</code><a name="index-g_t_005fR_005fCHECK_005fSUBDIRS_005fSTRICT_005f-119"></a><dd>Initial setting for <samp><span class="option">--check-subdirs</span></samp>. 
 Default: &lsquo;<samp><span class="samp">default</span></samp>&rsquo; (which checks only tarballs, and checks in the
 <samp><span class="file">src</span></samp> only if there is no <samp><span class="file">configure</span></samp> file). 
-<br><dt><code>_R_CHECK_USE_CODETOOLS_</code><a name="index-g_t_005fR_005fCHECK_005fUSE_005fCODETOOLS_005f-119"></a><dd>If true, make use of the <a href="http://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> package, which provides a
+<br><dt><code>_R_CHECK_USE_CODETOOLS_</code><a name="index-g_t_005fR_005fCHECK_005fUSE_005fCODETOOLS_005f-120"></a><dd>If true, make use of the <a href="http://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> package, which provides a
 detailed analysis of visibility of objects (but may give false
 positives). 
 Default: true. 
-<br><dt><code>_R_CHECK_USE_INSTALL_LOG_</code><a name="index-g_t_005fR_005fCHECK_005fUSE_005fINSTALL_005fLOG_005f-120"></a><dd>If true, record the output from installing a package as part of its
+<br><dt><code>_R_CHECK_USE_INSTALL_LOG_</code><a name="index-g_t_005fR_005fCHECK_005fUSE_005fINSTALL_005fLOG_005f-121"></a><dd>If true, record the output from installing a package as part of its
 check to a log file (<samp><span class="file">00install.out</span></samp> by default), even when running
 interactively. 
 Default: true. 
-<br><dt><code>_R_CHECK_VIGNETTES_NLINES_</code><a name="index-g_t_005fR_005fCHECK_005fVIGNETTES_005fNLINES_005f-121"></a><dd>Maximum number of lines to show of the bottom of the output when reporting
+<br><dt><code>_R_CHECK_VIGNETTES_NLINES_</code><a name="index-g_t_005fR_005fCHECK_005fVIGNETTES_005fNLINES_005f-122"></a><dd>Maximum number of lines to show of the bottom of the output when reporting
 errors in running vignettes. 
 Default: 10. 
-<br><dt><code>_R_CHECK_CODOC_S4_METHODS_</code><a name="index-g_t_005fR_005fCHECK_005fCODOC_005fS4_005fMETHODS_005f-122"></a><dd>Control whether <code>codoc()</code> testing is also performed on S4 methods. 
+<br><dt><code>_R_CHECK_CODOC_S4_METHODS_</code><a name="index-g_t_005fR_005fCHECK_005fCODOC_005fS4_005fMETHODS_005f-123"></a><dd>Control whether <code>codoc()</code> testing is also performed on S4 methods. 
 Default: true. 
-<br><dt><code>_R_CHECK_DOT_INTERNAL_</code><a name="index-g_t_005fR_005fCHECK_005fDOT_005fINTERNAL_005f-123"></a><dd>Control whether the package code is scanned for <code>.Internal</code> calls,
+<br><dt><code>_R_CHECK_DOT_INTERNAL_</code><a name="index-g_t_005fR_005fCHECK_005fDOT_005fINTERNAL_005f-124"></a><dd>Control whether the package code is scanned for <code>.Internal</code> calls,
 which should only be used by base (and occasionally by recommended) packages. 
 Default: true. 
-<br><dt><code>_R_CHECK_EXECUTABLES_</code><a name="index-g_t_005fR_005fCHECK_005fEXECUTABLES_005f-124"></a><dd>Control checking for executable (binary) files. 
+<br><dt><code>_R_CHECK_EXECUTABLES_</code><a name="index-g_t_005fR_005fCHECK_005fEXECUTABLES_005f-125"></a><dd>Control checking for executable (binary) files. 
 Default: true. 
-<br><dt><code>_R_CHECK_EXECUTABLES_EXCLUSIONS_</code><a name="index-g_t_005fR_005fCHECK_005fEXECUTABLES_005fEXCLUSIONS_005f-125"></a><dd>Control whether checking for executable (binary) files ignores files
+<br><dt><code>_R_CHECK_EXECUTABLES_EXCLUSIONS_</code><a name="index-g_t_005fR_005fCHECK_005fEXECUTABLES_005fEXCLUSIONS_005f-126"></a><dd>Control whether checking for executable (binary) files ignores files
 listed in the package's <samp><span class="file">BinaryFiles</span></samp> file. 
 Default: true (but false for CRAN submission checks). 
 However, most likely this package-level override mechanism will be
 removed eventually. 
-<br><dt><code>_R_CHECK_PERMISSIONS_</code><a name="index-g_t_005fR_005fCHECK_005fPERMISSIONS_005f-126"></a><dd>Control whether permissions of files should be checked. 
+<br><dt><code>_R_CHECK_PERMISSIONS_</code><a name="index-g_t_005fR_005fCHECK_005fPERMISSIONS_005f-127"></a><dd>Control whether permissions of files should be checked. 
 Default: true iff <code>.Platform$OS.type == "unix"</code>. 
-<br><dt><code>_R_CHECK_FF_CALLS_</code><a name="index-g_t_005fR_005fCHECK_005fFF_005fCALLS_005f-127"></a><dd>Allows turning off <code>checkFF()</code> testing.  Legacy mostly. 
+<br><dt><code>_R_CHECK_FF_CALLS_</code><a name="index-g_t_005fR_005fCHECK_005fFF_005fCALLS_005f-128"></a><dd>Allows turning off <code>checkFF()</code> testing.  Legacy mostly. 
 Default: true. 
-<br><dt><code>_R_CHECK_LICENSE_</code><a name="index-g_t_005fR_005fCHECK_005fLICENSE_005f-128"></a><dd>Control whether/how license checks are performed. A possible value is
+<br><dt><code>_R_CHECK_LICENSE_</code><a name="index-g_t_005fR_005fCHECK_005fLICENSE_005f-129"></a><dd>Control whether/how license checks are performed. A possible value is
 &lsquo;<samp><span class="samp">maybe</span></samp>&rsquo; (warn in case of problems, but not about standardizable
 non-standard license specs). 
 Default: true. 
-<br><dt><code>_R_CHECK_RD_EXAMPLES_T_AND_F_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fEXAMPLES_005fT_005fAND_005fF_005f-129"></a><dd>Control whether <code>check_T_and_F()</code> also looks for &ldquo;bad&rdquo; (global)
+<br><dt><code>_R_CHECK_RD_EXAMPLES_T_AND_F_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fEXAMPLES_005fT_005fAND_005fF_005f-130"></a><dd>Control whether <code>check_T_and_F()</code> also looks for &ldquo;bad&rdquo; (global)
 &lsquo;<samp><span class="samp">T</span></samp>&rsquo;/&lsquo;<samp><span class="samp">F</span></samp>&rsquo; uses in examples. 
 Off by default because this can result in false positives. 
-<br><dt><code>_R_CHECK_RD_CHECKRD_MINLEVEL_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fCHECKRD_005fMINLEVEL_005f-130"></a><dd>Controls the minimum level for reporting warnings from <code>checkRd</code>. 
+<br><dt><code>_R_CHECK_RD_CHECKRD_MINLEVEL_</code><a name="index-g_t_005fR_005fCHECK_005fRD_005fCHECKRD_005fMINLEVEL_005f-131"></a><dd>Controls the minimum level for reporting warnings from <code>checkRd</code>. 
 Default: -1. 
-<br><dt><code>_R_CHECK_XREFS_REPOSITORIES_</code><a name="index-g_t_005fR_005fCHECK_005fXREFS_005fREPOSITORIES_005f-131"></a><dd>If set to a non-empty value, a space-separated list of repositories to
+<br><dt><code>_R_CHECK_XREFS_REPOSITORIES_</code><a name="index-g_t_005fR_005fCHECK_005fXREFS_005fREPOSITORIES_005f-132"></a><dd>If set to a non-empty value, a space-separated list of repositories to
 use to determine known packages.  Default: empty, when the CRAN,
 Omegahat and Bioconductor repositories known to R is used. 
-<br><dt><code>_R_CHECK_SRC_MINUS_W_IMPLICIT_</code><a name="index-g_t_005fR_005fCHECK_005fSRC_005fMINUS_005fW_005fIMPLICIT_005f-132"></a><dd>Control whether installation output is checked for compilation warnings
+<br><dt><code>_R_CHECK_SRC_MINUS_W_IMPLICIT_</code><a name="index-g_t_005fR_005fCHECK_005fSRC_005fMINUS_005fW_005fIMPLICIT_005f-133"></a><dd>Control whether installation output is checked for compilation warnings
 about implicit function declarations (as spotted by GCC with command
 line option <samp><span class="option">-Wimplicit-function-declaration</span></samp>, which is implied
 by <samp><span class="option">-Wall</span></samp>). 
 Default: false. 
-<br><dt><code>_R_CHECK_SRC_MINUS_W_UNUSED_</code><a name="index-g_t_005fR_005fCHECK_005fSRC_005fMINUS_005fW_005fUNUSED_005f-133"></a><dd>Control whether installation output is checked for compilation warnings
+<br><dt><code>_R_CHECK_SRC_MINUS_W_UNUSED_</code><a name="index-g_t_005fR_005fCHECK_005fSRC_005fMINUS_005fW_005fUNUSED_005f-134"></a><dd>Control whether installation output is checked for compilation warnings
 about unused code constituents (as spotted by GCC with command line
 option <samp><span class="option">-Wunused</span></samp>, which is implied by <samp><span class="option">-Wall</span></samp>). 
 Default: true. 
-<br><dt><code>_R_CHECK_WALL_FORTRAN_</code><a name="index-g_t_005fR_005fCHECK_005fWALL_005fFORTRAN_005f-134"></a><dd>Control whether gfortran 4.0 or later <samp><span class="option">-Wall</span></samp> warnings are used in
+<br><dt><code>_R_CHECK_WALL_FORTRAN_</code><a name="index-g_t_005fR_005fCHECK_005fWALL_005fFORTRAN_005f-135"></a><dd>Control whether gfortran 4.0 or later <samp><span class="option">-Wall</span></samp> warnings are used in
 the analysis of installation output. 
 Default: false, even though the warnings are justifiable. 
-<br><dt><code>_R_CHECK_ASCII_CODE_</code><a name="index-g_t_005fR_005fCHECK_005fASCII_005fCODE_005f-135"></a><dd>If true, check R code for non-ascii characters. 
+<br><dt><code>_R_CHECK_ASCII_CODE_</code><a name="index-g_t_005fR_005fCHECK_005fASCII_005fCODE_005f-136"></a><dd>If true, check R code for non-ascii characters. 
 Default: true. 
-<br><dt><code>_R_CHECK_ASCII_DATA_</code><a name="index-g_t_005fR_005fCHECK_005fASCII_005fDATA_005f-136"></a><dd>If true, check data for non-ascii characters. 
+<br><dt><code>_R_CHECK_ASCII_DATA_</code><a name="index-g_t_005fR_005fCHECK_005fASCII_005fDATA_005f-137"></a><dd>If true, check data for non-ascii characters. 
 Default: true. 
-<br><dt><code>_R_CHECK_COMPACT_DATA_</code><a name="index-g_t_005fR_005fCHECK_005fCOMPACT_005fDATA_005f-137"></a><dd>If true, check data for ascii and uncompressed saves, and also check if
+<br><dt><code>_R_CHECK_COMPACT_DATA_</code><a name="index-g_t_005fR_005fCHECK_005fCOMPACT_005fDATA_005f-138"></a><dd>If true, check data for ascii and uncompressed saves, and also check if
 using <samp><span class="command">bzip2</span></samp> or <code>xz</code> compression would be significantly
 better. 
 Default: true. 
-<br><dt><code>_R_CHECK_SKIP_ARCH_</code><a name="index-g_t_005fR_005fCHECK_005fSKIP_005fARCH_005f-138"></a><dd>Comma-separated list of architectures that will be omitted from
+<br><dt><code>_R_CHECK_SKIP_ARCH_</code><a name="index-g_t_005fR_005fCHECK_005fSKIP_005fARCH_005f-139"></a><dd>Comma-separated list of architectures that will be omitted from
 checking in a multi-arch setup. 
 Default: none. 
-<br><dt><code>_R_CHECK_SKIP_TESTS_ARCH_</code><a name="index-g_t_005fR_005fCHECK_005fSKIP_005fTESTS_005fARCH_005f-139"></a><dd>Comma-separated list of architectures that will be omitted from
+<br><dt><code>_R_CHECK_SKIP_TESTS_ARCH_</code><a name="index-g_t_005fR_005fCHECK_005fSKIP_005fTESTS_005fARCH_005f-140"></a><dd>Comma-separated list of architectures that will be omitted from
 running tests in a multi-arch setup. 
 Default: none. 
-<br><dt><code>_R_CHECK_SKIP_EXAMPLES_ARCH_</code><a name="index-g_t_005fR_005fCHECK_005fSKIP_005fEXAMPLES_005fARCH_005f-140"></a><dd>Comma-separated list of architectures that will be omitted from
+<br><dt><code>_R_CHECK_SKIP_EXAMPLES_ARCH_</code><a name="index-g_t_005fR_005fCHECK_005fSKIP_005fEXAMPLES_005fARCH_005f-141"></a><dd>Comma-separated list of architectures that will be omitted from
 running examples in a multi-arch setup. 
 Default: none. 
-<br><dt><code>_R_CHECK_VC_DIRS_</code><a name="index-g_t_005fR_005fCHECK_005fVC_005fDIRS_005f-141"></a><dd>Should the unpacked package directory be checked for version-control
+<br><dt><code>_R_CHECK_VC_DIRS_</code><a name="index-g_t_005fR_005fCHECK_005fVC_005fDIRS_005f-142"></a><dd>Should the unpacked package directory be checked for version-control
 directories (<samp><span class="file">CVS</span></samp>, <samp><span class="file">.svn</span></samp> <small class="dots">...</small>)? 
 Default: true for tarballs. 
-<br><dt><code>_R_CHECK_PKG_SIZES_</code><a name="index-g_t_005fR_005fCHECK_005fPKG_005fSIZES_005f-142"></a><dd>Should <samp><span class="command">du</span></samp> be used to find the installed sizes of packages? 
+<br><dt><code>_R_CHECK_PKG_SIZES_</code><a name="index-g_t_005fR_005fCHECK_005fPKG_005fSIZES_005f-143"></a><dd>Should <samp><span class="command">du</span></samp> be used to find the installed sizes of packages? 
 <samp><span class="command">R CMD check</span></samp> does check for the availability of <samp><span class="command">du</span></samp>. 
 but this option allows the check to be overruled if an unsuitable
 command is found (including one that does not respect the <samp><span class="option">-k</span></samp>
 flag to report in units of 1Kb, or reports in a different format &ndash; the
 GNU, OS X and Solaris <samp><span class="command">du</span></samp> commands have been tested). 
 Default: true if <samp><span class="command">du</span></samp> is found. 
-<br><dt><code>_R_CHECK_DOC_SIZES_</code><a name="index-g_t_005fR_005fCHECK_005fDOC_005fSIZES_005f-143"></a><dd>Should <samp><span class="command">qpdf</span></samp> be used to check the installed sizes of PDFs? 
+<br><dt><code>_R_CHECK_DOC_SIZES_</code><a name="index-g_t_005fR_005fCHECK_005fDOC_005fSIZES_005f-144"></a><dd>Should <samp><span class="command">qpdf</span></samp> be used to check the installed sizes of PDFs? 
 Default: true if <samp><span class="command">qpdf</span></samp> is found. 
-<br><dt><code>_R_CHECK_DOC_SIZES2_</code><a name="index-g_t_005fR_005fCHECK_005fDOC_005fSIZES2_005f-144"></a><dd>Should <samp><span class="command">gs</span></samp> be used to check the installed sizes of PDFs?  This
+<br><dt><code>_R_CHECK_DOC_SIZES2_</code><a name="index-g_t_005fR_005fCHECK_005fDOC_005fSIZES2_005f-145"></a><dd>Should <samp><span class="command">gs</span></samp> be used to check the installed sizes of PDFs?  This
 is slower than (and in addition to) the previous check, but does detect
 figures with excessive detail (often hidden by over-plotting) or bitmap
 figures with too high a resolution.  Requires that <samp><span class="env">R_GSCMD</span></samp> is set
 to a valid program, or <samp><span class="command">gs</span></samp> (or on Windows,
 <samp><span class="command">gswin32.exe</span></samp> or <samp><span class="command">gswin64c.exe</span></samp>) is on the path. 
 Default: false (but true for CRAN submission checks). 
-<br><dt><code>_R_CHECK_ALWAYS_LOG_VIGNETTE_OUTPUT_</code><a name="index-g_t_005fR_005fCHECK_005fALWAYS_005fLOG_005fVIGNETTE_005fOUTPUT_005f-145"></a><dd>By default the output from running the R code in the vignettes is
+<br><dt><code>_R_CHECK_ALWAYS_LOG_VIGNETTE_OUTPUT_</code><a name="index-g_t_005fR_005fCHECK_005fALWAYS_005fLOG_005fVIGNETTE_005fOUTPUT_005f-146"></a><dd>By default the output from running the R code in the vignettes is
 kept only if there is an error. 
 Default: false. 
-<br><dt><code>_R_CHECK_CLEAN_VIGN_TEST_</code><a name="index-g_t_005fR_005fCHECK_005fCLEAN_005fVIGN_005fTEST_005f-146"></a><dd>Should the <samp><span class="file">vign_test</span></samp> directory be removed if the test is successful? 
+<br><dt><code>_R_CHECK_CLEAN_VIGN_TEST_</code><a name="index-g_t_005fR_005fCHECK_005fCLEAN_005fVIGN_005fTEST_005f-147"></a><dd>Should the <samp><span class="file">vign_test</span></samp> directory be removed if the test is successful? 
 Default: true. 
-<br><dt><code>_R_CHECK_REPLACING_IMPORTS_</code><a name="index-g_t_005fR_005fCHECK_005fREPLACING_005fIMPORTS_005f-147"></a><dd>Should warnings about replacing imports be reported?  These come
-from auto-generated <samp><span class="file">NAMESPACE</span></samp> files in other packages. 
-Default: false. 
-<br><dt><code>_R_CHECK_UNSAFE_CALLS_</code><a name="index-g_t_005fR_005fCHECK_005fUNSAFE_005fCALLS_005f-148"></a><dd>Check for calls that appear to tamper with (or allow tampering with)
+<br><dt><code>_R_CHECK_REPLACING_IMPORTS_</code><a name="index-g_t_005fR_005fCHECK_005fREPLACING_005fIMPORTS_005f-148"></a><dd>Should warnings about replacing imports be reported?  These sometimes come
+from auto-generated <samp><span class="file">NAMESPACE</span></samp> files in other packages, but most
+often from importing the whole of a namespace rather than using
+<code>importFrom</code>. 
+Default: false (but true for CRAN submission checks). 
+<br><dt><code>_R_CHECK_UNSAFE_CALLS_</code><a name="index-g_t_005fR_005fCHECK_005fUNSAFE_005fCALLS_005f-149"></a><dd>Check for calls that appear to tamper with (or allow tampering with)
 already loaded code not from the current package: such calls may well
 contravene CRAN policies. 
 Default: true. 
-<br><dt><code>_R_CHECK_TIMINGS_</code><a name="index-g_t_005fR_005fCHECK_005fTIMINGS_005f-149"></a><dd>Optionally report timings for installation, examples, tests and
+<br><dt><code>_R_CHECK_TIMINGS_</code><a name="index-g_t_005fR_005fCHECK_005fTIMINGS_005f-150"></a><dd>Optionally report timings for installation, examples, tests and
 running/re-building vignettes as part of the check log.  The format is
 &lsquo;<samp><span class="samp">[as/bs]</span></samp>&rsquo; for the total CPU time (including child processes)
 &lsquo;<samp><span class="samp">a</span></samp>&rsquo; and elapsed time &lsquo;<samp><span class="samp">b</span></samp>&rsquo;, except on Windows, when it is
@@ -4206,7 +4229,7 @@ indicate that no report is required, a value of &lsquo;<samp><span class="samp">
 is always required. 
 Default: <code>""</code>. (<code>10</code> for CRAN checks.)
 
-     <br><dt><code>_R_CHECK_INSTALL_DEPENDS_</code><a name="index-g_t_005fR_005fCHECK_005fINSTALL_005fDEPENDS_005f-150"></a><dd>If set to a true value and a test installation is to be done, this is
+     <br><dt><code>_R_CHECK_INSTALL_DEPENDS_</code><a name="index-g_t_005fR_005fCHECK_005fINSTALL_005fDEPENDS_005f-151"></a><dd>If set to a true value and a test installation is to be done, this is
 done with <code>.libPaths()</code> containing just a temporary library
 directory and <code>.Library</code>.  The temporary library is populated by
 symbolic links<a rel="footnote" href="#fn-22" name="fnd-22"><sup>22</sup></a>
@@ -4218,7 +4241,7 @@ submission checks).
 is available to those who first install recording to a log, then call
 <samp><span class="command">R CMD check</span></samp>.
 
-     <br><dt><code>_R_CHECK_DEPENDS_ONLY_</code><a name="index-g_t_005fR_005fCHECK_005fDEPENDS_005fONLY_005f-151"></a><dt><code>_R_CHECK_SUGGESTS_ONLY_</code><a name="index-g_t_005fR_005fCHECK_005fSUGGESTS_005fONLY_005f-152"></a><dd>If set to a true value, running examples, tests and vignettes is done
+     <br><dt><code>_R_CHECK_DEPENDS_ONLY_</code><a name="index-g_t_005fR_005fCHECK_005fDEPENDS_005fONLY_005f-152"></a><dt><code>_R_CHECK_SUGGESTS_ONLY_</code><a name="index-g_t_005fR_005fCHECK_005fSUGGESTS_005fONLY_005f-153"></a><dd>If set to a true value, running examples, tests and vignettes is done
 with <code>.libPaths()</code> containing just a temporary library directory
 and <code>.Library</code>.  The temporary library is populated by symbolic
 links<a rel="footnote" href="#fn-23" name="fnd-23"><sup>23</sup></a> to the installed copies of
@@ -4226,7 +4249,7 @@ all the Depends/Imports/LinkingTo and (for the second only) Suggests
 packages which are not in <code>.Library</code>.  Default: false (but true for
 CRAN checks).
 
-     <br><dt><code>_R_CHECK_NO_RECOMMENDED_</code><a name="index-g_t_005fR_005fCHECK_005fNO_005fRECOMMENDED_005f-153"></a><dd>If set to a true value, augment the previous checks to make recommended
+     <br><dt><code>_R_CHECK_NO_RECOMMENDED_</code><a name="index-g_t_005fR_005fCHECK_005fNO_005fRECOMMENDED_005f-154"></a><dd>If set to a true value, augment the previous checks to make recommended
 packages unavailable unless declared. 
 Default: false (but true for CRAN submission checks).
 
@@ -4234,7 +4257,7 @@ Default: false (but true for CRAN submission checks).
 <code>grDevices::densCols</code> and <code>stats:::asSparse</code> as these invoke
 <a href="http://CRAN.R-project.org/package=KernSmooth"><strong>KernSmooth</strong></a> and <a href="http://CRAN.R-project.org/package=Matrix"><strong>Matrix</strong></a> respectively.
 
-     <br><dt><code>_R_CHECK_CODETOOLS_PROFILE_</code><a name="index-g_t_005fR_005fCHECK_005fCODETOOLS_005fPROFILE_005f-154"></a><dd>A string with comma-separated <var>name</var><code>=</code><var>value</var> pairs (with
+     <br><dt><code>_R_CHECK_CODETOOLS_PROFILE_</code><a name="index-g_t_005fR_005fCHECK_005fCODETOOLS_005fPROFILE_005f-155"></a><dd>A string with comma-separated <var>name</var><code>=</code><var>value</var> pairs (with
 <var>value</var> a logical constant) giving additional arguments for the
 <a href="http://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> functions used for analyzing package code.  E.g.,
 use <code>_R_CHECK_CODETOOLS_PROFILE_="suppressLocalUnused=FALSE"</code> to
@@ -4243,36 +4266,42 @@ additional arguments, corresponding to using <code>skipWith = TRUE</code>,
 <code>suppressPartialMatchArgs = FALSE</code> and <code>suppressLocalUnused =
 TRUE</code>.
 
-     <br><dt><code>_R_CHECK_CRAN_INCOMING_</code><a name="index-g_t_005fR_005fCHECK_005fCRAN_005fINCOMING_005f-155"></a><dd>Check whether package is suitable for publication on CRAN. 
+     <br><dt><code>_R_CHECK_CRAN_INCOMING_</code><a name="index-g_t_005fR_005fCHECK_005fCRAN_005fINCOMING_005f-156"></a><dd>Check whether package is suitable for publication on CRAN. 
 Default: false, except for CRAN submission checks.
 
-     <br><dt><code>_R_CHECK_XREFS_USE_ALIASES_FROM_CRAN_</code><a name="index-g_t_005fR_005fCHECK_005fXREFS_005fUSE_005fALIASES_005fFROM_005fCRAN_005f-156"></a><dd>When checking anchored Rd xrefs, use Rd aliases from the CRAN package
+     <br><dt><code>_R_CHECK_XREFS_USE_ALIASES_FROM_CRAN_</code><a name="index-g_t_005fR_005fCHECK_005fXREFS_005fUSE_005fALIASES_005fFROM_005fCRAN_005f-157"></a><dd>When checking anchored Rd xrefs, use Rd aliases from the CRAN package
 web areas in addition to those in the packages installed locally. 
 Default: false.
 
-     <br><dt><code>_R_SHLIB_BUILD_OBJECTS_SYMBOL_TABLES_</code><a name="index-g_t_005fR_005fSHLIB_005fBUILD_005fOBJECTS_005fSYMBOL_005fTABLES_005f-157"></a><dd>Make the checks of compiled code more accurate by recording the symbol
+     <br><dt><code>_R_SHLIB_BUILD_OBJECTS_SYMBOL_TABLES_</code><a name="index-g_t_005fR_005fSHLIB_005fBUILD_005fOBJECTS_005fSYMBOL_005fTABLES_005f-158"></a><dd>Make the checks of compiled code more accurate by recording the symbol
 tables for objects (<samp><span class="file">.o</span></samp> files) at installation in a file
 <samp><span class="file">symbols.rds</span></samp>.  (Only currently supported on Linux, Solaris, OS X,
 Windows and FreeBSD.) 
 Default: true.
 
-     <br><dt><code>_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_</code><a name="index-g_t_005fR_005fCHECK_005fCODE_005fASSIGN_005fTO_005fGLOBALENV_005f-158"></a><dd>Should the package code be checked for assignments to the global
+     <br><dt><code>_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_</code><a name="index-g_t_005fR_005fCHECK_005fCODE_005fASSIGN_005fTO_005fGLOBALENV_005f-159"></a><dd>Should the package code be checked for assignments to the global
 environment? 
 Default: false (but true for CRAN submission checks).
 
-     <br><dt><code>_R_CHECK_CODE_ATTACH_</code><a name="index-g_t_005fR_005fCHECK_005fCODE_005fATTACH_005f-159"></a><dd>Should the package code be checked for calls to <code>attach()</code>? 
+     <br><dt><code>_R_CHECK_CODE_ATTACH_</code><a name="index-g_t_005fR_005fCHECK_005fCODE_005fATTACH_005f-160"></a><dd>Should the package code be checked for calls to <code>attach()</code>? 
 Default: false (but true for CRAN submission checks).
 
-     <br><dt><code>_R_CHECK_CODE_DATA_INTO_GLOBALENV_</code><a name="index-g_t_005fR_005fCHECK_005fCODE_005fDATA_005fINTO_005fGLOBALENV_005f-160"></a><dd>Should the package code be checked for calls to <code>data()</code> which load
+     <br><dt><code>_R_CHECK_CODE_DATA_INTO_GLOBALENV_</code><a name="index-g_t_005fR_005fCHECK_005fCODE_005fDATA_005fINTO_005fGLOBALENV_005f-161"></a><dd>Should the package code be checked for calls to <code>data()</code> which load
 into the global environment? 
 Default: false (but true for CRAN submission checks).
 
-     <br><dt><code>_R_CHECK_DOT_FIRSTLIB_</code><a name="index-g_t_005fR_005fCHECK_005fDOT_005fFIRSTLIB_005f-161"></a><dd>Should the package code be checked for the presence of the obsolete function
+     <br><dt><code>_R_CHECK_DOT_FIRSTLIB_</code><a name="index-g_t_005fR_005fCHECK_005fDOT_005fFIRSTLIB_005f-162"></a><dd>Should the package code be checked for the presence of the obsolete function
 <code>.First.lib()</code>? 
 Default: false (but true for CRAN submission checks).
 
-     <br><dt><code>_R_CHECK_DEPRECATED_DEFUNCT_</code><a name="index-g_t_005fR_005fCHECK_005fDEPRECATED_005fDEFUNCT_005f-162"></a><dd>Should the package code be checked for the presence of recently deprecated
+     <br><dt><code>_R_CHECK_DEPRECATED_DEFUNCT_</code><a name="index-g_t_005fR_005fCHECK_005fDEPRECATED_005fDEFUNCT_005f-163"></a><dd>Should the package code be checked for the presence of recently deprecated
 or defunct functions (including completely removed functions). 
+Default: false (but true for CRAN submission checks).
+
+     <br><dt><code>_R_CHECK_TOPLEVEL_FILES_</code><a name="index-g_t_005fR_005fCHECK_005fTOPLEVEL_005fFILES_005f-164"></a><dd>Report on top-level files in the package sources that are not described
+in ‘Writing R Extensions’ nor are commonly understood (like
+<samp><span class="file">ChangeLog</span></samp>).  Variations on standard names (e.g. 
+<samp><span class="file">COPYRIGHT</span></samp>) are also reported. 
 Default: false (but true for CRAN submission checks).
 
    </dl>
@@ -4292,6 +4321,8 @@ Default: false (but true for CRAN submission checks).
      _R_CHECK_CODE_DATA_INTO_GLOBALENV_=TRUE
      _R_CHECK_DOT_FIRSTLIB_=TRUE
      _R_CHECK_DEPRECATED_DEFUNCT_=TRUE
+     _R_CHECK_REPLACING_IMPORTS_=TRUE
+     _R_CHECK_TOPLEVEL_FILES_=TRUE
 </pre>
    <p class="noindent">These are turned on by <samp><span class="command">R CMD check --as-cran</span></samp>: the incoming
 checks also use
@@ -4311,7 +4342,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 <h2 class="chapter">9 R coding standards</h2>
 
-<p><a name="index-coding-standards-163"></a>R is meant to run on a wide variety of platforms, including Linux and
+<p><a name="index-coding-standards-165"></a>R is meant to run on a wide variety of platforms, including Linux and
 most variants of Unix as well as Windows and OS X. 
 Therefore, when extending R by either adding to the R base
 distribution or by providing an add-on package, one should not rely on
@@ -4336,7 +4367,7 @@ widely available).
 
      <li>A simple <samp><span class="command">make</span></samp>, considering the features of <samp><span class="command">make</span></samp> in
 4.2 <acronym>BSD</acronym> systems as a baseline. 
-<a name="index-make-164"></a>
+<a name="index-make-166"></a>
 <acronym>GNU</acronym> or other extensions, including pattern rules using
 &lsquo;<samp><span class="samp">%</span></samp>&rsquo;, the automatic variable &lsquo;<samp><span class="samp">$^</span></samp>&rsquo;, the &lsquo;<samp><span class="samp">+=</span></samp>&rsquo; syntax to
 append to the value of a variable, the (&ldquo;safe&rdquo;) inclusion of makefiles
@@ -4379,10 +4410,10 @@ Bourne shell).
 install-info</span></samp> needs Perl installed if there is no command
 <samp><span class="command">install-info</span></samp> on the system, and for the maintainer-only script
 <samp><span class="file">tools/help2man.pl</span></samp>. 
-<a name="index-Perl-165"></a>
+<a name="index-Perl-167"></a>
 <li>Makeinfo version 4.7 or later is needed to build the Info files for the
 R manuals written in the <acronym>GNU</acronym> Texinfo system. 
-<a name="index-makeinfo-166"></a></ul>
+<a name="index-makeinfo-168"></a></ul>
 
    <p>It is also important that code is written in a way that allows others to
 understand it.  This is particularly helpful for fixing problems, and
@@ -4394,7 +4425,7 @@ implement this indentation style by putting the following in one of
 their startup files, and using customization to set the
 <code>c-default-style</code> to <code>"bsd"</code> and <code>c-basic-offset</code> to
 <code>4</code>.) 
-<a name="index-emacs-167"></a>
+<a name="index-emacs-169"></a>
 <pre class="smallexample">     ;;; ESS
      (add-hook 'ess-mode-hook
                (lambda ()
@@ -4458,7 +4489,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 <p>Various dialects of TeX and used for different purposes in R.  The
 policy is that manuals be written in &lsquo;<samp><span class="samp">texinfo</span></samp>&rsquo;, and for convenience
 the main and Windows FAQs are also.  This has the advantage that is is
-easy to produce HTML and plain text versions as well as typeset manuals.
+easy to produce <acronym>HTML</acronym> and plain text versions as well as typeset manuals.
 
    <p>LaTeX is not used directly, but rather as an intermediate format for
 typeset help documents and for vignettes.
@@ -4484,7 +4515,8 @@ software used: particular issues have been <samp><span class="command">texi2dvi<
 <samp><span class="file">texinfo.tex</span></samp> updates, mismatches between the two<a rel="footnote" href="#fn-24" name="fnd-24"><sup>24</sup></a>,
 versions of the LaTeX package &lsquo;<samp><span class="samp">hyperref</span></samp>&rsquo; and quirks in index
 production.  The licenses used for LaTeX and latterly &lsquo;<samp><span class="samp">texinfo</span></samp>&rsquo;
-prohibit us from including ‘known good’ versions in the R distribution.
+prohibit us from including ‘known good’ versions in the R
+distribution.
 
    <p>On a Unix-alike <samp><span class="command">configure</span></samp> looks for the executables for TeX and
 friends and if found records the absolute paths in the system
@@ -4699,56 +4731,58 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 <li><a href="#index-g_t_002eSavedPlots-104"><code>.SavedPlots</code></a>: <a href="#Global-environment">Global environment</a></li>
 <li><a href="#index-g_t_002eTraceback-98"><code>.Traceback</code></a>: <a href="#Base-environment">Base environment</a></li>
 <li><a href="#index-g_t_005fR_005fCHECK_005fALL_005fNON_005fISO_005fC_005f-112"><code>_R_CHECK_ALL_NON_ISO_C_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fALWAYS_005fLOG_005fVIGNETTE_005fOUTPUT_005f-145"><code>_R_CHECK_ALWAYS_LOG_VIGNETTE_OUTPUT_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fASCII_005fCODE_005f-135"><code>_R_CHECK_ASCII_CODE_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fASCII_005fDATA_005f-136"><code>_R_CHECK_ASCII_DATA_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fCLEAN_005fVIGN_005fTEST_005f-146"><code>_R_CHECK_CLEAN_VIGN_TEST_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fCODE_005fASSIGN_005fTO_005fGLOBALENV_005f-158"><code>_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fCODE_005fATTACH_005f-159"><code>_R_CHECK_CODE_ATTACH_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fCODE_005fDATA_005fINTO_005fGLOBALENV_005f-160"><code>_R_CHECK_CODE_DATA_INTO_GLOBALENV_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fCODETOOLS_005fPROFILE_005f-154"><code>_R_CHECK_CODETOOLS_PROFILE_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fCODOC_005fS4_005fMETHODS_005f-122"><code>_R_CHECK_CODOC_S4_METHODS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fCOMPACT_005fDATA_005f-137"><code>_R_CHECK_COMPACT_DATA_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fCRAN_005fINCOMING_005f-155"><code>_R_CHECK_CRAN_INCOMING_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fDEPENDS_005fONLY_005f-151"><code>_R_CHECK_DEPENDS_ONLY_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fDEPRECATED_005fDEFUNCT_005f-162"><code>_R_CHECK_DEPRECATED_DEFUNCT_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fDOC_005fSIZES2_005f-144"><code>_R_CHECK_DOC_SIZES2_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fDOC_005fSIZES_005f-143"><code>_R_CHECK_DOC_SIZES_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fDOT_005fFIRSTLIB_005f-161"><code>_R_CHECK_DOT_FIRSTLIB_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fDOT_005fINTERNAL_005f-123"><code>_R_CHECK_DOT_INTERNAL_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fEXECUTABLES_005f-124"><code>_R_CHECK_EXECUTABLES_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fEXECUTABLES_005fEXCLUSIONS_005f-125"><code>_R_CHECK_EXECUTABLES_EXCLUSIONS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fFF_005fCALLS_005f-127"><code>_R_CHECK_FF_CALLS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fALWAYS_005fLOG_005fVIGNETTE_005fOUTPUT_005f-146"><code>_R_CHECK_ALWAYS_LOG_VIGNETTE_OUTPUT_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fASCII_005fCODE_005f-136"><code>_R_CHECK_ASCII_CODE_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fASCII_005fDATA_005f-137"><code>_R_CHECK_ASCII_DATA_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fCLEAN_005fVIGN_005fTEST_005f-147"><code>_R_CHECK_CLEAN_VIGN_TEST_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fCODE_005fASSIGN_005fTO_005fGLOBALENV_005f-159"><code>_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fCODE_005fATTACH_005f-160"><code>_R_CHECK_CODE_ATTACH_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fCODE_005fDATA_005fINTO_005fGLOBALENV_005f-161"><code>_R_CHECK_CODE_DATA_INTO_GLOBALENV_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fCODETOOLS_005fPROFILE_005f-155"><code>_R_CHECK_CODETOOLS_PROFILE_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fCODOC_005fS4_005fMETHODS_005f-123"><code>_R_CHECK_CODOC_S4_METHODS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fCOMPACT_005fDATA_005f-138"><code>_R_CHECK_COMPACT_DATA_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fCRAN_005fINCOMING_005f-156"><code>_R_CHECK_CRAN_INCOMING_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fDEPENDS_005fONLY_005f-152"><code>_R_CHECK_DEPENDS_ONLY_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fDEPRECATED_005fDEFUNCT_005f-163"><code>_R_CHECK_DEPRECATED_DEFUNCT_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fDOC_005fSIZES2_005f-145"><code>_R_CHECK_DOC_SIZES2_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fDOC_005fSIZES_005f-144"><code>_R_CHECK_DOC_SIZES_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fDOT_005fFIRSTLIB_005f-162"><code>_R_CHECK_DOT_FIRSTLIB_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fDOT_005fINTERNAL_005f-124"><code>_R_CHECK_DOT_INTERNAL_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fEXECUTABLES_005f-125"><code>_R_CHECK_EXECUTABLES_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fEXECUTABLES_005fEXCLUSIONS_005f-126"><code>_R_CHECK_EXECUTABLES_EXCLUSIONS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fFF_005fCALLS_005f-128"><code>_R_CHECK_FF_CALLS_</code></a>: <a href="#Tools">Tools</a></li>
 <li><a href="#index-g_t_005fR_005fCHECK_005fFORCE_005fSUGGESTS_005f-113"><code>_R_CHECK_FORCE_SUGGESTS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fINSTALL_005fDEPENDS_005f-150"><code>_R_CHECK_INSTALL_DEPENDS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fLICENSE_005f-128"><code>_R_CHECK_LICENSE_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fNO_005fRECOMMENDED_005f-153"><code>_R_CHECK_NO_RECOMMENDED_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fPERMISSIONS_005f-126"><code>_R_CHECK_PERMISSIONS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fPKG_005fSIZES_005f-142"><code>_R_CHECK_PKG_SIZES_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fRD_005fCHECKRD_005fMINLEVEL_005f-130"><code>_R_CHECK_RD_CHECKRD_MINLEVEL_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fINSTALL_005fDEPENDS_005f-151"><code>_R_CHECK_INSTALL_DEPENDS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fLICENSE_005f-129"><code>_R_CHECK_LICENSE_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fNO_005fRECOMMENDED_005f-154"><code>_R_CHECK_NO_RECOMMENDED_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fPERMISSIONS_005f-127"><code>_R_CHECK_PERMISSIONS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fPKG_005fSIZES_005f-143"><code>_R_CHECK_PKG_SIZES_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fRD_005fCHECKRD_005fMINLEVEL_005f-131"><code>_R_CHECK_RD_CHECKRD_MINLEVEL_</code></a>: <a href="#Tools">Tools</a></li>
 <li><a href="#index-g_t_005fR_005fCHECK_005fRD_005fCONTENTS_005f-114"><code>_R_CHECK_RD_CONTENTS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fRD_005fEXAMPLES_005fT_005fAND_005fF_005f-129"><code>_R_CHECK_RD_EXAMPLES_T_AND_F_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fRD_005fSTYLE_005f-115"><code>_R_CHECK_RD_STYLE_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fRD_005fXREFS_005f-116"><code>_R_CHECK_RD_XREFS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fREPLACING_005fIMPORTS_005f-147"><code>_R_CHECK_REPLACING_IMPORTS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fSKIP_005fARCH_005f-138"><code>_R_CHECK_SKIP_ARCH_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fSKIP_005fEXAMPLES_005fARCH_005f-140"><code>_R_CHECK_SKIP_EXAMPLES_ARCH_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fSKIP_005fTESTS_005fARCH_005f-139"><code>_R_CHECK_SKIP_TESTS_ARCH_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fSRC_005fMINUS_005fW_005fIMPLICIT_005f-132"><code>_R_CHECK_SRC_MINUS_W_IMPLICIT_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fSRC_005fMINUS_005fW_005fUNUSED_005f-133"><code>_R_CHECK_SRC_MINUS_W_UNUSED_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fSUBDIRS_005fNOCASE_005f-117"><code>_R_CHECK_SUBDIRS_NOCASE_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fSUBDIRS_005fSTRICT_005f-118"><code>_R_CHECK_SUBDIRS_STRICT_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fSUGGESTS_005fONLY_005f-152"><code>_R_CHECK_SUGGESTS_ONLY_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fTIMINGS_005f-149"><code>_R_CHECK_TIMINGS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fUNSAFE_005fCALLS_005f-148"><code>_R_CHECK_UNSAFE_CALLS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fUSE_005fCODETOOLS_005f-119"><code>_R_CHECK_USE_CODETOOLS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fUSE_005fINSTALL_005fLOG_005f-120"><code>_R_CHECK_USE_INSTALL_LOG_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fVC_005fDIRS_005f-141"><code>_R_CHECK_VC_DIRS_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fVIGNETTES_005fNLINES_005f-121"><code>_R_CHECK_VIGNETTES_NLINES_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fWALL_005fFORTRAN_005f-134"><code>_R_CHECK_WALL_FORTRAN_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fXREFS_005fREPOSITORIES_005f-131"><code>_R_CHECK_XREFS_REPOSITORIES_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fCHECK_005fXREFS_005fUSE_005fALIASES_005fFROM_005fCRAN_005f-156"><code>_R_CHECK_XREFS_USE_ALIASES_FROM_CRAN_</code></a>: <a href="#Tools">Tools</a></li>
-<li><a href="#index-g_t_005fR_005fSHLIB_005fBUILD_005fOBJECTS_005fSYMBOL_005fTABLES_005f-157"><code>_R_SHLIB_BUILD_OBJECTS_SYMBOL_TABLES_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fRD_005fEXAMPLES_005fT_005fAND_005fF_005f-130"><code>_R_CHECK_RD_EXAMPLES_T_AND_F_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fRD_005fLINE_005fWIDTHS_005f-115"><code>_R_CHECK_RD_LINE_WIDTHS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fRD_005fSTYLE_005f-116"><code>_R_CHECK_RD_STYLE_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fRD_005fXREFS_005f-117"><code>_R_CHECK_RD_XREFS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fREPLACING_005fIMPORTS_005f-148"><code>_R_CHECK_REPLACING_IMPORTS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fSKIP_005fARCH_005f-139"><code>_R_CHECK_SKIP_ARCH_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fSKIP_005fEXAMPLES_005fARCH_005f-141"><code>_R_CHECK_SKIP_EXAMPLES_ARCH_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fSKIP_005fTESTS_005fARCH_005f-140"><code>_R_CHECK_SKIP_TESTS_ARCH_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fSRC_005fMINUS_005fW_005fIMPLICIT_005f-133"><code>_R_CHECK_SRC_MINUS_W_IMPLICIT_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fSRC_005fMINUS_005fW_005fUNUSED_005f-134"><code>_R_CHECK_SRC_MINUS_W_UNUSED_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fSUBDIRS_005fNOCASE_005f-118"><code>_R_CHECK_SUBDIRS_NOCASE_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fSUBDIRS_005fSTRICT_005f-119"><code>_R_CHECK_SUBDIRS_STRICT_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fSUGGESTS_005fONLY_005f-153"><code>_R_CHECK_SUGGESTS_ONLY_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fTIMINGS_005f-150"><code>_R_CHECK_TIMINGS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fTOPLEVEL_005fFILES_005f-164"><code>_R_CHECK_TOPLEVEL_FILES_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fUNSAFE_005fCALLS_005f-149"><code>_R_CHECK_UNSAFE_CALLS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fUSE_005fCODETOOLS_005f-120"><code>_R_CHECK_USE_CODETOOLS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fUSE_005fINSTALL_005fLOG_005f-121"><code>_R_CHECK_USE_INSTALL_LOG_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fVC_005fDIRS_005f-142"><code>_R_CHECK_VC_DIRS_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fVIGNETTES_005fNLINES_005f-122"><code>_R_CHECK_VIGNETTES_NLINES_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fWALL_005fFORTRAN_005f-135"><code>_R_CHECK_WALL_FORTRAN_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fXREFS_005fREPOSITORIES_005f-132"><code>_R_CHECK_XREFS_REPOSITORIES_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fCHECK_005fXREFS_005fUSE_005fALIASES_005fFROM_005fCRAN_005f-157"><code>_R_CHECK_XREFS_USE_ALIASES_FROM_CRAN_</code></a>: <a href="#Tools">Tools</a></li>
+<li><a href="#index-g_t_005fR_005fSHLIB_005fBUILD_005fOBJECTS_005fSYMBOL_005fTABLES_005f-158"><code>_R_SHLIB_BUILD_OBJECTS_SYMBOL_TABLES_</code></a>: <a href="#Tools">Tools</a></li>
 <li><a href="#index-alloca-86"><code>alloca</code></a>: <a href="#Memory-allocators">Memory allocators</a></li>
 <li><a href="#index-ARGSUSED-21"><code>ARGSUSED</code></a>: <a href="#Rest-of-header">Rest of header</a></li>
 <li><a href="#index-ATTRIB-43"><code>ATTRIB</code></a>: <a href="#Attributes">Attributes</a></li>
@@ -4761,7 +4795,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 <li><a href="#index-DispatchOrEval-60"><code>DispatchOrEval</code></a>: <a href="#Argument-evaluation">Argument evaluation</a></li>
 <li><a href="#index-dump_002eframes-103"><code>dump.frames</code></a>: <a href="#Global-environment">Global environment</a></li>
 <li><a href="#index-DUPLICATE_005fATTRIB-45"><code>DUPLICATE_ATTRIB</code></a>: <a href="#Attributes">Attributes</a></li>
-<li><a href="#index-emacs-167"><code>emacs</code></a>: <a href="#R-coding-standards">R coding standards</a></li>
+<li><a href="#index-emacs-169"><code>emacs</code></a>: <a href="#R-coding-standards">R coding standards</a></li>
 <li><a href="#index-error-78"><code>error</code></a>: <a href="#Warnings-and-errors">Warnings and errors</a></li>
 <li><a href="#index-errorcall-79"><code>errorcall</code></a>: <a href="#Warnings-and-errors">Warnings and errors</a></li>
 <li><a href="#index-Free-83"><code>Free</code></a>: <a href="#Memory-allocators">Memory allocators</a></li>
@@ -4769,17 +4803,17 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 <li><a href="#index-invisible-70"><code>invisible</code></a>: <a href="#Autoprinting">Autoprinting</a></li>
 <li><a href="#index-last_002ewarning-99"><code>last.warning</code></a>: <a href="#Base-environment">Base environment</a></li>
 <li><a href="#index-LEVELS-19"><code>LEVELS</code></a>: <a href="#Rest-of-header">Rest of header</a></li>
-<li><a href="#index-make-164"><code>make</code></a>: <a href="#R-coding-standards">R coding standards</a></li>
-<li><a href="#index-makeinfo-166"><code>makeinfo</code></a>: <a href="#R-coding-standards">R coding standards</a></li>
-<li><a href="#index-MISSING-64"><code>MISSING</code></a>: <a href="#Missingness">Missingness</a></li>
+<li><a href="#index-make-166"><code>make</code></a>: <a href="#R-coding-standards">R coding standards</a></li>
+<li><a href="#index-makeinfo-168"><code>makeinfo</code></a>: <a href="#R-coding-standards">R coding standards</a></li>
 <li><a href="#index-MISSING-23"><code>MISSING</code></a>: <a href="#Rest-of-header">Rest of header</a></li>
+<li><a href="#index-MISSING-64"><code>MISSING</code></a>: <a href="#Missingness">Missingness</a></li>
 <li><a href="#index-mkChar-74"><code>mkChar</code></a>: <a href="#The-CHARSXP-cache">The CHARSXP cache</a></li>
 <li><a href="#index-mkCharLenCE-75"><code>mkCharLenCE</code></a>: <a href="#The-CHARSXP-cache">The CHARSXP cache</a></li>
-<li><a href="#index-NAMED-111"><code>NAMED</code></a>: <a href="#g_t_002eInternal-vs-_002ePrimitive">.Internal vs .Primitive</a></li>
 <li><a href="#index-NAMED-15"><code>NAMED</code></a>: <a href="#Rest-of-header">Rest of header</a></li>
+<li><a href="#index-NAMED-111"><code>NAMED</code></a>: <a href="#g_t_002eInternal-vs-_002ePrimitive">.Internal vs .Primitive</a></li>
 <li><a href="#index-NAMED-54"><code>NAMED</code></a>: <a href="#Argument-evaluation">Argument evaluation</a></li>
 <li><a href="#index-named-bit-14"><code>named bit</code></a>: <a href="#Rest-of-header">Rest of header</a></li>
-<li><a href="#index-Perl-165"><code>Perl</code></a>: <a href="#R-coding-standards">R coding standards</a></li>
+<li><a href="#index-Perl-167"><code>Perl</code></a>: <a href="#R-coding-standards">R coding standards</a></li>
 <li><a href="#index-PRIMPRINT-69"><code>PRIMPRINT</code></a>: <a href="#Autoprinting">Autoprinting</a></li>
 <li><a href="#index-PRSEEN-28"><code>PRSEEN</code></a>: <a href="#Rest-of-header">Rest of header</a></li>
 <li><a href="#index-R_005falloc-80"><code>R_alloc</code></a>: <a href="#Memory-allocators">Memory allocators</a></li>
@@ -4832,7 +4866,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 <li><a href="#index-base-environment-92">base environment</a>: <a href="#Base-environment">Base environment</a></li>
 <li><a href="#index-base-namespace-39">base namespace</a>: <a href="#Namespaces">Namespaces</a></li>
 <li><a href="#index-builtin-function-55">builtin function</a>: <a href="#Argument-evaluation">Argument evaluation</a></li>
-<li><a href="#index-coding-standards-163">coding standards</a>: <a href="#R-coding-standards">R coding standards</a></li>
+<li><a href="#index-coding-standards-165">coding standards</a>: <a href="#R-coding-standards">R coding standards</a></li>
 <li><a href="#index-context-50">context</a>: <a href="#Contexts">Contexts</a></li>
 <li><a href="#index-copying-semantics-46">copying semantics</a>: <a href="#Attributes">Attributes</a></li>
 <li><a href="#index-copying-semantics-17">copying semantics</a>: <a href="#Rest-of-header">Rest of header</a></li>

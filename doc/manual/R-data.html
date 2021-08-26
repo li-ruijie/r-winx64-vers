@@ -6,6 +6,25 @@
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="top" href="#Top">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for R, version 3.0.2 (2013-09-25).
+
+Copyright (C) 2000-2013 R Core Team
+
+     Permission is granted to make and distribute verbatim copies of
+     this manual provided the copyright notice and this permission
+     notice are preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+     this manual under the conditions for verbatim copying, provided
+     that the entire resulting derived work is distributed under the
+     terms of a permission notice identical to this one.
+
+     Permission is granted to copy and distribute translations of this
+     manual into another language, under the above conditions for
+     modified versions, except that this permission notice may be
+     stated in a translation approved by the R Core Team.
+   -->
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
   pre.display { font-family:inherit }
@@ -70,6 +89,84 @@ p {
 </head>
 <body>
 <h1 class="settitle">R Data Import/Export</h1>
+   <div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top" href="#Top">R Data Import/Export</a>
+<li><a name="toc_Acknowledgements" href="#Acknowledgements">Acknowledgements</a>
+<li><a name="toc_Introduction" href="#Introduction">1 Introduction</a>
+<ul>
+<li><a href="#Imports">1.1 Imports</a>
+<ul>
+<li><a href="#Encodings">1.1.1 Encodings</a>
+</li></ul>
+<li><a href="#Export-to-text-files">1.2 Export to text files</a>
+<li><a href="#XML">1.3 XML</a>
+</li></ul>
+<li><a name="toc_Spreadsheet_002dlike-data" href="#Spreadsheet_002dlike-data">2 Spreadsheet-like data</a>
+<ul>
+<li><a href="#Variations-on-read_002etable">2.1 Variations on <code>read.table</code></a>
+<li><a href="#Fixed_002dwidth_002dformat-files">2.2 Fixed-width-format files</a>
+<li><a href="#Data-Interchange-Format-_0028DIF_0029">2.3 Data Interchange Format (DIF)</a>
+<li><a href="#Using-scan-directly">2.4 Using <code>scan</code> directly</a>
+<li><a href="#Re_002dshaping-data">2.5 Re-shaping data</a>
+<li><a href="#Flat-contingency-tables">2.6 Flat contingency tables</a>
+</li></ul>
+<li><a name="toc_Importing-from-other-statistical-systems" href="#Importing-from-other-statistical-systems">3 Importing from other statistical systems</a>
+<ul>
+<li><a href="#EpiInfo-Minitab-SAS-S_002dPLUS-SPSS-Stata-Systat">3.1 EpiInfo, Minitab, S-PLUS, SAS, SPSS, Stata, Systat</a>
+<li><a href="#Octave">3.2 Octave</a>
+</li></ul>
+<li><a name="toc_Relational-databases" href="#Relational-databases">4 Relational databases</a>
+<ul>
+<li><a href="#Why-use-a-database_003f">4.1 Why use a database?</a>
+<li><a href="#Overview-of-RDBMSs">4.2 Overview of RDBMSs</a>
+<ul>
+<li><a href="#SQL-queries">4.2.1 <acronym>SQL</acronym> queries</a>
+<li><a href="#Data-types">4.2.2 Data types</a>
+</li></ul>
+<li><a href="#R-interface-packages">4.3 R interface packages</a>
+<ul>
+<li><a href="#DBI">4.3.1 Packages using DBI</a>
+<li><a href="#RODBC">4.3.2 Package RODBC</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_Binary-files" href="#Binary-files">5 Binary files</a>
+<ul>
+<li><a href="#Binary-data-formats">5.1 Binary data formats</a>
+<li><a href="#dBase-files-_0028DBF_0029">5.2 dBase files (DBF)</a>
+</li></ul>
+<li><a name="toc_Image-files" href="#Image-files">6 Image files</a>
+<li><a name="toc_Connections" href="#Connections">7 Connections</a>
+<ul>
+<li><a href="#Types-of-connections">7.1 Types of connections</a>
+<li><a href="#Output-to-connections">7.2 Output to connections</a>
+<li><a href="#Input-from-connections">7.3 Input from connections</a>
+<ul>
+<li><a href="#Pushback">7.3.1 Pushback</a>
+</li></ul>
+<li><a href="#Listing-and-manipulating-connections">7.4 Listing and manipulating connections</a>
+<li><a href="#Binary-connections">7.5 Binary connections</a>
+<ul>
+<li><a href="#Special-values">7.5.1 Special values</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_Network-interfaces" href="#Network-interfaces">8 Network interfaces</a>
+<ul>
+<li><a href="#Reading-from-sockets">8.1 Reading from sockets</a>
+<li><a href="#Using-download_002efile">8.2 Using <code>download.file</code></a>
+<li><a href="#CORBA-interface">8.3 <acronym>CORBA</acronym> interface</a>
+</li></ul>
+<li><a name="toc_Reading-Excel-spreadsheets" href="#Reading-Excel-spreadsheets">9 Reading Excel spreadsheets</a>
+<li><a name="toc_References" href="#References">Appendix A References</a>
+<li><a name="toc_Function-and-variable-index" href="#Function-and-variable-index">Function and variable index</a>
+<li><a name="toc_Concept-index" href="#Concept-index">Concept index</a>
+</li></ul>
+</div>
+
+
+
+<!-- @end ifnothtml -->
 <div class="node">
 <a name="Top"></a>
 <p><hr>
@@ -83,13 +180,12 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#dir">(dir)</a>
 
 <p>This is a guide to importing and exporting data to and from R.
 
-   <p>The current version of this document is 3.0.1 (2013-05-16).
-
-   <p>
+   <p>This manual is for R, version 3.0.2 (2013-09-25).
 
    <p>Copyright &copy; 2000&ndash;2013 R Core Team
 
-   <p>Permission is granted to make and distribute verbatim copies of this
+   <blockquote>
+Permission is granted to make and distribute verbatim copies of this
 manual provided the copyright notice and this permission notice are
 preserved on all copies.
 
@@ -102,7 +198,7 @@ permission notice identical to this one.
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation
 approved by the R Core Team. 
-<!--  ^- read that -->
+</blockquote>
 
 <ul class="menu">
 <li><a accesskey="1" href="#Acknowledgements">Acknowledgements</a>
@@ -281,9 +377,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Imports">Imports</a>
 <h4 class="subsection">1.1.1 Encodings</h4>
 
 <p><a name="index-Encodings-5"></a>
-Unless the file to be imported from is entirely in ASCII, it is usually
-necessary to know how it was encoded.  For text files, a good way to
-find out something about its structure is the <samp><span class="command">file</span></samp>
+Unless the file to be imported from is entirely in <acronym>ASCII</acronym>, it
+is usually necessary to know how it was encoded.  For text files, a good
+way to find out something about its structure is the <samp><span class="command">file</span></samp>
 command-line tool (for Windows, included in <code>Rtools</code>).  This
 reports something like
 
@@ -422,11 +518,12 @@ useful forms are
 
      <li><strong>Encodings</strong>
 <a name="index-Encodings-17"></a>
-Text files do not contain metadata on their encodings, so for non-ASCII
-data the file needs to be targetted to the application intended to read
-it.  All of these functions can write to a <em>connection</em> which
-allows an encoding to be specified for the file, and <code>write.table</code>
-has a <code>fileEncoding</code> argument to make this easier.
+Text files do not contain metadata on their encodings, so for
+non-<acronym>ASCII</acronym> data the file needs to be targetted to the
+application intended to read it.  All of these functions can write to a
+<em>connection</em> which allows an encoding to be specified for the file,
+and <code>write.table</code> has a <code>fileEncoding</code> argument to make this
+easier.
 
      <p>The hard part is to know what file encoding to use.  For use on Windows,
 it is best to use what Windows calls ‘Unicode’<a rel="footnote" href="#fn-3" name="fnd-3"><sup>3</sup></a>, that is <code>"UTF-16LE"</code>.  Using UTF-8 is a good way
@@ -481,7 +578,7 @@ standard for general data markup and exchange.  It is being used by
 different communities to describe geographical data such as maps,
 graphical displays, mathematics and so on.
 
-   <p>XML provides a way to specify the file's encoding, e.g.
+   <p><acronym>XML</acronym> provides a way to specify the file's encoding, e.g.
 
 <pre class="example">     &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 </pre>
@@ -553,9 +650,9 @@ very large numerical matrices: see <code>scan</code> below.
      <ol type=1 start=1>
 <li><strong>Encoding</strong>
 
-     <p>If the file contains non-ASCII character fields, ensure that it is read
-in the correct encoding.  This is mainly an issue for reading Latin-1
-files in a UTF-8 locale, which can be done by something like
+     <p>If the file contains non-<acronym>ASCII</acronym> character fields, ensure that
+it is read in the correct encoding.  This is mainly an issue for reading
+Latin-1 files in a UTF-8 locale, which can be done by something like
 
      <pre class="example">          read.table("file.dat", fileEncoding="latin1")
 </pre>
@@ -1207,8 +1304,8 @@ from a database for separate analysis.
    <p>Increasingly OSes are themselves making use of DBMSs for these reasons,
 so it is nowadays likely that one will be already installed on your
 (non-Windows) OS.  <a href="http://en.wikipedia.org/wiki/Akonadi">Akonadi</a>
-is used by KDE4 to store personal information and uses MySQL.  Several
-OS X applications, including Mail and Address Book, use SQLite. 
+is used by KDE4 to store personal information.  Several OS X
+applications, including Mail and Address Book, use SQLite. 
 <!-- http://www.actualtechnologies.com/sqlite_applications.php -->
 
 <div class="node">
@@ -1226,11 +1323,11 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Relational-databases">Relational datab
 (<a href="http://www.informix.com">Informix</a>; <a href="http://www.oracle.com">Oracle</a>; <a href="http://www.sybase.com">Sybase</a>;
 <a href="http://www.ibm.com/db2">IBM's DB2</a>;
 <a href="http://www.microsoft.com/SQL/default.mspx">Microsoft <acronym>SQL</acronym> Server</a> on Windows) and academic and small-system databases (such as
-MySQL, PostgreSQL, Microsoft Access, <small class="dots">...</small>), the former marked out by
-much greater emphasis on data security features.  The line is blurring,
-with the Open Source MySQL and PostgreSQL having more and more high-end
-features, and free ‘express’ versions being made available for the
-commercial DBMSs.
+MySQL<a rel="footnote" href="#fn-5" name="fnd-5"><sup>5</sup></a>, PostgreSQL, Microsoft
+Access, <small class="dots">...</small>), the former marked out by much greater emphasis on data
+security features.  The line is blurring, with MySQL and PostgreSQL
+having more and more high-end features, and free ‘express’ versions
+being made available for the commercial DBMSs.
 
    <p><a name="index-ODBC-72"></a><a name="index-Open-Database-Connectivity-73"></a>There are other commonly used data sources, including spreadsheets,
 non-relational databases and even text files (possibly compressed). 
@@ -1503,13 +1600,14 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#R-interface-packages">R interface pack
 <h4 class="subsection">4.3.2 Package RODBC</h4>
 
 <p><a name="index-ODBC-87"></a><a name="index-Open-Database-Connectivity-88"></a>
-Package <a href="http://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> on <acronym>CRAN</acronym> provides an interface to database
-sources supporting an <acronym>ODBC</acronym> interface.  This is very widely
-available, and allows the same R code to access different database
-systems.  <a href="http://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> runs on Unix/Linux, Windows and OS X, and
-almost all database systems provide support for <acronym>ODBC</acronym>.  We have
-tested Microsoft SQL Server, Access, MySQL, PostgreSQL, Oracle and IBM
-DB2 on Windows and MySQL, Oracle, PostgreSQL and SQLite on Linux.
+Package <a href="http://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> on <acronym>CRAN</acronym> provides an interface to
+database sources supporting an <acronym>ODBC</acronym> interface.  This is very
+widely available, and allows the same R code to access different
+database systems.  <a href="http://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> runs on Unix/Linux, Windows and OS X,
+and almost all database systems provide support for <acronym>ODBC</acronym>.  We
+have tested Microsoft SQL Server, Access, MySQL, PostgreSQL, Oracle and
+IBM DB2 on Windows and MySQL, MariaDB, Oracle, PostgreSQL and SQLite on
+Linux.
 
    <p>ODBC is a client-server system, and we have happily connected to a DBMS
 running on a Unix server from a Windows client, and <em>vice versa</em>.
@@ -2679,6 +2777,8 @@ on the platform.</p>
 
    <p class="footnote"><small>[<a name="fn-4" href="#fnd-4">4</a>]</small> This is normally
 fast as looking at the first entry rules out most of the possibilities.</p>
+
+   <p class="footnote"><small>[<a name="fn-5" href="#fnd-5">5</a>]</small> and forks, notably MariaDB.</p>
 
    <hr></div>
 

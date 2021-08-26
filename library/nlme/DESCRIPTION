@@ -1,6 +1,6 @@
 Package: nlme
-Version: 3.1-109
-Date: 2013-03-21
+Version: 3.1-111
+Date: 2013-08-05
 Priority: recommended
 Title: Linear and Nonlinear Mixed Effects Models
 Authors@R: c(person("José", "Pinheiro", role = "aut",
@@ -30,6 +30,9 @@ ByteCompile: yes
 Encoding: UTF-8
 License: GPL (>= 2)
 BugReports: http://bugs.r-project.org
-Packaged: 2013-03-21 11:10:46 UTC; ripley
-Built: R 3.0.1; x86_64-w64-mingw32; 2013-05-16 10:56:56 UTC; windows
+Packaged: 2013-09-08 10:40:05 UTC; ripley
+NeedsCompilation: yes
+Repository: CRAN
+Date/Publication: 2013-09-08 12:40:23
+Built: R 3.0.2; x86_64-w64-mingw32; 2013-09-25 15:45:51 UTC; windows
 Archs: i386, x64

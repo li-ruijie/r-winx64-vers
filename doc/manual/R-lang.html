@@ -6,6 +6,25 @@
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="top" href="#Top">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for R, version 3.0.2 (2013-09-25).
+
+Copyright (C) 2000-2013 R Core Team
+
+     Permission is granted to make and distribute verbatim copies of
+     this manual provided the copyright notice and this permission
+     notice are preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+     this manual under the conditions for verbatim copying, provided
+     that the entire resulting derived work is distributed under the
+     terms of a permission notice identical to this one.
+
+     Permission is granted to copy and distribute translations of this
+     manual into another language, under the above conditions for
+     modified versions, except that this permission notice may be
+     stated in a translation approved by the R Core Team.
+   -->
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
   pre.display { font-family:inherit }
@@ -260,13 +279,12 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#dir">(dir)</a>
 parsing, object oriented programming, computing on the language, and so
 forth.
 
-   <p>The current version of this document is 3.0.1 (2013-05-16) <b>DRAFT</b>.
-
-   <p>
+   <p>This manual is for R, version 3.0.2 (2013-09-25).
 
    <p>Copyright &copy; 2000&ndash;2013 R Core Team
 
-   <p>Permission is granted to make and distribute verbatim copies of this
+   <blockquote>
+Permission is granted to make and distribute verbatim copies of this
 manual provided the copyright notice and this permission notice are
 preserved on all copies.
 
@@ -278,7 +296,8 @@ permission notice identical to this one.
    <p>Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation
-approved by the R Core Team.
+approved by the R Core Team. 
+</blockquote>
 
 <ul class="menu">
 <li><a accesskey="1" href="#Introduction">Introduction</a>
@@ -4780,7 +4799,9 @@ once.
 <pre class="example">     <span class="roman">Valid numeric constants:</span> 1 10 0.1 .2 1e-7 1.2e+7
 </pre>
    <p>Numeric constants can also be hexadecimal, starting with &lsquo;<samp><span class="samp">0x</span></samp>&rsquo; or
-&lsquo;<samp><span class="samp">0x</span></samp>&rsquo; followed by zero or more digits, &lsquo;<samp><span class="samp">a-f</span></samp>&rsquo; or &lsquo;<samp><span class="samp">A-F</span></samp>&rsquo;.
+&lsquo;<samp><span class="samp">0x</span></samp>&rsquo; followed by zero or more digits, &lsquo;<samp><span class="samp">a-f</span></samp>&rsquo; or &lsquo;<samp><span class="samp">A-F</span></samp>&rsquo;. 
+Hexadecimal floating point constants are supported using C99 syntax, e.g. 
+&lsquo;<samp><span class="samp">0x1.1p1</span></samp>&rsquo;.
 
    <p>There is now a separate class of integer constants.  They are created
 by using the qualifier <code>L</code> at the end of the number.  For
@@ -4794,11 +4815,12 @@ constants, values which will generate a warning and give numeric
 constants and syntax errors.
 
 <pre class="example">     <span class="roman">Valid integer constants:</span>  1L, 0x10L, 1000000L, 1e6L
-     <span class="roman">Valid numeric constants:</span>  1.1L, 1e-3L
-     <span class="roman">Syntax error:</span>  12iL
+     <span class="roman">Valid numeric constants:</span>  1.1L, 1e-3L, 0x1.1p-2
+     <span class="roman">Syntax error:</span>  12iL 0x1.1
 </pre>
-   <p>A warning is emitted for values that contain an unnecessary
-decimal point, e.g. <code>1.L</code>.
+   <p>A warning is emitted for decimal values that contain an unnecessary
+decimal point, e.g. <code>1.L</code>.  It is an error to have a decimal
+point in a hexadecimal constant without the binary exponent.
 
    <p>Note also that a preceding sign (<code>+</code> or <code>-</code>) is treated as a
 unary operator, not as part of the constant.

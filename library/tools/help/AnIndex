@@ -3,6 +3,9 @@ tools-package	tools-package
 add_datalist	add_datalist
 Adobe_glyphs	charsets
 as.character.Rd	parse_Rd
+assertCondition	assertCondition
+assertError	assertCondition
+assertWarning	assertCondition
 bibstyle	bibstyle
 buildVignettes	buildVignettes
 charset_to_Unicode	charsets
@@ -35,6 +38,7 @@ findHTMLlinks	HTMLlinks
 format.compactPDF	compactPDF
 getBibstyle	bibstyle
 getDepList	getDepList
+getVignetteInfo	getVignetteInfo
 help.ports	startDynamicHelp
 HTMLheader	HTMLheader
 installFoundDepends	installFoundDepends

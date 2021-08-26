@@ -212,6 +212,7 @@ relist.matrix	relist
 REMOVE	REMOVE
 remove.packages	remove.packages
 removeSource	removeSource
+RHOME	RHOME
 Rprof	Rprof
 Rprofmem	Rprofmem
 Rscript	Rscript

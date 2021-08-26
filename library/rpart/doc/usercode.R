@@ -128,6 +128,7 @@ all.equal(xerror.relative, fit2b$cptable[, 4], check.attributes = FALSE)
 ###################################################
 ### code chunk number 8: fig1
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 tdata <- mystate[order(mystate$illiteracy), ]
 n <- nrow(tdata)
 temp <- stemp(tdata$income, wt = rep(1, n), tdata$illiteracy,

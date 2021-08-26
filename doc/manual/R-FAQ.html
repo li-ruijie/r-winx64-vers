@@ -51,6 +51,145 @@ ul.menu{list-style-type: decimal}
 </head>
 <body>
 <h1 class="settitle">R FAQ</h1>
+<h2>Frequently Asked Questions on R</h2>
+<h2>Version 3.0.2013-09-16</h2>
+<address>Kurt Hornik</address>
+<p><p><hr><p>
+
+<!-- @ifnothtml -->
+   <div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top" href="#Top">R FAQ</a>
+<li><a name="toc_Introduction" href="#Introduction">1 Introduction</a>
+<ul>
+<li><a href="#Legalese">1.1 Legalese</a>
+<li><a href="#Obtaining-this-document">1.2 Obtaining this document</a>
+<li><a href="#Citing-this-document">1.3 Citing this document</a>
+<li><a href="#Notation">1.4 Notation</a>
+<li><a href="#Feedback">1.5 Feedback</a>
+</li></ul>
+<li><a name="toc_R-Basics" href="#R-Basics">2 R Basics</a>
+<ul>
+<li><a href="#What-is-R_003f">2.1 What is R?</a>
+<li><a href="#What-machines-does-R-run-on_003f">2.2 What machines does R run on?</a>
+<li><a href="#What-is-the-current-version-of-R_003f">2.3 What is the current version of R?</a>
+<li><a href="#How-can-R-be-obtained_003f">2.4 How can R be obtained?</a>
+<li><a href="#How-can-R-be-installed_003f">2.5 How can R be installed?</a>
+<ul>
+<li><a href="#How-can-R-be-installed-_0028Unix_002dlike_0029">2.5.1 How can R be installed (Unix-like)</a>
+<li><a href="#How-can-R-be-installed-_0028Windows_0029">2.5.2 How can R be installed (Windows)</a>
+<li><a href="#How-can-R-be-installed-_0028Macintosh_0029">2.5.3 How can R be installed (Macintosh)</a>
+</li></ul>
+<li><a href="#Are-there-Unix_002dlike-binaries-for-R_003f">2.6 Are there Unix-like binaries for R?</a>
+<li><a href="#What-documentation-exists-for-R_003f">2.7 What documentation exists for R?</a>
+<li><a href="#Citing-R">2.8 Citing R</a>
+<li><a href="#What-mailing-lists-exist-for-R_003f">2.9 What mailing lists exist for R?</a>
+<li><a href="#What-is-CRAN_003f">2.10 What is <acronym>CRAN</acronym>?</a>
+<li><a href="#Can-I-use-R-for-commercial-purposes_003f">2.11 Can I use R for commercial purposes?</a>
+<li><a href="#Why-is-R-named-R_003f">2.12 Why is R named R?</a>
+<li><a href="#What-is-the-R-Foundation_003f">2.13 What is the R Foundation?</a>
+<li><a href="#What-is-R_002dForge_003f">2.14 What is R-Forge?</a>
+</li></ul>
+<li><a name="toc_R-and-S" href="#R-and-S">3 R and S</a>
+<ul>
+<li><a href="#What-is-S_003f">3.1 What is S?</a>
+<li><a href="#What-is-S_002dPLUS_003f">3.2 What is <span class="sc">S-Plus</span>?</a>
+<li><a href="#What-are-the-differences-between-R-and-S_003f">3.3 What are the differences between R and S?</a>
+<ul>
+<li><a href="#Lexical-scoping">3.3.1 Lexical scoping</a>
+<li><a href="#Models">3.3.2 Models</a>
+<li><a href="#Others">3.3.3 Others</a>
+</li></ul>
+<li><a href="#Is-there-anything-R-can-do-that-S_002dPLUS-cannot_003f">3.4 Is there anything R can do that <span class="sc">S-Plus</span> cannot?</a>
+<li><a href="#What-is-R_002dplus_003f">3.5 What is R-plus?</a>
+</li></ul>
+<li><a name="toc_R-Web-Interfaces" href="#R-Web-Interfaces">4 R Web Interfaces</a>
+<li><a name="toc_R-Add_002dOn-Packages" href="#R-Add_002dOn-Packages">5 R Add-On Packages</a>
+<ul>
+<li><a href="#Which-add_002don-packages-exist-for-R_003f">5.1 Which add-on packages exist for R?</a>
+<ul>
+<li><a href="#Add_002don-packages-in-R">5.1.1 Add-on packages in R</a>
+<li><a href="#Add_002don-packages-from-CRAN">5.1.2 Add-on packages from <acronym>CRAN</acronym></a>
+<li><a href="#Add_002don-packages-from-Omegahat">5.1.3 Add-on packages from Omegahat</a>
+<li><a href="#Add_002don-packages-from-Bioconductor">5.1.4 Add-on packages from Bioconductor</a>
+<li><a href="#Other-add_002don-packages">5.1.5 Other add-on packages</a>
+</li></ul>
+<li><a href="#How-can-add_002don-packages-be-installed_003f">5.2 How can add-on packages be installed?</a>
+<li><a href="#How-can-add_002don-packages-be-used_003f">5.3 How can add-on packages be used?</a>
+<li><a href="#How-can-add_002don-packages-be-removed_003f">5.4 How can add-on packages be removed?</a>
+<li><a href="#How-can-I-create-an-R-package_003f">5.5 How can I create an R package?</a>
+<li><a href="#How-can-I-contribute-to-R_003f">5.6 How can I contribute to R?</a>
+</li></ul>
+<li><a name="toc_R-and-Emacs" href="#R-and-Emacs">6 R and Emacs</a>
+<ul>
+<li><a href="#Is-there-Emacs-support-for-R_003f">6.1 Is there Emacs support for R?</a>
+<li><a href="#Should-I-run-R-from-within-Emacs_003f">6.2 Should I run R from within Emacs?</a>
+<li><a href="#Debugging-R-from-within-Emacs">6.3 Debugging R from within Emacs</a>
+</li></ul>
+<li><a name="toc_R-Miscellanea" href="#R-Miscellanea">7 R Miscellanea</a>
+<ul>
+<li><a href="#How-can-I-set-components-of-a-list-to-NULL_003f">7.1 How can I set components of a list to NULL?</a>
+<li><a href="#How-can-I-save-my-workspace_003f">7.2 How can I save my workspace?</a>
+<li><a href="#How-can-I-clean-up-my-workspace_003f">7.3 How can I clean up my workspace?</a>
+<li><a href="#How-can-I-get-eval_0028_0029-and-D_0028_0029-to-work_003f">7.4 How can I get eval() and D() to work?</a>
+<li><a href="#Why-do-my-matrices-lose-dimensions_003f">7.5 Why do my matrices lose dimensions?</a>
+<li><a href="#How-does-autoloading-work_003f">7.6 How does autoloading work?</a>
+<li><a href="#How-should-I-set-options_003f">7.7 How should I set options?</a>
+<li><a href="#How-do-file-names-work-in-Windows_003f">7.8 How do file names work in Windows?</a>
+<li><a href="#Why-does-plotting-give-a-color-allocation-error_003f">7.9 Why does plotting give a color allocation error?</a>
+<li><a href="#How-do-I-convert-factors-to-numeric_003f">7.10 How do I convert factors to numeric?</a>
+<li><a href="#Are-Trellis-displays-implemented-in-R_003f">7.11 Are Trellis displays implemented in R?</a>
+<li><a href="#What-are-the-enclosing-and-parent-environments_003f">7.12 What are the enclosing and parent environments?</a>
+<li><a href="#How-can-I-substitute-into-a-plot-label_003f">7.13 How can I substitute into a plot label?</a>
+<li><a href="#What-are-valid-names_003f">7.14 What are valid names?</a>
+<li><a href="#Are-GAMs-implemented-in-R_003f">7.15 Are GAMs implemented in R?</a>
+<li><a href="#Why-is-the-output-not-printed-when-I-source_0028_0029-a-file_003f">7.16 Why is the output not printed when I source() a file?</a>
+<li><a href="#Why-does-outer_0028_0029-behave-strangely-with-my-function_003f">7.17 Why does outer() behave strangely with my function?</a>
+<li><a href="#Why-does-the-output-from-anova_0028_0029-depend-on-the-order-of-factors-in-the-model_003f">7.18 Why does the output from anova() depend on the order of factors in the model?</a>
+<li><a href="#How-do-I-produce-PNG-graphics-in-batch-mode_003f">7.19 How do I produce PNG graphics in batch mode?</a>
+<li><a href="#How-can-I-get-command-line-editing-to-work_003f">7.20 How can I get command line editing to work?</a>
+<li><a href="#How-can-I-turn-a-string-into-a-variable_003f">7.21 How can I turn a string into a variable?</a>
+<li><a href="#Why-do-lattice_002ftrellis-graphics-not-work_003f">7.22 Why do lattice/trellis graphics not work?</a>
+<li><a href="#How-can-I-sort-the-rows-of-a-data-frame_003f">7.23 How can I sort the rows of a data frame?</a>
+<li><a href="#Why-does-the-help_002estart_0028_0029-search-engine-not-work_003f">7.24 Why does the help.start() search engine not work?</a>
+<li><a href="#Why-did-my-_002eRprofile-stop-working-when-I-updated-R_003f">7.25 Why did my .Rprofile stop working when I updated R?</a>
+<li><a href="#Where-have-all-the-methods-gone_003f">7.26 Where have all the methods gone?</a>
+<li><a href="#How-can-I-create-rotated-axis-labels_003f">7.27 How can I create rotated axis labels?</a>
+<li><a href="#Why-is-read_002etable_0028_0029-so-inefficient_003f">7.28 Why is read.table() so inefficient?</a>
+<li><a href="#What-is-the-difference-between-package-and-library_003f">7.29 What is the difference between package and library?</a>
+<li><a href="#I-installed-a-package-but-the-functions-are-not-there">7.30 I installed a package but the functions are not there</a>
+<li><a href="#Why-doesn_0027t-R-think-these-numbers-are-equal_003f">7.31 Why doesn't R think these numbers are equal?</a>
+<li><a href="#How-can-I-capture-or-ignore-errors-in-a-long-simulation_003f">7.32 How can I capture or ignore errors in a long simulation?</a>
+<li><a href="#Why-are-powers-of-negative-numbers-wrong_003f">7.33 Why are powers of negative numbers wrong?</a>
+<li><a href="#How-can-I-save-the-result-of-each-iteration-in-a-loop-into-a-separate-file_003f">7.34 How can I save the result of each iteration in a loop into a separate file?</a>
+<li><a href="#Why-are-p_002dvalues-not-displayed-when-using-lmer_0028_0029_003f">7.35 Why are p-values not displayed when using lmer()?</a>
+<li><a href="#Why-are-there-unwanted-borders">7.36 Why are there unwanted borders, lines or grid-like artifacts when viewing a plot saved to a PS or PDF file?</a>
+<li><a href="#Why-does-backslash-behave-strangely-inside-strings_003f">7.37 Why does backslash behave strangely inside strings?</a>
+<li><a href="#How-can-I-put-error-bars-or-confidence-bands-on-my-plot_003f">7.38 How can I put error bars or confidence bands on my plot?</a>
+<li><a href="#How-do-I-create-a-plot-with-two-y_002daxes_003f">7.39 How do I create a plot with two y-axes?</a>
+<li><a href="#How-do-I-access-the-source-code-for-a-function_003f">7.40 How do I access the source code for a function?</a>
+<li><a href="#Why-does-summary_0028_0029-report-strange-results-for-the-R_005e2-estimate-when-I-fit-a-linear-model-with-no-intercept_003f">7.41 Why does summary() report strange results for the R^2 estimate when I fit a linear model with no intercept?</a>
+<li><a href="#Why-is-R-apparently-not-releasing-memory_003f">7.42 Why is R apparently not releasing memory?</a>
+</li></ul>
+<li><a name="toc_R-Programming" href="#R-Programming">8 R Programming</a>
+<ul>
+<li><a href="#How-should-I-write-summary-methods_003f">8.1 How should I write summary methods?</a>
+<li><a href="#How-can-I-debug-dynamically-loaded-code_003f">8.2 How can I debug dynamically loaded code?</a>
+<li><a href="#How-can-I-inspect-R-objects-when-debugging_003f">8.3 How can I inspect R objects when debugging?</a>
+<li><a href="#How-can-I-change-compilation-flags_003f">8.4 How can I change compilation flags?</a>
+<li><a href="#How-can-I-debug-S4-methods_003f">8.5 How can I debug S4 methods?</a>
+</li></ul>
+<li><a name="toc_R-Bugs" href="#R-Bugs">9 R Bugs</a>
+<ul>
+<li><a href="#What-is-a-bug_003f">9.1 What is a bug?</a>
+<li><a href="#How-to-report-a-bug">9.2 How to report a bug</a>
+</li></ul>
+<li><a name="toc_Acknowledgments" href="#Acknowledgments">10 Acknowledgments</a>
+</li></ul>
+</div>
+
+<!-- @end ifnothtml -->
 <div class="node">
 <a name="Top"></a>
 <p><hr>
@@ -61,11 +200,6 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#dir">(dir)</a>
 </div>
 
 <h2 class="unnumbered">R FAQ</h2>
-
-<p><h2>Frequently Asked Questions on R</h2>
-<h2>Version 3.0.2013-05-12</h2>
-<address>Kurt Hornik</address>
-<p><p><hr><p>
 
 <ul class="menu">
 <li><a accesskey="1" href="#Introduction">Introduction</a>
@@ -357,7 +491,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#R-Basics">R Basics</a>
 
 <h3 class="section">2.3 What is the current version of R?</h3>
 
-<p>The current released version is 3.0.1.  Based on this
+<p>The current released version is 3.0.2.  Based on this
 ‘major.minor.patchlevel’ numbering scheme, there are two development
 versions of R, a patched version of the current release (‘r-patched’)
 and one working towards the next minor or eventually major (‘r-devel’)
@@ -520,19 +654,15 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#How-can-R-be-installed_003f">How can R
 <h4 class="subsection">2.5.2 How can R be installed (Windows)</h4>
 
 <p>The <samp><span class="file">bin/windows</span></samp> directory of a <acronym>CRAN</acronym> site contains binaries for
-a base distribution and a large number of add-on packages from <acronym>CRAN</acronym>
-to run on Windows 2000 and later (including 64-bit versions of Windows)
-on ix86 and x86_64 chips. The Windows version of R was created by Robert
-Gentleman and Guido Masarotto, and is now being developed and maintained
-by <a href="mailto:murdoch@stats.uwo.ca">Duncan Murdoch</a> and
+a base distribution and add-on packages from <acronym>CRAN</acronym> to run on Windows
+XP and later (including 64-bit versions of Windows) on ix86 and x86_64
+chips. The Windows version of R was created by Robert Gentleman and
+Guido Masarotto, and is now being developed and maintained by
+<a href="mailto:murdoch@stats.uwo.ca">Duncan Murdoch</a> and
 <a href="mailto:Brian.Ripley@R-project.org">Brian D. Ripley</a>.
 
-<!-- Note that when uncompressing the zip files, the pkunzip program needs to -->
-<!-- be invoked with the @samp{-D} flag to create subdirectories.  Also, be -->
-<!-- aware that some decompression programs do not preserve long file names -->
-<!-- properly. -->
-   <p>For most installations the Windows installer program will be the easiest
-tool to use.
+   <p>The same directory has links to snapshots of the r-patched and r-devel
+versions of R.
 
    <p>See the <a href="http://CRAN.R-project.org/bin/windows/base/rw-FAQ.html">&ldquo;R for Windows <acronym>FAQ</acronym>&rdquo;</a> for more details.
 
@@ -548,22 +678,14 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#How-can-R-be-installed_003f">How can R
 <h4 class="subsection">2.5.3 How can R be installed (Macintosh)</h4>
 
 <p>The <samp><span class="file">bin/macosx</span></samp> directory of a <acronym>CRAN</acronym> site contains a standard
-Apple installer package inside a disk image named <samp><span class="file">R.dmg</span></samp>.  Once
-downloaded and executed, the installer will install the current
-non-developer release of R.  RAqua is a native Mac OS X Darwin version
-of R with a R.app Mac OS X <acronym>GUI</acronym>.  Inside
-<samp><span class="file">bin/macosx/powerpc/contrib/</span><var>x</var><span class="file">.</span><var>y</var></samp> there are prebuilt
-binary packages (for powerpc version of Mac OS X) to be used with RAqua
-corresponding to the &ldquo;<var>x</var>.<var>y</var>&rdquo; release of R. The installation
-of these packages is available through the &ldquo;Package&rdquo; menu of the R.app
-<acronym>GUI</acronym>.  This port of R for Mac OS X is maintained by
-<a href="mailto:Stefano.Iacus@R-project.org">Stefano Iacus</a>.  The
+Apple installer package to run on OS X 10.6 (‘Snow Leopard’) and later. 
+Once downloaded and executed, the installer will install the current
+release of R and a R.app Mac OS X <acronym>GUI</acronym>.  This port of R for Mac
+OS X is maintained by <a href="mailto:Simon.Urbanek@R-project.org">Simon Urbanek</a> (and previously by Stefano Iacus).  The
 <a href="http://CRAN.R-project.org/bin/macosx/RMacOSX-FAQ.html">&ldquo;R for Mac OS X <acronym>FAQ</acronym></a> has more details.
 
-   <p>The <samp><span class="file">bin/macos</span></samp> directory of a <acronym>CRAN</acronym> site contains bin-hexed
-(<samp><span class="file">hqx</span></samp>) and stuffit (<samp><span class="file">sit</span></samp>) archives for a base distribution
-and a large number of add-on packages of R 1.7.1 to run under Mac OS 8.6
-to Mac OS 9.2.2.  This port of R for Macintosh is no longer supported.
+   <p>Snapshots of the r-patched and r-devel versions of R are available as
+Apple installer packages at <a href="http://r.research.att.com">http://r.research.att.com</a>.
 
 <div class="node">
 <a name="Are-there-Unix-like-binaries-for-R%3f"></a>

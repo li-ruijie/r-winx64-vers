@@ -64,6 +64,7 @@ magic	magic
 magic.post.proc	magic.post.proc
 mgcv	mgcv-package
 mgcv-FAQ	mgcv-FAQ
+mgcv-parallel	mgcv-parallel
 model.matrix.gam	model.matrix.gam
 mono.con	mono.con
 mrf	smooth.construct.mrf.smooth.spec
@@ -157,6 +158,7 @@ t2	t2
 te	te
 tensor.prod.model.matrix	tensor.prod.model.matrix
 tensor.prod.penalties	tensor.prod.model.matrix
+ti	te
 tprs	smooth.construct.tp.smooth.spec
 Tweedie	Tweedie
 uniquecombs	uniquecombs

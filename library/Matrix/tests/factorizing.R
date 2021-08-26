@@ -256,14 +256,15 @@ Ppm <- pmLU@L %*% pmLU@U
 stopifnot(identical3(lu1, pmLU, pm@factors$LU),# TODO === por1@factors$LU
 	  identical(ppm, with(xp, P %*% pm %*% t(Q))),
 	  sapply(xp, is, class="Matrix"))
-## make sure 'factors' are *NOT* kept, when they should not:
-spm <- solve(pm)
-stopifnot(abs(as.vector(solve(Diagonal(30, x=10) %*% pm) / spm) - 1/10) < 1e-7,
-	  abs(as.vector(solve(rep.int(4, 30)	  *  pm) / spm) - 1/ 4) < 1e-7)
 
+Ipm <- solve(pm, sparse=FALSE)
+Spm <- solve(pm, sparse=TRUE)  # is not sparse at all, here
+assert.EQ.Mat(Ipm, Spm, giveRE=TRUE)
+stopifnot(abs(as.vector(solve(Diagonal(30, x=10) %*% pm) / Ipm) - 1/10) < 1e-7,
+	  abs(as.vector(solve(rep.int(4, 30)	  *  pm) / Ipm) - 1/ 4) < 1e-7)
 
 ## these two should be the same, and `are' in some ways:
-assert.EQ.mat(ppm, as(Ppm, "matrix"), tol = 1e-14)
+assert.EQ.mat(ppm, as(Ppm, "matrix"), tol = 1e-14, giveRE=TRUE)
 ## *however*
 length(ppm@x)# 180
 length(Ppm@x)# 317 !
@@ -344,7 +345,7 @@ aCh.hash <- r12$r.all %*% (2^(2:0))
 if(FALSE)## if(require("sfsmisc"))
 split(rownames(r12$r.all), Duplicated(aCh.hash))
 
-## TODO: find cases for both choices when we leave it to CHOLMOD to chose
+## TODO: find cases for both choices when we leave it to CHOLMOD to choose
 for(n in 1:50) { ## used to seg.fault at n = 10 !
     mkA <- mkLDL(1+rpois(1, 30), 1/10)
     cat(sprintf("n = %3d, LDL-dim = %d x %d ", n, nrow(mkA$A), ncol(mkA$A)))

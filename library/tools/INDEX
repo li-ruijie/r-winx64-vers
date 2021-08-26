@@ -10,6 +10,7 @@ Rdiff                   Difference R Output Files
 Rdindex                 Generate Index from Rd Files
 SweaveTeXFilter         Strip R code out of Sweave file
 add_datalist            Add a 'datalist' File to a Package
+assertCondition         Asserting Error Conditions
 bibstyle                Select or define a bibliography style.
 buildVignettes          List and Build Package Vignettes
 checkFF                 Check Foreign Function Calls
@@ -31,6 +32,7 @@ encoded_text_to_latex   Translate non-ASCII Text to LaTeX Escapes
 file_ext                File Utilities
 findHTMLlinks           Collect HTML Links from Package Documentation
 getDepList              Functions to Retrieve Dependency Information
+getVignetteInfo         Get information on installed vignettes.
 installFoundDepends     A function to install unresolved dependencies
 make_translations_pkg   Package the Current Translations in the R
                         sources

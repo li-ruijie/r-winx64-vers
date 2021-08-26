@@ -3,6 +3,7 @@ DLL.version             DLL Version Information
 INSTALL                 Install Add-on Packages
 Question                Documentation Shortcuts
 REMOVE                  Remove Add-on Packages
+RHOME                   R Home Directory
 RShowDoc                Show R Manuals and Other Documentation
 RSiteSearch             Search for Key Words or Phrases in
                         Documentation
@@ -149,7 +150,7 @@ update.packages         Compare Installed Packages with CRAN-like
 url.show                Display a text URL
 utils-deprecated        Deprecated Functions in Package 'utils'
 utils-package           The R Utils Package
-vignette                View or List Vignettes
+vignette                View or List Package Vignettes
 win.version             Auxiliary Functions for the Windows Port
 winDialog               Dialog Boxes under Windows
 winMenuAdd              User Menus under Windows

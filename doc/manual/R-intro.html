@@ -6,6 +6,33 @@
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="top" href="#Top">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for R, version 3.0.2 (2013-09-25).
+
+Copyright (C) 1990 W. N. Venables
+
+Copyright (C) 1992 W. N. Venables & D. M. Smith
+
+Copyright (C) 1997 R. Gentleman & R. Ihaka
+
+Copyright (C) 1997, 1998 M. Maechler
+
+Copyright (C) 1999-2013 R Core Team
+
+     Permission is granted to make and distribute verbatim copies of
+     this manual provided the copyright notice and this permission
+     notice are preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+     this manual under the conditions for verbatim copying, provided
+     that the entire resulting derived work is distributed under the
+     terms of a permission notice identical to this one.
+
+     Permission is granted to copy and distribute translations of this
+     manual into another language, under the above conditions for
+     modified versions, except that this permission notice may be
+     stated in a translation approved by the R Core Team.
+   -->
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
   pre.display { font-family:inherit }
@@ -259,6 +286,13 @@ p {
 <li><a href="#Contributed-packages-and-CRAN">13.2 Contributed packages and <acronym>CRAN</acronym></a>
 <li><a href="#Namespaces">13.3 Namespaces</a>
 </li></ul>
+<li><a name="toc_OS-facilities" href="#OS-facilities">14 OS facilities</a>
+<ul>
+<li><a href="#Files-and-directories">14.1 Files and directories</a>
+<li><a href="#Filepaths">14.2 Filepaths</a>
+<li><a href="#System-commands">14.3 System commands</a>
+<li><a href="#Compression-and-Archives">14.4 Compression and Archives</a>
+</li></ul>
 <li><a name="toc_A-sample-session" href="#A-sample-session">Appendix A A sample session</a>
 <li><a name="toc_Invoking-R" href="#Invoking-R">Appendix B Invoking R</a>
 <ul>
@@ -281,7 +315,6 @@ p {
 
 
 
-<!-- @end ifnothtml -->
 <div class="node">
 <a name="Top"></a>
 <p><hr>
@@ -294,7 +327,8 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#dir">(dir)</a>
 <h2 class="unnumbered">An Introduction to R</h2>
 
 <p>This is an introduction to R (&ldquo;GNU S&rdquo;), a language and environment for
-statistical computing and graphics.  R is similar to the award-winning S
+statistical computing and graphics.  R is similar to the
+award-winning<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a> S
 system, which was developed at Bell Laboratories by John Chambers et al. 
 It provides a wide variety of statistical and graphical techniques
 (linear and nonlinear modelling, statistical tests, time series
@@ -303,18 +337,16 @@ analysis, classification, clustering, ...).
    <p>This manual provides information on data types, programming elements,
 statistical modelling and graphics.
 
-   <p>The current version of this document is 3.0.1 (2013-05-16).
-
-   <p>
+   <p>This manual is for R, version 3.0.2 (2013-09-25).
 
    <p>Copyright &copy; 1990 W. N. Venables<br>
 Copyright &copy; 1992 W. N. Venables &amp; D. M. Smith<br>
 Copyright &copy; 1997 R. Gentleman &amp; R. Ihaka<br>
 Copyright &copy; 1997, 1998 M. Maechler<br>
-Copyright &copy; 1997&ndash; R Core Team<br>
 Copyright &copy; 1999&ndash;2013 R Core Team
 
-   <p>Permission is granted to make and distribute verbatim copies of this
+   <blockquote>
+Permission is granted to make and distribute verbatim copies of this
 manual provided the copyright notice and this permission notice are
 preserved on all copies.
 
@@ -326,7 +358,8 @@ permission notice identical to this one.
    <p>Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation
-approved by the R Core Team.
+approved by the R Core Team. 
+</blockquote>
 
 <ul class="menu">
 <li><a accesskey="1" href="#Preface">Preface</a>
@@ -343,6 +376,7 @@ approved by the R Core Team.
 <li><a href="#Statistical-models-in-R">Statistical models in R</a>
 <li><a href="#Graphics">Graphics</a>
 <li><a href="#Packages">Packages</a>
+<li><a href="#OS-facilities">OS facilities</a>
 <li><a href="#A-sample-session">A sample session</a>
 <li><a href="#Invoking-R">Invoking R</a>
 <li><a href="#The-command_002dline-editor">The command-line editor</a>
@@ -382,8 +416,8 @@ A.  This should give some familiarity with the style of R sessions
 and more importantly some instant feedback on what actually happens.
 
    <p>Many users will come to R mainly for its graphical facilities. 
-<a href="#Graphics">Graphics</a> on the graphics facilities can be read at almost any time
-and need not wait until all the preceding sections have been digested.
+See <a href="#Graphics">Graphics</a>, which can be read at almost any time and need not wait
+until all the preceding sections have been digested.
 
 <ul class="menu">
 <li><a accesskey="1" href="#Introduction-and-preliminaries">Introduction and preliminaries</a>
@@ -708,7 +742,7 @@ syntax.  It is <em>case sensitive</em> as are most UNIX based packages, so
 variables.  The set of symbols which can be used in R names depends
 on the operating system and country within which R is being run
 (technically on the <em>locale</em> in use).  Normally all alphanumeric
-symbols are allowed<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a> (and in
+symbols are allowed<a rel="footnote" href="#fn-2" name="fnd-2"><sup>2</sup></a> (and in
 some countries this includes accented letters) plus &lsquo;<samp><code>.</code></samp>&rsquo; and
 &lsquo;<samp><code>_</code></samp>&rsquo;, with the restriction that a name must start with
 &lsquo;<samp><code>.</code></samp>&rsquo; or a letter, and if it starts with &lsquo;<samp><code>.</code></samp>&rsquo; the
@@ -724,7 +758,7 @@ value to a variable but the result is not automatically printed.
    <p>Commands are separated either by a semi-colon (&lsquo;<samp><code>;</code></samp>&rsquo;), or by a
 newline.  Elementary commands can be grouped together into one compound
 expression by braces (&lsquo;<samp><code>{</code></samp>&rsquo; and &lsquo;<samp><code>}</code></samp>&rsquo;). 
-<em>Comments</em> can be put almost<a rel="footnote" href="#fn-2" name="fnd-2"><sup>2</sup></a> anywhere,
+<em>Comments</em> can be put almost<a rel="footnote" href="#fn-3" name="fnd-3"><sup>3</sup></a> anywhere,
 starting with a hashmark (&lsquo;<samp><code>#</code></samp>&rsquo;), everything to the end of the
 line is a comment.
 
@@ -738,7 +772,7 @@ command is syntactically complete.  This prompt may be changed by the
 user.  We will generally omit the continuation prompt
 and indicate continuation by simple indenting.
 
-   <p>Command lines entered at the console are limited<a rel="footnote" href="#fn-3" name="fnd-3"><sup>3</sup></a> to about 4095 bytes (not characters).
+   <p>Command lines entered at the console are limited<a rel="footnote" href="#fn-4" name="fnd-4"><sup>4</sup></a> to about 4095 bytes (not characters).
 
 <div class="node">
 <a name="Recall-and-correction-of-previous-commands"></a>
@@ -779,7 +813,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Introduction-and-preliminaries">Introd
 <h3 class="section">1.10 Executing commands from or diverting output to a file</h3>
 
 <p><a name="index-Diverting-input-and-output-9"></a>
-If commands<a rel="footnote" href="#fn-4" name="fnd-4"><sup>4</sup></a> are stored in an external
+If commands<a rel="footnote" href="#fn-5" name="fnd-5"><sup>5</sup></a> are stored in an external
 file, say <samp><span class="file">commands.R</span></samp> in the working directory <samp><span class="file">work</span></samp>, they
 may be executed at any time in an R session with the command
 
@@ -832,7 +866,7 @@ All objects created during an R session can be stored permanently in
 a file for use in future R sessions.  At the end of each R session
 you are given the opportunity to save all the currently available
 objects.  If you indicate that you want to do this, the objects are
-written to a file called <samp><span class="file">.RData</span></samp><a rel="footnote" href="#fn-5" name="fnd-5"><sup>5</sup></a> in the
+written to a file called <samp><span class="file">.RData</span></samp><a rel="footnote" href="#fn-6" name="fnd-6"><sup>6</sup></a> in the
 current directory, and the command lines used in the session are saved
 to a file called <samp><span class="file">.Rhistory</span></samp>.
 
@@ -894,7 +928,7 @@ named <code>x</code>, say, consisting of five numbers, namely 10.4, 5.6, 3.1,
 This is an <em>assignment</em> statement using the <em>function</em>
 <code>c()</code> which in this context can take an arbitrary number of vector
 <em>arguments</em> and whose value is a vector got by concatenating its
-arguments end to end.<a rel="footnote" href="#fn-6" name="fnd-6"><sup>6</sup></a>
+arguments end to end.<a rel="footnote" href="#fn-7" name="fnd-7"><sup>7</sup></a>
 
    <p>A number occurring by itself in an expression is taken as a vector of
 length one.
@@ -922,7 +956,7 @@ using
 <pre class="example">     &gt; c(10.4, 5.6, 3.1, 6.4, 21.7) -&gt; x
 </pre>
    <p>If an expression is used as a complete command, the value is printed
-<em>and lost</em><a rel="footnote" href="#fn-7" name="fnd-7"><sup>7</sup></a>.  So now if we
+<em>and lost</em><a rel="footnote" href="#fn-8" name="fnd-8"><sup>8</sup></a>.  So now if we
 were to use the command
 
 <pre class="example">     &gt; 1/x
@@ -1236,7 +1270,7 @@ possibly empty.
    <p>Note particularly that recycling of short lists takes place here too;
 thus <code>c("X", "Y")</code> is repeated 5 times to match the sequence
 <code>1:10</code>. 
-<a rel="footnote" href="#fn-8" name="fnd-8"><sup>8</sup></a>
+<a rel="footnote" href="#fn-9" name="fnd-9"><sup>9</sup></a>
 
 <div class="node">
 <a name="Index-vectors"></a>
@@ -1419,7 +1453,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Objects">Objects</a>
 Examples are vectors of numeric (real) or complex values, vectors of
 logical values and vectors of character strings.  These are known as
 &ldquo;atomic&rdquo; structures since their components are all of the same type,
-or <em>mode</em>, namely <em>numeric</em><a rel="footnote" href="#fn-9" name="fnd-9"><sup>9</sup></a>, <em>complex</em>,
+or <em>mode</em>, namely <em>numeric</em><a rel="footnote" href="#fn-10" name="fnd-10"><sup>10</sup></a>, <em>complex</em>,
 <em>logical</em>, <em>character</em> and <em>raw</em>.
 
    <p>Vectors must have their values <em>all of the same mode</em>.  Thus any
@@ -1449,7 +1483,7 @@ fundamental constituents.  This is a special case of a &ldquo;property&rdquo;
 of an object.  Another property of every object is its <em>length</em>.  The
 functions <code>mode(</code><var>object</var><code>)</code> and <code>length(</code><var>object</var><code>)</code> can be
 used to find out the mode and length of any defined structure
-<a rel="footnote" href="#fn-10" name="fnd-10"><sup>10</sup></a>.
+<a rel="footnote" href="#fn-11" name="fnd-11"><sup>11</sup></a>.
 
    <p>Further properties of an object are usually provided by
 <code>attributes(</code><var>object</var><code>)</code>, see <a href="#Getting-and-setting-attributes">Getting and setting attributes</a>. 
@@ -1475,7 +1509,7 @@ reconstructs the numerical vector again:
 
 <pre class="example">     &gt; d &lt;- as.integer(digits)
 </pre>
-   <p class="noindent">Now <code>d</code> and <code>z</code> are the same.<a rel="footnote" href="#fn-11" name="fnd-11"><sup>11</sup></a>  There is a
+   <p class="noindent">Now <code>d</code> and <code>z</code> are the same.<a rel="footnote" href="#fn-12" name="fnd-12"><sup>12</sup></a>  There is a
 large collection of functions of the form <code>as.</code><var>something</var><code>()</code>
 for either coercion from one mode to another, or for investing an object
 with some other attribute it may not already possess.  The reader should
@@ -1575,7 +1609,7 @@ but <code>"matrix"</code>, <code>"array"</code>, <code>"factor"</code> and
 <code>"data.frame"</code> are other possible values.
 
    <p>A special attribute known as the <em>class</em> of the object is used to
-allow for an object-oriented style<a rel="footnote" href="#fn-12" name="fnd-12"><sup>12</sup></a> of
+allow for an object-oriented style<a rel="footnote" href="#fn-13" name="fnd-13"><sup>13</sup></a> of
 programming in R.  For example if an object has class
 <code>"data.frame"</code>, it will be printed in a certain way, the
 <code>plot()</code> function will display it graphically in a certain way, and
@@ -1619,7 +1653,7 @@ While the &ldquo;real&rdquo; application of factors is with model formulae
 <h3 class="section">4.1 A specific example</h3>
 
 <p>Suppose, for example, we have a sample of 30 tax accountants from all
-the states and territories of Australia<a rel="footnote" href="#fn-13" name="fnd-13"><sup>13</sup></a>
+the states and territories of Australia<a rel="footnote" href="#fn-14" name="fnd-14"><sup>14</sup></a>
 and their individual state of origin is specified by a character vector
 of state mnemonics as
 
@@ -1688,7 +1722,7 @@ special function <code>tapply()</code>:
    <p>The function <code>tapply()</code> is used to apply a function, here
 <code>mean()</code>, to each group of components of the first argument, here
 <code>incomes</code>, defined by the levels of the second component, here
-<code>statef</code><a rel="footnote" href="#fn-14" name="fnd-14"><sup>14</sup></a>, as if they were separate vector
+<code>statef</code><a rel="footnote" href="#fn-15" name="fnd-15"><sup>15</sup></a>, as if they were separate vector
 structures.  The result is a structure of the same length as the levels
 attribute of the factor containing the results.  The reader should
 consult the help document for more details.
@@ -2211,7 +2245,7 @@ size, then
 
 <pre class="example">     &gt; x %*% A %*% x
 </pre>
-   <p class="noindent">is a quadratic form.<a rel="footnote" href="#fn-15" name="fnd-15"><sup>15</sup></a>
+   <p class="noindent">is a quadratic form.<a rel="footnote" href="#fn-16" name="fnd-16"><sup>16</sup></a>
 
    <p><a name="index-crossprod-107"></a>The function <code>crossprod()</code> forms &ldquo;crossproducts&rdquo;, meaning that
 <code>crossprod(X, y)</code> is the same as <code>t(X) %*% y</code> but the
@@ -2263,8 +2297,8 @@ potentially unstable to compute <code>x &lt;- solve(A) %*% b</code> instead of
 
    <p>The quadratic form  <code>x %*% A^{-1} %*%
 x</code>   which is used in multivariate computations, should be computed by
-something like<a rel="footnote" href="#fn-16" name="fnd-16"><sup>16</sup></a> <code>x %*% solve(A,x)</code>, rather than
-computing the inverse of <code>A</code>.
+something like<a rel="footnote" href="#fn-17" name="fnd-17"><sup>17</sup></a> <code>x %*% solve(A,x)</code>, rather
+than computing the inverse of <code>A</code>.
 
 <div class="node">
 <a name="Eigenvalues-and-eigenvectors"></a>
@@ -2696,7 +2730,7 @@ factors, numeric matrices, lists, or other data frames.
 <li>Matrices, lists, and data frames provide as many variables to the new
 data frame as they have columns, elements, or variables, respectively. 
 <li>Numeric vectors, logicals and factors are included as is, and by
-default<a rel="footnote" href="#fn-17" name="fnd-17"><sup>17</sup></a> character vectors are coerced to be
+default<a rel="footnote" href="#fn-18" name="fnd-18"><sup>18</sup></a> character vectors are coerced to be
 factors, whose levels are the unique values appearing in the vector. 
 <li>Vector structures appearing as variables of the data frame must all have
 the <em>same length</em>, and matrix structures must all have the same
@@ -2874,7 +2908,7 @@ packages) have been attached and detached.  Initially it gives
 <pre class="example">     &gt; search()
      [1] ".GlobalEnv"   "Autoloads"    "package:base"
 </pre>
-   <p class="noindent">where <code>.GlobalEnv</code> is the workspace.<a rel="footnote" href="#fn-18" name="fnd-18"><sup>18</sup></a>
+   <p class="noindent">where <code>.GlobalEnv</code> is the workspace.<a rel="footnote" href="#fn-19" name="fnd-19"><sup>19</sup></a>
 
    <p>After <code>lentils</code> is attached we have
 
@@ -2910,8 +2944,8 @@ rather than entered during an R session at the keyboard.  R input
 facilities are simple and their requirements are fairly strict and even
 rather inflexible.  There is a clear presumption by the designers of
 R that you will be able to modify your input files using other tools,
-such as file editors or Perl<a rel="footnote" href="#fn-19" name="fnd-19"><sup>19</sup></a> to fit in with the requirements of R.  Generally
-this is very simple.
+such as file editors or Perl<a rel="footnote" href="#fn-20" name="fnd-20"><sup>20</sup></a> to fit in with the
+requirements of R.  Generally this is very simple.
 
    <p>If variables are to be held mainly in data frames, as we strongly
 suggest they should be, an entire data frame can be read directly with
@@ -3596,7 +3630,7 @@ of <var>expr_1</var>.
 
    <p>As an example, suppose <code>ind</code> is a vector of class indicators and we
 wish to produce separate plots of <code>y</code> versus <code>x</code> within
-classes.  One possibility here is to use <code>coplot()</code>,<a rel="footnote" href="#fn-20" name="fnd-20"><sup>20</sup></a>
+classes.  One possibility here is to use <code>coplot()</code>,<a rel="footnote" href="#fn-21" name="fnd-21"><sup>21</sup></a>
 which will produce an array of plots corresponding to each level of the
 factor.  Another way to do this, now putting all plots on the one
 display, is as follows:
@@ -3749,7 +3783,7 @@ is a generalized inverse of X'X.
    <p class="noindent">and so on.
 
    <p>The classical R function <code>lsfit()</code> does this job quite well, and
-more<a rel="footnote" href="#fn-21" name="fnd-21"><sup>21</sup></a>.  It in turn uses the functions <code>qr()</code> and <code>qr.coef()</code>
+more<a rel="footnote" href="#fn-22" name="fnd-22"><sup>22</sup></a>.  It in turn uses the functions <code>qr()</code> and <code>qr.coef()</code>
 in the slightly counterintuitive way above to do this part of the
 calculation.  Hence there is probably some value in having just this
 part isolated in a simple to use function if it is going to be in
@@ -4151,7 +4185,7 @@ replaces the value, in that environment, with the value of right hand
 side.  If the global or top-level environment is reached without finding
 the symbol <code>total</code> then that variable is created and assigned to
 there.  For most users <code>&lt;&lt;-</code> creates a global variable and assigns
-the value of the right hand side to it<a rel="footnote" href="#fn-22" name="fnd-22"><sup>22</sup></a>.  Only when <code>&lt;&lt;-</code> has
+the value of the right hand side to it<a rel="footnote" href="#fn-23" name="fnd-23"><sup>23</sup></a>.  Only when <code>&lt;&lt;-</code> has
 been used in a function that was returned as the value of another
 function will the special behavior described here occur.
 
@@ -4208,7 +4242,7 @@ the <samp><span class="env">R_PROFILE</span></samp> environment variable.  If th
 the file <samp><span class="file">Rprofile.site</span></samp> in the R home subdirectory <samp><span class="file">etc</span></samp> is
 used.  This file should contain the commands that you want to execute
 every time R is started under your system.  A second, personal,
-profile file named <samp><span class="file">.Rprofile</span></samp><a rel="footnote" href="#fn-23" name="fnd-23"><sup>23</sup></a> can be placed in any directory.  If R is invoked in that
+profile file named <samp><span class="file">.Rprofile</span></samp><a rel="footnote" href="#fn-24" name="fnd-24"><sup>24</sup></a> can be placed in any directory.  If R is invoked in that
 directory then that file will be sourced.  This file gives individual
 users control over their workspace and allows for different startup
 procedures in different working directories.  If no <samp><span class="file">.Rprofile</span></samp>
@@ -5329,13 +5363,15 @@ of the R environment.  It is possible to use the facilities to
 display a wide variety of statistical graphs and also to build entirely
 new types of graph.
 
-   <p>The graphics facilities can be used in both interactive and batch modes, but in
-most cases, interactive use is more productive.  Interactive use is also
-easy because at startup time R initiates a graphics <em>device
-driver</em> which opens a special <em>graphics window</em> for the display of
-interactive graphics.  Although this is done automatically, it is useful
-to know that the command used is <code>X11()</code> under UNIX,
-<code>windows()</code> under Windows and <code>quartz()</code> under OS X.
+   <p>The graphics facilities can be used in both interactive and batch modes,
+but in most cases, interactive use is more productive.  Interactive use
+is also easy because at startup time R initiates a graphics
+<em>device driver</em> which opens a special <em>graphics window</em> for
+the display of interactive graphics.  Although this is done
+automatically, it may useful to know that the command used is
+<code>X11()</code> under UNIX, <code>windows()</code> under Windows and
+<code>quartz()</code> under OS X.  A new device can always be opened by
+<code>dev.new()</code>.
 
    <p>Once the device driver is running, R plotting commands can be used to
 produce a variety of graphical displays and to create entirely new kinds
@@ -5881,7 +5917,7 @@ complete.
        <span class="roman">... plotting commands ...</span>
      &gt; par(oldpar)
 </pre>
-   <p class="noindent">To save and restore <em>all</em> settable<a rel="footnote" href="#fn-24" name="fnd-24"><sup>24</sup></a> graphical parameters use
+   <p class="noindent">To save and restore <em>all</em> settable<a rel="footnote" href="#fn-25" name="fnd-25"><sup>25</sup></a> graphical parameters use
 
 <pre class="example">     &gt; oldpar &lt;- par(no.readonly=TRUE)
        <span class="roman">... plotting commands ...</span>
@@ -6349,7 +6385,7 @@ of surfaces.
 <div class="node">
 <a name="Packages"></a>
 <p><hr>
-Next:&nbsp;<a rel="next" accesskey="n" href="#A-sample-session">A sample session</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="#OS-facilities">OS facilities</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="#Graphics">Graphics</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
@@ -6378,8 +6414,8 @@ command like
 </pre>
    <p>Users connected to the Internet can use the <code>install.packages()</code>
 and <code>update.packages()</code> functions (available through the
-<code>Packages</code> menu in the Windows and RAqua GUIs, see <a href="R-admin.html#Installing-packages">Installing packages</a>) to install and
-update packages.
+<code>Packages</code> menu in the Windows and OS X GUIs, see <a href="R-admin.html#Installing-packages">Installing packages</a>) to install
+and update packages.
 
    <p>To see which packages are currently loaded, use
 
@@ -6457,13 +6493,12 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Packages">Packages</a>
 <h3 class="section">13.3 Namespaces</h3>
 
 <p><a name="index-Namespace-299"></a><a name="index-g_t_003a_003a-300"></a><a name="index-g_t_003a_003a_003a-301"></a>
-Packages can have <em>namespaces</em>, and currently all of the base and
-recommended packages do except the <code>datasets</code> package.  Namespaces
-do three things: they allow the package writer to hide functions and
-data that are meant only for internal use, they prevent functions from
-breaking when a user (or other package writer) picks a name that clashes
-with one in the package, and they provide a way to refer to an object
-within a particular package.
+All packages have <em>namespaces</em>, and have since R 2.14.0. 
+Namespaces do three things: they allow the package writer to hide
+functions and data that are meant only for internal use, they prevent
+functions from breaking when a user (or other package writer) picks a
+name that clashes with one in the package, and they provide a way to
+refer to an object within a particular package.
 
    <p>For example, <code>t()</code> is the transpose function in R, but users
 might define their own function named <code>t</code>.  Namespaces prevent
@@ -6489,10 +6524,230 @@ namespaces are loaded automatically they are not added to the search
 list.
 
 <div class="node">
+<a name="OS-facilities"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#A-sample-session">A sample session</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Packages">Packages</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">14 OS facilities</h2>
+
+<p>R has quite extensive facilities to access the OS under which it is
+running: this allows it to be used as a scripting language and that
+ability is much used by R itself, for example to install packages.
+
+   <p>Because R's own scripts need to work across all platforms,
+considerable effort has gone into make the scripting facilities as
+platform-independent as is feasible.
+
+<ul class="menu">
+<li><a accesskey="1" href="#Files-and-directories">Files and directories</a>
+<li><a accesskey="2" href="#Filepaths">Filepaths</a>
+<li><a accesskey="3" href="#System-commands">System commands</a>
+<li><a accesskey="4" href="#Compression-and-Archives">Compression and Archives</a>
+</ul>
+
+<div class="node">
+<a name="Files-and-directories"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Filepaths">Filepaths</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#OS-facilities">OS facilities</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#OS-facilities">OS facilities</a>
+
+</div>
+
+<h3 class="section">14.1 Files and directories</h3>
+
+<p>There are many functions to manipulate files and directories. Here are
+pointers to some of the more commonly used ones.
+
+   <p>To create an (empty) file or directory, use <code>file.create</code> or
+<code>create.dir</code>.  (These are the analogues of the POSIX utilities
+<samp><span class="command">touch</span></samp> and <samp><span class="command">mkdir</span></samp>.)  For temporary files and
+directories in the R session directory see <code>tempfile</code>.
+
+   <p>Files can be removed by either <code>file.remove</code> or <code>unlink</code>: the
+latter can remove directory trees.
+
+   <p>For directory listings use <code>list.files</code> (also available as
+<code>dir</code>) or <code>list.dirs</code>. These can select files using a regular
+expression: to select by wildcards use <code>Sys.glob</code>.
+
+   <p>Many types of information on a filepath (including for example if it is
+a file or directory) can be found by <code>file.info</code>.
+
+   <p>There are several ways to find out if a file ‘exists’ (and file can
+exist on the filesystem and not be visible to the current user). 
+There are functions <code>file.exists</code>, <code>file.access</code> and
+<code>file_test</code> with various versions of this test: <code>file_test</code> is
+a version of the POSIX <samp><span class="command">test</span></samp> command for those familiar with
+shell scripting.
+
+   <p>Function <code>file.copy</code> is the R analogue of the POSIX command
+<samp><span class="command">cp</span></samp>.
+
+   <p>Choosing files can be done interactively by <code>file.choose</code>: the
+Windows port has the more versatile functions <code>choose.files</code> and
+<code>choose.dir</code> and there are similar functions in the <strong>tcltk</strong>
+package: <code>tk_choose.files</code> and <code>tk_choose.dir</code>.
+
+   <p>Functions <code>file.show</code> and <code>file.edit</code> will display and edit
+one or more files in a way appropriate to the R port, using the
+facilities of a console (such as RGui on Windows or R.app on OS X) if
+one is in use.
+
+   <p>There is some support for <em>links</em> in the filesystem: see functions
+<code>file.link</code> and <code>Sys.readlink</code>.
+
+<div class="node">
+<a name="Filepaths"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#System-commands">System commands</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Files-and-directories">Files and directories</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#OS-facilities">OS facilities</a>
+
+</div>
+
+<h3 class="section">14.2 Filepaths</h3>
+
+<p>With a few exceptions, R relies on the underlying OS functions to
+manipulate filepaths.  Some aspects of this are allowed to depend on the
+OS, and do, even down to the version of the OS.  There are POSIX
+standards for how OSes should interpret filepaths and many R users
+assume POSIX compliance: but Windows does not claim to be compliant and
+other OSes may be less than completely compliant.
+
+   <p>The following are some issues which have been encountered with filepaths.
+
+     <ul>
+<li>POSIX filesystems are case-sensitive, so <samp><span class="file">foo.png</span></samp> and
+<samp><span class="file">Foo.PNG</span></samp> are different files.  However, the defaults on Windows
+and OS X are to be case-insensitive, and FAT filesystems (commonly used
+on removable storage) are not normally case-sensitive (and all filepaths
+may be mapped to lower case).
+
+     <li>Almost all the Windows' OS services support the use of slash or
+backslash as the filepath separator, and R converts the known
+exceptions to the form required by Windows.
+
+     <li>The behaviour of filepaths with a trailing slash is OS-dependent.  Such
+paths are not valid on Windows and should not be expected to work. 
+POSIX-2008 requires such paths to match only directories, but earlier
+versions allowed them to also match files.  So they are best avoided.
+
+     <li>Multiple slashes in filepaths such as <samp><span class="file">/abc//def</span></samp> are valid on
+POSIX filesystems and treated as if there was only one slash.  They are
+<em>usually</em> accepted by Windows' OS functions.  However, leading
+double slashes may have a different meaning.
+
+     <li>Windows' UNC filepaths (such as <samp><span class="file">\\server\dir1\dir2\file</span></samp> and
+<samp><span class="file">\\?\UNC\server\dir1\dir2\file</span></samp>) are not supported, but they may
+work in some R functions.  POSIX filesystems are allowed to treat a
+leading double slash specially.
+
+     <li>Windows allows filepaths containing drives and relative to the current
+directory on a drive, e.g. <samp><span class="file">d:foo/bar</span></samp> refers to
+<samp><span class="file">d:/a/b/c/foo/bar</span></samp> if the current directory <em>on drive
+</em><samp><span class="file">d:</span></samp> is <samp><span class="file">/a/b/c</span></samp>.  It is intended that these work, but the
+use of absolute paths is safer. 
+</ul>
+
+   <p>Functions <code>basename</code> and <code>dirname</code> select parts of a file
+path: the recommended way to assemble a file path from components is
+<code>file.path</code>.  Function <code>pathexpand</code> does ‘tilde expansion’,
+substituting values for home directories (the current user's, and
+perhaps those of other users).
+
+   <p>On filesystems with links, a single file can be referred to by many
+filepaths.  Function <code>normalizePath</code> will find a canonical
+filepath.
+
+   <p>Windows has the concepts of short (‘8.3’) and long file names:
+<code>normalizePath</code> will return an absolute path using long file names
+and <code>shortPathName</code> will return a version using short names.  The
+latter does not contain spaces and uses backslash as the separator, so
+is sometimes useful for exporting names from R.
+
+   <p>File <em>permissions</em> are a related topic.  R has support for the
+POSIX concepts of read/write/execute permission for owner/group/all but
+this may be only partially supported on the filesystem (so for example
+on Windows only read-only files (for the account running the R
+session) are recognized.  Access Control Lists (ACLs) are employed on
+several filesystems, but do not have an agreed standard and R has no
+facilities to control them.  Use <code>Sys.chmod</code> to change permissions.
+
+<div class="node">
+<a name="System-commands"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Compression-and-Archives">Compression and Archives</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Filepaths">Filepaths</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#OS-facilities">OS facilities</a>
+
+</div>
+
+<h3 class="section">14.3 System commands</h3>
+
+<p>Functions <code>system</code> and <code>system2</code> are used to invoke a system
+command and optionally collect its output.  <code>system2</code> is a little
+more general but its main advantage is that it is easier to write
+cross-platform code using it.
+
+   <p><code>system</code> behaves differently on Windows from other OSes (because
+the API C call of that name does).  Elsewhere it invokes a shell to run
+the command: the Windows port of R has a function <code>shell</code> to do
+that.
+
+   <p>To find out if the OS includes a command, use <code>Sys.which</code>, which
+attempts to do this in a cross-platform way (unfortunately it is not a
+standard OS service).
+
+   <p>Function <code>shQuote</code> will quote filepaths as needed for commands in
+the current OS.
+
+<div class="node">
+<a name="Compression-and-Archives"></a>
+<p><hr>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#System-commands">System commands</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#OS-facilities">OS facilities</a>
+
+</div>
+
+<h3 class="section">14.4 Compression and Archives</h3>
+
+<p>Recent versions of R have extensive facilities to read and write
+compressed files, often transparently.  Reading of files in R is to a
+vey large extent done by <em>connections</em>, and the <code>file</code>
+function which is used to open a connection to a file (or a URL) and is
+able to identify the compression used from the ‘magic’ header of the
+file.
+
+   <p>The type of compression which has been supported for longest is
+<samp><span class="command">gzip</span></samp> compression, and that remains a good general compromise. 
+Files compressed by the earlier Unix <samp><span class="command">compress</span></samp> utility can also
+be read, but these are becoming rare.  Two other forms of compression,
+those of the <samp><span class="command">bzip2</span></samp> and <samp><span class="command">xz</span></samp> utilities are also
+available.  These generally achieve higher rates of compression
+(depending on the file, much higher) at the expense of slower
+decompression and much slower compression.
+
+   <p>There is some confusion between <samp><span class="command">xz</span></samp> and <samp><span class="command">lzma</span></samp>
+compression (see <a href="http://en.wikipedia.org/wiki/Xz">http://en.wikipedia.org/wiki/Xz</a> and
+<a href="http://en.wikipedia.org/wiki/LZMA">http://en.wikipedia.org/wiki/LZMA</a>): R can read files
+compressed by most versions of either.
+
+   <p>File archives are single files which contain a collection of files, the
+most common ones being ‘tarballs’ and zip files as used to distribute
+R packages.  R can list and unpack both (see functions <code>untar</code>
+and <code>unzip</code>) and create both (for <samp><span class="command">zip</span></samp> with the help of an
+external program).
+
+<div class="node">
 <a name="A-sample-session"></a>
 <p><hr>
 Next:&nbsp;<a rel="next" accesskey="n" href="#Invoking-R">Invoking R</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="#Packages">Packages</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#OS-facilities">OS facilities</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 </div>
@@ -6753,7 +7008,11 @@ are trying to limit the amount of memory used by R.
 
      <br><dt><samp><span class="option">--encoding=</span><var>enc</var></samp><dd>Specify the encoding to be assumed for input from the console or
 <code>stdin</code>.  This needs to be an encoding known to <code>iconv</code>: see
-its help page.  (<code>--encoding </code><var>enc</var> is also accepted.)
+its help page.  (<code>--encoding </code><var>enc</var> is also accepted.)  The
+input is re-encoded to the locale R is running in and needs to be
+representable in the latter's encoding (so e.g. you cannot re-encode
+Greek text in a French locale unless that locale uses the UTF-8
+encoding).
 
      <br><dt><samp><span class="option">RHOME</span></samp><dd>Print the path to the R &ldquo;home directory&rdquo; to standard output and
 exit successfully.  Apart from the front-end shell script and the man
@@ -6822,7 +7081,7 @@ value accepted is 100000.
      <br><dt><samp><span class="option">--max-mem-size=</span><var>N</var></samp><dd>(Windows only) Specify a limit for the amount of memory to be used both
 for R objects and working areas.  This is set by default to the
 smaller of the amount of physical RAM in the machine and for 32-bit
-R, 1.5Gb<a rel="footnote" href="#fn-25" name="fnd-25"><sup>25</sup></a>, and must be between 32Mb and the
+R, 1.5Gb<a rel="footnote" href="#fn-26" name="fnd-26"><sup>26</sup></a>, and must be between 32Mb and the
 maximum allowed on that version of Windows.
 
      <br><dt><samp><span class="option">--quiet</span></samp><dt><samp><span class="option">--silent</span></samp><dt><samp><span class="option">-q</span></samp><dd>Do not print out the initial copyright and welcome messages.
@@ -6897,8 +7156,8 @@ further options (see <code>?BATCH</code>).
 plain text, and extracting the examples.  <code>Rd2txt</code> can be used as
 shorthand for <code>Rd2conv -t txt</code>. 
 <br><dt><code>Rd2pdf</code><dd>Convert Rd format to PDF. 
-<br><dt><code>Stangle</code><dd>Extract S/R code from Sweave documentation
-<br><dt><code>Sweave</code><dd>Process Sweave documentation
+<br><dt><code>Stangle</code><dd>Extract S/R code from Sweave or other vignette documentation
+<br><dt><code>Sweave</code><dd>Process Sweave or other vignette documentation
 <br><dt><code>Rdiff</code><dd>Diff R output ignoring headers etc
 <br><dt><code>config</code><dd>Obtain configuration information
 <br><dt><code>javareconf</code><dd>(Unix only) Update the Java configuration variables
@@ -7119,8 +7378,8 @@ Pinard) is to use a <em>here document</em> like
    <p class="noindent">but here <code>stdin()</code> refers to the program source and
 <code>"stdin"</code> will not be usable.
 
-   <p>Very short scripts can be passed to <samp><span class="command">Rscript</span></samp> on the
-command-line via the <samp><span class="option">-e</span></samp> flag.
+   <p>Short scripts can be passed to <samp><span class="command">Rscript</span></samp> on the command-line
+<em>via</em> the <samp><span class="option">-e</span></samp> flag.  (Empty scripts are not accepted.)
 
    <p>Note that on a Unix-alike the input filename (such as <samp><span class="file">foo.R</span></samp>)
 should not contain spaces nor shell metacharacters.
@@ -7145,7 +7404,7 @@ line editor allowing recall, editing and re-submission of prior commands
 is used.  Note that other versions of <strong>readline</strong> exist and may be
 used by the inbuilt command line editor: this used to happen on OS X.
 
-   <p>It can be disabled (useful for usage with <acronym>ESS</acronym> <a rel="footnote" href="#fn-26" name="fnd-26"><sup>26</sup></a>) using the startup option
+   <p>It can be disabled (useful for usage with <acronym>ESS</acronym> <a rel="footnote" href="#fn-27" name="fnd-27"><sup>27</sup></a>) using the startup option
 <samp><span class="option">--no-readline</span></samp>.
 
    <p>Windows versions of R have somewhat simpler command-line editing: see
@@ -7161,7 +7420,7 @@ in <samp><span class="command">man readline</span></samp> or <samp><span class="
 characters, such as <kbd>Control-m</kbd>, are obtained by holding the
 &lt;CTRL&gt; down while you press the &lt;m&gt; key, and are written as
 <kbd>C-m</kbd> below.  Meta characters, such as <kbd>Meta-b</kbd>, are typed by
-holding down &lt;META&gt;<a rel="footnote" href="#fn-27" name="fnd-27"><sup>27</sup></a> and pressing &lt;b&gt;, and written as <kbd>M-b</kbd>
+holding down &lt;META&gt;<a rel="footnote" href="#fn-28" name="fnd-28"><sup>28</sup></a> and pressing &lt;b&gt;, and written as <kbd>M-b</kbd>
 in the following.  If your terminal does not have a &lt;META&gt; key
 enabled, you can still type Meta characters using two-character
 sequences starting with <kbd>ESC</kbd>.  Thus, to enter <kbd>M-b</kbd>, you could
@@ -7603,111 +7862,113 @@ Second edition.  Duxbury Press, Belmont, CA.
 
    <div class="footnote">
 <hr>
-<a name="texinfo-footnotes-in-document"></a><h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> For portable R code (including that to
+<a name="texinfo-footnotes-in-document"></a><h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> ACM Software Systems award, 1998:
+<a href="http://awards.acm.org/award_winners/chambers_6640862.cfm">http://awards.acm.org/award_winners/chambers_6640862.cfm</a>.</p>
+
+   <p class="footnote"><small>[<a name="fn-2" href="#fnd-2">2</a>]</small> For portable R code (including that to
 be used in R packages) only A&ndash;Za&ndash;z0&ndash;9 should be used.</p>
 
-   <p class="footnote"><small>[<a name="fn-2" href="#fnd-2">2</a>]</small> <strong>not</strong> inside strings,
+   <p class="footnote"><small>[<a name="fn-3" href="#fnd-3">3</a>]</small> <strong>not</strong> inside strings,
 nor within the argument list of a function definition</p>
 
-   <p class="footnote"><small>[<a name="fn-3" href="#fnd-3">3</a>]</small> some of the
+   <p class="footnote"><small>[<a name="fn-4" href="#fnd-4">4</a>]</small> some of the
 consoles will not allow you to enter more, and amongst those which do
 some will silently discard the excess and some will use it as the start
 of the next line.</p>
 
-   <p class="footnote"><small>[<a name="fn-4" href="#fnd-4">4</a>]</small> of unlimited length.</p>
+   <p class="footnote"><small>[<a name="fn-5" href="#fnd-5">5</a>]</small> of unlimited length.</p>
 
-   <p class="footnote"><small>[<a name="fn-5" href="#fnd-5">5</a>]</small> The leading &ldquo;dot&rdquo; in
+   <p class="footnote"><small>[<a name="fn-6" href="#fnd-6">6</a>]</small> The leading &ldquo;dot&rdquo; in
 this file name makes it <em>invisible</em> in normal file listings in
 UNIX, and in default GUI file listings on OS X and Windows.</p>
 
-   <p class="footnote"><small>[<a name="fn-6" href="#fnd-6">6</a>]</small> With other than vector types of argument,
+   <p class="footnote"><small>[<a name="fn-7" href="#fnd-7">7</a>]</small> With other than vector types of argument,
 such as <code>list</code> mode arguments, the action of <code>c()</code> is rather
 different.  See <a href="#Concatenating-lists">Concatenating lists</a>.</p>
 
-   <p class="footnote"><small>[<a name="fn-7" href="#fnd-7">7</a>]</small> Actually, it is still available as
+   <p class="footnote"><small>[<a name="fn-8" href="#fnd-8">8</a>]</small> Actually, it is still available as
 <code>.Last.value</code> before any other statements are executed.</p>
 
-   <p class="footnote"><small>[<a name="fn-8" href="#fnd-8">8</a>]</small> <code>paste(..., collapse=</code><var>ss</var><code>)</code> joins the
+   <p class="footnote"><small>[<a name="fn-9" href="#fnd-9">9</a>]</small> <code>paste(..., collapse=</code><var>ss</var><code>)</code> joins the
 arguments into a single character string putting <var>ss</var> in between. 
 There are more tools for character manipulation, see the help
 for <code>sub</code> and <code>substring</code>.</p>
 
-   <p class="footnote"><small>[<a name="fn-9" href="#fnd-9">9</a>]</small> <em>numeric</em> mode is
+   <p class="footnote"><small>[<a name="fn-10" href="#fnd-10">10</a>]</small> <em>numeric</em> mode is
 actually an amalgam of two distinct modes, namely <em>integer</em> and
 <em>double</em> precision, as explained in the manual.</p>
 
-   <p class="footnote"><small>[<a name="fn-10" href="#fnd-10">10</a>]</small> Note however that <code>length(</code><var>object</var><code>)</code> does not always
+   <p class="footnote"><small>[<a name="fn-11" href="#fnd-11">11</a>]</small> Note however that <code>length(</code><var>object</var><code>)</code> does not always
 contain intrinsic useful information, e.g., when <var>object</var> is a
 function.</p>
 
-   <p class="footnote"><small>[<a name="fn-11" href="#fnd-11">11</a>]</small> In general, coercion
+   <p class="footnote"><small>[<a name="fn-12" href="#fnd-12">12</a>]</small> In general, coercion
 from numeric to character and back again will not be exactly reversible,
 because of roundoff errors in the character representation.</p>
 
-   <p class="footnote"><small>[<a name="fn-12" href="#fnd-12">12</a>]</small> A different style using
+   <p class="footnote"><small>[<a name="fn-13" href="#fnd-13">13</a>]</small> A different style using
 ‘formal’ or ‘S4’ classes is provided in package <code>methods</code>.</p>
 
-   <p class="footnote"><small>[<a name="fn-13" href="#fnd-13">13</a>]</small> Readers should note
+   <p class="footnote"><small>[<a name="fn-14" href="#fnd-14">14</a>]</small> Readers should note
 that there are eight states and territories in Australia, namely the
 Australian Capital Territory, New South Wales, the Northern Territory,
 Queensland, South Australia, Tasmania, Victoria and Western Australia.</p>
 
-   <p class="footnote"><small>[<a name="fn-14" href="#fnd-14">14</a>]</small> Note that <code>tapply()</code> also works in this case
+   <p class="footnote"><small>[<a name="fn-15" href="#fnd-15">15</a>]</small> Note that <code>tapply()</code> also works in this case
 when its second argument is not a factor, e.g.,
 &lsquo;<samp><code>tapply(incomes, state)</code></samp>&rsquo;, and this is true for quite a few
 other functions, since arguments are <em>coerced</em> to factors when
 necessary (using <code>as.factor()</code>).</p>
 
-   <p class="footnote"><small>[<a name="fn-15" href="#fnd-15">15</a>]</small> Note that <code>x %*% x</code> is ambiguous, as
+   <p class="footnote"><small>[<a name="fn-16" href="#fnd-16">16</a>]</small> Note that <code>x %*% x</code> is ambiguous, as
 it could mean either x'x or x x', where x is the
 column form.  In such cases the smaller matrix seems implicitly to be
 the interpretation adopted, so the scalar x'x is in this case the
 result.  The matrix x x' may be calculated either by <code>cbind(x)
 %*% x</code> or <code>x %*% rbind(x)</code> since the result of <code>rbind()</code> or
 <code>cbind()</code> is always a matrix.  However, the best way to compute
-x'x or x x' is <code>crossprod(x)</code> or <code>x %o% x</code>
-respectively.</p>
+x'x or x x' is <code>crossprod(x)</code> or <code>x %o% x</code> respectively.</p>
 
-   <p class="footnote"><small>[<a name="fn-16" href="#fnd-16">16</a>]</small> Even better would be to form a matrix square
-root B with A = BB' and find the squared length of the
-solution of By = x, perhaps using the Cholesky or
-eigendecomposition of A.</p>
+   <p class="footnote"><small>[<a name="fn-17" href="#fnd-17">17</a>]</small> Even better would be to form a matrix square
+root B with A = BB' and find the squared length
+of the solution of By = x , perhaps using the Cholesky or
+eigen decomposition of A. </p>
 
-   <p class="footnote"><small>[<a name="fn-17" href="#fnd-17">17</a>]</small> Conversion of character columns to factors is
+   <p class="footnote"><small>[<a name="fn-18" href="#fnd-18">18</a>]</small> Conversion of character columns to factors is
 overridden using the <code>stringsAsFactors</code> argument to the
 <code>data.frame()</code> function.</p>
 
-   <p class="footnote"><small>[<a name="fn-18" href="#fnd-18">18</a>]</small> See the on-line help
+   <p class="footnote"><small>[<a name="fn-19" href="#fnd-19">19</a>]</small> See the on-line help
 for <code>autoload</code> for the meaning of the second term.</p>
 
-   <p class="footnote"><small>[<a name="fn-19" href="#fnd-19">19</a>]</small> Under UNIX, the utilities Sed or
-Awk can be used.</p>
+   <p class="footnote"><small>[<a name="fn-20" href="#fnd-20">20</a>]</small> Under UNIX, the utilities
+<samp><span class="command">sed</span></samp> or<samp><span class="command">awk</span></samp> can be used.</p>
 
-   <p class="footnote"><small>[<a name="fn-20" href="#fnd-20">20</a>]</small> to be
+   <p class="footnote"><small>[<a name="fn-21" href="#fnd-21">21</a>]</small> to be
 discussed later, or use <code>xyplot</code> from package <a href="http://CRAN.R-project.org/package=lattice"><strong>lattice</strong></a>.</p>
 
-   <p class="footnote"><small>[<a name="fn-21" href="#fnd-21">21</a>]</small> See also the methods described in <a href="#Statistical-models-in-R">Statistical models in R</a></p>
+   <p class="footnote"><small>[<a name="fn-22" href="#fnd-22">22</a>]</small> See also the methods described in <a href="#Statistical-models-in-R">Statistical models in R</a></p>
 
-   <p class="footnote"><small>[<a name="fn-22" href="#fnd-22">22</a>]</small> In some sense this
+   <p class="footnote"><small>[<a name="fn-23" href="#fnd-23">23</a>]</small> In some sense this
 mimics the behavior in <span class="sc">S-Plus</span> since in <span class="sc">S-Plus</span> this operator always
 creates or assigns to a global variable.</p>
 
-   <p class="footnote"><small>[<a name="fn-23" href="#fnd-23">23</a>]</small> So it is hidden under
+   <p class="footnote"><small>[<a name="fn-24" href="#fnd-24">24</a>]</small> So it is hidden under
 UNIX.</p>
 
-   <p class="footnote"><small>[<a name="fn-24" href="#fnd-24">24</a>]</small> Some graphics
+   <p class="footnote"><small>[<a name="fn-25" href="#fnd-25">25</a>]</small> Some graphics
 parameters such as the size of the current device are for information
 only.</p>
 
-   <p class="footnote"><small>[<a name="fn-25" href="#fnd-25">25</a>]</small> 2.5Gb on versions of Windows that support 3Gb per
+   <p class="footnote"><small>[<a name="fn-26" href="#fnd-26">26</a>]</small> 2.5Gb on versions of Windows that support 3Gb per
 process and have the support enabled: see the <samp><span class="file">rw-FAQ</span></samp> Q2.9; 3.5Gb
 on most 64-bit versions of Windows.</p>
 
-   <p class="footnote"><small>[<a name="fn-26" href="#fnd-26">26</a>]</small> The
+   <p class="footnote"><small>[<a name="fn-27" href="#fnd-27">27</a>]</small> The
 ‘Emacs Speaks Statistics’ package; see the <acronym>URL</acronym>
 <a href="http://ESS.R-project.org">http://ESS.R-project.org</a></p>
 
-   <p class="footnote"><small>[<a name="fn-27" href="#fnd-27">27</a>]</small> On a PC keyboard this is usually the
+   <p class="footnote"><small>[<a name="fn-28" href="#fnd-28">28</a>]</small> On a PC keyboard this is usually the
 Alt key, occasionally the ‘Windows’ key.  On a Mac keyboard normally no
 meta key is available.</p>
 

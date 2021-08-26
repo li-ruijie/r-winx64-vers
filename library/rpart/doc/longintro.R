@@ -13,6 +13,7 @@ library(rpart)
 ###################################################
 ### code chunk number 2: impurity
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 ptemp <- seq(0, 1, length = 101)[2:100]
 gini <- 2* ptemp *(1-ptemp)
 inform <- -(ptemp*log(ptemp) + (1-ptemp)*log(1-ptemp))
@@ -26,6 +27,7 @@ legend(.3, .2, c("Gini", "Information", "rescaled Gini"),
 ###################################################
 ### code chunk number 3: gini1
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 progstat <- factor(stagec$pgstat, levels = 0:1, labels = c("No", "Prog"))
 cfit  <- rpart(progstat ~  age + eet + g2 + grade + gleason + ploidy,
                data = stagec, method = 'class')
@@ -53,6 +55,7 @@ temp
 ###################################################
 ### code chunk number 6: dig1
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 set.seed(1953)  # An auspicious year
 n <- 200
 y <- rep(0:9, length = 200)
@@ -94,6 +97,7 @@ summary(cfit, cp = 0.06)
 ###################################################
 ### code chunk number 8: cars
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 fit1 <- rpart(Reliability ~ Price + Country + Mileage + Type,
                 data = cu.summary, parms = list(split = 'gini'))
 fit2 <- rpart(Reliability ~ Price + Country + Mileage + Type,
@@ -122,6 +126,7 @@ summary(fit3)
 ###################################################
 ### code chunk number 11: kyphos
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 lmat <- matrix(c(0,3, 4,0), nrow = 2, ncol = 2, byrow = FALSE)
 fit1 <- rpart(Kyphosis ~  Age + Number + Start, data = kyphosis)
 
@@ -160,6 +165,7 @@ summary(carfit, cp = 0.1)
 ###################################################
 ### code chunk number 15: anova2
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 par(mfrow=c(1,2))
 rsq.rpart(carfit)
 par(mfrow=c(1,1))
@@ -168,6 +174,7 @@ par(mfrow=c(1,1))
 ###################################################
 ### code chunk number 16: anova3
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 plot(predict(carfit), jitter(resid(carfit)))
 temp <- carfit$frame[carfit$frame$var == '<leaf>',]
 axis(3, at = temp$yval, as.character(row.names(temp)))
@@ -204,6 +211,7 @@ summary(sfit, cp = 0.1)
 ###################################################
 ### code chunk number 20: poisson1
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 par(mar = rep(0.1, 4))
 plot(sfit)
 text(sfit, use.n = TRUE, min = 3)
@@ -224,6 +232,7 @@ newtime <- predict(temp, type = 'expected')
 ###################################################
 ### code chunk number 22: exp3
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 require(survival)
 pfit <- rpart(Surv(pgtime, pgstat) ~ age + eet + g2 + grade +
                gleason + ploidy, data = stagec)
@@ -238,6 +247,7 @@ text(pfit2, use.n = TRUE)
 ###################################################
 ### code chunk number 23: exp4
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 temp <- snip.rpart(pfit2, 6)
 km <- survfit(Surv(pgtime, pgstat) ~ temp$where, stagec)
 plot(km, lty = 1:4, mark.time = FALSE,
@@ -248,6 +258,7 @@ legend(10, 0.3, paste('node', c(4,5,6,7)), lty = 1:4)
 ###################################################
 ### code chunk number 24: plots1
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 fit <- rpart(pgstat ~  age + eet + g2 + grade + gleason + ploidy,
              stagec, control = rpart.control(cp = 0.025))
 par(mar = rep(0.2, 4))
@@ -258,6 +269,7 @@ text(fit)
 ###################################################
 ### code chunk number 25: plots2
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 par(mar = rep(0.2, 4))
 plot(fit, uniform = TRUE)
 text(fit, use.n = TRUE, all = TRUE)
@@ -266,6 +278,7 @@ text(fit, use.n = TRUE, all = TRUE)
 ###################################################
 ### code chunk number 26: plots3
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 par(mar = rep(0.2, 4))
 plot(fit, branch = 0)
 text(fit, use.n = TRUE)
@@ -274,6 +287,7 @@ text(fit, use.n = TRUE)
 ###################################################
 ### code chunk number 27: plots4
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 par(mar = rep(0.2, 4))
 plot(fit, branch = 0.4,uniform = TRUE, compress = TRUE)
 text(fit, all = TRUE, use.n = TRUE)
@@ -282,6 +296,7 @@ text(fit, all = TRUE, use.n = TRUE)
 ###################################################
 ### code chunk number 28: plots5
 ###################################################
+getOption("SweaveHooks")[["fig"]]()
 par(mar = rep(0.2, 4))
 plot(fit, uniform = TRUE, branch = 0.2, compress = TRUE, margin = 0.1)
 text(fit, all = TRUE, use.n = TRUE, fancy = TRUE, cex= 0.9)

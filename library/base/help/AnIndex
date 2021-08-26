@@ -1502,6 +1502,7 @@ zapsmall	zapsmall
 [.POSIXct	DateTimeClasses
 [.POSIXlt	DateTimeClasses
 [.simple.list	Extract
+[.warnings	warnings
 [<-	Extract
 [<-.data.frame	Extract.data.frame
 [<-.Date	Dates
