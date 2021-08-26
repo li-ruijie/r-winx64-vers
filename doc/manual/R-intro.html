@@ -303,7 +303,7 @@ analysis, classification, clustering, ...).
    <p>This manual provides information on data types, programming elements,
 statistical modelling and graphics.
 
-   <p>The current version of this document is 3.0.0 (2013-04-03).
+   <p>The current version of this document is 3.0.1 (2013-05-16).
 
    <p>
 
@@ -2261,8 +2261,8 @@ where
 potentially unstable to compute <code>x &lt;- solve(A) %*% b</code> instead of
 <code>solve(A,b)</code>.
 
-   <p>The quadratic form  <code>x %*% A^{-1} %*%x</code>  
-, which is used in multivariate computations, should be computed by
+   <p>The quadratic form  <code>x %*% A^{-1} %*%
+x</code>   which is used in multivariate computations, should be computed by
 something like<a rel="footnote" href="#fn-16" name="fnd-16"><sup>16</sup></a> <code>x %*% solve(A,x)</code>, rather than
 computing the inverse of <code>A</code>.
 
@@ -7659,27 +7659,19 @@ other functions, since arguments are <em>coerced</em> to factors when
 necessary (using <code>as.factor()</code>).</p>
 
    <p class="footnote"><small>[<a name="fn-15" href="#fnd-15">15</a>]</small> Note that <code>x %*% x</code> is ambiguous, as
-it could mean either x'x
- or x x',
- where x
- is the column form.  In such cases the smaller matrix seems implicitly to be
-the interpretation adopted, so the scalar x'x
- is in this case the result.  The matrix x x'
- may be calculated either by <code>cbind(x)%*% x</code> or <code>x %*% rbind(x)</code> since the result of <code>rbind()</code> or
+it could mean either x'x or x x', where x is the
+column form.  In such cases the smaller matrix seems implicitly to be
+the interpretation adopted, so the scalar x'x is in this case the
+result.  The matrix x x' may be calculated either by <code>cbind(x)
+%*% x</code> or <code>x %*% rbind(x)</code> since the result of <code>rbind()</code> or
 <code>cbind()</code> is always a matrix.  However, the best way to compute
-x'x
- or x x'
- is <code>crossprod(x)</code> or <code>x %o% x</code>
+x'x or x x' is <code>crossprod(x)</code> or <code>x %o% x</code>
 respectively.</p>
 
    <p class="footnote"><small>[<a name="fn-16" href="#fnd-16">16</a>]</small> Even better would be to form a matrix square
-root B
- with A = BB'
- and find the squared length of the
-solution of By = x,
-perhaps using the Cholesky or
-eigendecomposition of A. 
-</p>
+root B with A = BB' and find the squared length of the
+solution of By = x, perhaps using the Cholesky or
+eigendecomposition of A.</p>
 
    <p class="footnote"><small>[<a name="fn-17" href="#fnd-17">17</a>]</small> Conversion of character columns to factors is
 overridden using the <code>stringsAsFactors</code> argument to the
