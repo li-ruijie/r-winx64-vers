@@ -426,6 +426,7 @@ close.srcfile	srcfile
 close.srcfilealias	srcfile
 closeAllConnections	showConnections
 closure	function
+code point	utf8Conversion
 codes	base-defunct
 codes.factor	base-defunct
 codes.ordered	base-defunct
@@ -781,6 +782,7 @@ last.warning	warnings
 lazyLoad	lazyload
 lazyLoadDBexec	lazyload
 lazyLoadDBfetch	base-internal
+La_version	La_version
 lbeta	Special
 lchoose	Special
 LC_ALL	locales
@@ -1160,6 +1162,9 @@ R_DEFAULT_PACKAGES	Startup
 R_DOC_DIR	EnvVar
 R_ENVIRON	Startup
 R_ENVIRON_USER	Startup
+R_GCTORTURE	gctorture
+R_GCTORTURE_INHIBIT_RELEASE	gctorture
+R_GCTORTURE_WAIT	gctorture
 R_GSCMD	EnvVar
 R_HISTFILE	EnvVar
 R_HISTSIZE	EnvVar
@@ -1386,6 +1391,7 @@ time interval	difftime
 time zone	timezones
 time zones	timezones
 timezone	timezones
+timezones	timezones
 TMPDIR	EnvVar
 tolower	chartr
 topenv	ns-topenv
@@ -1416,6 +1422,7 @@ TZDIR	timezones
 umask	files2
 unclass	class
 undebug	debug
+Unicode	utf8Conversion
 union	sets
 unique	unique
 unique.array	unique

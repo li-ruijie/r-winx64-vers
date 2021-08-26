@@ -10,7 +10,7 @@
 <div align="center">
 <a href="../../../doc/html/packages.html"><img src="../../../doc/html/left.jpg" alt="[Up]" width="30" height="30" border="0"></a>
 <a href="../../../doc/html/index.html"><img src="../../../doc/html/up.jpg" alt="[Top]" width="30" height="30" border="0"></a>
-</div><h2>Documentation for package &lsquo;base&rsquo; version 3.0.2</h2>
+</div><h2>Documentation for package &lsquo;base&rsquo; version 3.0.3</h2>
 
 <ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
 <li><a href="../demo">Code demos</a>.  Use <a href="../../utils/help/demo">demo()</a> to run them.</li>
@@ -275,11 +275,11 @@
 <tr><td width="25%"><a href="Special.html">beta</a></td>
 <td>Special Functions of Mathematics</td></tr>
 <tr><td width="25%"><a href="bindenv.html">bindenv</a></td>
-<td>Binding and Environment Adjustments</td></tr>
+<td>Binding and Environment Locking, Active Bindings</td></tr>
 <tr><td width="25%"><a href="bindenv.html">bindingIsActive</a></td>
-<td>Binding and Environment Adjustments</td></tr>
+<td>Binding and Environment Locking, Active Bindings</td></tr>
 <tr><td width="25%"><a href="bindenv.html">bindingIsLocked</a></td>
-<td>Binding and Environment Adjustments</td></tr>
+<td>Binding and Environment Locking, Active Bindings</td></tr>
 <tr><td width="25%"><a href="gettext.html">bindtextdomain</a></td>
 <td>Translate Text Messages</td></tr>
 <tr><td width="25%"><a href="bitwise.html">bitwAnd</a></td>
@@ -379,6 +379,8 @@
 <td>Display Connections</td></tr>
 <tr><td width="25%"><a href="function.html">closure</a></td>
 <td>Function Definition</td></tr>
+<tr><td width="25%"><a href="utf8Conversion.html">code point</a></td>
+<td>Convert to or from UTF-8-encoded Character Vectors</td></tr>
 <tr><td width="25%"><a href="col.html">col</a></td>
 <td>Column Indexes</td></tr>
 <tr><td width="25%"><a href="Comparison.html">collation</a></td>
@@ -580,7 +582,7 @@
 <tr><td width="25%"><a href="EnvVar.html">environment variables</a></td>
 <td>Environment Variables</td></tr>
 <tr><td width="25%"><a href="bindenv.html">environmentIsLocked</a></td>
-<td>Binding and Environment Adjustments</td></tr>
+<td>Binding and Environment Locking, Active Bindings</td></tr>
 <tr><td width="25%"><a href="environment.html">environmentName</a></td>
 <td>Environment Access</td></tr>
 <tr><td width="25%"><a href="eval.html">eval</a></td>
@@ -681,13 +683,13 @@
 <tr><td width="25%"><a href="format.info.html">format.info</a></td>
 <td>format(.) Information</td></tr>
 <tr><td width="25%"><a href="library.html">format.libraryIQR</a></td>
-<td>Loading and Listing of Packages</td></tr>
+<td>Loading/Attaching and Listing of Packages</td></tr>
 <tr><td width="25%"><a href="numeric_version.html">format.numeric_version</a></td>
 <td>Numeric Versions</td></tr>
 <tr><td width="25%"><a href="octmode.html">format.octmode</a></td>
 <td>Display Numbers in Octal</td></tr>
 <tr><td width="25%"><a href="library.html">format.packageInfo</a></td>
-<td>Loading and Listing of Packages</td></tr>
+<td>Loading/Attaching and Listing of Packages</td></tr>
 <tr><td width="25%"><a href="strptime.html">format.POSIXct</a></td>
 <td>Date-time Conversion Functions to and from Character</td></tr>
 <tr><td width="25%"><a href="format.pval.html">format.pval</a></td>
@@ -986,6 +988,8 @@
 <td>Apply a Function over a List or Vector</td></tr>
 <tr><td width="25%"><a href="warnings.html">last.warning</a></td>
 <td>Print Warning Messages</td></tr>
+<tr><td width="25%"><a href="La_version.html">La_version</a></td>
+<td>LAPACK version</td></tr>
 <tr><td width="25%"><a href="Special.html">lbeta</a></td>
 <td>Special Functions of Mathematics</td></tr>
 <tr><td width="25%"><a href="Special.html">lchoose</a></td>
@@ -1017,7 +1021,7 @@
 <tr><td width="25%"><a href="Special.html">lgamma</a></td>
 <td>Special Functions of Mathematics</td></tr>
 <tr><td width="25%"><a href="library.html">library</a></td>
-<td>Loading and Listing of Packages</td></tr>
+<td>Loading/Attaching and Listing of Packages</td></tr>
 <tr><td width="25%"><a href="library.dynam.html">library.dynam</a></td>
 <td>Loading DLLs from Packages</td></tr>
 <tr><td width="25%"><a href="library.dynam.html">library.dynam.unload</a></td>
@@ -1047,9 +1051,9 @@
 <tr><td width="25%"><a href="locales.html">locales</a></td>
 <td>Query or Set Aspects of the Locale</td></tr>
 <tr><td width="25%"><a href="bindenv.html">lockBinding</a></td>
-<td>Binding and Environment Adjustments</td></tr>
+<td>Binding and Environment Locking, Active Bindings</td></tr>
 <tr><td width="25%"><a href="bindenv.html">lockEnvironment</a></td>
-<td>Binding and Environment Adjustments</td></tr>
+<td>Binding and Environment Locking, Active Bindings</td></tr>
 <tr><td width="25%"><a href="Log.html">log</a></td>
 <td>Logarithms and Exponentials</td></tr>
 <tr><td width="25%"><a href="Log.html">log10</a></td>
@@ -1084,7 +1088,7 @@
 <tr><td width="25%"><a href="make.unique.html">make.unique</a></td>
 <td>Make Character Strings Unique</td></tr>
 <tr><td width="25%"><a href="bindenv.html">makeActiveBinding</a></td>
-<td>Binding and Environment Adjustments</td></tr>
+<td>Binding and Environment Locking, Active Bindings</td></tr>
 <tr><td width="25%"><a href="EnvVar.html">MAKEINDEX</a></td>
 <td>Environment Variables</td></tr>
 <tr><td width="25%"><a href="funprog.html">Map</a></td>
@@ -1359,7 +1363,7 @@
 <tr><td width="25%"><a href="hexmode.html">print.hexmode</a></td>
 <td>Display Numbers in Hexadecimal</td></tr>
 <tr><td width="25%"><a href="library.html">print.libraryIQR</a></td>
-<td>Loading and Listing of Packages</td></tr>
+<td>Loading/Attaching and Listing of Packages</td></tr>
 <tr><td width="25%"><a href="getDLLRegisteredRoutines.html">print.NativeRoutineList</a></td>
 <td>Reflectance Information for C/Fortran routines in a DLL</td></tr>
 <tr><td width="25%"><a href="noquote.html">print.noquote</a></td>
@@ -1369,7 +1373,7 @@
 <tr><td width="25%"><a href="octmode.html">print.octmode</a></td>
 <td>Display Numbers in Octal</td></tr>
 <tr><td width="25%"><a href="library.html">print.packageInfo</a></td>
-<td>Loading and Listing of Packages</td></tr>
+<td>Loading/Attaching and Listing of Packages</td></tr>
 <tr><td width="25%"><a href="DateTimeClasses.html">print.POSIXct</a></td>
 <td>Date-Time Classes</td></tr>
 <tr><td width="25%"><a href="proc.time.html">print.proc_time</a></td>
@@ -1545,7 +1549,7 @@
 <tr><td width="25%"><a href="rep.html">rep_len</a></td>
 <td>Replicate Elements of Vectors and Lists</td></tr>
 <tr><td width="25%"><a href="library.html">require</a></td>
-<td>Loading and Listing of Packages</td></tr>
+<td>Loading/Attaching and Listing of Packages</td></tr>
 <tr><td width="25%"><a href="ns-load.html">requireNamespace</a></td>
 <td>Loading and Unloading Name Spaces</td></tr>
 <tr><td width="25%"><a href="Reserved.html">Reserved</a></td>
@@ -1608,6 +1612,12 @@
 <td>Initialization at Start of an R Session</td></tr>
 <tr><td width="25%"><a href="Startup.html">R_ENVIRON_USER</a></td>
 <td>Initialization at Start of an R Session</td></tr>
+<tr><td width="25%"><a href="gctorture.html">R_GCTORTURE</a></td>
+<td>Torture Garbage Collector</td></tr>
+<tr><td width="25%"><a href="gctorture.html">R_GCTORTURE_INHIBIT_RELEASE</a></td>
+<td>Torture Garbage Collector</td></tr>
+<tr><td width="25%"><a href="gctorture.html">R_GCTORTURE_WAIT</a></td>
+<td>Torture Garbage Collector</td></tr>
 <tr><td width="25%"><a href="EnvVar.html">R_GSCMD</a></td>
 <td>Environment Variables</td></tr>
 <tr><td width="25%"><a href="EnvVar.html">R_HISTFILE</a></td>
@@ -1970,6 +1980,8 @@
 <td>Time Zones</td></tr>
 <tr><td width="25%"><a href="timezones.html">timezone</a></td>
 <td>Time Zones</td></tr>
+<tr><td width="25%"><a href="timezones.html">timezones</a></td>
+<td>Time Zones</td></tr>
 <tr><td width="25%"><a href="EnvVar.html">TMPDIR</a></td>
 <td>Environment Variables</td></tr>
 <tr><td width="25%"><a href="chartr.html">tolower</a></td>
@@ -2027,6 +2039,8 @@
 <td>Object Classes</td></tr>
 <tr><td width="25%"><a href="debug.html">undebug</a></td>
 <td>Debug a Function</td></tr>
+<tr><td width="25%"><a href="utf8Conversion.html">Unicode</a></td>
+<td>Convert to or from UTF-8-encoded Character Vectors</td></tr>
 <tr><td width="25%"><a href="sets.html">union</a></td>
 <td>Set Operations</td></tr>
 <tr><td width="25%"><a href="unique.html">unique</a></td>
@@ -2048,7 +2062,7 @@
 <tr><td width="25%"><a href="ns-load.html">unloadNamespace</a></td>
 <td>Loading and Unloading Name Spaces</td></tr>
 <tr><td width="25%"><a href="bindenv.html">unlockBinding</a></td>
-<td>Binding and Environment Adjustments</td></tr>
+<td>Binding and Environment Locking, Active Bindings</td></tr>
 <tr><td width="25%"><a href="unname.html">unname</a></td>
 <td>Remove 'names' or 'dimnames'</td></tr>
 <tr><td width="25%"><a href="serialize.html">unserialize</a></td>
@@ -2313,7 +2327,7 @@
 <tr><td width="25%"><a href="UseMethod.html">.Method</a></td>
 <td>Class Methods</td></tr>
 <tr><td width="25%"><a href="library.html">.noGenerics</a></td>
-<td>Loading and Listing of Packages</td></tr>
+<td>Loading/Attaching and Listing of Packages</td></tr>
 <tr><td width="25%"><a href="notyet.html">.NotYetImplemented</a></td>
 <td>Not Yet Implemented Functions and Unused Arguments</td></tr>
 <tr><td width="25%"><a href="notyet.html">.NotYetUsed</a></td>

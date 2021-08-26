@@ -151,7 +151,7 @@ url.show                Display a text URL
 utils-deprecated        Deprecated Functions in Package 'utils'
 utils-package           The R Utils Package
 vignette                View or List Package Vignettes
-win.version             Auxiliary Functions for the Windows Port
+win.version             Get Windows Version
 winDialog               Dialog Boxes under Windows
 winMenuAdd              User Menus under Windows
 winProgressBar          Progress Bars under Windows

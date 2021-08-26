@@ -34,6 +34,7 @@ Foreign                 Foreign Function Interface
 ISOdatetime             Date-time Conversion Functions from Numeric
                         Representations
 InternalMethods         Internal Generic Functions
+La_version              LAPACK version
 Logic                   Logical Operators
 Memory                  Memory Available for Data Storage
 Memory-limits           Memory Limits in R
@@ -66,7 +67,6 @@ Sys.setFileTime         Set File Time
 Sys.setenv              Set or Unset Environment Variables
 Sys.sleep               Suspend Execution for a Time Interval
 Sys.time                Get Current Date and Time
-Sys.timezone            Time Zones
 Sys.which               Find Full Paths to Executables
 Trig                    Trigonometric Functions
 UseMethod               Class Methods
@@ -101,7 +101,8 @@ autoload                On-demand Loading of Packages
 backsolve               Solve an Upper or Lower Triangular System
 base-package            The R Base Package
 basename                Manipulate File Paths
-bindenv                 Binding and Environment Adjustments
+bindenv                 Binding and Environment Locking, Active
+                        Bindings
 bitwNot                 Bitwise Logical Operations
 body                    Access to and Manipulation of the Body of a
                         Function
@@ -243,7 +244,7 @@ labels                  Find Labels from Object
 lapply                  Apply a Function over a List or Vector
 length                  Length of an Object
 levels                  Levels Attributes
-library                 Loading and Listing of Packages
+library                 Loading/Attaching and Listing of Packages
 library.dynam           Loading DLLs from Packages
 license                 The R License Terms
 list                    Lists - Generic and Dotted Pairs
@@ -403,6 +404,7 @@ taskCallbackManager     Create an R-level Task Callback Manager
 tempfile                Create Names for Temporary Files
 textConnection          Text Connections
 tilde                   Tilde Operator
+timezones               Time Zones
 toString                Convert an R Object to a Character String
 topenv                  Top Level Environment
 trace                   Interactive Tracing and Debugging of Calls to a
