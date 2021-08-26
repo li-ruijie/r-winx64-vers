@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Convert Character Vector between Encodings</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for iconv {base}"><tr><td>iconv {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -121,13 +122,13 @@ elements) of known encoding names.
 
 <h3>Implementation Details</h3>
 
-<p>There are three main implementations of <code>iconv</code> in use.
-Linux's C runtime <span class="samp">glibc</span> contains one.  Several platforms
+<p>There are three main implementations of <code>iconv</code> in use.  Linux's
+most common C runtime, <span class="samp">glibc</span>, contains one.  Several platforms
 supply GNU <span class="samp">libiconv</span>, including macOS, FreeBSD and Cygwin, in
 some cases with additional encodings.  On Windows we use a version of
 Yukihiro Nakadaira's <span class="samp">win_iconv</span>, which is based on Windows'
-codepages.  (We have added many encoding names for compatibility
-with other systems.)  All three have <code>iconvlist</code>, ignore case in
+codepages.  (We have added many encoding names for compatibility with
+other systems.)  All three have <code>iconvlist</code>, ignore case in
 encoding names and support <span class="samp">//TRANSLIT</span> (but with different
 results, and for <span class="samp">win_iconv</span> currently a &lsquo;best fit&rsquo;
 strategy is used except for <code>to = "ASCII"</code>).
@@ -137,6 +138,13 @@ none we have encountered have supported the encoding names we need:
 the &lsquo;R Installation and Administration&rsquo; manual recommends
 installing GNU <span class="samp">libiconv</span> on Solaris and AIX, for example.
 </p>
+
+
+<p>Some Linux distributions use <span class="samp">musl</span> as their C runtime.  This is
+less comprehensive than <span class="samp">glibc</span>: it does not support
+<span class="samp">//TRANSLIT</span> but does inexact conversions (currently using
+<span class="samp">*</span>).
+</p>
 <p>There are other implementations, e.g.  NetBSD has used one from the
 Citrus project (which does not support <span class="samp">//TRANSLIT</span>) and there is
 an older FreeBSD port (<span class="samp">libiconv</span> is usually used there): it has
@@ -144,7 +152,8 @@ not been reported whether or not these work with <span style="font-family: Couri
 </p>
 <p>Note that you cannot rely on invalid inputs being detected, especially
 for <code>to = "ASCII"</code> where some implementations allow 8-bit
-characters and pass them through unchanged or with transliteration.
+characters and pass them through unchanged or with transliteration or
+substitution.
 </p>
 <p>Some of the implementations have interesting extra encodings: for
 example GNU <span class="samp">libiconv</span> allows <code>to = "C99"</code> to use
@@ -234,5 +243,5 @@ str(xx &lt;- iconv(x, "latin1", "UTF-16LE", toRaw = TRUE))
 iconv(xx, "UTF-16LE", "UTF-8")
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

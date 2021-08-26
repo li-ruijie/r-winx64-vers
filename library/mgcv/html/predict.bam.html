@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Prediction from fitted Big Additive Model model</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for predict.bam {mgcv}"><tr><td>predict.bam {mgcv}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -29,7 +30,7 @@ for quantities derived from the model (e.g. derivatives of smooths), and for loo
 ## S3 method for class 'bam'
 predict(object,newdata,type="link",se.fit=FALSE,terms=NULL,
         exclude=NULL,block.size=50000,newdata.guaranteed=FALSE,
-        na.action=na.pass,cluster=NULL,discrete=TRUE,n.threads=1,...)
+        na.action=na.pass,cluster=NULL,discrete=TRUE,n.threads=1,gc.level=0,...)
 </pre>
 
 
@@ -121,6 +122,10 @@ single machine). See details and example code for <code><a href="../../mgcv/help
 <td>
 <p>if <code>se.fit=TRUE</code> and discrete prediction is used then parallel computation can be used to speed up se calcualtion. This specifies number of htreads to use.</p>
 </td></tr>
+<tr valign="top"><td><code>gc.level</code></td>
+<td>
+<p>increase from 0 to up the level of garbage collection if default does not give enough.</p>
+</td></tr>
 <tr valign="top"><td><code>...</code></td>
 <td>
 <p> other arguments.</p>
@@ -209,5 +214,5 @@ and Hall/CRC Press.
 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-35 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-36 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

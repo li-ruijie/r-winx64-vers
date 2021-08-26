@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 4.1.0 (2021-05-18).
+<!-- This manual is for R, version 4.1.1 (2021-08-10).
 
 Copyright (C) 1999-2021 R Core Team
 
@@ -277,7 +277,7 @@ Next: <a href="#R-Internal-Structures" accesskey="n" rel="next">R Internal Struc
 <p>This is a guide to the internal structures of R and coding standards for
 the core team working on R itself.
 </p>
-<p>This manual is for R, version 4.1.0 (2021-05-18).
+<p>This manual is for R, version 4.1.1 (2021-08-10).
 </p>
 <p>Copyright &copy; 1999&ndash;2021 R Core Team
 </p>
@@ -4840,7 +4840,7 @@ DLL.  (<strong>NB:</strong> this requires system command <code>nm</code> to be o
 compiler toolchain specified via <code>Makeconf</code> (can be customized by
 environment variable <code>BINPREF</code>). If not found there, it must be on the
 <code>PATH</code>. On Unix this would be normal when using a package with compiled
-code (which are the only ones this checks), but Windows&rsquo; users should check.)
+code (which are the only ones this checks), but Windows&rsquo; users should check.
 Default: false (but true for CRAN submission checks).
 </p>
 </dd>
@@ -4871,11 +4871,13 @@ warnings are highlighted.
 See
 <a href="https://cran.r-project.org/doc/manuals/R-exts.html#Writing-portable-packages">Writing portable packages</a> in <cite>Writing R Extensions</cite>
 for the rationale of this check (and why even <samp>-Werror</samp> is
-unsafe).  Environment variable <code>_R_CHECK_COMPILATION_FLAGS_KNOWN_</code>
-can be set to a space-separated set of flags which come from the R
-build used for testing (flags such as <samp>-Wall</samp> and
-<samp>-Wextra</samp> are already known).  For example, for  CRAN build of 
-R &gt;= 4.0.0 on macOS one could use
+unsafe).
+</p>
+<p>Environment variable <code>_R_CHECK_COMPILATION_FLAGS_KNOWN_</code> can be set
+to a space-separated set of flags which come from the R build used
+for testing (flags such as <samp>-Wall</samp> and <samp>-Wextra</samp> are
+already known).  For example, for CRAN build of R &gt;= 4.0.0 on macOS
+one could use
 </p><div class="example">
 <pre class="example">_R_CHECK_COMPILATION_FLAGS_KNOWN_=&quot;-mmacosx-version-min=10.13&quot; 
 </pre></div>

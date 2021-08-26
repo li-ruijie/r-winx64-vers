@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Value Matching</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for match {base}"><tr><td>match {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -33,12 +34,12 @@ x %in% table
 <tr valign="top"><td><code>x</code></td>
 <td>
 <p>vector or <code>NULL</code>: the values to be matched.
-<a href="../../base/help/Long vectors.html">Long vectors</a> are supported.</p>
+<a href="../../base/help/Long+20vectors.html">Long vectors</a> are supported.</p>
 </td></tr>
 <tr valign="top"><td><code>table</code></td>
 <td>
 <p>vector or <code>NULL</code>: the values to be matched against.
-<a href="../../base/help/Long vectors.html">Long vectors</a> are not supported.</p>
+<a href="../../base/help/Long+20vectors.html">Long vectors</a> are not supported.</p>
 </td></tr>
 <tr valign="top"><td><code>nomatch</code></td>
 <td>
@@ -124,7 +125,7 @@ finds numbers within intervals, rather than exact matches.
 </p>
 <p><code><a href="../../base/help/unique.html">unique</a></code> (and <code><a href="../../base/help/duplicated.html">duplicated</a></code>) are using the same
 definitions of &ldquo;match&rdquo; or &ldquo;equality&rdquo; as <code>match()</code>,
-and these are less strict than <code><a href="../../base/help/==.html">==</a></code>, e.g., for
+and these are less strict than <code><a href="../../base/help/+3D+3D.html">==</a></code>, e.g., for
 <code><a href="../../base/help/NA.html">NA</a></code> and <code><a href="../../base/help/NaN.html">NaN</a></code> in numeric or complex vectors,
 or for strings with different encodings, see also above.
 </p>
@@ -171,5 +172,5 @@ Ixy &lt;- outer(zN[-i], zN[-i], Vectorize(identical,c("x","y")),
 stopifnot(identical(Ixy, diag(8) == 1))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Object Classes</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for class {base}"><tr><td>class {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -158,8 +159,8 @@ superclasses.
 as functions of those names in S-PLUS 5/6, <em>but</em> in <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span>
 <code><a href="../../base/help/UseMethod.html">UseMethod</a></code> dispatches on the class as returned by
 <code>class</code> (with some interpolated classes: see the link) rather
-than <code>oldClass</code>.  <em>However</em>, <a href="../../base/help/group generic.html">group generic</a>s dispatch
-on the <code>oldClass</code> for efficiency, and <a href="../../base/help/internal generic.html">internal generic</a>s
+than <code>oldClass</code>.  <em>However</em>, <a href="../../base/help/group+20generic.html">group generic</a>s dispatch
+on the <code>oldClass</code> for efficiency, and <a href="../../base/help/internal+20generic.html">internal generic</a>s
 only dispatch on objects for which <code><a href="../../base/help/is.object.html">is.object</a></code> is true.
 </p>
 <p>In older versions of <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span>, assigning a zero-length vector with
@@ -172,7 +173,7 @@ to remove the class.
 <h3>See Also</h3>
 
 <p><code><a href="../../base/help/UseMethod.html">UseMethod</a></code>, <code><a href="../../base/help/NextMethod.html">NextMethod</a></code>,
-&lsquo;<a href="../../base/help/group generic.html">group generic</a>&rsquo;, &lsquo;<a href="../../base/help/internal generic.html">internal generic</a>&rsquo;
+&lsquo;<a href="../../base/help/group+20generic.html">group generic</a>&rsquo;, &lsquo;<a href="../../base/help/internal+20generic.html">internal generic</a>&rsquo;
 </p>
 
 
@@ -200,5 +201,5 @@ class( quote( if(8&lt;3) pi ) ) # "if"
 .class2(matrix(1:6, 2,3)) # "matrix" "array" "integer" "numeric"
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

@@ -10,6 +10,7 @@ onWindows <- .Platform$OS.type == "windows"
 .M <- .Machine
 str(.M[grep("^sizeof", names(.M))]) ## also differentiate long-double..
 b64 <- .M$sizeof.pointer == 8
+options(nwarnings = 10000) # (rather than just 50)
 
 
 ## body() / formals() notably the replacement versions
@@ -504,6 +505,7 @@ stopifnot(
 ## format()ing invalid hand-constructed  POSIXlt  objects
 if(hasTZ <- nzchar(.TZ <- Sys.getenv("TZ"))) cat(sprintf("env.var. TZ='%s'\n",.TZ))
 d <- as.POSIXlt("2016-12-06", tz = "Europe/Vienna")
+hasGMTOFF <- !is.null(d$gmtoff)
 op <- options(warn = 1)# ==> assert*() will match behavior
 if(is.null(d$zone)) cat("Skipping timezone-dependent POSIXlt formatting\n") else
 for(EX in expression({}, Sys.setenv(TZ = "UTC"), Sys.unsetenv("TZ"))) {
@@ -512,10 +514,13 @@ for(EX in expression({}, Sys.setenv(TZ = "UTC"), Sys.unsetenv("TZ"))) {
     dz <- d$zone
     d$zone <- 1
     tools::assertError(format(d))
-    d$zone <- NULL # now has 'gmtoff' but no 'zone' --> warning:
-    tools::assertWarning(stopifnot(identical(format(d),"2016-12-06")))
-    d$zone <- dz # = previous, but 'zone' now is last
-    tools::assertError(format(d))
+    if (hasGMTOFF) {
+        d$zone <- NULL # now has 'gmtoff' but no 'zone' --> warning:
+        tools::assertWarning(stopifnot(identical(format(d),"2016-12-06")))
+        d$zone <- dz # = previous, but 'zone' now is last
+        tools::assertError(format(d))
+    } else
+      cat("Skipping timezone amd gmtoff dependent POSIXlt formatting\n")
 }
 if(hasTZ) Sys.setenv(TZ = .TZ); options(op)# revert
 
@@ -708,7 +713,7 @@ stopifnot(exprs = {
               as_A(c(120, 17, -17, 207, NA, 0, -327, 0, 0), xtN))
 })
 ## 'sparse = TRUE requires recommended package Matrix
-if(requireNamespace('Matrix', lib.loc=.Library)) {
+if(requireNamespace('Matrix', lib.loc=.Library, quietly = TRUE)) {
     xtS <- xtabs(Freq ~ Gender + Admit, DN, na.action = na.pass, sparse = TRUE)# error in R <= 3.3.2
     xtNS <- xtabs(Freq ~ Gender + Admit, DN, addNA = TRUE, sparse = TRUE)
     stopifnot(
@@ -811,7 +816,7 @@ fil <- "Sweave-test-1.Rnw"
 file.copy(system.file("Sweave", fil, package="utils"), tempdir())
 owd <- setwd(tempdir())
 (o <- capture.output(utils:::.Sweave(fil, no.q = TRUE), type = "message"))
-stopifnot(grepl("exit status 0", o[2]))
+stopifnot(grepl("exit status 0", tail(o, 1)))
 setwd(owd)
 ## R CMD Sweave gave status 1 and hence an error in R 3.4.0 (only)
 
@@ -1678,7 +1683,7 @@ stopifnot(exprs = {
 
 
 ## scale(*, <non-numeric>)
-if(requireNamespace('Matrix', lib.loc=.Library)) {
+if(requireNamespace('Matrix', lib.loc=.Library, quietly = TRUE)) {
     de <- data.frame(Type = structure(c(1L, 1L, 4L, 1L, 4L, 2L, 2L, 2L, 4L, 1L),
 				      .Label = paste0("T", 1:4), class = "factor"),
 		     Subj = structure(c(9L, 5L, 8L, 3L, 3L, 4L, 3L, 6L, 6L, 1L),
@@ -2292,7 +2297,7 @@ stopifnot(exprs = {
 
 ## str() now even works with invalid S4  objects:
 ## this needs Matrix loaded to be an S4 generic
-if(requireNamespace('Matrix', lib.loc = .Library)) {
+if(requireNamespace('Matrix', lib.loc = .Library, quietly = TRUE)) {
 moS <- mo <- findMethods("isSymmetric")
 attr(mo, "arguments") <- NULL
 print(validObject(mo, TRUE)) # shows what's wrong
@@ -4904,7 +4909,9 @@ check_regexetc <- function(txt, fx.ptn, s.ptn, gr.ptn, msg = stop) {
     }
 } ## end{ check_regexetc }
 
-codetools::findGlobals(check_regexetc,merge=FALSE)
+if(requireNamespace("codetools", quietly = TRUE))
+    codetools::findGlobals(check_regexetc, merge=FALSE)
+
 ## "default check"
 txt <- c(
     "The", "licenses", "for", "most", "software", "are",  "designed", "to",
@@ -5056,6 +5063,22 @@ unique.fake_class <- function(x, incomparables = FALSE, ...) {
 
 altint_dup_multicheck(ivec, 0, s3class = "fake_class")
 altreal_dup_multicheck(dvec, 0, 0, 0, s3class = "fake_class")
+
+
+## Value stored in .Last.value needs to count at least one reference
+c(1)
+stopifnot(1 + .Last.value + .Last.value == 3)
+
+
+## in 4.1.0, encodeString() below would return unflagged UTF-8
+## representation of the string
+if (l10n_info()$"Latin-1" && localeToCharset()=="ISO8859-1") {
+  # checking localeToCharset() because on Windows, in C locale,
+  # l10n_info() would report Latin-1 when that is the code page
+  y <- "\xfc"
+  stopifnot(y == encodeString(y))
+}
+
 
 
 ## keep at end

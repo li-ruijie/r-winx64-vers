@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Split the Elements of a Character Vector</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for strsplit {base}"><tr><td>strsplit {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -35,7 +36,7 @@ inputs, including a factor, will give an error.
 <td>
 
 <p>character vector (or object which can be coerced to such)
-containing <a href="../../base/help/regular expression.html">regular expression</a>(s) (unless <code>fixed = TRUE</code>)
+containing <a href="../../base/help/regular+20expression.html">regular expression</a>(s) (unless <code>fixed = TRUE</code>)
 to use for splitting.  If empty matches occur, in particular if
 <code>split</code> has length 0, <code>x</code> is split into single characters.
 If <code>split</code> has length greater than 1, it is re-cycled along
@@ -123,7 +124,7 @@ multibyte locale are translated to UTF-8.
 <code><a href="../../base/help/grep.html">grep</a></code> and <code><a href="../../base/help/sub.html">sub</a></code> for string search and
 manipulation; also <code><a href="../../base/help/nchar.html">nchar</a></code>, <code><a href="../../base/help/substr.html">substr</a></code>.
 </p>
-<p>&lsquo;<a href="../../base/help/regular expression.html">regular expression</a>&rsquo; for the details of the pattern
+<p>&lsquo;<a href="../../base/help/regular+20expression.html">regular expression</a>&rsquo; for the details of the pattern
 specification.
 </p>
 <p>Option <code>PCRE_use_JIT</code> controls the details when <code>perl = TRUE</code>.
@@ -168,5 +169,5 @@ strsplit("", " ")[[1]]    # character(0)
 strsplit(" ", " ")[[1]]   # [1] ""
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

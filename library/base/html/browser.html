@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Environment Browser</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for browser {base}"><tr><td>browser {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -35,8 +36,9 @@ invoked.</p>
 </td></tr>
 <tr valign="top"><td><code>expr</code></td>
 <td>
-<p>An expression, which if it evaluates to <code>TRUE</code> the
-debugger will invoked, otherwise control is returned directly.</p>
+<p>a &ldquo;condition&rdquo;.  By default, and whenever not false
+after being coerced to <code><a href="../../base/help/logical.html">logical</a></code>, the
+debugger will be invoked, otherwise control is returned directly.</p>
 </td></tr>
 <tr valign="top"><td><code>skipCalls</code></td>
 <td>
@@ -62,7 +64,8 @@ and <code><a href="../../base/help/browserCondition.html">browserCondition</a></
 <p>The purpose of the <code>expr</code> argument is to allow for the illusion
 of conditional debugging. It is an illusion, because execution is
 always paused at the call to browser, but control is only passed
-to the evaluator described below if <code>expr</code> evaluates to <code>TRUE</code>.
+to the evaluator described below if <code>expr</code> is not <code>FALSE</code> after
+coercion to logical.
 In most cases it is going to be more efficient to use an <code>if</code>
 statement in the calling program, but in some cases using this argument
 will be simpler.
@@ -153,5 +156,5 @@ Springer.
 <code><a href="../../base/help/browserText.html">browserText</a></code> for how to retrieve the text and condition.
 </p>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

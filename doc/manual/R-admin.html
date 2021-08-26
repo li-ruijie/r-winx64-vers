@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 4.1.0 (2021-05-18).
+<!-- This manual is for R, version 4.1.1 (2021-08-10).
 
 Copyright (C) 2001-2021 R Core Team
 
@@ -326,7 +326,7 @@ Next: <a href="#Obtaining-R" accesskey="n" rel="next">Obtaining R</a> &nbsp; [<a
 
 <p>This is a guide to installation and administration for R.
 </p>
-<p>This manual is for R, version 4.1.0 (2021-05-18).
+<p>This manual is for R, version 4.1.1 (2021-08-10).
 </p>
 <p>Copyright &copy; 2001&ndash;2021 R Core Team
 </p>
@@ -1010,13 +1010,13 @@ specified on the <code>make install</code> command line (at least for
 <code>libdir</code>.  The C header files can be installed to the value of
 <code>rincludedir</code>: note that as the headers are not installed into a
 subdirectory you probably want something like
-<code>rincludedir=/usr/local/include/R-4.1.0</code>.
+<code>rincludedir=/usr/local/include/R-4.1.1</code>.
 </p>
 <p>If you want the R home to be something other than
 <samp><var>libdir</var>/R</samp>, use <samp>rhome</samp>: for example
 </p>
 <div class="example">
-<pre class="example">make install rhome=/usr/local/lib64/R-4.1.0
+<pre class="example">make install rhome=/usr/local/lib64/R-4.1.1
 </pre></div>
 
 <p>will use a version-specific R home on a non-Debian Linux 64-bit
@@ -1728,7 +1728,7 @@ conversion to short name equivalents (a.k.a. DOS 8.3 names), then R
 <em>must</em> be installed in a path that does not contain spaces.
 </p>
 <p>Installation is <em>via</em> the installer
-<samp>R-4.1.0-win.exe</samp>.  Just double-click on the icon and
+<samp>R-4.1.1-win.exe</samp>.  Just double-click on the icon and
 follow the instructions.  When installing on a 64-bit version of Windows
 the options will include 32- or 64-bit versions of R (and the default is
 to install both).  You can uninstall R from the Control Panel.
@@ -1904,7 +1904,7 @@ Next: <a href="#Running-R" accesskey="n" rel="next">Running R</a>, Previous: <a 
 <p>[The rest of this paragraph is only relevant after release.]
 The front page of a <acronym>CRAN</acronym> site has a link &lsquo;Download R for (Mac)
 OS X&rsquo;. Click on that, then download the file
-<samp>R-4.1.0.pkg</samp> and install it. This runs on macOS 10.13
+<samp>R-4.1.1.pkg</samp> and install it. This runs on macOS 10.13
 and later on &lsquo;<samp>x86_64</samp>&rsquo; (Intel) CPU (High Sierra, Mojave,
 Catalina, Big Sur, &hellip;).  It can also be installed on
 &lsquo;<samp>arm64</samp>&rsquo; (aka &lsquo;Apple Silicon&rsquo; aka &lsquo;M1&rsquo;) CPUs running Big Sur
@@ -1941,7 +1941,7 @@ of the application where you installed it (which may not be where you
 want this time &hellip;).
 </p>
 <p>Various parts of the build require XQuartz to be installed: see
-<a href="https://www.xquartz.org/releases">https://www.xquartz.org/releases</a>.<a id="DOCF23" href="#FOOT23"><sup>23</sup></a>  These include the <strong>tcltk</strong> package and the <code>X11</code>
+<a href="https://www.xquartz.org/releases/">https://www.xquartz.org/releases/</a>.<a id="DOCF23" href="#FOOT23"><sup>23</sup></a>  These include the <strong>tcltk</strong> package and the <code>X11</code>
 device: attempting to use these without XQuartz will if possible remind
 you.<a id="DOCF24" href="#FOOT24"><sup>24</sup></a>  This is also needed for some
 <span id="index-Cairo"></span>
@@ -5655,7 +5655,7 @@ Next: <a href="#Other-libraries" accesskey="n" rel="next">Other libraries</a>, P
 </div>
 <span id="Other-C_002fC_002b_002b-compilers-1"></span><h4 class="subsection">C.3.3 Other C/C++ compilers</h4>
 
-<p>Other distributions of <code>clang</code> are available from
+<p>Other distributions of <code>clang</code> may be available from
 <a href="https://releases.llvm.org/">https://releases.llvm.org/</a>.  In particular, these include support
 for OpenMP which Apple builds of <code>clang</code> do not, and may contain
 more bugfixes and new features (such as better diagnostics) than that in
@@ -5846,10 +5846,10 @@ installed at first use.  Check if a JRE is installed by running
 installed<a id="DOCF97" href="#FOOT97"><sup>97</sup></a> this should prompt you to install it.<a id="DOCF98" href="#FOOT98"><sup>98</sup></a> You can also install directly a recent
 Java from
 <a href="https://www.oracle.com/java/technologies/javase-downloads.html">Oracle</a>.  Builds of OpenJDK with a less restrictive licence may also be
-available, e.g. from <a href="https://adoptopenjdk.net">AdoptOpenJDK</a>,
+available, e.g. from <a href="https://adoptium.net">Adoptium</a>,
 <a href="https://www.azul.com/downloads/zulu-community/">Azul</a> or
 <a href="https://jdk.java.net/">https://jdk.java.net/</a>.  We recommend you install a version with
-long-term support, e.g. 8 or 11 or (when released ca 2020-09) 17 but
+long-term support, e.g. 8 or 11 or (when released in 2021-09) 17 but
 not 9, 10, 12&ndash;16 which have/had a 6-month lifetime.
 </p>
 <p>Binary distributions of R are built against a specific version
@@ -5859,7 +5859,7 @@ will likely be needed to be run before using Java-using packages.
 <p>To use Java (specifically, package <a href="https://CRAN.R-project.org/package=rJava"><strong>rJava</strong></a>) with a
 <acronym>CRAN</acronym> (&lsquo;<samp>x86_64</samp>&rsquo;) binary distribution of R on
 &lsquo;<samp>arm64</samp>&rsquo; macOS install a &lsquo;<samp>x86_64</samp>&rsquo; build of a Java JRE
-such as that from <a href="https://adoptopenjdk.net">AdoptOpenJDK</a>, then
+such as that from <a href="https://adoptium.net">Adoptium</a>, then
 run <code>sudo R CMD javareconf</code>.
 </p>
 <p>To see what compatible versions of Java are currently installed, run
@@ -5884,9 +5884,9 @@ JAVA_LIBS=&quot;-L/${JAVA_HOME}/lib/server -ljvm&quot;
 </pre></div>
 <p>in <samp>config.site</samp>.
 </p>
-<p>To use the builds of OpenJDK from <a href="https://adoptopenjdk.net">AdoptOpenJDK</a> set e.g.
+<p>To select a build of OpenJDK from <a href="https://adoptium.net">Adoptium</a> set e.g.
 </p><div class="example">
-<pre class="example">JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+<pre class="example">JAVA_HOME=/Library/Java/JavaVirtualMachines/termurin-11.jdk/Contents/Home
 </pre></div>
 
 <p>Note that it is necessary to set the environment variable <code>NOAWT</code> to
@@ -6067,12 +6067,12 @@ Previous: <a href="#g_t_0060Apple-Silicon_0027" accesskey="p" rel="prev">‘Appl
 </div>
 <span id="Native-builds-1"></span><h4 class="subsubsection">C.3.10.1 Native builds</h4>
 
-<p>This section is experimental, and everything said should be prefixed by
-&lsquo;at the time of writing&rsquo;.  It follows the planned <acronym>CRAN</acronym>
-distribution in using <samp>/opt/R/arm64</samp> rather than <samp>/usr/local</samp>:
-this largely allows natively-compiled software to co-exist with
-Intel-compiled software (although the C/C++ compilers and linker will
-still search <samp>/usr/local/include</samp> and <samp>/usr/local/lib</samp>).
+<p>This section is someowhat provisional, and everything said should be prefixed by
+&lsquo;at the time of writing&rsquo;.  It follows the <acronym>CRAN</acronym> distribution in
+using <samp>/opt/R/arm64</samp> rather than <samp>/usr/local</samp>: this largely
+allows natively-compiled software to co-exist with Intel-compiled
+software (although the C/C++ compilers and linker will still search
+<samp>/usr/local/include</samp> and <samp>/usr/local/lib</samp>).
 </p>
 <p>No Fortran compiler has been released for this architecture although
 there are ports under development.  We used the preliminary fork of
@@ -6093,13 +6093,7 @@ appropriate path can be found by running <code>xcrun
 <a href="https://www.xquartz.org/releases/">https://www.xquartz.org/releases/</a>: this is dual-architecture so
 supports both &lsquo;<samp>arm64</samp>&rsquo; and &lsquo;<samp>x86_64</samp>&rsquo; builds.
 </p>
-<p>A binary package of Aqua Tcl/Tk is supplied rather than the X11-based
-variant of Tk used for Intel builds (and some packages, notably
-<a href="https://CRAN.R-project.org/package=tkrplot"><strong>tkrplot</strong></a>, do not support that, nor is <code>Tktable</code>
-available).  If XQuartz is installed it is possible to build the
-X11-based variant of Tk from source.
-</p>
-<p>Binary builds of the prerequisites are available at
+<p>Binary builds of the prerequisites<a id="DOCF101" href="#FOOT101"><sup>101</sup></a> are available at
 <a href="https://mac.r-project.org/libs-arm64/">https://mac.r-project.org/libs-arm64/</a>.  These (largely) unpack
 into <samp>/opt/R/arm64</samp>: it is simplest to first create that directory
 and adjust its ownership if desired:
@@ -6123,9 +6117,9 @@ ActiveTcl).
 </p>
 <p>Prerequisite <code>readline</code> can easily be built from source, although
 <code>libedit</code> emulation can also be used.  If compiling from source,
-<code>pcre2</code> (at least up to version 10.36) needs to be built without JIT
-support as the build segfaults if that is enabled, so do run <code>make
-check</code> on your build.
+<code>pcre2</code> (at least up to version 10.37) needs to be built without
+JIT support (the default) as the build segfaults if that is enabled, so
+do run <code>make check</code> on your build.
 </p>
 <p>Add <samp>/opt/R/arm64/bin</samp> to the <code>PATH</code>, create a file
 <samp>config.site</samp> something like
@@ -6158,7 +6152,9 @@ described at <a href="https://openradar.appspot.com/FB8914243">https://openradar
 <em>ab initio</em> builds work.
 </p>
 <p>Native Java builds are becoming available, for example
-<a href="https://www.azul.com/downloads/zulu-community/?os=macos&amp;architecture=arm-64-bit&amp;package=jdk">https://www.azul.com/downloads/zulu-community/?os=macos&amp;architecture=arm-64-bit&amp;package=jdk</a>.
+<a href="https://www.azul.com/downloads/zulu-community/?os=macos&amp;architecture=arm-64-bit&amp;package=jdk">https://www.azul.com/downloads/zulu-community/?os=macos&amp;architecture=arm-64-bit&amp;package=jdk</a>
+and this architecture has been announced as part of Java 17 (2021-09)
+from OpenJDK.
 </p>
 <p>As with Intel builds, use the <code>Accelerate</code> library could be used
 <em>via</em> the configuration option
@@ -6208,7 +6204,7 @@ Next: <a href="#FreeBSD" accesskey="n" rel="next">FreeBSD</a>, Previous: <a href
 </table>
 
 <p>R has been built successfully on Solaris 10 using the (zero cost)
-Oracle Developer Studio<a id="DOCF101" href="#FOOT101"><sup>101</sup></a> compilers: there has also been success with
+Oracle Developer Studio<a id="DOCF102" href="#FOOT102"><sup>102</sup></a> compilers: there has also been success with
 <code>gcc</code>/<code>gfortran</code>.  (Recent Sun machines are AMD Opterons
 or Intel Xeons (&lsquo;<samp>amd64</samp>&rsquo;) rather than &lsquo;<samp>x86</samp>&rsquo;, but 32-bit
 &lsquo;<samp>x86</samp>&rsquo; executables are the default.)  How these compilers
@@ -6265,7 +6261,8 @@ in Europe (when daylight-savings time was first introduced): most often
 reporting in the non-existent DST variant.  Using <code>configure</code>
 option <samp>--with-internal-tzcode</samp> is recommended, and required if
 you find time-zone abbreviations being given odd values (as has been
-seen on 64-bit builds without it).
+seen on 64-bit builds without it). It is also required for 
+<code>make check</code> to pass on Solaris 10.
 </p>
 <p>Using configure options <samp>--with-internal-iswxxxxx</samp> and
 <samp>--with-internal-towlower</samp> is recommended for those working with
@@ -6344,7 +6341,7 @@ selected as LAPACK <em>via</em>
 </pre></div>
 
 <p>This has often given test failures in the past, in several different
-places.<a id="DOCF102" href="#FOOT102"><sup>102</sup></a>
+places.<a id="DOCF103" href="#FOOT103"><sup>103</sup></a>
 </p>
 <p>Parsing very complex R expressions needs a lot of stack space when
 the Oracle compilers are used: several packages require the stack
@@ -6409,7 +6406,7 @@ version of Solaris in use.  (This can be ascertained from <code>gcc
 several reports of problems were due to using <code>gcc</code> compiled on
 one version of Solaris on a later version.  Note that this can even
 apply to OS patches: some 2016 patches to Solaris 10 changed its C
-header files in way incompatible<a id="DOCF103" href="#FOOT103"><sup>103</sup></a> with the modified versions included with OpenCSW&rsquo;s
+header files in way incompatible<a id="DOCF104" href="#FOOT104"><sup>104</sup></a> with the modified versions included with OpenCSW&rsquo;s
 binary distribution.
 </p>
 <p>The notes here are for <code>gcc</code> set up to use the Solaris linker:
@@ -7236,13 +7233,18 @@ distribution from Oracle, but there may be from OpenJDK.</p>
 <p>such as
 being unable to find <code>-lm</code>.</p>
 <h5><a id="FOOT101" href="#DOCF101">(101)</a></h3>
+<p>At the time of writing this
+had Aqua-based Tcl/Tk not the X11-based variant in the CRAN distribution
+of R.  Also, no <code>readline</code>: the <acronym>CRAN</acronym> distribution uses
+<code>libedit</code> emulation.</p>
+<h5><a id="FOOT102" href="#DOCF102">(102)</a></h3>
 <p>Formerly known as Oracle Solaris Studio
 or Sun Studio.</p>
-<h5><a id="FOOT102" href="#DOCF102">(102)</a></h3>
+<h5><a id="FOOT103" href="#DOCF103">(103)</a></h3>
 <p>When last checked it failed in <samp>tests/reg-BLAS.R</samp>,
 and on some builds, including for &lsquo;<samp>amd64</samp>&rsquo;, it failed in
 <code>example(eigen)</code>.</p>
-<h5><a id="FOOT103" href="#DOCF103">(103)</a></h3>
+<h5><a id="FOOT104" href="#DOCF104">(104)</a></h3>
 <p>In particular, header
 <samp>cmath</samp> in C++11 mode includes <samp>math.h</samp> and
 <samp>iso/math_c99.h</samp> and <code>gcc</code> had &lsquo;fixed&rsquo; an earlier version

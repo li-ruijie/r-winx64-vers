@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Extract or Replace Parts of an Object</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for Extract {base}"><tr><td>Extract {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -103,7 +104,7 @@ warning.</p>
 
 <p>These operators are generic.  You can write methods to handle indexing
 of specific classes of objects, see <a href="../../base/help/InternalMethods.html">InternalMethods</a> as well as
-<code><a href="../../base/help/[.data.frame.html">[.data.frame</a></code> and <code><a href="../../base/help/[.factor.html">[.factor</a></code>.  The
+<code><a href="../../base/help/+5B.data.frame.html">[.data.frame</a></code> and <code><a href="../../base/help/+5B.factor.html">[.factor</a></code>.  The
 descriptions here apply only to the default methods.  Note that
 separate methods are required for the replacement functions
 <code>[&lt;-</code>, <code>[[&lt;-</code> and <code>$&lt;-</code> for use when indexing occurs on
@@ -273,7 +274,7 @@ used.  So <code>m[j = 2, i = 1]</code> is equivalent to <code>m[2, 1]</code> and
 </p>
 <p>This may not be true for methods defined for them; for example it is
 not true for the <code>data.frame</code> methods described in
-<code><a href="../../base/help/[.data.frame.html">[.data.frame</a></code> which warn if <code>i</code> or <code>j</code>
+<code><a href="../../base/help/+5B.data.frame.html">[.data.frame</a></code> which warn if <code>i</code> or <code>j</code>
 is named and have undocumented behaviour in that case.
 </p>
 <p>To avoid confusion, do not name index arguments (but <code>drop</code> and
@@ -335,7 +336,7 @@ Wadsworth &amp; Brooks/Cole.
 </p>
 <p><code><a href="../../base/help/list.html">list</a></code>, <code><a href="../../base/help/array.html">array</a></code>, <code><a href="../../base/help/matrix.html">matrix</a></code>.
 </p>
-<p><code><a href="../../base/help/[.data.frame.html">[.data.frame</a></code> and <code><a href="../../base/help/[.factor.html">[.factor</a></code> for the
+<p><code><a href="../../base/help/+5B.data.frame.html">[.data.frame</a></code> and <code><a href="../../base/help/+5B.factor.html">[.factor</a></code> for the
 behaviour when applied to data.frame and factors.
 </p>
 <p><code><a href="../../base/help/Syntax.html">Syntax</a></code> for operator precedence, and the
@@ -399,5 +400,5 @@ stopifnot( identical(li$p, pi), #-- a warning
 if(is.null(op[[1]])) op[[1]] &lt;- FALSE; options(op)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

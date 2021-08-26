@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Sequence Generation</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for seq {base}"><tr><td>seq {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -78,7 +79,7 @@ if it is called with just one argument intending this to be taken as
 <code>along.with</code>: it is much better to use <code>seq_along</code> in that
 case.
 </p>
-<p><code>seq.int</code> is an <a href="../../base/help/internal generic.html">internal generic</a> which dispatches on
+<p><code>seq.int</code> is an <a href="../../base/help/internal+20generic.html">internal generic</a> which dispatches on
 methods for <code>"seq"</code> based on the class of the first supplied
 argument (before argument matching).
 </p>
@@ -142,7 +143,7 @@ arguments return a vector of type <code>"integer"</code> or <code>"double"</code
 programmers should not rely on which.
 </p>
 <p><code>seq_along</code> and <code>seq_len</code> return an integer vector, unless
-it is a <em><a href="../../base/help/long vector.html">long vector</a></em> when it will be double.
+it is a <em><a href="../../base/help/long+20vector.html">long vector</a></em> when it will be double.
 </p>
 
 
@@ -158,7 +159,7 @@ Wadsworth &amp; Brooks/Cole.
 
 <p>The methods <code><a href="../../base/help/seq.Date.html">seq.Date</a></code> and <code><a href="../../base/help/seq.POSIXt.html">seq.POSIXt</a></code>.
 </p>
-<p><code><a href="../../base/help/:.html">:</a></code>,
+<p><code><a href="../../base/help/+3A.html">:</a></code>,
 <code><a href="../../base/help/rep.html">rep</a></code>,
 <code><a href="../../base/help/sequence.html">sequence</a></code>,
 <code><a href="../../base/help/row.html">row</a></code>,
@@ -178,5 +179,5 @@ seq(1.575, 5.125, by = 0.05)
 seq(17) # same as 1:17, or even better seq_len(17)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

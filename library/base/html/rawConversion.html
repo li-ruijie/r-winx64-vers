@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Convert to or from (Bit/Packed) Raw Vectors</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for rawConversion {base}"><tr><td>rawConversion {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -79,7 +80,7 @@ string or a character vector of single bytes (with <code>""</code> for
 <code>0</code>).  (Note that a single character string could contain
 embedded nuls; only trailing nulls are allowed and will be removed.)
 In either case it is possible to create a result which is invalid in a
-multibyte locale, e.g. one using UTF-8. <a href="../../base/help/Long vectors.html">Long vectors</a> are
+multibyte locale, e.g. one using UTF-8. <a href="../../base/help/Long+20vectors.html">Long vectors</a> are
 allowed if <code>multiple</code> is true.
 </p>
 <p><code>rawShift(x, n)</code> shift the bits in <code>x</code> by <code>n</code> positions
@@ -185,5 +186,5 @@ pbx &lt;- apply(bx, 2, packBits, type="double")
 stopifnot( identical(pbx, x))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

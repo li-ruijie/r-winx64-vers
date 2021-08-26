@@ -1,11 +1,151 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: R News</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for NEWS"><tr><td>NEWS</td><td style="text-align: right;">R Documentation</td></tr></table>
 
 <h2>R News</h2>
+
+<h3><img src="../help/figures/../../html/Rlogo.svg" class="toplogo" alt="[R logo]" /> CHANGES IN R 4.1.1</h3>
+
+
+
+<h4>NEW FEATURES</h4>
+
+
+<ul>
+<li> <p><code>require(<var>pkg</var>, quietly = TRUE)</code> is quieter and in
+particular does not warn if the package is not found.
+</p>
+</li></ul>
+
+
+
+
+<h4>DEPRECATED AND DEFUNCT</h4>
+
+
+<ul>
+<li><p> Use of <span class="samp">ftp://</span> URIs should be regarded as
+deprecated, with on-going support confined to <code>method =
+	"libcurl"</code> and not routinely tested.  (Nowadays no major browser
+supports them.)
+</p>
+</li>
+<li><p> The non-default <code>method = "internal"</code> is deprecated for
+<span class="samp">http://</span> and <span class="samp">ftp://</span> URIs for both
+<code>download.file</code> and <code>url</code>.
+</p>
+</li>
+<li><p> On Windows, <code>method = "wininet"</code> is deprecated for
+<span class="samp">http://</span>, <span class="samp">https://</span> and <span class="samp">ftp://</span> URIs for both
+<code>download.file</code> and <code>url</code>.  (A warning is only given for
+<span class="samp">ftp://</span>.)
+</p>
+<p>For <span class="samp">ftp://</span> URIs the default method is now <code>"libcurl"</code>
+if available (which it is on <acronym><span class="acronym">CRAN builds</span></acronym>).
+</p>
+<p><code>method = "wininet"</code> remains the default for <span class="samp">http://</span>
+and <span class="samp">https://</span> URIs but if <code>libcurl</code> is available, using
+<code>method = "libcurl"</code> is preferred.
+</p>
+</li></ul>
+
+
+
+
+<h4>INSTALLATION</h4>
+
+
+<ul>
+<li> <p><code>make check</code> now works also without a LaTeX
+installation.  (Thanks to Sebastian Meyer's <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18103">PR#18103</a>.)
+</p>
+</li></ul>
+
+
+
+
+<h4>BUG FIXES</h4>
+
+
+<ul>
+<li> <p><code>make check-devel</code> works again in an <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> build
+configured with <span class="option">--without-recommended-packages</span>.
+</p>
+</li>
+<li> <p><code>qnbinom(p, size, mu)</code> for large <code>size/mu</code> is correct
+now in a range of cases (<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18095">PR#18095</a>); similarly for the <code>(size,
+      prob)</code> parametrization of the negative binomial.  Also <code>qpois()</code>
+and <code>qbinom()</code> are better and or faster for extreme cases.  The
+underlying C code has been modularized and is common to all four cases
+of discrete distributions.
+</p>
+</li>
+<li> <p><code>gap.axis</code> is now part of the <code>axis()</code> arguments which
+are passed from <code>bxp()</code>, and hence <code>boxplot()</code>.  (Thanks to
+Martin Smith's report and suggestions in <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18109">PR#18109</a>.)
+</p>
+</li>
+<li> <p><code>.First</code> and <code>.Last</code> can again be set from the site
+profile.
+</p>
+</li>
+<li> <p><code>seq.int(from, to, *)</code> and <code>seq.default(..)</code> now work
+better in large range cases where <code>from-to</code> is infinite where
+the two boundaries are finite.
+</p>
+</li>
+<li> <p><code>all.equal(x,y)</code> now returns <code>TRUE</code> correctly also
+when several entries of <code>abs(x)</code> and <code>abs(y)</code> are close to
+<code>.Machine$double.xmax</code>, the largest finite <code>numeric</code>.
+</p>
+</li>
+<li> <p><code>model.frame()</code> now clears the object bit when removing the
+<code>class</code> attribute of a value via <code>na.action</code> (<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18100">PR#18100</a>).
+</p>
+</li>
+<li> <p><code>charClass()</code> now works with multi-character
+strings on Windows (<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18104">PR#18104</a>, fixed by Bill Dunlap).
+</p>
+</li>
+<li> <p><code>encodeString()</code> on Solaris now works again in Latin-1
+encoding on characters represented differently in UTF-8.  Support for
+surrogate pairs on Solaris has been improved.
+</p>
+</li>
+<li> <p><code>file.show()</code> on Windows now works with non-ASCII path
+names representable in the current native encoding (<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18132">PR#18132</a>).
+</p>
+</li>
+<li><p> Embedded <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> on Windows can now find <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> home directory via the
+registry even when installed only for the current user (<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18135">PR#18135</a>).
+</p>
+</li>
+<li> <p><code>pretty(x)</code> with finite <code>x</code> now returns finite values
+also in the case where the extreme <code>x</code> values are close in size
+to the maximal representable number <code>.Machine$double.xmax</code>.
+</p>
+<p>Also, it's been tweaked for very small ranges and when a boundary is
+close (or equal) to zero; e.g., <code>pretty(c(0,1e-317))</code> no longer
+has negative numbers, currently still warning about a very small
+range, and <code>pretty(2^-(1024 - 2^-1/(c(24,10))))</code> is more accurate.
+</p>
+</li>
+<li><p> The error message for not finding vignette files when weaving
+has correct file sizes now. (Thanks to Sebastian Meyer's <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18154">PR#18154</a>.)
+</p>
+</li>
+<li> <p><code>dnbinom(20, &lt;large&gt;, 1)</code> now correctly gives 0, and
+similar cases are more accurate with underflow precaution.
+(Reported by Francisco Vera Alcivar in <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=18072">PR#18072</a>.)
+</p>
+</li></ul>
+
+
+
 
 <h3><img src="../help/figures/../../html/Rlogo.svg" class="toplogo" alt="[R logo]" /> CHANGES IN R 4.1.0</h3>
 
@@ -44,6 +184,7 @@ cases added to these.  (Reported by Alexander Fowler in <a href="https://bugs.R-
 <li> <p><span class="samp">www.omegahat.net</span> is no longer one of the repositories
 known by default to <code>setRepositories()</code>.  (Nowadays it only
 provides source packages and is often unavailable.)
+
 </p>
 </li>
 <li><p> Function <code>package_dependencies()</code> (in package
@@ -261,7 +402,7 @@ encoding part (if any) of the result from
 </p>
 </li>
 <li><p> New function <code>gregexec()</code> which generalizes <code>regexec()</code>
-to find <em>all</em> disjoint matches and well as all substrings
+to find <em>all</em> disjoint matches and all substrings
 corresponding to parenthesized subexpressions of the given regular
 expression.  (Contributed by Brodie Gaslam.)
 </p>
@@ -644,7 +785,8 @@ replace the system <code>iswxxxxx</code> functions on Windows, macOS and
 AIX have been updated to Unicode 13.0.0.
 </p>
 <p>The character-width tables have been updated to include new
-assignments in Unicode 13.0.0.
+assignments in Unicode 13.0.0.  This included treating all control
+characters as having zero width.
 </p>
 </li>
 <li><p> The code for evaluating default (extended) regular
@@ -2330,4 +2472,4 @@ and
 
 
 
-</body></html>
+</div></body></html>

@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Nonlinear Least Squares</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for nls {stats}"><tr><td>nls {stats}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -403,21 +404,19 @@ try(nlm1 &lt;- update(nlmod, control = list(tol = 1e-7))) # where central diff. 
 ## contraction on 21 animals.  The observed variables are Strip
 ## (identifier of muscle), Conc (Cacl concentration) and Length
 ## (resulting length of muscle section).
-utils::data(muscle, package = "MASS")
-
+## IGNORE_RDIFF_BEGIN
+if(requireNamespace("MASS", quietly = TRUE)) withAutoprint({
 ## The non linear model considered is
 ##       Length = alpha + beta*exp(-Conc/theta) + error
 ## where theta is constant but alpha and beta may vary with Strip.
 
-with(muscle, table(Strip)) # 2, 3 or 4 obs per strip
+with(MASS::muscle, table(Strip)) # 2, 3 or 4 obs per strip
 
 ## We first use the plinear algorithm to fit an overall model,
 ## ignoring that alpha and beta might vary with Strip.
-musc.1 &lt;- nls(Length ~ cbind(1, exp(-Conc/th)), muscle,
+musc.1 &lt;- nls(Length ~ cbind(1, exp(-Conc/th)), MASS::muscle,
               start = list(th = 1), algorithm = "plinear")
-## IGNORE_RDIFF_BEGIN
 summary(musc.1)
-## IGNORE_RDIFF_END
 
 ## Then we use nls' indexing feature for parameters in non-linear
 ## models to use the conventional algorithm to fit a model in which
@@ -426,13 +425,13 @@ summary(musc.1)
 ## Note that with indexed parameters, the starting values must be
 ## given in a list (with names):
 b &lt;- coef(musc.1)
-musc.2 &lt;- nls(Length ~ a[Strip] + b[Strip]*exp(-Conc/th), muscle,
+musc.2 &lt;- nls(Length ~ a[Strip] + b[Strip]*exp(-Conc/th), MASS::muscle,
               start = list(a = rep(b[2], 21), b = rep(b[3], 21), th = b[1]))
-## IGNORE_RDIFF_BEGIN
 summary(musc.2)
+})
 ## IGNORE_RDIFF_END
 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>stats</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>stats</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

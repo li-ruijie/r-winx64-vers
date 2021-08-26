@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Extract Components from a Model Frame</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for model.extract {stats}"><tr><td>model.extract {stats}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -61,7 +62,7 @@ in the call producing the model frame: it does check that the offset
 is numeric.
 </p>
 <p><code>model.weights</code> is slightly different from
-<code>model.frame(, "weights")</code> in not naming the vector it returns.
+<code>model.extract(, "weights")</code> in not naming the vector it returns.
 </p>
 
 
@@ -85,7 +86,8 @@ stopifnot(model.extract(a, "response") == model.response(a))
 a &lt;- model.frame(ncases/(ncases+ncontrols) ~ agegp + tobgp + alcgp,
                  data = esoph, weights = ncases+ncontrols)
 model.response(a)
-model.extract(a, "weights")
+(mw &lt;- model.extract(a, "weights"))
+stopifnot(identical(unname(mw), model.weights(a)))
 
 a &lt;- model.frame(cbind(ncases,ncontrols) ~ agegp,
                  something = tobgp, data = esoph)
@@ -93,5 +95,5 @@ names(a)
 stopifnot(model.extract(a, "something") == esoph$tobgp)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>stats</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>stats</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

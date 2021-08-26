@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Pattern Matching and Replacement</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for grep {base}"><tr><td>grep {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -53,7 +54,7 @@ gregexec(pattern, text, ignore.case = FALSE, perl = FALSE,
 <table summary="R argblock">
 <tr valign="top"><td><code>pattern</code></td>
 <td>
-<p>character string containing a <a href="../../base/help/regular expression.html">regular expression</a>
+<p>character string containing a <a href="../../base/help/regular+20expression.html">regular expression</a>
 (or character string for <code>fixed = TRUE</code>) to be matched
 in the given character vector.  Coerced by
 <code><a href="../../base/help/as.character.html">as.character</a></code> to a character string if possible.  If a
@@ -65,7 +66,7 @@ is used with a warning.  Missing values are allowed except for
 <td>
 <p>a character vector where matches are sought, or an
 object which can be coerced by <code>as.character</code> to a character
-vector.  <a href="../../base/help/Long vectors.html">Long vectors</a> are supported.</p>
+vector.  <a href="../../base/help/Long+20vectors.html">Long vectors</a> are supported.</p>
 </td></tr>
 <tr valign="top"><td><code>ignore.case</code></td>
 <td>
@@ -136,7 +137,7 @@ extended regular expressions (the default).
 </p>
 </li></ol>
 
-<p>See the help pages on <a href="../../base/help/regular expression.html">regular expression</a> for details of the
+<p>See the help pages on <a href="../../base/help/regular+20expression.html">regular expression</a> for details of the
 different types of regular expressions.
 </p>
 <p>The two <code>*sub</code> functions differ only in that <code>sub</code> replaces
@@ -179,7 +180,7 @@ property support&rsquo;, which PCRE2 is by default.
 <p><code>grep(value = FALSE)</code> returns a vector of the indices
 of the elements of <code>x</code> that yielded a match (or not, for
 <code>invert = TRUE</code>).  This will be an integer vector unless the input
-is a <em><a href="../../base/help/long vector.html">long vector</a></em>, when it will be a double vector.
+is a <em><a href="../../base/help/long+20vector.html">long vector</a></em>, when it will be a double vector.
 </p>
 <p><code>grep(value = TRUE)</code> returns a character vector containing the
 selected elements of <code>x</code> (after coercion, preserving names but no
@@ -325,7 +326,7 @@ Wadsworth &amp; Brooks/Cole (<code>grep</code>)
 
 <h3>See Also</h3>
 
-<p><a href="../../base/help/regular expression.html">regular expression</a> (aka <code><a href="../../base/help/regexp.html">regexp</a></code>) for the details
+<p><a href="../../base/help/regular+20expression.html">regular expression</a> (aka <code><a href="../../base/help/regexp.html">regexp</a></code>) for the details
 of the pattern specification.
 </p>
 <p><code><a href="../../base/help/regmatches.html">regmatches</a></code> for extracting matched substrings based on
@@ -475,5 +476,5 @@ lapply(regmatches(s, gregexpr(pattern, s)),
        function(e) regmatches(e, regexec(pattern, e)))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

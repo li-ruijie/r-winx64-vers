@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Class Methods</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for UseMethod {base}"><tr><td>UseMethod {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -72,7 +73,7 @@ methods for a particular generic function or class.
 </p>
 <p><code>UseMethod</code> is a primitive function but uses standard argument
 matching.  It is not the only means of dispatch of methods, for there
-are <a href="../../base/help/internal generic.html">internal generic</a> and <a href="../../base/help/group generic.html">group generic</a> functions.
+are <a href="../../base/help/internal+20generic.html">internal generic</a> and <a href="../../base/help/group+20generic.html">group generic</a> functions.
 <code>UseMethod</code> currently dispatches on the implicit class even for
 arguments that are not objects, but the other means of dispatch do
 not.
@@ -137,7 +138,7 @@ in the current (or a previous environment) they remain evaluated.
 <p>The search for methods for <code>NextMethod</code> is slightly different
 from that for <code>UseMethod</code>.   Finding no <code>fun.default</code> is not
 necessarily an error, as the search continues to the generic
-itself.  This is to pick up an <a href="../../base/help/internal generic.html">internal generic</a> like <code>[</code>
+itself.  This is to pick up an <a href="../../base/help/internal+20generic.html">internal generic</a> like <code>[</code>
 which has no separate default method, and succeeds only if the generic
 is a <a href="../../base/help/primitive.html">primitive</a> function or a wrapper for a
 <code><a href="../../base/help/.Internal.html">.Internal</a></code> function of the same name.  (When a primitive
@@ -220,5 +221,5 @@ eds J. M. Chambers and T. J. Hastie, Wadsworth &amp; Brooks/Cole.
 <code><a href="../../utils/html/getS3method.html">getS3method</a></code>, <code><a href="../../base/help/is.object.html">is.object</a></code>.
 </p>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

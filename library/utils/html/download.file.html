@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Download File from the Internet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for download.file {utils}"><tr><td>download.file {utils}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -34,9 +35,9 @@ downloaded.</p>
 </td></tr>
 <tr valign="top"><td><code>destfile</code></td>
 <td>
-<p>a character string (or vector, see <code>url</code>) with
-the name where the downloaded file is saved.  Tilde-expansion is
-performed.</p>
+<p>a character string (or vector, see the <code>url</code>
+argument) with the file path where the downloaded file is to be
+saved.  Tilde-expansion is performed.</p>
 </td></tr>
 <tr valign="top"><td><code>method</code></td>
 <td>
@@ -90,8 +91,10 @@ header, coming from the <code>HTTPUserAgent</code> option (see
 <p>The function <code>download.file</code> can be used to download a single
 file as described by <code>url</code> from the internet and store it in
 <code>destfile</code>.
-The <code>url</code> must start with a scheme such as
-<span class="samp">http://</span>, <span class="samp">https://</span>, <span class="samp">ftp://</span> or <span class="samp">file://</span>.
+</p>
+<p>The <code>url</code> must start with a scheme such as <span class="samp">http://</span>,
+<span class="samp">https://</span>, <span class="samp">ftp://</span> or <span class="samp">file://</span>.  Which methods
+support which schemes varies by <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> version.
 </p>
 <p>If <code>method = "auto"</code> is chosen (the default), the behavior
 depends on the platform:
@@ -104,14 +107,15 @@ uses the library of that name (<a href="https://curl.se/libcurl/">https://curl.s
 </p>
 </li>
 <li><p> On Windows the <code>"wininet"</code> method is used apart from for
-<span class="samp">ftps://</span> URLs where <code>"libcurl"</code> is tried.  The
-<code>"wininet"</code> method uses the WinINet functions (part of the OS).
+<span class="samp">ftp://</span> and <span class="samp">ftps://</span> URLs where <code>"libcurl"</code> is
+tried.  The <code>"wininet"</code> method uses the WinINet functions (part
+of the OS).  However, it is deprecated for <span class="samp">http://</span> and
+<span class="samp">https://</span> URLs in favour of <code>"libcurl"</code>.
 
 </p>
 <p>Support for method <code>"libcurl"</code> is optional on Windows: use
 <code><a href="../../base/html/capabilities.html">capabilities</a>("libcurl")</code> to see if it is supported on
-your build.  It uses an external library of that name
-(<a href="https://curl.se/libcurl/">https://curl.se/libcurl/</a>) against which <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> can be compiled.
+your build (it is on <acronym><span class="acronym">CRAN</span></acronym> builds).
 </p>
 </li></ul>
 
@@ -148,11 +152,13 @@ quote the endpoint of redirections.)
 <code>"internal"</code> method but are supported by the <code>"libcurl"</code>
 method and the <code>"wininet"</code> method on Windows.
 </p>
+<p>Support for <span class="samp">ftp://</span> URLs in the <code>"internal"</code> method was
+deprecated in <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 4.1.1.
+</p>
 <p>See <code><a href="../../base/html/connections.html">url</a></code> for how <span class="samp">file://</span> URLs are interpreted,
 especially on Windows.  The <code>"internal"</code> and <code>"wininet"</code>
-methods do not percent-decode <span class="samp">file://</span> URLs, but the
-<code>"libcurl"</code> and <code>"curl"</code> methods do: method <code>"wget"</code>
-does not support them.
+methods do not percent-decode, but the <code>"libcurl"</code> and
+<code>"curl"</code> methods do: method <code>"wget"</code> does not support them.
 </p>
 <p>Most methods do not percent-encode special characters such as spaces
 in URLs (see <code><a href="../../utils/help/URLencode.html">URLencode</a></code>), but it seems the
@@ -184,7 +190,7 @@ serious messages, and 3 or more suppresses all messages.  For the
 <code>"libcurl"</code> method values of the option less than 2 give verbose
 output.
 </p>
-<p>A progress bar tracks the transfer platform specifically:
+<p>A progress bar tracks the transfer platform-specifically:
 </p>
 
 <dl>
@@ -195,7 +201,7 @@ is exceeded.  (In non-interactive use this uses a text version.  If the
 file length is known, an equals sign represents 2% of the transfer
 completed: otherwise a dot represents 10Kb.)</p>
 </dd>
-<dt>On a unix-alike</dt><dd><p>If the file length is known, an
+<dt>On a Unix-alike</dt><dd><p>If the file length is known, an
 equals sign represents 2% of the transfer completed: otherwise a dot
 represents 10Kb.</p>
 </dd>
@@ -372,5 +378,5 @@ and <code>internet.info</code> options used by some of the methods.
 comprehensive facilities to download from URLs.
 </p>
 
-<hr /><div style="text-align: center;">[Package <em>utils</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>utils</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

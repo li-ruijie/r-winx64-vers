@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Count the Number of Characters (or Bytes or Width)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for nchar {base}"><tr><td>nchar {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -77,7 +78,7 @@ if this cannot be calculated.</p>
 </dd>
 </dl>
 
-<p>These will often be the same, and almost always will be in single-byte
+<p>These will often be the same, and usually will be in single-byte
 locales (but note how <code>type</code> determines the default for
 <code>keepNA</code>).  There will be differences between the first two with
 multibyte character sequences, e.g. in UTF-8 locales.
@@ -157,9 +158,9 @@ use two columns in East Asia and one elsewhere.  The width quoted by
 the locale, being one except in some East Asian locales on some OSes
 (notably Windows).
 </p>
-<p>Control characters are given width zero in multi-byte locales, but are
-usually given width one in single-byte ones (as their positions are
-often undefined and maybe re-used as in CP1252 <em>vs</em> Latin-1).
+<p>Control characters are usually given width zero: this includes CR and
+LF.  Computing the width of a string containing control characters
+should be avoided (and may depend on the OS and <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> version).
 </p>
 
 
@@ -215,5 +216,5 @@ stopifnot(apply(ncT, 1, function(.) length(unique(.))) == 1,
           apply(ncF, 1, function(.) length(unique(.))) == 1)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

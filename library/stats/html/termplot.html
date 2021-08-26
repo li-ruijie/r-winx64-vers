@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Plot Regression Terms</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for termplot {stats}"><tr><td>termplot {stats}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -204,7 +205,7 @@ termplot(model, partial.resid = TRUE, se = TRUE, main = TRUE)
 termplot(model, partial.resid = TRUE, smooth = panel.smooth, span.smth = 1/4)
 if(!had.splines &amp;&amp; rs) detach("package:splines")
 
-## requires recommended package MASS
+if(requireNamespace("MASS", quietly = TRUE)) {
 hills.lm &lt;- lm(log(time) ~ log(climb)+log(dist), data = MASS::hills)
 termplot(hills.lm, partial.resid = TRUE, smooth = panel.smooth,
         terms = "log(dist)", main = "Original")
@@ -212,7 +213,7 @@ termplot(hills.lm, transform.x = TRUE,
          partial.resid = TRUE, smooth = panel.smooth,
 	 terms = "log(dist)", main = "Transformed")
 
-</pre>
+}</pre>
 
-<hr /><div style="text-align: center;">[Package <em>stats</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>stats</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

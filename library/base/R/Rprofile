@@ -112,6 +112,8 @@ local({
 })
 
 .sys.timezone <- NA_character_
+.First <- NULL
+.Last <- NULL
 ###-*- R -*-
 
 ## this will break if R is on a network share

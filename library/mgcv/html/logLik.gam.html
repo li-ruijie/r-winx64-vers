@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: AIC and Log likelihood for a fitted GAM</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for logLik.gam {mgcv}"><tr><td>logLik.gam {mgcv}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -47,6 +48,9 @@ freedom for use with <code>gam</code> objects.
 <code>gam</code> objects, and uses the appropriate degrees of freedom (accounting
 for penalization). See e.g. Wood, Pya and Saefken (2016) for a derivation of
 an appropriate AIC.
+</p>
+<p>For <code><a href="../../stats/html/family.html">gaussian</a></code> family models the MLE of the scale parameter is used. For other families
+with a scale parameter the estimated scale parameter is used. This is usually not exactly the MLE, and is not the simple deviance based estimator used with <code><a href="../../stats/html/glm.html">glm</a></code> models. This is because the simple deviance based estimator can be badly biased in some cases, for example when a Tweedie distribution is employed with low count data. 
 </p>
 <p>There are two possibile AIC's that might be considered for use with GAMs. Marginal
 AIC is based on the marginal likelihood of the GAM, that is the likelihood based on
@@ -98,5 +102,5 @@ doi: <a href="https://doi.org/10.1080/01621459.2016.1180986">10.1080/01621459.20
 
   <p><code><a href="../../stats/html/AIC.html">AIC</a></code></p>
 
-<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-35 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-36 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Matrix Crossproduct</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" type="text/css" href="R.css" />
-</head><body>
+</head><body><div class="container">
 
 <table width="100%" summary="page for crossprod {base}"><tr><td>crossprod {base}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
@@ -51,7 +52,7 @@ row matrices, but their <code><a href="../../base/help/names.html">names</a></co
 promoted to <code><a href="../../base/help/dimnames.html">dimnames</a></code>.  Hence, currently, the last
 example has empty dimnames.
 </p>
-<p>In the same situation, these matrix products (also <code><a href="../../base/help/%25*%25.html">%*%</a></code>)
+<p>In the same situation, these matrix products (also <code><a href="../../base/help/+25+2A+25.html">%*%</a></code>)
 are more flexible in promotion of vectors to row or column matrices, such
 that more cases are allowed, since <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 3.2.0.
 </p>
@@ -70,7 +71,7 @@ Wadsworth &amp; Brooks/Cole.
 
 <h3>See Also</h3>
 
-<p><code><a href="../../base/help/%25*%25.html">%*%</a></code> and outer product <code><a href="../../base/help/%25o%25.html">%o%</a></code>.
+<p><code><a href="../../base/help/+25+2A+25.html">%*%</a></code> and outer product <code><a href="../../base/help/+25o+25.html">%o%</a></code>.
 </p>
 
 
@@ -91,5 +92,5 @@ stopifnot(identical(tcrossprod(v, m), v %*% t(m)),
           identical(crossprod(m, v2), t(m) %*% v2))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
-</body></html>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.1.1 <a href="00Index.html">Index</a>]</div>
+</div></body></html>
