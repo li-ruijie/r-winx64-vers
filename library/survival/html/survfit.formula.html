@@ -182,7 +182,11 @@ infinitesimal jackknife (influence) values for each subject.
 These contain the values of the derivative of each value
 with respect to the case weights of each subject i:
 <i>dp/dw[i]</i>,
-evaluated at the vector of weights.
+evaluated at the vector of weights.  The resulting object will
+contain <code>influence.surv</code> and <code>influence.chaz</code>
+components.  Alternatively, options of <code>influence=1</code> or
+<code>influence=2</code> will return values for only the
+survival or hazard curves, respectively.
 </p>
 </dd>
 <dt>p0</dt><dd><p>this applies only to multi-state curves. 
@@ -355,5 +359,5 @@ text(5480, .30,"KM:prog")
 ## End(Not run)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.44-1.1 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.1-8 <a href="00Index.html">Index</a>]</div>
 </body></html>

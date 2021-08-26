@@ -41,8 +41,9 @@ including the smooths.
 <pre>
 gamm(formula,random=NULL,correlation=NULL,family=gaussian(),
 data=list(),weights=NULL,subset=NULL,na.action,knots=NULL,
-control=list(niterEM=0,optimMethod="L-BFGS-B"),
-niterPQL=20,verbosePQL=TRUE,method="ML",drop.unused.levels=TRUE,...)
+control=list(niterEM=0,optimMethod="L-BFGS-B",returnObject=TRUE),
+niterPQL=20,verbosePQL=TRUE,method="ML",drop.unused.levels=TRUE,
+mustart=NULL, etastart=NULL,...)
 </pre>
 
 
@@ -143,6 +144,14 @@ generalized case (or if the model has an offset), in which case <code>gammPQL</c
 <td>
 <p>by default unused levels are dropped from factors before fitting. For some smooths 
 involving factor variables you might want to turn this off. Only do so if you know what you are doing.</p>
+</td></tr>
+<tr valign="top"><td><code>mustart</code></td>
+<td>
+<p>starting values for mean if PQL used.</p>
+</td></tr>
+<tr valign="top"><td><code>etastart</code></td>
+<td>
+<p>starting values for linear predictor if PQL used (over-rides <code>mustart</code> if supplied).</p>
 </td></tr>
 <tr valign="top"><td><code>...</code></td>
 <td>
@@ -453,5 +462,5 @@ par(old.par)
 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-28 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-31 <a href="00Index.html">Index</a>]</div>
 </body></html>

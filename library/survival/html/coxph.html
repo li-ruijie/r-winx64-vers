@@ -24,8 +24,9 @@ of Andersen and Gill.
 coxph(formula, data=, weights, subset, 
       na.action, init, control, 
       ties=c("efron","breslow","exact"), 
-      singular.ok=TRUE, robust=FALSE, 
-      model=FALSE, x=FALSE, y=TRUE, tt, method, ...)
+      singular.ok=TRUE, robust, 
+      model=FALSE, x=FALSE, y=TRUE, tt, method=ties,
+      id, cluster, istate, statedata, ...)
 </pre>
 
 
@@ -120,6 +121,29 @@ instead.  (The two options accomplish the same goal &ndash; creation of a
 robust variance &ndash; but the second
 is more flexible).
 </p>
+</td></tr>
+<tr valign="top"><td><code>id</code></td>
+<td>
+<p>optional variable name that identifies subjects.  Only
+necessary when a subject can have multiple rows in the data, and
+there is more than one event type.  This variable will normally be
+found in <code>data</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>cluster</code></td>
+<td>
+<p>optional variable which clusters the observations, for
+the purposes of a robust variance.  If present, it implies
+<code>robust</code>.
+This variable will normally be found in <code>data</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>istate</code></td>
+<td>
+<p>optional variable giving the intial state for each
+subject. This variable will normally be found in <code>data</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>statedata</code></td>
+<td>
+<p>optional data set used to describe multistate models.</p>
 </td></tr>
 <tr valign="top"><td><code>model</code></td>
 <td>
@@ -369,5 +393,5 @@ coxph(Surv(time, status) ~ ph.ecog + tt(age), data=lung,
      tt=function(x,t,...) pspline(x + t/365.25))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.44-1.1 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.1-8 <a href="00Index.html">Index</a>]</div>
 </body></html>

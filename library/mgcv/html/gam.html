@@ -41,7 +41,7 @@ gam(formula,family=gaussian(),data=list(),weights=NULL,subset=NULL,
     optimizer=c("outer","newton"),control=list(),scale=0,
     select=FALSE,knots=NULL,sp=NULL,min.sp=NULL,H=NULL,gamma=1,
     fit=TRUE,paraPen=NULL,G=NULL,in.out,drop.unused.levels=TRUE,
-    drop.intercept=NULL,...)
+    drop.intercept=NULL,discrete=FALSE,...)
 </pre>
 
 
@@ -210,6 +210,10 @@ involving factor variables you might want to turn this off. Only do so if you kn
 <td>
 <p>Set to <code>TRUE</code> to force the model to really not have the a constant in the parametric model part,
 even with factor variables present. Can be vector when <code>formula</code> is a list.</p>
+</td></tr>
+<tr valign="top"><td><code>discrete</code></td>
+<td>
+<p>experimental option for setting up models for use with discrete methods employed in <code><a href="bam.html">bam</a></code>. Do not modify.</p>
 </td></tr>
 <tr valign="top"><td><code>...</code></td>
 <td>
@@ -650,5 +654,5 @@ detach(eg)
 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-28 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-31 <a href="00Index.html">Index</a>]</div>
 </body></html>

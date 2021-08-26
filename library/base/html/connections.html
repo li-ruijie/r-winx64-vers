@@ -564,6 +564,18 @@ not work as one might expect.
 </p>
 
 
+<h3>File paths</h3>
+
+<p>In most cases these are translated to the native encoding.
+</p>
+<p>The exceptions are <code>file</code> and <code>pipe</code> on Windows, where a
+<code>description</code> which is marked as being in UTF-8 is passed to
+Windows as a &lsquo;wide&rsquo; character string.  This allows files with
+names not in the native encoding to be opened on file systems which
+use Unicode file names (such as NTFS but not FAT32).
+</p>
+
+
 <h3>Note</h3>
 
 <p><span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span>'s connections are modelled on those in S version 4 (see Chambers,
@@ -711,5 +723,5 @@ A &lt;- read.table(con &lt;- file("students", encoding = "UCS-2LE")); close(con)
 
 ## End(Not run)</pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 3.6.1 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 3.6.2 <a href="00Index.html">Index</a>]</div>
 </body></html>
