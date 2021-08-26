@@ -216,10 +216,15 @@ any,ldiMatrix-method	diagonalMatrix-class
 any,lMatrix-method	all-methods
 any,Matrix-method	all-methods
 any,nsparseMatrix-method	nsparseMatrix-classes
+anyNA,dMatrix-method	is.na-methods
+anyNA,iMatrix-method	is.na-methods
+anyNA,lMatrix-method	is.na-methods
+anyNA,ndenseMatrix-method	is.na-methods
 anyNA,nsparseMatrix-method	is.na-methods
 anyNA,nsparseVector-method	is.na-methods
 anyNA,sparseVector-method	is.na-methods
 anyNA,xMatrix-method	is.na-methods
+anyNA,zMatrix-method	is.na-methods
 Arith,abIndex,abIndex-method	abIndex-class
 Arith,abIndex,numLike-method	abIndex-class
 Arith,CsparseMatrix,CsparseMatrix-method	CsparseMatrix-class

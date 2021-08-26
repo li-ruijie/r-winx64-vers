@@ -102,7 +102,6 @@ plain	plotmath
 plotmath	plotmath
 png	png
 postscript	postscript
-postscriptFont	grDevices-defunct
 postscriptFonts	postscriptFonts
 pretty.Date	pretty.Date
 pretty.POSIXt	pretty.Date

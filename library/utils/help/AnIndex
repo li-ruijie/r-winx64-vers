@@ -39,6 +39,7 @@ bug.report	bug.report
 build	PkgUtils
 c.person	person
 capture.output	capture.output
+changedFiles	changedFiles
 check	PkgUtils
 checkCRAN	mirrorAdmin
 choose.dir	choose.dir
@@ -84,6 +85,7 @@ edit.vignette	vignette
 emacs	edit
 example	example
 file.edit	file.edit
+fileSnapshot	changedFiles
 file_test	filetest
 Filters	choose.files
 find	apropos
@@ -91,6 +93,7 @@ findLineNum	findLineNum
 fix	fix
 fixInNamespace	getFromNamespace
 flush.console	flush.console
+format.object_size	object.size
 format.person	person
 formatOL	format
 formatUL	format
@@ -164,6 +167,8 @@ pico	edit
 print.bibentry	bibentry
 print.Bibtex	toLatex
 print.browseVignettes	browseVignettes
+print.changedFiles	changedFiles
+print.fileSnapshot	changedFiles
 print.getAnywhere	getAnywhere
 print.hsearch	help.search
 print.Latex	toLatex
@@ -252,6 +257,7 @@ str.default	str
 strOptions	str
 summary.packageStatus	packageStatus
 summaryRprof	summaryRprof
+suppressForeignCheck	globalVariables
 Sweave	Sweave
 SweaveHooks	SweaveUtils
 SweaveSyntaxLatex	Sweave
