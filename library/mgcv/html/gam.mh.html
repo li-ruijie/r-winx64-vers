@@ -108,7 +108,7 @@ par(mfrow=c(2,2))
 for(i in 1:4) {
   plot(b,select=i,scale=0,scheme=1)
   ii &lt;- b$smooth[[i]]$first.para:b$smooth[[i]]$last.para
-  ff &lt;- X[,ii]
+  ff &lt;- X[,ii]%*%t(br[,ii]) ## posterior curve sample
   fq &lt;- apply(ff,1,quantile,probs=c(.025,.16,.84,.975))
   lines(x,fq[1,],col=2,lty=2);lines(x,fq[4,],col=2,lty=2)
   lines(x,fq[2,],col=2);lines(x,fq[3,],col=2)
@@ -128,7 +128,7 @@ br &lt;- gam.mh(b,thin=2,ns=2000,rw.scale=.4)$bs
 X &lt;- model.matrix(b)
 par(mfrow=c(1,1))
 plot(x, y, col = rgb(0,0,0,0.25), ylim = c(0,1))
-ff &lt;- X
+ff &lt;- X%*%t(br) ## posterior curve sample
 linv &lt;- b$family$linkinv
 ## Get intervals for the curve on the response scale...
 fq &lt;- linv(apply(ff,1,quantile,probs=c(.025,.16,.5,.84,.975)))
@@ -144,5 +144,5 @@ lines(x,linv(fv$fit+2*fv$se.fit),lty=3)
 ## Gaussian approximation!
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-33 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-34 <a href="00Index.html">Index</a>]</div>
 </body></html>

@@ -19,10 +19,13 @@ medoids&rdquo;, a more robust version of K-means.
 <pre>
 pam(x, k, diss = inherits(x, "dist"),
     metric = c("euclidean", "manhattan"), 
-    medoids = NULL, stand = FALSE, cluster.only = FALSE,
+    medoids = if(is.numeric(nstart)) "random",
+    nstart = if(variant == "faster") 1 else NA,
+    stand = FALSE, cluster.only = FALSE,
     do.swap = TRUE,
     keep.diss = !diss &amp;&amp; !cluster.only &amp;&amp; n &lt; 100,
     keep.data = !diss &amp;&amp; !cluster.only,
+    variant = c("original", "o_1", "o_2", "f_3", "f_4", "f_5", "faster"),
     pamonce = FALSE, trace.lev = 0)
 </pre>
 
@@ -82,6 +85,12 @@ this argument will be ignored.
 indices (in <code>1:n</code>) specifying initial medoids instead of using
 the &lsquo;<em>build</em>&rsquo; algorithm.</p>
 </td></tr>
+<tr valign="top"><td><code>nstart</code></td>
+<td>
+<p>used only when <code>medoids = "random"</code>: specifies the
+<em>number</em> of random &ldquo;starts&rdquo;;  this argument corresponds to
+the one of <code><a href="../../stats/html/kmeans.html">kmeans</a>()</code> (from <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span>'s package <span class="pkg">stats</span>).</p>
+</td></tr>
 <tr valign="top"><td><code>stand</code></td>
 <td>
 <p>logical; if true, the measurements in <code>x</code> are
@@ -113,9 +122,17 @@ memory allocation <em>time</em>.</p>
 </td></tr>
 <tr valign="top"><td><code>pamonce</code></td>
 <td>
-<p>logical or integer in <code>0:5</code> specifying algorithmic
+<p>logical or integer in <code>0:6</code> specifying algorithmic
 short cuts as proposed by Reynolds et al. (2006), and
-Schubert and Rousseeuw (2019) see below.</p>
+Schubert and Rousseeuw (2019, 2021) see below.</p>
+</td></tr>
+<tr valign="top"><td><code>variant</code></td>
+<td>
+<p>a <code><a href="../../base/html/character.html">character</a></code> string denoting the variant of
+PAM algorithm to use; a more self-documenting version of <code>pamonce</code>
+which should be used preferably; note that <code>"faster"</code> not only
+uses <code>pamonce = 6</code> but also <code>nstart = 1</code> and hence
+<code>medoids = "random"</code> by default.</p>
 </td></tr>
 <tr valign="top"><td><code>trace.lev</code></td>
 <td>
@@ -158,10 +175,10 @@ By default, when <code>medoids</code> are not specified, the algorithm first
 looks for a good initial set of medoids (this is called the
 <b>build</b> phase).  Then it finds a local minimum for the
 objective function, that is, a solution such that there is no single
-switch of an observation with a medoid that will decrease the
-objective (this is called the <b>swap</b> phase).
+switch of an observation with a medoid (i.e. a &lsquo;swap&rsquo;) that will
+decrease the objective (this is called the <b>swap</b> phase).
 </p>
-<p>When the <code>medoids</code> are specified, their order does <em>not</em>
+<p>When the <code>medoids</code> are specified (or randomly generated), their order does <em>not</em>
 matter; in general, the algorithms have been designed to not depend on
 the order of the observations.
 </p>
@@ -176,7 +193,7 @@ original &ldquo;swap&rdquo; algorithm, whereas <code>pamonce = 1</code> (or
 and <code>pamonce = 2</code> additionally implements the second proposal as
 well. 
 </p>
-<p>The key ideas of FastPAM (Schubert and Rousseeuw, 2019) are implemented
+<p>The key ideas of &lsquo;FastPAM&rsquo; (Schubert and Rousseeuw, 2019) are implemented
 except for the linear approximate build as follows:
 </p>
 
@@ -189,11 +206,31 @@ that points cannot be closest to all current medoids at the same time.</p>
 per iteration, usually reducing the number of iterations.</p>
 </dd>
 <dt><code>pamonce = 5</code>:</dt><dd><p> adds minor optimizations copied from the
-<code>pamonce = 2</code> approach, and is expected to be the fastest
-variant.</p>
+<code>pamonce = 2</code> approach, and is expected to be the fastest of the
+&lsquo;FastPam&rsquo; variants included.</p>
 </dd>
 </dl>
 
+<p>&lsquo;FasterPAM&rsquo; (Schubert and Rousseeuw, 2021) is implemented via
+</p>
+
+<dl>
+<dt><code>pamonce = 6</code>:</dt><dd><p>execute each swap which improves results
+immediately, and hence typically multiple swaps per iteration;
+this swapping algorithm runs in <i>O(n^2)</i> rather than
+<i>O(n(n-k)k)</i> time which is much faster for all but small <i>k</i>.</p>
+</dd>
+</dl>
+
+<p>In addition, &lsquo;FasterPAM&rsquo; uses <em>random</em> initialization of the
+medoids (instead of the &lsquo;<em>build</em>&rsquo; phase) to avoid the
+<i>O(n^2 k)</i> initialization cost of the build algorithm.  In particular
+for large k, this yields a much faster algorithm, while preserving a
+similar result quality.
+</p>
+<p>One may decide to use <em>repeated</em> random initialization by setting
+<code>nstart &gt; 1</code>.
+</p>
 
 
 <h3>Value</h3>
@@ -223,6 +260,9 @@ or <code>do.swap=FALSE</code>, by Martin Maechler.
 <br />
 Matthias Studer, Univ.Geneva provided the <code>pamonce</code> (<code>1</code> and <code>2</code>)
 implementation.
+<br />
+Erich Schubert, TU Dortmund contributed the <code>pamonce</code> (<code>3</code> to <code>6</code>)
+implementation.
 </p>
 
 
@@ -239,7 +279,13 @@ clustering algorithms;
 <p>Erich Schubert and Peter J. Rousseeuw (2019)
 Faster k-Medoids Clustering:
 Improving the PAM, CLARA, and CLARANS Algorithms;
-Preprint, (<a href="https://arxiv.org/abs/1810.05691">https://arxiv.org/abs/1810.05691</a>).
+SISAP 2020, 171&ndash;187. doi: <a href="https://doi.org/10.1007/978-3-030-32047-8_16">10.1007/978-3-030-32047-8_16</a>.
+</p>
+
+<p>Erich Schubert and Peter J. Rousseeuw (2021)
+Fast and Eager k-Medoids Clustering:
+O(k) Runtime Improvement of the PAM, CLARA, and CLARANS Algorithms;
+Preprint, to appear in Information Systems (<a href="https://arxiv.org/abs/2008.05171">https://arxiv.org/abs/2008.05171</a>).
 </p>
 
 
@@ -281,5 +327,5 @@ data(ruspini)
 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>cluster</em> version 2.1.0 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>cluster</em> version 2.1.1 <a href="00Index.html">Index</a>]</div>
 </body></html>

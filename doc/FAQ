@@ -1604,7 +1604,7 @@ different name.
 To remove all objects in the currently active environment (typically
 '.GlobalEnv'), you can do
 
-     rm(list = ls(all = TRUE))
+     rm(list = ls(all.names = TRUE))
 
 (Without 'all = TRUE', only the objects with names not starting with a
 '.' are removed.)

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 4.0.4 (2021-02-15).
+<!-- This manual is for R, version 4.0.5 (2021-03-31).
 
 Copyright (C) 2001-2021 R Core Team
 
@@ -334,7 +334,7 @@ Next: <a href="#Obtaining-R" accesskey="n" rel="next">Obtaining R</a> &nbsp; [<a
 
 <p>This is a guide to installation and administration for R.
 </p>
-<p>This manual is for R, version 4.0.4 (2021-02-15).
+<p>This manual is for R, version 4.0.5 (2021-03-31).
 </p>
 <p>Copyright &copy; 2001&ndash;2021 R Core Team
 </p>
@@ -1037,13 +1037,13 @@ specified on the <code>make install</code> command line (at least for
 <code>libdir</code>.  The C header files can be installed to the value of
 <code>rincludedir</code>: note that as the headers are not installed into a
 subdirectory you probably want something like
-<code>rincludedir=/usr/local/include/R-4.0.4</code>.
+<code>rincludedir=/usr/local/include/R-4.0.5</code>.
 </p>
 <p>If you want the R home to be something other than
 <samp><var>libdir</var>/R</samp>, use <samp>rhome</samp>: for example
 </p>
 <div class="example">
-<pre class="example">make install rhome=/usr/local/lib64/R-4.0.4
+<pre class="example">make install rhome=/usr/local/lib64/R-4.0.5
 </pre></div>
 
 <p>will use a version-specific R home on a non-Debian Linux 64-bit
@@ -1761,7 +1761,7 @@ conversion to short name equivalents (a.k.a. DOS 8.3 names), then R
 <em>must</em> be installed in a path that does not contain spaces.
 </p>
 <p>Installation is <em>via</em> the installer
-<samp>R-4.0.4-win.exe</samp>.  Just double-click on the icon and
+<samp>R-4.0.5-win.exe</samp>.  Just double-click on the icon and
 follow the instructions.  When installing on a 64-bit version of Windows
 the options will include 32- or 64-bit versions of R (and the default is
 to install both).  You can uninstall R from the Control Panel.
@@ -1948,7 +1948,7 @@ Next: <a href="#Running-R" accesskey="n" rel="next">Running R</a>, Previous: <a 
 
 <p>The front page of a <acronym>CRAN</acronym> site has a link &lsquo;Download R for (Mac)
 OS X&rsquo;. Click on that, then download the file
-<samp>R-4.0.4.pkg</samp> and install it. This runs on macOS 10.13
+<samp>R-4.0.5.pkg</samp> and install it. This runs on macOS 10.13
 and later on &lsquo;<samp>x86_64</samp>&rsquo; (Intel) CPU (High Sierra, Mojave,
 Catalina, Big Sur, &hellip;).  It can also be installed on
 &lsquo;<samp>arm64</samp>&rsquo; (aka &lsquo;Apple Silicon&rsquo; aka &lsquo;M1&rsquo;) CPUs running Big Sur
@@ -1966,9 +1966,9 @@ tested) install R from the sources (see <a href="#macOS">macOS</a>).
 <p>It is important that if you use a binary installer package that your OS
 is fully updated: look at &lsquo;Software Update&rsquo; in &rsquo;System Preferences&rsquo;
 (&lsquo;Updates&rsquo; from the &lsquo;App Store&rsquo; on Mojave and earlier) to be sure.  (If
-using XQuartz, check that is compatible: at the time of writing the
-latest version was 2.7.11 from October 2016 but betas of 2.8.0 had just
-become available and were being offered as upgrades.)
+using XQuartz, check that it is compatible: at the time of writing the
+latest version was 2.7.11 from October 2016 but pre-releases of 2.8.0
+had just become available and were being offered as upgrades.)
 </p>
 <p>To install, just double-click on the icon of the file you downloaded.
 At the &lsquo;Installation Type&rsquo; stage, note the option to &lsquo;Customize&rsquo;.  This
@@ -3784,8 +3784,9 @@ Next: <a href="#Linear-algebra" accesskey="n" rel="next">Linear algebra</a>, Pre
 
 <p>The ability to use translated messages makes use of <code>gettext</code> and
 most likely needs <acronym>GNU</acronym> <code>gettext</code>: you do need this to work
-with new translations, but otherwise the version contained in the R
-sources will be used if no suitable external <code>gettext</code> is found.
+with new translations, but otherwise the version of the <code>gettext</code>
+runtime contained in the R sources will be used if no suitable external
+<code>gettext</code> is found.
 </p>
 <p>The &lsquo;modern&rsquo; version of the <code>X11()</code>, <code>jpeg()</code>, <code>png()</code>
 and <code>tiff()</code> graphics devices uses the <code>cairo</code> and
@@ -5603,7 +5604,8 @@ that, configure with <samp>--without-readline</samp>.
 
 </li><li> Components <code>jpeg</code>, <code>libpng</code>, <code>pkgconfig</code>, <code>tiff</code> and
 <code>zlib-system-stub</code> from <a href="https://mac.R-project.org/libs-4/">https://mac.R-project.org/libs-4/</a>,
-for the full range of bitmapped graphics devices.
+for the full range of bitmapped graphics devices.  (Some builds of
+<code>tiff</code> may require <code>libwepb</code> and/or <code>openjpeg</code>.)
 
 </li><li> An X sub-system unless configuring using <samp>--without-x</samp>: see
 <a href="https://www.xquartz.org/">https://www.xquartz.org/</a>. R&rsquo;s <code>configure</code>
@@ -5615,7 +5617,8 @@ location of <samp>/opt/X11</samp>, e.g. by
 <p>although without this linked versions under <samp>/usr/X11</samp> will be
 found.  (It seems that for some versions of macOS/XQuartz
 <samp>/usr/X11</samp> may exist but be a link to a non-existent directory:
-reinstalling XQuartz might help.)
+reinstalling XQuartz might help.)  Be wary of pre-release versions of
+XQuartz, which may be offered as an update.
 </p>
 </li><li> An Objective-C compiler, as provided by <code>clang</code> in the Command
 Line Tools: this is needed for the <code>quartz()</code> graphics device.
@@ -5627,7 +5630,7 @@ library (see <code>?.libPaths</code>).
 </p>
 </li><li> Support for <code>cairo</code> (without <code>Pango</code>) will be enabled if
 <code>pkg-config</code><a name="DOCF83" href="#FOOT83"><sup>83</sup></a> and
-XQuartz are available.  Make sure XQuartz&rsquo;s <code>pkg-config</code> files are
+XQuartz 2.7.x are available.  Make sure XQuartz&rsquo;s <code>pkg-config</code> files are
 found first on the configuration path: for example by setting
 <div class="example">
 <pre class="example">export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig
@@ -5680,13 +5683,14 @@ tar xf subversion-1.14.0-darwin15.6.tar.gz
 sudo cp subversion-1.14.0-darwin15.6/svn /usr/local/bin
 </pre></div>
 
-<p>The instructions above get <code>cairo</code> from XQuartz.  At the time of
-writing the beta distributions of XQuartz 2.8.0 did not contain
-<code>cairo</code>, so an alternative is to statically link <code>cairo</code> by
-downloding and unpacking components <code>cairo</code>, <code>fontconfig</code>,
-<code>freetype</code>, <code>pixman</code> and <code>zlib-system-stub</code> and not
-having <samp>/opt/X11/lib/pkgconfig</samp> in <code>PKG_CONFIG_PATH</code> (or at
-least, not before <samp>/usr/local/lib/pkgconfig</samp>).
+<p>The instructions above get <code>cairo</code> from XQuartz: however, at the
+time of writing some pre-release distributions of XQuartz 2.8.0 did not
+contain all the libraries required for <code>cairo</code>.  An alternative is
+to statically link <code>cairo</code> by downloding and unpacking components
+<code>cairo</code>, <code>fontconfig</code>, <code>freetype</code>, <code>pixman</code> and
+<code>zlib-system-stub</code> and not having <samp>/opt/X11/lib/pkgconfig</samp> in
+<code>PKG_CONFIG_PATH</code> (or at least, not before
+<samp>/usr/local/lib/pkgconfig</samp>).
 </p>
 <p>As from Command Line Tools version 12,
 <samp>-Wno-implicit-function-declaration</samp> needs to be included in

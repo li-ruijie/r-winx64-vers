@@ -21,7 +21,7 @@ generated with <code>plot.survfit</code>.
 <pre>
 ## S3 method for class 'survfit'
 lines(x, type="s", pch=3, col=1, lty=1,
-        lwd=1, cex=1, mark.time=FALSE, 
+        lwd=1, cex=1, mark.time=FALSE, xmax,
         fun, conf.int=FALSE,
         conf.times, conf.cap=.005, conf.offset=.012,
         conf.type = c("log", "log-log", "plain", "logit", "arcsin"),
@@ -79,10 +79,6 @@ of characters or integers, one element per curve.
 function?
 </p>
 </td></tr>  
-<tr valign="top"><td><code>...</code></td>
-<td>
-<p>other graphical parameters</p>
-</td></tr>
 <tr valign="top"><td><code>mark.time</code></td>
 <td>
 
@@ -92,6 +88,10 @@ If <code>TRUE</code>, then curves are marked at each censoring time.
 If <code>mark.time</code> is a numeric vector, then curves are marked at  
 the specified time points. 
 </p>
+</td></tr>
+<tr valign="top"><td><code>xmax</code></td>
+<td>
+<p>optional cutoff for the right hand of the curves.</p>
 </td></tr>
 <tr valign="top"><td><code>fun</code></td>
 <td>
@@ -163,6 +163,10 @@ be plotted.  The default corresponds to an unspecified state.</p>
 <p>plot the cumulative hazard, rather than the survival or
 probability in state.</p>
 </td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>other graphical parameters</p>
+</td></tr>
 </table>
 
 
@@ -173,6 +177,11 @@ the resulting object has class &lsquo;survfitms&rsquo;.  The only difference in
 the plots is that that it defaults to a curve that goes from lower
 left to upper right (starting at 0), where survival curves default
 to starting at 1 and going down.  All other options are identical.
+</p>
+<p>If the user set an explicit range in an earlier <code>plot.survfit</code>
+call, e.g. via <code>xlim</code> or <code>xmax</code>, subsequent calls to
+this function remember the right hand cutoff. This memory can be
+erased by <code>options(plot.survfit) &lt;- NULL</code>. 
 </p>
 
 
@@ -216,5 +225,5 @@ title(main="Primary Biliary Cirrhosis, Observed and Expected")
 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-7 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-10 <a href="00Index.html">Index</a>]</div>
 </body></html>

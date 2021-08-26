@@ -210,6 +210,14 @@ to print and an error message will result.
 For the second usage we almost always want <code>extend=TRUE</code>, so that the
 results will have a predictable length.
 </p>
+<p>The <code>survfit</code> object itself will have a row of information at each
+censoring or event time, it does not save information on each unique
+entry time.  For printout at two time points t1, t2, this function will
+give the the number at risk at the smallest event times that are &gt;= t1
+and &gt;= t2, respectively, the survival curve at the largest recoreded times
+&lt;= t1 and &lt;= t2, and the number of events and censorings in the interval
+t1 &lt; t &lt;= t2.  
+</p>
 
 
 <h3>See Also</h3>
@@ -225,5 +233,5 @@ summary( survfit( Surv(futime, fustat)~1, data=ovarian))
 summary( survfit( Surv(futime, fustat)~rx, data=ovarian))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-7 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-10 <a href="00Index.html">Index</a>]</div>
 </body></html>

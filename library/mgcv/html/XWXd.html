@@ -91,11 +91,11 @@ be sparse matrices of class <code>"dgCMatrix"</code>, in which case the list req
 </td></tr>
 <tr valign="top"><td><code>lt</code></td>
 <td>
-<p>use only columns of X corresponding to these model matrix terms (for left hand <code>X</code> in <code>XWXd</code>).</p>
+<p>use only columns of X corresponding to these model matrix terms (for left hand <code>X</code> in <code>XWXd</code>). If <code>NULL</code> set to <code>rt</code>.</p>
 </td></tr>
 <tr valign="top"><td><code>rt</code></td>
 <td>
-<p>as <code>lt</code> for right hand <code>X</code>.</p>
+<p>as <code>lt</code> for right hand <code>X</code>. If <code>NULL</code> set to <code>lt</code>. If <code>lt</code> and <code>rt</code> are <code>NULL</code> use all columns.</p>
 </td></tr>
 <tr valign="top"><td><code>V</code></td>
 <td>
@@ -122,10 +122,10 @@ be sparse matrices of class <code>"dgCMatrix"</code>, in which case the list req
 <h3>References</h3>
 
 <p>Wood, S.N., Li, Z., Shaddick, G. &amp; Augustin N.H. (2017) Generalized additive models for gigadata: modelling the UK black smoke network daily data. Journal of the American Statistical Association. 112(519):1199-1210
-<a href="https://dx.doi.org/10.1080/01621459.2016.1195744">https://dx.doi.org/10.1080/01621459.2016.1195744</a>
+doi: <a href="https://doi.org/10.1080/01621459.2016.1195744">10.1080/01621459.2016.1195744</a>
 </p>
 <p>Li, Z &amp; S.N. Wood (2019) Faster model matrix crossproducts for large generalized linear models with discretized covariates. Statistics and Computing.
-<a href="https://doi.org/10.1007/s11222-019-09864-2">https://doi.org/10.1007/s11222-019-09864-2</a>
+doi: <a href="https://doi.org/10.1007/s11222-019-09864-2">10.1007/s11222-019-09864-2</a>
 </p>
 
 
@@ -190,5 +190,5 @@ be sparse matrices of class <code>"dgCMatrix"</code>, in which case the list req
   range(d1-d2);plot(d1,d2,pch=".")
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-33 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>mgcv</em> version 1.8-34 <a href="00Index.html">Index</a>]</div>
 </body></html>

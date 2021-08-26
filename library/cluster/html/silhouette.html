@@ -23,7 +23,7 @@ silhouette(x, ...)
 ## S3 method for class 'partition'
 silhouette(x, ...)
 ## S3 method for class 'clara'
-silhouette(x, full = FALSE, ...)
+silhouette(x, full = FALSE, subset = NULL, ...)
 
 sortSilhouette(object, ...)
 ## S3 method for class 'silhouette'
@@ -60,10 +60,18 @@ specified instead of <code>dist</code>, which can be more efficient.</p>
 </td></tr>
 <tr valign="top"><td><code>full</code></td>
 <td>
-<p>logical specifying if a <em>full</em> silhouette should be
-computed for <code><a href="clara.html">clara</a></code> object.  Note that this requires
-<i>O(n^2)</i> memory, since the full dissimilarity (see
-<code><a href="daisy.html">daisy</a></code>) is needed internally.</p>
+<p>logical or number in <i>[0,1]</i> specifying if a <em>full</em>
+silhouette should be computed for <code><a href="clara.html">clara</a></code> object.  When a
+number, say <i>f</i>, for a random <code><a href="../../base/html/sample.html">sample.int</a>(n, size = f*n)</code>
+of the data the silhouette values are computed.
+This requires <i>O((f*n)^2)</i> memory, since the full dissimilarity of
+the (sub)sample (see <code><a href="daisy.html">daisy</a></code>) is needed internally.</p>
+</td></tr>
+<tr valign="top"><td><code>subset</code></td>
+<td>
+<p>a subset from <code>1:n</code>, specified instead of <code>full</code>
+to specify the indices of the observations to be used for the silhouette
+computations.</p>
 </td></tr>
 <tr valign="top"><td><code>object</code></td>
 <td>
@@ -275,5 +283,5 @@ si4 &lt;- silhouette(cutree(ar, k = 2), daisy(ruspini))
 plot(si4, nmax = 80, cex.names = 0.5)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>cluster</em> version 2.1.0 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>cluster</em> version 2.1.1 <a href="00Index.html">Index</a>]</div>
 </body></html>

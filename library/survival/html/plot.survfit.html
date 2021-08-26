@@ -149,20 +149,22 @@ messages about out of bounds points are not generated.
 <tr valign="top"><td><code>fun</code></td>
 <td>
 
-<p>an arbitrary function defining a transformation of the survival curve. 
+<p>an arbitrary function defining a transformation of the survival
+(or probability in state, or cumulative hazard) curves. 
 For example <code>fun=log</code> is an alternative way to draw a log-survival curve 
 (but with the axis labeled with log(S) values), 
 and <code>fun=sqrt</code> would generate a curve on square root scale. 
-Five often used transformations can be specified with a character 
+Four often used transformations can be specified with a character 
 argument instead: <code>"S"</code> gives the usual survival curve,
 <code>"log"</code> is the same as using the <code>log=T</code> option, 
 <code>"event"</code> or <code>"F"</code> plots the empirical CDF <i>F(t)= 1-S(t)</i>
-(f(y) = 1-y),  
-<code>"cumhaz"</code> plots the cumulative hazard function (see details), and 
+(f(y) = 1-y), and
 <code>"cloglog"</code> creates a complimentary log-log survival plot (f(y) = 
 log(-log(y)) along with log scale for the x-axis).
 The terms <code>"identity"</code> and <code>"surv"</code> are
 allowed as synonyms for <code>type="S"</code>.
+The argument <code>"cumhaz"</code> causes the cumulative hazard function
+to be plotted.
 </p>
 </td></tr>
 <tr valign="top"><td><code>xlab</code></td>
@@ -238,7 +240,8 @@ be plotted.  (Also see the <code>istate0</code> argument in
 <tr valign="top"><td><code>cumhaz</code></td>
 <td>
 <p>plot the cumulative hazard rather than the probability
-in state or survival</p>
+in state or survival.  Optionally, this can be a numeric vector
+specifying which columns of the <code>cumhaz</code> component to plot.</p>
 </td></tr>
 <tr valign="top"><td><code>ymin</code></td>
 <td>
@@ -263,7 +266,7 @@ underlying plot method, such as xlab or ylab.</p>
 <p>If the object contains a cumulative hazard curve, then
 <code>fun='cumhaz'</code> will plot that curve, otherwise it will plot
 -log(S) as an approximation.  Theoretically, S =
-<i>log(-H)</i> where S is the survival and
+<i>exp(-H)</i> where S is the survival and
 <i>H</i> is the cumulative hazard.  The same relationship
 holds for estimates of S and <i>H</i> only in special cases,
 but the approximation is often close.
@@ -299,6 +302,14 @@ and for all subsequent actions such as adding a legend, whereas <code>yscale</co
 affected only the axis label.  This was normalized in version 2-36.4,
 and both parameters now only affect the labeling.
 </p>
+<p>In versions prior to approximately 2.36 a <code>survfit</code> object did
+not contain the cumulative hazard as a separate result, and the use of
+fun=&quot;cumhaz&quot; would plot the approximation -log(surv) to the cumulative
+hazard.  When cumulative hazards were added to the object, the
+<code>cumhaz=TRUE</code> argument to the plotting function was added.
+In version 2.3-8 the use of fun=&quot;cumhaz&quot; became a synonym for
+<code>cumhaz=TRUE</code>.
+</p>
 
 
 <h3>See Also</h3>
@@ -322,5 +333,5 @@ plot(lsurv2, lty=2:3, fun="cumhaz",
 	xlab="Months", ylab="Cumulative Hazard") 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-7 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-10 <a href="00Index.html">Index</a>]</div>
 </body></html>

@@ -19,7 +19,7 @@ compute on the remaining, uncensored data.
 <h3>Usage</h3>
 
 <pre>
-rttright(formula, data, weights, subset, na.action, time, id, timefix = TRUE)
+rttright(formula, data, weights, subset, na.action, times, id, timefix = TRUE)
 </pre>
 
 
@@ -66,7 +66,7 @@ should be used in the fit.
 Default is <code>options()$na.action</code>. 
 </p>
 </td></tr>
-<tr valign="top"><td><code>time</code></td>
+<tr valign="top"><td><code>times</code></td>
 <td>
 <p>a vector of time points, for which to return updated
 weights.  If missing, a time after the largest time in the data is
@@ -128,5 +128,5 @@ cdf &lt;- cdf[!duplicated(aml$time[index], fromLast=TRUE)]  # remove duplicates
 cbind(time=afit$time, KM= afit$surv, RTTR= 1-cdf)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-7 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-10 <a href="00Index.html">Index</a>]</div>
 </body></html>

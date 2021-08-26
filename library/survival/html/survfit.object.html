@@ -120,9 +120,17 @@ upper confidence limit for the survival curve or pstate
 lower confidence limit for the survival curve or pstate
 </p>
 </td></tr>
-<tr valign="top"><td><code>start.time, p0, sp0</code></td>
+<tr valign="top"><td><code>start.time</code></td>
 <td>
-<p>see <code>details</code> below
+<p>optional, the starting time for the curve if other
+than 0</p>
+</td></tr>
+<tr valign="top"><td><code>p0, sp0</code></td>
+<td>
+<p>for a multistate object, the distribution of starting
+states.  If the curve has a strata dimension, this will be a matrix
+one row per stratum.  The <code>sp0</code> element has the standard error
+of p0, if p0 was estimated.
 </p>
 </td></tr>
 <tr valign="top"><td><code>newdata</code></td>
@@ -243,5 +251,5 @@ and align the data.
 <code><a href="survfit0.html">survfit0</a></code>
 </p>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-7 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-10 <a href="00Index.html">Index</a>]</div>
 </body></html>
