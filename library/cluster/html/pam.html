@@ -113,8 +113,9 @@ memory allocation <em>time</em>.</p>
 </td></tr>
 <tr valign="top"><td><code>pamonce</code></td>
 <td>
-<p>logical or integer in <code>0:2</code> specifying algorithmic
-short cuts as proposed by Reynolds et al. (2006), see below.</p>
+<p>logical or integer in <code>0:5</code> specifying algorithmic
+short cuts as proposed by Reynolds et al. (2006), and
+Schubert and Rousseeuw (2019) see below.</p>
 </td></tr>
 <tr valign="top"><td><code>trace.lev</code></td>
 <td>
@@ -166,7 +167,8 @@ the order of the observations.
 </p>
 <p>The <code>pamonce</code> option, new in cluster 1.14.2 (Jan. 2012), has been
 proposed by Matthias Studer, University of Geneva, based on the
-findings by Reynolds et al. (2006).
+findings by Reynolds et al. (2006) and was extended by Erich Schubert,
+TU Dortmund, with the FastPAM optimizations.
 </p>
 <p>The default <code>FALSE</code> (or integer <code>0</code>) corresponds to the
 original &ldquo;swap&rdquo; algorithm, whereas <code>pamonce = 1</code> (or
@@ -174,6 +176,24 @@ original &ldquo;swap&rdquo; algorithm, whereas <code>pamonce = 1</code> (or
 and <code>pamonce = 2</code> additionally implements the second proposal as
 well. 
 </p>
+<p>The key ideas of FastPAM (Schubert and Rousseeuw, 2019) are implemented
+except for the linear approximate build as follows:
+</p>
+
+<dl>
+<dt><code>pamonce = 3</code>:</dt><dd>
+<p>reduces the runtime by a factor of O(k) by exploiting
+that points cannot be closest to all current medoids at the same time.</p>
+</dd>
+<dt><code>pamonce = 4</code>:</dt><dd><p> additionally allows executing multiple swaps
+per iteration, usually reducing the number of iterations.</p>
+</dd>
+<dt><code>pamonce = 5</code>:</dt><dd><p> adds minor optimizations copied from the
+<code>pamonce = 2</code> approach, and is expected to be the fastest
+variant.</p>
+</dd>
+</dl>
+
 
 
 <h3>Value</h3>
@@ -201,7 +221,7 @@ the maximal integer (<code><a href="../../base/html/zMachine.html">.Machine</a>$
 and augmented in several ways, e.g. to allow <code>cluster.only=TRUE</code>
 or <code>do.swap=FALSE</code>, by Martin Maechler.
 <br />
-Matthias Studer, Univ.Geneva provided the <code>pamonce</code>
+Matthias Studer, Univ.Geneva provided the <code>pamonce</code> (<code>1</code> and <code>2</code>)
 implementation.
 </p>
 
@@ -213,7 +233,13 @@ implementation.
 Clustering rules: A comparison of partitioning and hierarchical
 clustering algorithms;
 <em>Journal of Mathematical Modelling and Algorithms</em> <b>5</b>,
-475&ndash;504 (<a href="http://dx.doi.org/10.1007/s10852-005-9022-1">http://dx.doi.org/10.1007/s10852-005-9022-1</a>).
+475&ndash;504. doi: <a href="http://doi.org/10.1007/s10852-005-9022-1">10.1007/s10852-005-9022-1</a>.
+</p>
+
+<p>Erich Schubert and Peter J. Rousseeuw (2019)
+Faster k-Medoids Clustering:
+Improving the PAM, CLARA, and CLARANS Algorithms;
+Preprint, (<a href="https://arxiv.org/abs/1810.05691">https://arxiv.org/abs/1810.05691</a>).
 </p>
 
 
@@ -255,5 +281,5 @@ data(ruspini)
 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>cluster</em> version 2.0.7-1 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>cluster</em> version 2.0.8 <a href="00Index.html">Index</a>]</div>
 </body></html>

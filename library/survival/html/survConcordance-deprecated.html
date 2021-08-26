@@ -113,25 +113,8 @@ not comparable.
 
 <h3>See Also</h3>
 
-<p>summary.coxph
+<p><code><a href="concordance.html">concordance</a></code>
 </p>
 
-
-<h3>Examples</h3>
-
-<pre>
-survConcordance(Surv(time, status) ~age, data=lung)
-
-options(na.action=na.exclude)
-fit &lt;- coxph(Surv(time, status) ~ ph.ecog + age + sex, lung)
-survConcordance(Surv(time, status) ~predict(fit), lung)
-## Not run: 
-  n=227 (1 observations deleted due to missing values)
-Concordance= 0.6371102 , Gamma= 0.2759638 
-concordant discordant  tied risk  tied time 
-     12544       7117        126         28 
-
-## End(Not run)</pre>
-
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.43-3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.44-1.1 <a href="00Index.html">Index</a>]</div>
 </body></html>
