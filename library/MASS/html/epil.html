@@ -106,8 +106,10 @@ epil3$pred &lt;- factor(epil3$pred,
 
 contrasts(epil3$pred) &lt;- structure(contr.sdif(3),
     dimnames = list(NULL, c("placebo-base", "drug-placebo")))
+## IGNORE_RDIFF_BEGIN
 summary(glm(y ~ pred + factor(subject) + offset(log(time)),
             family = poisson, data = epil3), cor = FALSE)
+## IGNORE_RDIFF_END
 
 summary(glmmPQL(y ~ lbase*trt + lage + V4,
                 random = ~ 1 | subject,
@@ -116,5 +118,5 @@ summary(glmmPQL(y ~ pred, random = ~1 | subject,
                 family = poisson, data = epil3))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>MASS</em> version 7.3-51.4 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>MASS</em> version 7.3-51.5 <a href="00Index.html">Index</a>]</div>
 </body></html>

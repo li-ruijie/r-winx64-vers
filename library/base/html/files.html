@@ -110,7 +110,9 @@ this will overwrite an existing element of <code>to</code>.  This is subject
 to the limitations of the OS's corresponding system call (see
 something like <code>man 2 rename</code> on a Unix-alike): in particular
 in the interpretation of &lsquo;file&rsquo;: most platforms will not rename
-files from one file system to another.  (On Windows,
+files from one file system to another.  <strong>NB:</strong> This means that
+renaming a file from a temporary directory to the user's filespace or
+during package installation will often fail.  (On Windows,
 <code>file.rename</code> can rename files but not directories across
 volumes.)  On platforms which allow directories to be renamed,
 typically neither or both of <code>from</code> and <code>to</code> must a
@@ -276,5 +278,5 @@ file.remove("A", "B", "C")
 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 3.6.2 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 3.6.3 <a href="00Index.html">Index</a>]</div>
 </body></html>

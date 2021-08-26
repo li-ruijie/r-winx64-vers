@@ -66,19 +66,19 @@ AR = $(BINPREF)ar
 BLAS_LIBS = -L"$(R_HOME)/$(IMPDIR)" -lRblas
 C_VISIBILITY = 
 CC = $(BINPREF)gcc $(M_ARCH)
-CFLAGS = -O3 -Wall $(DEBUGFLAG) -std=gnu99 -mtune=generic
+CFLAGS = -O3 -Wall $(DEBUGFLAG) -std=gnu99 -mtune=core2
 CPICFLAGS = 
 CPPFLAGS =
 CXX = $(BINPREF)g++ -std=gnu++11 $(M_ARCH)
 CXXCPP = $(CXX) -E
-CXXFLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=generic
+CXXFLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=core2
 CXXPICFLAGS =
 CXX98 = $(BINPREF)g++ $(M_ARCH)
-CXX98FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=generic
+CXX98FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=core2
 CXX98PICFLAGS = 
 CXX98STD = -std=gnu++98
 CXX11 = $(BINPREF)g++ $(M_ARCH)
-CXX11FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=generic
+CXX11FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=core2
 CXX11PICFLAGS =
 CXX11STD = -std=gnu++11
 CXX14 = 
@@ -101,12 +101,12 @@ ECHO_T =
 F_VISIBILITY = 
 ## FC is the compiler used for all Fortran as from R 3.6.0
 FC = $(BINPREF)gfortran $(M_ARCH)
-FCFLAGS = -O3 $(DEBUGFLAG) -mtune=generic
+FCFLAGS = -O3 $(DEBUGFLAG) -mtune=core2
 ## additional libs needed when linking with $(FC), e.g. on some Oracle compilers
 FCLIBS_XTRA =
 F77 = $(BINPREF)gfortran $(M_ARCH)
 F77_VISIBILITY = 
-FFLAGS = -O3 $(DEBUGFLAG) -mtune=generic
+FFLAGS = -O3 $(DEBUGFLAG) -mtune=core2
 FLIBS = -lgfortran -lm -lquadmath
 FCPICFLAGS =
 FPICFLAGS = 
