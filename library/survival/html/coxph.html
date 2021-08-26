@@ -302,7 +302,7 @@ Users may need to add <code>timefix=FALSE</code> for simulated data sets.
 
 <h3>Penalized regression</h3>
 
-<p><code>coxph</code> can now maximise a penalised partial likelihood with
+<p><code>coxph</code> can maximise a penalised partial likelihood with
 arbitrary user-defined penalty.  Supplied penalty functions include
 ridge regression (<a href="ridge.html">ridge</a>), smoothing splines
 (<a href="pspline.html">pspline</a>), and frailty models (<a href="frailty.html">frailty</a>).
@@ -369,5 +369,5 @@ coxph(Surv(time, status) ~ ph.ecog + tt(age), data=lung,
      tt=function(x,t,...) pspline(x + t/365.25))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.42-3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.43-3 <a href="00Index.html">Index</a>]</div>
 </body></html>

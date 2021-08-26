@@ -162,12 +162,16 @@ or if it has been set to <code>NA</code>.
 For example <code>fun=log</code> is an alternative way to draw a log-survival curve 
 (but with the axis labeled with log(S) values), 
 and <code>fun=sqrt</code> would generate a curve on square root scale. 
-Four often used transformations can be specified with a character 
-argument instead: <code>"log"</code> is the same as using the <code>log=T</code> option, 
-<code>"event"</code> plots cumulative events (f(y) = 1-y),  
+Five often used transformations can be specified with a character 
+argument instead: <code>"S"</code> gives the usual survival curve,
+<code>"log"</code> is the same as using the <code>log=T</code> option, 
+<code>"event"</code> or <code>"F"</code> plots the empirical CDF <i>F(t)= 1-S(t)</i>
+(f(y) = 1-y),  
 <code>"cumhaz"</code> plots the cumulative hazard function (f(y) = -log(y)), and 
 <code>"cloglog"</code> creates a complimentary log-log survival plot (f(y) = 
-log(-log(y)) along with log scale for the x-axis).  
+log(-log(y)) along with log scale for the x-axis).
+The terms <code>"identity"</code> and <code>"surv"</code> are
+allowed as synonyms for <code>type="S"</code>.
 </p>
 </td></tr>
 <tr valign="top"><td><code>xlab</code></td>
@@ -282,5 +286,5 @@ plot(lsurv2, lty=2:3, fun="cumhaz",
 	xlab="Months", ylab="Cumulative Hazard") 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.42-3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.43-3 <a href="00Index.html">Index</a>]</div>
 </body></html>

@@ -181,6 +181,19 @@ If the total number of elements is larger then the maximum
 integer the underlying C program can not create it.
 </p>
 </dd>
+<dt>istate</dt><dd><p>this applies only to multi-state curves.  An
+optional variable that gives the starting state for each
+subject.  If missing then all subjects are assumed to start in
+an single un-named state.  When a subject has multiple rows only
+the value from their first (minimal time) row is used.</p>
+</dd>
+<dt>p0</dt><dd><p>this applies only to multi-state curves. 
+An optional vector giving the initial probability across
+the states. If this is missing, then p0 is estimated using the
+frequency of the starting states of all observations at risk
+at <code>start.time</code>, or if that is not specified, at
+the time of the first event.</p>
+</dd>
 </dl>
 
 </td></tr>
@@ -340,5 +353,5 @@ text(16, .15,"Competing risk: progression", col=2)
 text(15, .30,"KM:prog")
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.42-3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.43-3 <a href="00Index.html">Index</a>]</div>
 </body></html>

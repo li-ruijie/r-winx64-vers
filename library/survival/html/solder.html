@@ -31,10 +31,10 @@ The response, measured by eye, is the number of visible solder skips.
 <dt><code>Opening</code></dt><dd><p>the amount of clearance around the mounting
 pad (3 levels)</p>
 </dd>
-<dt><code>Solder</code></dt><dd><p>the amount of solder (2 levels)</p>
+<dt><code>Solder</code></dt><dd><p>the amount of solder (Thick or Thin)</p>
 </dd>
 <dt><code>Mask</code></dt><dd><p>type and thickness of the material used for the
-solder mask (5 levels)</p>
+solder mask (A1.5, A3, A6, B3, B6)</p>
 </dd>
 <dt><code>PadType</code></dt><dd><p>the geometry and size of the mounting pad (10 levels)</p>
 </dd>
@@ -73,5 +73,5 @@ index &lt;- 1 + (1:nrow(solder)) - match(solder$Mask, solder$Mask)
 solder.balance &lt;- droplevels(subset(solder, Mask != "A6" &amp; index &lt;= 180))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.42-3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 2.43-3 <a href="00Index.html">Index</a>]</div>
 </body></html>
