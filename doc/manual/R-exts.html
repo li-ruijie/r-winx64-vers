@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.2.5 (2016-04-14).
+<!-- This manual is for R, version 3.3.0 (2016-05-03).
 
 Copyright (C) 1999-2016 R Core Team
 
@@ -432,7 +432,7 @@ Next: <a href="#Acknowledgements" accesskey="n" rel="next">Acknowledgements</a> 
 R add-on packages, writing R documentation, R&rsquo;s system and
 foreign language interfaces, and the R <acronym>API</acronym>.
 </p>
-<p>This manual is for R, version 3.2.5 (2016-04-14).
+<p>This manual is for R, version 3.3.0 (2016-05-03).
 </p>
 <p>Copyright &copy; 1999&ndash;2016 R Core Team
 </p>
@@ -1030,14 +1030,19 @@ language subtags which in essence are 2-letter ISO 639-1
 639-3 (<a href="https://en.wikipedia.org/wiki/ISO_639-3">https://en.wikipedia.org/wiki/ISO_639-3</a>) language
 codes.
 </p>
-<p>As of R 3.2.0, an &lsquo;<samp>RdMacros</samp>&rsquo; field can be used to hold a
-comma-separated list of packages from which the current package will
-import <samp>Rd</samp> macro definitions.  These will be imported after the
-system macros, in the order listed in the &lsquo;<samp>RdMacros</samp>&rsquo; field, before
-any macro definitions in the current package are loaded.  Macro
-definitions in individual <samp>.Rd</samp> files in the <samp>man</samp> directory
-are loaded last, and are local to later parts of that file.  In case of
-duplicates, the last loaded definition will be used<a name="DOCF8" href="#FOOT8"><sup>8</sup></a>
+<p>An &lsquo;<samp>RdMacros</samp>&rsquo; field can be used to hold a comma-separated list of
+packages from which the current package will import <samp>Rd</samp> macro
+definitions.  These will be imported after the system macros, in the
+order listed in the &lsquo;<samp>RdMacros</samp>&rsquo; field, before any macro definitions
+in the current package are loaded.  Macro definitions in individual
+<samp>.Rd</samp> files in the <samp>man</samp> directory are loaded last, and are
+local to later parts of that file.  In case of duplicates, the last
+loaded definition will be used<a name="DOCF8" href="#FOOT8"><sup>8</sup></a>  Both <code>R CMD
+Rd2pdf</code> and <code>R CMD Rdconv</code> have an optional flag
+<samp>--RdMacros=pkglist</samp>.  The option is also a comma-separated list
+of package names, and has priority over the value given in
+<samp>DESCRIPTION</samp>.  Packages using <samp>Rd</samp> macros should depend on
+R 3.2.0 or later.
 </p>
 <blockquote>
 <p><b>Note:</b> There should be no &lsquo;<samp>Built</samp>&rsquo; or &lsquo;<samp>Packaged</samp>&rsquo; fields, as these are
@@ -1371,6 +1376,12 @@ visible (and if it is, it need not be the one from that namespace:
 <code>plot3d</code> occurs in several other packages).  If the intention is to
 give an error if the suggested package is not available, simply use
 e.g. <code>rgl::plot3d</code>.
+</p>
+<p>Note that the recommendation to use suggested packages conditionally in
+tests does also apply to packages used to manage test suites: a
+notorious example was <strong>testthat</strong> which in version 1.0.0 contained
+illegal C++ code and hence could not be installed on standards-compliant
+platforms.
 </p>
 <p>As noted above, packages in &lsquo;<samp>Enhances</samp>&rsquo; <em>must</em> be used
 conditionally and hence objects within them should always be accessed
@@ -2249,13 +2260,19 @@ all: $(SHLIB)
 $(SHLIB): mylibs
 
 mylibs:
-	(cd subdir; make)
+	(cd subdir; $(MAKE))
 </pre></div>
 
-<p>Be careful to create all the necessary dependencies, as there is a no
+<p>Be careful to create all the necessary dependencies, as there is no
 guarantee that the dependencies of <code>all</code> will be run in a
 particular order (and some of the <acronym>CRAN</acronym> build machines use
-multiple CPUs and parallel makes).
+multiple CPUs and parallel makes).  In particular,
+</p>
+<div class="example">
+<pre class="example">all: mylibs
+</pre></div>
+
+<p>does <strong>not</strong> suffice.
 </p>
 <p>Note that on Windows it is required that <samp>Makevars[.win]</samp> does
 create a DLL: this is needed as it is the only reliable way to ensure
@@ -2368,8 +2385,8 @@ SHLIB_OPENMP_FFLAGS
 Include the appropriate macro in <code>PKG_CFLAGS</code>, <code>PKG_CPPFLAGS</code>
 and so on, and also in <code>PKG_LIBS</code>.  C/C++ code that needs to be
 conditioned on the use of OpenMP can be used inside <code>#ifdef
-_OPENMP</code>: note that some toolchains used for R (including most of
-those using <code>clang</code><a name="DOCF28" href="#FOOT28"><sup>28</sup></a>) have no OpenMP support at all, not even
+_OPENMP</code>: note that some toolchains used for R (including many of
+those using <code>clang</code><a name="DOCF28" href="#FOOT28"><sup>28</sup></a>)  have no OpenMP support at all, not even
 <samp>omp.h</samp>.
 </p>
 <p>For example, a package with C code written for OpenMP should have in
@@ -2479,13 +2496,13 @@ versions of OpenBSD used a different library name).
 <p>POSIX threads are not normally used on Windows, which has its own native
 concepts of threads.  However, there are two projects implementing
 <code>pthreads</code> on top of Windows, <code>pthreads-w32</code> and
-<code>winpthreads</code> (a recent part of the MinGW-w64 project).
+<code>winpthreads</code> (part of the MinGW-w64 project).
 </p>
 <p>Whether Windows toolchains implement <code>pthreads</code> is up to the
-toolchain provider: the currently recommended toolchain does by default
-provide it.  A <code>make</code> variable <code>SHLIB_PTHREAD_FLAGS</code> is
-available: this should be included in both <code>PKG_CPPFLAGS</code> (or the
-Fortran or F9x equivalents) and <code>PKG_LIBS</code>.
+toolchain provider.  A <code>make</code> variable
+<code>SHLIB_PTHREAD_FLAGS</code> is available: this should be included in both
+<code>PKG_CPPFLAGS</code> (or the Fortran or F9x equivalents) and
+<code>PKG_LIBS</code>.
 </p>
 <p>The presence of a working <code>pthreads</code> implementation cannot be
 unambiguously determined without testing for yourself: however, that
@@ -3793,6 +3810,18 @@ package <strong>foo</strong> are to be imported.  Using <code>importFrom</code>
 selectively rather than <code>import</code> is good practice and recommended
 notably when importing from packages with more than a dozen exports.
 </p>
+<p>To import every symbol from a package but for a few exceptions,
+pass the <code>except</code> argument to <code>import</code>. The directive
+</p>
+<div class="example">
+<pre class="example">import(foo, except=c(bar, baz))
+</pre></div>
+
+<p>imports every symbol from <strong>foo</strong> except <code>bar</code> and
+<code>baz</code>. The value of <code>except</code> should evaluate to something
+coercible to a character vector, after substituting each symbol for
+its corresponding string.
+</p>
 <p>It is possible to export variables from a namespace which it has
 imported from other namespaces: this has to be done explicitly and not
 <em>via</em> <code>exportPattern</code>.
@@ -4367,8 +4396,8 @@ use GNU extensions in files <samp>Makevars.win</samp> or <samp>Makefile.win</sam
 </p>
 </li><li> Bash extensions also need to be avoided in shell scripts, including
 expressions in Makefiles (which are passed to the shell for processing).
-Some R platforms use strict<a name="DOCF61" href="#FOOT61"><sup>61</sup></a> Bourne
-shells: the R toolset on Windows and some Unix-alike OSes use
+Some R platforms use strict<a name="DOCF61" href="#FOOT61"><sup>61</sup></a>
+Bourne shells: the R toolset on Windows and some Unix-alike OSes use
 <code>ash</code> (<a href="https://en.wikipedia.org/wiki/Almquist_shell">https://en.wikipedia.org/wiki/Almquist_shell</a>),
 a rather minimal shell with few builtins.  Beware of assuming that all
 the POSIX command-line utilities are available, especially on Windows
@@ -4523,14 +4552,18 @@ all linkers allow a space after <samp>-L</samp> .
 </li><li> The <code>ar</code> utility is often used in makefiles to make static
 libraries.  Its modifier <code>u</code> is defined by POSIX but is disabled in
 GNU <code>ar</code> on some recent Linux distributions which use
-&lsquo;deterministic mode&rsquo;.  The safe way to make a static library is to first
+&lsquo;deterministic mode&rsquo;.  The safest way to make a static library is to first
 remove any existing file of that name then use <code>ar -cr</code> and then
 <code>ranlib</code> if needed (which is system-dependent: on most
 systems<a name="DOCF68" href="#FOOT68"><sup>68</sup></a> <code>ar</code> always
-maintains a symbol table).
+maintains a symbol table).  The POSIX standard says options should be
+preceded by a hyphen (as in <samp>-cr</samp>), although most OSes accept
+them without.
+Note that on some systems <code>ar -cr</code> must have at least one file
+specified.
 
 </li><li> Some people have a need to set a locale.  Locale names are not portable,
-and e.g. &lsquo;<samp>fr_FR.utf8</samp>&rsquo; is common used on Linux but not accepted on
+and e.g. &lsquo;<samp>fr_FR.utf8</samp>&rsquo; is commonly used on Linux but not accepted on
 either Solaris or OS X.  &lsquo;<samp>fr_FR.UTF-8</samp>&rsquo; is more portable, being
 accepted on recent Linux, AIX, FreeBSD, OS X and Solaris (at least).
 However, some Linux distributions micro-package, so locales defined by
@@ -4783,14 +4816,21 @@ with versions for types <code>float</code>, <code>double</code>, <code>long doub
 and possibly more.  This means that calling <code>sqrt</code> on an integer
 type may have &lsquo;overloading ambiguity&rsquo; as it could be promoted to any of
 the supported floating-point types: this is commonly seen on Solaris,
-but for <code>pow</code> also seen on OS X.  (C++11 requires additional
-overloads for integer types, and ambiguous overloads are more common in
-C++11/C++14 compiler modes.)
+but for <code>pow</code> also seen on OS X.  (C++98 has an overload for
+<code>std::pow(&lt;double&gt;, &lt;int&gt;)</code>, but this may not be visible from the
+main namespace.  C++11 requires additional overloads for integer types,
+and ambiguous overloads are more common in C++11 (and later) compiler
+modes.)
 
 <p>A not-uncommonly-seen problem is to mistakenly call <code>floor(x/y)</code> or
 <code>ceil(x/y)</code> for <code>int</code> arguments <code>x</code> and <code>y</code>.  Since
 <code>x/y</code> does integer division, the result is an <code>int</code> and
-&lsquo;overloading ambiguity&rsquo; may be reported.
+&lsquo;overloading ambiguity&rsquo; may be reported.  Some people have (pointlessly)
+called <code>floor</code> and <code>ceil</code> on integer arguments, which may have
+an &lsquo;overloading ambiguity&rsquo;.
+</p>
+<p>A surprising common misuse is things like <code>pow(10, -3)</code>: this
+should be the constant <code>1e-3</code>.
 </p>
 </li><li> Function <code>fabs</code> is defined only for floating-point types, except in
 C++11 which has overloads for <code>std::fabs</code> in <samp>&lt;cmath&gt;</samp> for
@@ -4798,7 +4838,7 @@ integer types.  Function <code>abs</code> is defined in C99&rsquo;s
 <samp>&lt;stdlib.h&gt;</samp> for <code>int</code> and in C++98&rsquo;s <samp>&lt;cstdlib&gt;</samp> for
 integer types, overloaded in <samp>&lt;cmath&gt;</samp> for floating-point types.
 C++11 has additional overloads for <code>std::abs</code> in <samp>&lt;cmath&gt;</samp> for
-integer types.  The effect of calling <code>abs</code> for a floating-point
+integer types.  The effect of calling <code>abs</code> with a floating-point
 type is implementation-specific: it may truncate to an integer.
 
 </li><li> Functions/macros such as <code>isnan</code>, <code>isinf</code> and <code>isfinite</code>
@@ -6490,8 +6530,8 @@ logo in both <acronym>HTML</acronym> (using the simple form) and LaTeX (using th
 expert form), the following could be used:
 </p>
 <div class="example">
-<pre class="example">\if{html}{\figure{logo.jpg}{Our logo}}
-\if{latex}{\figure{logo.jpg}{options: width=0.5in}}
+<pre class="example">\if{html}{\figure{Rlogo.svg}{options: width=100 alt=&quot;R logo&quot;}}
+\if{latex}{\figure{Rlogo.pdf}{options: width=0.5in}}
 </pre></div>
 
 <p>The files containing the figures should be stored in the directory
@@ -9865,12 +9905,11 @@ that may cause conflicts&mdash;if this happens, try defining
 &lsquo;<samp>NO_C_HEADERS</samp>&rsquo; before including the R headers, and include C++
 versions (such as &lsquo;<samp>cmath</samp>&rsquo; and &lsquo;<samp>cstdlib</samp>&rsquo;) of the appropriate
 headers yourself before the R headers. (Headers <samp>R.h</samp> and
-<samp>Rmath.h</samp> support &lsquo;<samp>NO_C_HEADERS</samp>&rsquo;: the legacy header<samp>S.h</samp>
-does not.  Nor does <samp>Rinternals.h</samp> but that switches to the
-equivalent C++ headers when included from C++.)
+<samp>Rmath.h</samp> support &lsquo;<samp>NO_C_HEADERS</samp>&rsquo;: the legacy header <samp>S.h</samp>
+does not.  Header <samp>Rinternals.h</samp> does as from R 3.3.0.)
 </p>
-<p>By default header <samp>Rmath.h</samp> includes <samp>math.h</samp>.  Header
-<samp>R.h</samp> includes
+<p>By default header <samp>Rmath.h</samp> includes <samp>math.h</samp> or <samp>cmath</samp>.
+Header <samp>R.h</samp> includes
 </p>
 <div class="example">
 <pre class="example">limits.h math.h stddef.h stdio.h stdlib.h string.h
@@ -10152,8 +10191,8 @@ the arguments can be extracted.
 </p>
 <p>In each case the R objects are available for manipulation <em>via</em>
 a set of functions and macros defined in the header file
-<samp>Rinternals.h</samp> or some S-compatibility macros<a name="DOCF110" href="#FOOT110"><sup>110</sup></a> defined in
-<samp>Rdefines.h</samp>.  See <a href="#Interface-functions-_002eCall-and-_002eExternal">Interface functions .Call and .External</a>
+<samp>Rinternals.h</samp> or some S-compatibility macros<a name="DOCF110" href="#FOOT110"><sup>110</sup></a> defined
+in <samp>Rdefines.h</samp>.  See <a href="#Interface-functions-_002eCall-and-_002eExternal">Interface functions .Call and .External</a>
 for details on <code>.Call</code> and <code>.External</code>.
 </p>
 <p>Before you decide to use <code>.Call</code> or <code>.External</code>, you should
@@ -12860,15 +12899,20 @@ accurately, notably for half integer <var>x</var>.
 <p>This might be provided by your platform<a name="DOCF118" href="#FOOT118"><sup>118</sup></a>, in which case it is not included in <samp>Rmath.h</samp>, but is
 in <samp>math.h</samp> which <samp>Rmath.h</samp> includes.  (Ensure that
 neither <samp>math.h</samp> nor <samp>cmath</samp> is included before
-<samp>Rmath.h</samp>, including not by <samp>R.h</samp>.)
+<samp>Rmath.h</samp> or define
+</p><div class="example">
+<pre class="example">#define __STDC_WANT_IEC_60559_FUNCS_EXT__ 1
+</pre></div>
+<p>before the first inclusion.)
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-sinpi"></a>Function: <em>double</em> <strong>sinpi</strong> <em>(double <var>x</var>)</em></dt>
 <dd><p>Computes <code>sin(pi * x)</code> accurately, notably for (half) integer <var>x</var>.
 </p>
-<p>This might be provided by your platform, in which case it is not included
-in <samp>Rmath.h</samp>, but is in <samp>math.h</samp> which <samp>Rmath.h</samp> includes.
+<p>This might be provided by your platform, in which case it is not
+included in <samp>Rmath.h</samp>, but is in <samp>math.h</samp> which <samp>Rmath.h</samp>
+includes (but see the comments for <code>cospi</code>).
 </p></dd></dl>
 
 <dl>
@@ -12876,13 +12920,14 @@ in <samp>Rmath.h</samp>, but is in <samp>math.h</samp> which <samp>Rmath.h</samp
 <dd><p>Computes <code>tan(pi * x)</code> accurately, notably for (half) integer <var>x</var>.
 </p>
 <p>This might be provided by your platform, in which case it is not included
-in <samp>Rmath.h</samp>, but is in <samp>math.h</samp> which <samp>Rmath.h</samp> includes.
+in <samp>Rmath.h</samp>, but is in <samp>math.h</samp> which <samp>Rmath.h</samp> includes
+(but see the comments for <code>cospi</code>).
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-logspace_005fadd"></a>Function: <em>double</em> <strong>logspace_add</strong> <em>(double <var>logx</var>, double <var>logy</var>)</em></dt>
 <dt><a name="index-logspace_005fsub"></a>Function: <em>double</em> <strong>logspace_sub</strong> <em>(double <var>logx</var>, double <var>logy</var>)</em></dt>
-<dt><a name="index-logspace_005fsum"></a>Function: <em>double</em> <strong>logspace_sum</strong> <em>(double* <var>logx</var>, int <var>n</var>)</em></dt>
+<dt><a name="index-logspace_005fsum"></a>Function: <em>double</em> <strong>logspace_sum</strong> <em>(const double* <var>logx</var>, int <var>n</var>)</em></dt>
 <dd><p>Compute the log of a sum or difference from logs of terms, i.e., &ldquo;x +
 y&rdquo; as <code>log (exp(<var>logx</var>) + exp(<var>logy</var>))</code> and &ldquo;x - y&rdquo; as
 <code>log (exp(<var>logx</var>) - exp(<var>logy</var>))</code>,
@@ -13197,16 +13242,21 @@ The following is declared in header file <samp>Rinternals.h</samp>.
 </p>
 <dl>
 <dt><a name="index-R_005forderVector"></a>Function: <em>void</em> <strong>R_orderVector</strong> <em>(int* <var>indx</var>, int <var>n</var>, SEXP <var>arglist</var>, Rboolean <var>nalast</var>, Rboolean <var>decreasing</var>)</em></dt>
+<dt><a name="index-R_005forderVector1"></a>Function: <em>void</em> <strong>R_orderVector1</strong> <em>(int* <var>indx</var>, int <var>n</var>, SEXP <var>x</var>, Rboolean <var>nalast</var>, Rboolean <var>decreasing</var>)</em></dt>
 <dd>
-<p>This corresponds to R&rsquo;s <code>order(..., na.last, decreasing)</code>.
+<p><code>R_orderVector()</code> corresponds to R&rsquo;s <code>order(..., na.last, decreasing)</code>.
 More specifically, <code>indx &lt;- order(x, y, na.last, decreasing)</code> corresponds to
 <code>R_orderVector(indx, n, Rf_lang2(x, y), nalast, decreasing)</code> and for
 three vectors, <code>Rf_lang3(x,y,z)</code> is used as <var>arglist</var>.
 </p>
-<p>Note that  <code>R_orderVector()</code> assumes the vector <code>indx</code>
-to be allocated to length &gt;= n.  On return, <code>indx[]</code>
-contains a permutation of <code>0:(n-1)</code>, i.e., 0-based C indices (and not
-1-based R indices, as R&rsquo;s <code>order()</code>).
+<p>Both <code>R_orderVector</code> and <code>R_orderVector1</code> assume the vector
+<code>indx</code> to be allocated to length &gt;= n.  On return,
+<code>indx[]</code> contains a permutation of <code>0:(n-1)</code>, i.e., 0-based C
+indices (and not 1-based R indices, as R&rsquo;s <code>order()</code>).
+</p>
+<p>When ordering only one vector, <code>R_orderVector1</code> is faster and
+corresponds (but is 0-based) to R&rsquo;s <code>indx &lt;- order(x, na.last,
+decreasing)</code>.  It was added in R 3.3.0.
 </p></dd></dl>
 
 <p>All other sort routines are declared in header file
@@ -13283,6 +13333,7 @@ See R&rsquo;s help page <code>?max.col</code>.
 
 <dl>
 <dt><a name="index-findInterval"></a>Function: <em>int</em> <strong>findInterval</strong> <em>(double* <var>xt</var>, int <var>n</var>, double <var>x</var>, Rboolean <var>rightmost_closed</var>, Rboolean <var>all_inside</var>, int <var>ilo</var>, int* <var>mflag</var>)</em></dt>
+<dt><a name="index-findInterval2_0028double_002a"></a>Function: <em>int</em> <strong>findInterval2(double*</strong> <em><var>xt</var>, int <var>n</var>, double <var>x</var>, Rboolean <var>rightmost_closed</var>, Rboolean <var>all_inside</var>, Rboolean <var>left_open</var>, int <var>ilo</var>, int* <var>mflag</var>)</em></dt>
 <dd><p>Given the ordered vector <var>xt</var> of length <var>n</var>, return the interval
 or index of <var>x</var> in <code><var>xt</var>[]</code>, typically max(<em>i</em>; 1 &lt;= i &lt;= <var>n</var> &amp; <em><var>xt</var>[i]</em> &lt;=
 <var>x</var>) where we use 1-indexing as in R and FORTRAN (but not C).  If
@@ -13296,6 +13347,12 @@ outside the <var>xt</var>[] range.  On return, <code>*<var>mflag</var></code> eq
 <p>The algorithm is particularly fast when <var>ilo</var> is set to the last
 result of <code>findInterval()</code> and <var>x</var> is a value of a sequence which
 is increasing or decreasing for subsequent calls.
+</p>
+<p><code>findInterval2()</code> is a generalization of <code>findInterval()</code>,
+with an extra <code>Rboolean</code> argument <var>left_open</var>.  Setting
+<code>left_open = TRUE</code> basically replaces all left-closed right-open
+intervals t) by left-open ones t], see the help page
+of R function <code>findInterval</code> for details.
 </p>
 <p>There is also an <code>F77_CALL(interv)()</code> version of
 <code>findInterval()</code> with the same arguments, but all pointers.
@@ -15031,6 +15088,7 @@ Next: <a href="#Concept-index" accesskey="n" rel="next">Concept index</a>, Previ
 <tr><th><a name="Function-and-variable-index_vr_letter-F">F</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-FALSE"><code>FALSE</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Mathematical-constants">Mathematical constants</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-findInterval"><code>findInterval</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Utility-functions">Utility functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-findInterval2_0028double_002a"><code>findInterval2(double*</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Utility-functions">Utility functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-findVar"><code>findVar</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Finding-and-setting-variables">Finding and setting variables</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-FLIBS"><code>FLIBS</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Using-Makevars">Using Makevars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fmax2"><code>fmax2</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Numerical-Utilities">Numerical Utilities</a></td></tr>
@@ -15176,6 +15234,7 @@ Next: <a href="#Concept-index" accesskey="n" rel="next">Concept index</a>, Previ
 <tr><td></td><td valign="top"><a href="#index-R_005fmax_005fcol"><code>R_max_col</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Utility-functions">Utility functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-R_005fNegInf"><code>R_NegInf</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Missing-and-IEEE-values">Missing and IEEE values</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-R_005forderVector"><code>R_orderVector</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Utility-functions">Utility functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-R_005forderVector1"><code>R_orderVector1</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Utility-functions">Utility functions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-R_005fPACKAGE_005fDIR"><code>R_PACKAGE_DIR</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Configure-and-cleanup">Configure and cleanup</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-R_005fPACKAGE_005fNAME"><code>R_PACKAGE_NAME</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Configure-and-cleanup">Configure and cleanup</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-R_005fParseVector"><code>R_ParseVector</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Parsing-R-code-from-C">Parsing R code from C</a></td></tr>
@@ -15587,8 +15646,8 @@ required by <acronym>CRAN</acronym>, so checked by <code>R CMD check
 <p>But it is checked for Open Source packages
 by <code>R CMD check --as-cran</code>.</p>
 <h3><a name="FOOT8" href="#DOCF8">(8)</a></h3>
-<p>Duplicate
-definitions may trigger a warning: see <a href="#User_002ddefined-macros">User-defined macros</a>.</p>
+<p>Duplicate definitions may
+trigger a warning: see <a href="#User_002ddefined-macros">User-defined macros</a>.</p>
 <h3><a name="FOOT9" href="#DOCF9">(9)</a></h3>
 <p>even one wrapped in <code>\donttest</code>.</p>
 <h3><a name="FOOT10" href="#DOCF10">(10)</a></h3>
@@ -15676,15 +15735,18 @@ resolves such dependencies to a static FORTRAN library when
 <a href="https://en.wikipedia.org/wiki/OpenMP">https://en.wikipedia.org/wiki/OpenMP</a>,
 <a href="https://computing.llnl.gov/tutorials/openMP/">https://computing.llnl.gov/tutorials/openMP/</a></p>
 <h3><a name="FOOT28" href="#DOCF28">(28)</a></h3>
-<p>Some builds of <code>clang</code> 3.7
-have support for OpenMP 3.1</p>
+<p>Some builds of <code>clang</code>
+3.7.0 have support for OpenMP 3.1 (this is built by default as from
+3.8.0), but even if the compiler has, the <code>libomp</code> library may not
+be installed.  At the time of writing Apple builds of <code>clang</code>
+for OS X had no support.</p>
 <h3><a name="FOOT29" href="#DOCF29">(29)</a></h3>
 <p>Windows default, not MinGW-w64 default.</p>
 <h3><a name="FOOT30" href="#DOCF30">(30)</a></h3>
 <p>Which it was at the time of writing with GCC,
 Solaris Studio, Intel and Clang 3.7.x compilers.</p>
 <h3><a name="FOOT31" href="#DOCF31">(31)</a></h3>
-<p>some Windows toolchains have the
+<p>some Windows toolchains had the
 typo &lsquo;<samp>_REENTRANCE</samp>&rsquo; instead.</p>
 <h3><a name="FOOT32" href="#DOCF32">(32)</a></h3>
 <p>Cygwin used <code>g77</code> up to 2011, and some pre-built
@@ -15801,8 +15863,8 @@ part of Solaris Studio and available in other versions.</p>
 <h3><a name="FOOT61" href="#DOCF61">(61)</a></h3>
 <p>For example, <code>test</code>
 options <samp>-a</samp> and <samp>-e</samp> are not portable, and not supported
-in the AT&amp;T Bourne shell used on Solaris, even though they are in the
-2008 POSIX standard.  Nor does Solaris support &lsquo;<samp>$(<var>cmd</var>)</samp>&rsquo;.</p>
+in the AT&amp;T Bourne shell used on Solaris 10/11, even though they are in
+the 2008 POSIX standard.  Nor does Solaris support &lsquo;<samp>$(<var>cmd</var>)</samp>&rsquo;.</p>
 <h3><a name="FOOT62" href="#DOCF62">(62)</a></h3>
 <p>but
 note that <code>long long</code> is not a standard C++ type, and C++ compilers
@@ -15972,8 +16034,8 @@ and <code>DYLD_LIBRARY_PATHS</code> below.</p>
 <h3><a name="FOOT110" href="#DOCF110">(110)</a></h3>
 <p>That is,
 similar to those defined in S version 4 from the 1990s: these are
-not kept up to date and are not recommended for new projects.  It is not
-compatible with defining <code>R_NO_REMAP</code>.</p>
+not kept up to date and are not recommended for new projects.  Prior to
+R 3.3.0 it was not compatible with defining <code>R_NO_REMAP</code>.</p>
 <h3><a name="FOOT111" href="#DOCF111">(111)</a></h3>
 <p>see <a href="#The-R-API">The R API</a>: note that these are not all part of
 the API.</p>

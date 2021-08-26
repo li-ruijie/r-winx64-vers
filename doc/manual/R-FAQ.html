@@ -118,7 +118,7 @@ ul.menu {
 
 
 <h2>Frequently Asked Questions on R</h2>
-<h3 style="text-align: center;">Version 3.2.2016-04-14</h3>
+<h3 style="text-align: center;">Version 2016-04-24</h3>
 <h3 style="text-align: center;">Kurt Hornik</h3>
 <hr>
 <a name="SEC_Contents"></a>
@@ -558,12 +558,15 @@ Next: <a href="#How-can-R-be-obtained_003f" accesskey="n" rel="next">How can R b
 <a name="What-is-the-current-version-of-R_003f-1"></a>
 <h3 class="section">2.3 What is the current version of R?</h3>
  
-<p>The current released version is 3.2.5.  Based on this
-&lsquo;major.minor.patchlevel&rsquo; numbering scheme, there are two development
-versions of R, a patched version of the current release (&lsquo;r-patched&rsquo;)
-and one working towards the next minor or eventually major (&lsquo;r-devel&rsquo;)
-releases of R, respectively.  Version r-patched is for bug fixes mostly.
-New features are typically introduced in r-devel.
+<p>R uses a &lsquo;major.minor.patchlevel&rsquo; numbering scheme.  Based on this,
+there are the current release version of R (&lsquo;r-release&rsquo;) as well as two
+development versions of R, a patched version of the current release
+(&lsquo;r-patched&rsquo;) and one working towards the next minor or eventually major
+(&lsquo;r-devel&rsquo;) releases of R, respectively.  New features are typically
+introduced in r-devel, while r-patched is for bug fixes mostly.
+</p>
+<p>See <a href="https://CRAN.R-project.org/sources.html">https://CRAN.R-project.org/sources.html</a> for the current
+versions of r-release, r-patched and r-devel.
 </p>
 <hr>
 <a name="How-can-R-be-obtained_003f"></a>
@@ -917,11 +920,13 @@ Next: <a href="#What-mailing-lists-exist-for-R_003f" accesskey="n" rel="next">Wh
   author       = {{R Core Team}},
   organization = {R Foundation for Statistical Computing},
   address      = {Vienna, Austria},
-  year         = 2016,
+  year         = <var>YEAR</var>,
   url          = {https://www.R-project.org}
 }
 </pre></div>
-
+<p>where <var>YEAR</var> is the release year of the version of R used and can
+determined as <code>R.version$year</code>.
+</p>
 <p>Citation strings (or BibTeX entries) for R and R packages can also be
 obtained by <code>citation()</code>.
 </p>
