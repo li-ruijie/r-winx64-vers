@@ -25,5 +25,5 @@ Author: Terry M Therneau [aut, cre],
   Thomas Lumley [ctb, trl] (original S->R port and maintainer until 2009)
 Repository: CRAN
 Date/Publication: 2017-04-04 19:31:37 UTC
-Built: R 3.4.2; x86_64-w64-mingw32; 2017-09-28 09:55:07 UTC; windows
+Built: R 3.4.3; x86_64-w64-mingw32; 2017-12-06 09:32:05 UTC; windows
 Archs: i386, x64

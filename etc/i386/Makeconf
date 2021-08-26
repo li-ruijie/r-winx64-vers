@@ -28,7 +28,7 @@ DT_ARCH =
 RC_ARCH = 
 # Used by packages tcltk and tkrplot
 TCL_HOME = $(R_HOME)/Tcl
-LOCAL_SOFT = d:/Compiler/gcc-4.9.3/local330
+#LOCAL_SOFT
 NM_FILTER = 
 
 ifneq ($(strip $(LOCAL_SOFT)),)
@@ -66,19 +66,19 @@ AR = $(BINPREF)ar
 BLAS_LIBS = -L"$(R_HOME)/$(IMPDIR)" -lRblas
 C_VISIBILITY = 
 CC = $(BINPREF)gcc $(M_ARCH)
-CFLAGS = -O3 -Wall $(DEBUGFLAG) -std=gnu99 -mtune=core2
+CFLAGS = -O3 -Wall $(DEBUGFLAG) -std=gnu99 -mtune=generic
 CPICFLAGS = 
 CPPFLAGS =
 CXX = $(BINPREF)g++ $(M_ARCH)
 CXXCPP = $(CXX) -E
-CXXFLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=core2
+CXXFLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=generic
 CXXPICFLAGS =
 CXX98 = $(BINPREF)g++ $(M_ARCH)
-CXX98FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=core2
+CXX98FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=generic
 CXX98PICFLAGS = 
 CXX98STD = -std=gnu++98
 CXX11 = $(BINPREF)g++ $(M_ARCH)
-CXX11FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=core2
+CXX11FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=generic
 CXX11PICFLAGS =
 CXX11STD = -std=gnu++11
 CXX14 = 
@@ -98,12 +98,12 @@ ECHO_C =
 ECHO_N = -n
 ECHO_T = 
 FC = $(BINPREF)gfortran $(M_ARCH)
-FCFLAGS = -O3 $(DEBUGFLAG) -mtune=core2
+FCFLAGS = -O3 $(DEBUGFLAG) -mtune=generic
 # additional libs needed when linking with $(FC), e.g. on Solaris
 FCLIBS =
 F77 = $(BINPREF)gfortran $(M_ARCH)
 F77_VISIBILITY = 
-FFLAGS = -O3 $(DEBUGFLAG) -mtune=core2
+FFLAGS = -O3 $(DEBUGFLAG) -mtune=generic
 FLIBS = -lgfortran -lm -lquadmath
 FCPICFLAGS =
 FPICFLAGS = 
@@ -179,7 +179,7 @@ TCLTK_LIBS = -L"$(TCL_HOME)/bin" -ltcl$(TCL_VERSION) -ltk$(TCL_VERSION)
 
 ## legacy
 CXX1X = $(BINPREF)g++ $(M_ARCH)
-CXX1XFLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=core2
+CXX1XFLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=generic
 CXX1XPICFLAGS =
 CXX1XSTD = -std=gnu++11
 SHLIB_CXX1XLD = $(CXX11)
