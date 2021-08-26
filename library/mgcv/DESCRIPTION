@@ -20,6 +20,6 @@ License: GPL (>= 2)
 NeedsCompilation: yes
 Packaged: 2018-01-08 15:15:43 UTC; sw283
 Repository: CRAN
-Date/Publication: 2018-01-21 18:58:52 UTC
-Built: R 3.4.4; x86_64-w64-mingw32; 2018-03-15 14:57:05 UTC; windows
+Date/Publication: 2018-01-21 18:59:15 UTC
+Built: R 3.5.0; x86_64-w64-mingw32; 2018-04-23 10:37:43 UTC; windows
 Archs: i386, x64

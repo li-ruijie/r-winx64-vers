@@ -26,8 +26,8 @@ printCoefmat(x, digits = max(3, getOption("digits") - 2),
              dig.tst = max(1, min(5, digits - 1)),
              cs.ind = 1L:k, tst.ind = k + 1L,
              zap.ind = integer(), P.values = NULL,
-             has.Pvalue = nc &gt;= 4L &amp;&amp;
-                          substr(colnames(x)[nc], 1L, 3L) %in% c("Pr(", "p-v"),
+             has.Pvalue = nc &gt;= 4L &amp;&amp; length(cn &lt;- colnames(x)) &amp;&amp;
+                          substr(cn[nc], 1L, 3L) %in% c("Pr(", "p-v"),
              eps.Pvalue = .Machine$double.eps,
              na.print = "NA", ...)
 </pre>
@@ -145,5 +145,5 @@ printCoefmat(cmat, digits = 2, P.values = TRUE)
 options(op) # restore
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>stats</em> version 3.4.4 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>stats</em> version 3.5.0 <a href="00Index.html">Index</a>]</div>
 </body></html>

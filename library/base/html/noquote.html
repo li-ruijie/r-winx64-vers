@@ -16,7 +16,7 @@
 <h3>Usage</h3>
 
 <pre>
-noquote(obj)
+noquote(obj, right = FALSE)
 
 ## S3 method for class 'noquote'
 print(x, ...)
@@ -33,6 +33,12 @@ c(..., recursive = FALSE)
 <td>
 <p>any <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> object, typically a vector of
 <code><a href="character.html">character</a></code> strings.</p>
+</td></tr>
+<tr valign="top"><td><code>right</code></td>
+<td>
+<p>optional <code><a href="logical.html">logical</a></code> eventually to be passed to
+<code>print()</code>, used by <code><a href="print.default.html">print.default</a>()</code>, indicating
+whether or not strings should be right aligned.</p>
 </td></tr>
 <tr valign="top"><td><code>x</code></td>
 <td>
@@ -89,7 +95,17 @@ cmp.logical &lt;- function(log.v)
   noquote(if(length(log.v) == 0)"()" else c(".","|")[1 + log.v])
 }
 cmp.logical(stats::runif(20) &gt; 0.8)
+
+chmat &lt;- as.matrix(format(stackloss)) # a "typical" character matrix
+## noquote(*, right=TRUE)  so it prints exactly like a data frame
+chmat &lt;- noquote(chmat, right = TRUE)
+chmat
+
+
+
+
+
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 3.4.4 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 3.5.0 <a href="00Index.html">Index</a>]</div>
 </body></html>

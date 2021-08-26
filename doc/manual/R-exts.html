@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.4.4 (2018-03-15).
+<!-- This manual is for R, version 3.5.0 (2018-04-23).
 
 Copyright (C) 1999-2018 R Core Team
 
@@ -370,9 +370,9 @@ p {
       <li><a name="toc-Transient-storage-allocation-1" href="#Transient-storage-allocation">6.1.1 Transient storage allocation</a></li>
       <li><a name="toc-User_002dcontrolled-memory-1" href="#User_002dcontrolled-memory">6.1.2 User-controlled memory</a></li>
     </ul></li>
-    <li><a name="toc-Error-handling-1" href="#Error-handling">6.2 Error handling</a>
+    <li><a name="toc-Error-signaling-1" href="#Error-signaling">6.2 Error signaling</a>
     <ul class="no-bullet">
-      <li><a name="toc-Error-handling-from-FORTRAN-1" href="#Error-handling-from-FORTRAN">6.2.1 Error handling from FORTRAN</a></li>
+      <li><a name="toc-Error-signaling-from-FORTRAN-1" href="#Error-signaling-from-FORTRAN">6.2.1 Error signaling from FORTRAN</a></li>
     </ul></li>
     <li><a name="toc-Random-number-generation" href="#Random-numbers">6.3 Random number generation</a></li>
     <li><a name="toc-Missing-and-IEEE-special-values" href="#Missing-and-IEEE-values">6.4 Missing and <acronym>IEEE</acronym> special values</a></li>
@@ -392,12 +392,13 @@ p {
     <li><a name="toc-Integration-1" href="#Integration">6.9 Integration</a></li>
     <li><a name="toc-Utility-functions-1" href="#Utility-functions">6.10 Utility functions</a></li>
     <li><a name="toc-Re_002dencoding-1" href="#Re_002dencoding">6.11 Re-encoding</a></li>
-    <li><a name="toc-Allowing-interrupts-1" href="#Allowing-interrupts">6.12 Allowing interrupts</a></li>
-    <li><a name="toc-Platform-and-version-information-1" href="#Platform-and-version-information">6.13 Platform and version information</a></li>
-    <li><a name="toc-Inlining-C-functions-1" href="#Inlining-C-functions">6.14 Inlining C functions</a></li>
-    <li><a name="toc-Controlling-visibility-1" href="#Controlling-visibility">6.15 Controlling visibility</a></li>
-    <li><a name="toc-Using-these-functions-in-your-own-C-code" href="#Standalone-Mathlib">6.16 Using these functions in your own C code</a></li>
-    <li><a name="toc-Organization-of-header-files-1" href="#Organization-of-header-files">6.17 Organization of header files</a></li>
+    <li><a name="toc-Condition-handling-and-cleanup-code-1" href="#Condition-handling-and-cleanup-code">6.12 Condition handling and cleanup code</a></li>
+    <li><a name="toc-Allowing-interrupts-1" href="#Allowing-interrupts">6.13 Allowing interrupts</a></li>
+    <li><a name="toc-Platform-and-version-information-1" href="#Platform-and-version-information">6.14 Platform and version information</a></li>
+    <li><a name="toc-Inlining-C-functions-1" href="#Inlining-C-functions">6.15 Inlining C functions</a></li>
+    <li><a name="toc-Controlling-visibility-1" href="#Controlling-visibility">6.16 Controlling visibility</a></li>
+    <li><a name="toc-Using-these-functions-in-your-own-C-code" href="#Standalone-Mathlib">6.17 Using these functions in your own C code</a></li>
+    <li><a name="toc-Organization-of-header-files-1" href="#Organization-of-header-files">6.18 Organization of header files</a></li>
   </ul></li>
   <li><a name="toc-Generic-functions-and-methods-1" href="#Generic-functions-and-methods">7 Generic functions and methods</a>
   <ul class="no-bullet">
@@ -438,7 +439,7 @@ Next: <a href="#Acknowledgements" accesskey="n" rel="next">Acknowledgements</a> 
 R add-on packages, writing R documentation, R&rsquo;s system and
 foreign language interfaces, and the R <acronym>API</acronym>.
 </p>
-<p>This manual is for R, version 3.4.4 (2018-03-15).
+<p>This manual is for R, version 3.5.0 (2018-04-23).
 </p>
 <p>Copyright &copy; 1999&ndash;2018 R Core Team
 </p>
@@ -593,8 +594,9 @@ various ways for consistency and portability.
 source package which contains C, C++ or Fortran code will involve
 compiling that code.  There is also the possibility of &lsquo;byte&rsquo; compiling
 the R code in a package (using the facilities of package
-<strong>compiler</strong>): already base and recommended packages are normally
-byte-compiled and this can be specified for other packages.  So
+<strong>compiler</strong>): since R 3.5.0, this is enabled by default for all
+packages. Prior to R 3.5.0, base and recommended packages were normally
+byte-compiled, but this had to be specified explicitly for other packages. So
 <em>compiling</em> a package may come to mean byte-compiling its R
 code.
 
@@ -954,14 +956,11 @@ using <code>keep.source = TRUE</code> or <code>FALSE</code>: it might be needed
 exceptionally for a package designed to always be used with
 <code>keep.source = TRUE</code>.
 </p>
-<p>The &lsquo;<samp>ByteCompile</samp>&rsquo; logical field controls if the package code is to
-be byte-compiled on installation: the default is currently not to, so
-this may be useful for a package known to benefit particularly from
-byte-compilation (which can take quite a long time and increases the
-installed size of the package).  It is used for the recommended
-packages, as they are byte-compiled when R is installed and for
-consistency should be byte-compiled when updated. This can be overridden
-by installing with flag <samp>--no-byte-compile</samp>.
+<p>The &lsquo;<samp>ByteCompile</samp>&rsquo; logical field controls if the package code is to be
+byte-compiled on installation: since R 3.5.0, the default is to
+byte-compile.  Prior to R 3.5.0, the default was not to, but
+recommended packages were already byte-compiled.  This can be overridden by
+installing with flag <samp>--no-byte-compile</samp>.
 </p>
 <p>The &lsquo;<samp>ZipData</samp>&rsquo; logical field was used to control whether the automatic
 Windows build would zip up the data directory or not prior to R
@@ -2960,12 +2959,12 @@ Next: <a href="#Using-C_002b_002b17-code" accesskey="n" rel="next">Using C++17 c
 <a name="Using-C_002b_002b14-code-1"></a>
 <h4 class="subsection">1.2.5 Using C++14 code</h4>
 
-<p>Support for a C++14 has been explicitly added to R from version
-3.4.0. Similar considerations to C++11 apply, except that the variables
-associated with the C++14 compiler use the prefix &lsquo;<samp>CXX14</samp>&rsquo; instead
-of &lsquo;<samp>CXX11</samp>&rsquo;. Hence to use C++14 code in a package, the package&rsquo;s
-<samp>Makevars</samp> file (or <samp>Makevars.win</samp> on Windows) should include
-the line
+<p>Support for a C++14 (where available) has been explicitly added to R
+from version 3.4.0. Similar considerations to C++11 apply, except that
+the variables associated with the C++14 compiler use the prefix
+&lsquo;<samp>CXX14</samp>&rsquo; instead of &lsquo;<samp>CXX11</samp>&rsquo;. Hence to use C++14 code in a
+package, the package&rsquo;s <samp>Makevars</samp> file (or <samp>Makevars.win</samp> on
+Windows) should include the line
 </p><div class="example">
 <pre class="example">CXX_STD = CXX14
 </pre></div>
@@ -2980,7 +2979,7 @@ used systematically by setting the environment variable <code>USE_CXX14</code>.
 </p>
 <p>Note that code written for C++11 that emulates features of C++14 will
 not necessarily compile under a C++14 compiler<a name="DOCF43" href="#FOOT43"><sup>43</sup></a>, since the emulation
-typically leads to a namespace clash. In order to ensure that the code
+typically leads to a namespace clash.  In order to ensure that the code
 also compiles under C++14, something like the following should be
 done:
 </p><div class="example">
@@ -3006,8 +3005,20 @@ using std::make_unique;
 <p>The webpage
 <a href="http://en.cppreference.com/w/cpp/compiler_support">http://en.cppreference.com/w/cpp/compiler_support</a> gives
 some information on which compilers are known to support recent C++
-features.
+features.  Note that <code>g++</code> 4.9.x (as used for R on Windows at
+the time of writing) has only partial C++14 support, and the flag to
+obtain that support is not included in the default Windows build of R
+&mdash; one could try something like
 </p>
+<div class="example">
+<pre class="example">CXX14=&quot;$(BINPREF)g++ $(M_ARCH)&quot;
+CXX14FLAGS=&quot;-O2 -Wall&quot; 
+CXX14STD=-std=gnu1y 
+</pre></div>
+
+<p>in <samp><var>HOME</var>/.R/Makevars.win</samp>.
+</p>
+
 <hr>
 <a name="Using-C_002b_002b17-code"></a>
 <div class="header">
@@ -3043,6 +3054,9 @@ used systematically by setting the environment variable <code>USE_CXX17</code>.
 </p>
 <p>As for C++14, feature tests can be used (and probably should be as
 compiler support is still patchy).
+</p>
+<p>No C++17 support is enabled in the current default build of R on
+Windows.
 </p>
 <hr>
 <a name="Checking-and-building-packages"></a>
@@ -4622,9 +4636,10 @@ functions where Windows does not support <code>%lld</code>, <code>%Lf</code> and
 similar formats (and has its own formats such as <code>%I64d</code> for 64-bit
 integers).  It is very rare to need to output such types, and 64-bit
 integers can usually be converted to doubles for output.  However, the
-C11 standard (§7.8.1) includes <code>PRIxNN</code> macros<a name="DOCF73" href="#FOOT73"><sup>73</sup></a> in C header <samp>inttypes.h</samp> (for example <code>PRId64</code>) so
-the portable approach is to test for these and if not available provide
-emulations in the package.
+C11 standard (section 7.8.1) includes <code>PRIxNN</code>
+macros<a name="DOCF73" href="#FOOT73"><sup>73</sup></a> in C header <samp>inttypes.h</samp>
+(for example <code>PRId64</code>) so the portable approach is to test for
+these and if not available provide emulations in the package.
 </p>
 </li><li> <code>R CMD check</code> performs some checks for non-portable
 compiler/linker flags in <samp>src/Makevars</samp>.  However, it cannot check
@@ -4831,20 +4846,21 @@ fewer still (at the time of writing, only &lsquo;<samp>x86_64</samp>&rsquo; Linu
 <p>When specifying a minimum Java version please use the official version
 names, which are (confusingly)
 </p><div class="example">
-<pre class="example">1.1 1.2 1.3 1.4 5.0 6 7 8 9
+<pre class="example">1.1 1.2 1.3 1.4 5.0 6 7 8 9 10
 </pre></div>
-<p>and supposedly will in 2018 move to a year.month scheme such as &lsquo;<samp>18.3</samp>&rsquo;.
+<p>and supposedly will in 2018 move to a year.month scheme such as &lsquo;<samp>18.9</samp>&rsquo;.
 </p>
 <p>A suitable test for packages using <a href="https://CRAN.R-project.org/package=rJava"><strong>rJava</strong></a> would be something like
 </p><div class="example">
 <pre class="example">.jinit()
 jv &lt;- .jcall(&quot;java/lang/System&quot;, &quot;S&quot;, &quot;getProperty&quot;, &quot;java.runtime.version&quot;)
-if(substr(jv, 1L, 1L) == &quot;1&quot;) {
+if(substr(jv, 1L, 2L) == &quot;1.&quot;) {
   jvn &lt;- as.numeric(paste0(strsplit(jv, &quot;[.]&quot;)[[1L]][1:2], collapse = &quot;.&quot;))
-  if(jvn &lt; 1.8) stop(&quot;Java 8 is needed for this package but not available&quot;)
+  if(jvn &lt; 1.8) stop(&quot;Java &gt;= 8 is needed for this package but not available&quot;)
 }
 </pre></div>
-<p>(Java 9 changed the format of this string.)
+<p>(Java 9 changed the format of this string, and Java 10 gives <code>jv</code>
+as something like &lsquo;<samp>10+46</samp>&rsquo;.)
 </p>
 <p>Note too that the compiler used to produce a <code>jar</code> can impose a minimum
 Java version, often resulting in an arcane message like
@@ -4919,7 +4935,7 @@ only usual situation when <code>R_HOME</code> is needed in the argument for
 <code>include</code>.
 </p>
 <div class="example">
-<pre class="example">$(MAKE) -f&quot;${R_HOME}/etc${R_ARCH}/Makeconf&quot; -fMakefile.inner
+<pre class="example">$(MAKE) -f &quot;${R_HOME}/etc${R_ARCH}/Makeconf&quot; -f Makefile.inner
 </pre></div>
 </li></ul>
 
@@ -4931,7 +4947,9 @@ practice seen in distributed packages include:
 <li> It is not reasonable to test the time taken by a command: you cannot
 know how fast or how heavily loaded an R platform might be.  At best
 you can test a ratio of times, and even that is fraught with
-difficulties.
+difficulties and not advisable: the just-in-time compiler (JIT) and the GC
+may trigger at unpredictable times, following heuristics that may change
+without notice.
 
 </li><li> Do not test the exact format of R messages (from R itself or from
 other packages): They change, and they can be translated.
@@ -11797,9 +11815,10 @@ can take values
 <dt><code>1</code></dt>
 <dd><p>The object has been bound to exactly one symbol
 </p></dd>
-<dt><code>2</code></dt>
+<dt><code>&gt;= 2</code></dt>
 <dd><p>The object has potentially been bound to two or more symbols, and one
 should act as if another variable is currently bound to this value.
+The maximal value is <code>NAMEDMAX</code>.
 </p></dd>
 </dl>
 
@@ -11807,11 +11826,11 @@ should act as if another variable is currently bound to this value.
 may currently be fewer bindings.
 </p>
 <p>It is safe to modify the value of any <code>SEXP</code> for which
-<code>NAMED(foo)</code> is zero, and if <code>NAMED(foo)</code> is two, the value
-should be duplicated (<em>via</em> a call to <code>duplicate</code>) before any
-modification.  Note that it is the responsibility of the author of the
-code making the modification to do the duplication, even if it is
-<code>x</code> whose value is being modified after <code>y &lt;- x</code>.
+<code>NAMED(foo)</code> is zero, and if <code>NAMED(foo)</code> is two or more, the
+value should be duplicated (<em>via</em> a call to <code>duplicate</code>)
+before any modification.  Note that it is the responsibility of the
+author of the code making the modification to do the duplication, even
+if it is <code>x</code> whose value is being modified after <code>y &lt;- x</code>.
 </p>
 <p>The case <code>NAMED(foo) == 1</code> allows some optimization, but it can be
 ignored (and duplication done whenever <code>NAMED(foo) &gt; 0</code>).  (This
@@ -11837,8 +11856,23 @@ rebound immediately.  (Provided the remaining code in <code>&quot;foo&lt;-&quot;
 make no reference to <code>x</code>, and no one is going to attempt a direct
 call such as <code>y &lt;- &quot;foo&lt;-&quot;(x)</code>.)
 </p>
-<p>This mechanism is likely to be replaced in future versions of R.
+<p>This mechanism is likely to be replaced in future versions of R. To
+support future changes, package code should use the macros
+<code>MAYBE_REFERENCED</code>, <code>MAYBE_SHARED</code>, and
+<code>MARK_NOT_MUTABLE</code>. These currently correspond to
 </p>
+<dl compact="compact">
+<dt><code>MAYBE_REFERENCED(x)</code></dt>
+<dd><p><code>NAMED(x) &gt; 0</code>
+</p></dd>
+<dt><code>MAYBE_SHARED(x)</code></dt>
+<dd><p><code>NAMED(x) &gt; 1</code>
+</p></dd>
+<dt><code>MARK_NOT_MUTABLE(x)</code></dt>
+<dd><p><code>SET_NAMED(x, NAMEDMAX)</code>
+</p></dd>
+</dl>
+
 
 <hr>
 <a name="Interface-functions-_002eCall-and-_002eExternal"></a>
@@ -12899,7 +12933,7 @@ Next: <a href="#Generic-functions-and-methods" accesskey="n" rel="next">Generic 
 <table summary="" class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Memory-allocation" accesskey="1">Memory allocation</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Error-handling" accesskey="2">Error handling</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Error-signaling" accesskey="2">Error signaling</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Random-numbers" accesskey="3">Random numbers</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -12918,6 +12952,8 @@ Next: <a href="#Generic-functions-and-methods" accesskey="n" rel="next">Generic 
 <tr><td align="left" valign="top">&bull; <a href="#Utility-functions">Utility functions</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Re_002dencoding">Re-encoding</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Condition-handling-and-cleanup-code">Condition handling and cleanup code</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Allowing-interrupts">Allowing interrupts</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -12996,7 +13032,7 @@ compilers/loaders when using R as a shared library) not exported.
 <a name="Memory-allocation"></a>
 <div class="header">
 <p>
-Next: <a href="#Error-handling" accesskey="n" rel="next">Error handling</a>, Previous: <a href="#The-R-API" accesskey="p" rel="prev">The R API</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Error-signaling" accesskey="n" rel="next">Error signaling</a>, Previous: <a href="#The-R-API" accesskey="p" rel="prev">The R API</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Memory-allocation-1"></a>
 <h3 class="section">6.1 Memory allocation</h3>
@@ -13114,7 +13150,7 @@ Previous: <a href="#Transient-storage-allocation" accesskey="p" rel="prev">Trans
 <a name="index-Free"></a>
 
 <p>The other form of memory allocation is an interface to <code>malloc</code>,
-the interface providing R error handling.  This memory lasts until
+the interface providing R error signaling.  This memory lasts until
 freed by the user and is additional to the memory allocated for the R
 workspace.
 </p>
@@ -13149,16 +13185,16 @@ use <code>free</code> or <code>strdup</code> with it.
 </p>
 
 <hr>
-<a name="Error-handling"></a>
+<a name="Error-signaling"></a>
 <div class="header">
 <p>
 Next: <a href="#Random-numbers" accesskey="n" rel="next">Random numbers</a>, Previous: <a href="#Memory-allocation" accesskey="p" rel="prev">Memory allocation</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
-<a name="Error-handling-1"></a>
-<h3 class="section">6.2 Error handling</h3>
-<a name="index-Error-handling-from-C"></a>
+<a name="Error-signaling-1"></a>
+<h3 class="section">6.2 Error signaling</h3>
+<a name="index-Error-signaling-from-C"></a>
 
-<p>The basic error handling routines are the equivalents of <code>stop</code> and
+<p>The basic error signaling routines are the equivalents of <code>stop</code> and
 <code>warning</code> in R code, and use the same interface.
 </p>
 <div class="example">
@@ -13186,19 +13222,19 @@ MESSAGE ...... WARNING(NULL_ENTRY)
 or a format string followed by arguments separated by commas.
 </p>
 <table summary="" class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="#Error-handling-from-FORTRAN" accesskey="1">Error handling from FORTRAN</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Error-signaling-from-FORTRAN" accesskey="1">Error signaling from FORTRAN</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
 <hr>
-<a name="Error-handling-from-FORTRAN"></a>
+<a name="Error-signaling-from-FORTRAN"></a>
 <div class="header">
 <p>
-Previous: <a href="#Error-handling" accesskey="p" rel="prev">Error handling</a>, Up: <a href="#Error-handling" accesskey="u" rel="up">Error handling</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="#Error-signaling" accesskey="p" rel="prev">Error signaling</a>, Up: <a href="#Error-signaling" accesskey="u" rel="up">Error signaling</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
-<a name="Error-handling-from-FORTRAN-1"></a>
-<h4 class="subsection">6.2.1 Error handling from FORTRAN</h4>
-<a name="index-Error-handling-from-FORTRAN"></a>
+<a name="Error-signaling-from-FORTRAN-1"></a>
+<h4 class="subsection">6.2.1 Error signaling from FORTRAN</h4>
+<a name="index-Error-signaling-from-FORTRAN"></a>
 
 <p>There are two interface function provided to call <code>error</code> and
 <code>warning</code> from FORTRAN code, in each case with a simple character
@@ -13216,7 +13252,7 @@ subroutine rwarn(<var>message</var>)
 <a name="Random-numbers"></a>
 <div class="header">
 <p>
-Next: <a href="#Missing-and-IEEE-values" accesskey="n" rel="next">Missing and IEEE values</a>, Previous: <a href="#Error-handling" accesskey="p" rel="prev">Error handling</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Missing-and-IEEE-values" accesskey="n" rel="next">Missing and IEEE values</a>, Previous: <a href="#Error-signaling" accesskey="p" rel="prev">Error signaling</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Random-number-generation"></a>
 <h3 class="section">6.3 Random number generation</h3>
@@ -14259,7 +14295,7 @@ the original functions by Fox, Hall and Schryer on NetLib at
 <a name="Re_002dencoding"></a>
 <div class="header">
 <p>
-Next: <a href="#Allowing-interrupts" accesskey="n" rel="next">Allowing interrupts</a>, Previous: <a href="#Utility-functions" accesskey="p" rel="prev">Utility functions</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Condition-handling-and-cleanup-code" accesskey="n" rel="next">Condition handling and cleanup code</a>, Previous: <a href="#Utility-functions" accesskey="p" rel="prev">Utility functions</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Re_002dencoding-1"></a>
 <h3 class="section">6.11 Re-encoding</h3>
@@ -14298,13 +14334,90 @@ input does not end with a complete multi-byte character).
 </p>
 
 <hr>
+<a name="Condition-handling-and-cleanup-code"></a>
+<div class="header">
+<p>
+Next: <a href="#Allowing-interrupts" accesskey="n" rel="next">Allowing interrupts</a>, Previous: <a href="#Re_002dencoding" accesskey="p" rel="prev">Re-encoding</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="Condition-handling-and-cleanup-code-1"></a>
+<h3 class="section">6.12 Condition handling and cleanup code</h3>
+<a name="index-Condition-handling"></a>
+<a name="index-Cleanup-code"></a>
+<a name="index-Error-handling"></a>
+
+<p>Two functions are available for establishing condition handlers from
+within C code:
+</p>
+<div class="example">
+<pre class="example">#include &lt;Rinternals.h&gt;
+
+SEXP R_tryCatchError(SEXP (*fun)(void *data), void *data,
+		     SEXP (*hndlr)(SEXP cond, void *hdata), void *hdata);
+
+SEXP R_tryCatch(SEXP (*fun)(void *data), void *data,
+		SEXP,
+		SEXP (*hndlr)(SEXP cond, void *hdata), void *hdata,
+		void (*clean)(void *cdata), void *cdata);
+</pre></div>
+
+<p><code>R_tryCatchError</code> establishes an exiting handler for conditions
+inheriting form class <code>error</code>.
+</p>
+<p><code>R_tryCatch</code> can be used to establish a handler for other
+conditions and to register a cleanup action. The conditions to be
+handled are specified as a character vector (<code>STRSXP</code>).
+A <code>NULL</code> pointer can be passed as <code>fun</code> or <code>clean</code>
+if condition handling or cleanup are not needed.
+</p>
+<p>These are currently implemented using the R-level <code>tryCatch</code>
+mechanism so are subject to some overhead.
+</p>
+<p>The function <code>R_UnwindProtect</code> can be used to ensure that a cleanup
+action takes place on ordinary return as well as on a non-local transfer
+of control, which R implements as a <code>longjmp</code>.
+</p>
+<div class="example">
+<pre class="example">SEXP R_UnwindProtect(SEXP (*fun)(void *data), void *data,
+                     void (*clean)(void *data, Rboolean jump), void *cdata,
+                     SEXP cont);
+</pre></div>
+
+<p><code>R_UnwindProtect</code> can be used in two ways.  The simper usage,
+suitable for use in C code, passes <code>NULL</code> for the <code>cont</code>
+argument.  <code>R_UnwindProtect</code> will call <code>fun(data)</code>.  If
+<code>fun</code> returns a value, then <code>R_UnwindProtect</code> calls
+<code>clean(cleandata, FALSE)</code> before returning the value returned by
+<code>fun</code>. If <code>fun</code> executes a non-local transfer of control, then
+<code>clean(cleandata, TRUE)</code> is called, and the non-local transfer of
+control is resumed.
+</p>
+<p>The second use pattern, suitable to support C++ stack unwinding, uses
+two additional functions:
+</p>
+<div class="example">
+<pre class="example">SEXP R_MakeUnwindCont();
+void NORET R_ContinueUnwind(SEXP cont);
+</pre></div>
+
+<p><code>R_MakeUnwindCont</code> allocates a <em>continuation token</em>
+<code>cont</code> to pass to <code>R_UnwindProtect</code>. This token should be
+protected with <code>PROTECT</code> before calling
+<code>R_UnwindProtect</code>. When the <code>clean</code> function is called with
+<code>jump == TRUE</code>, indicating that R is executing a non-local transfer
+of control, it can throw a C++ exception to a C++ <code>catch</code> outside
+the C++ code to be unwound, and then use the continuation token in the a
+call <code>R_ContinueUnwind(cont)</code> to resume the non-local transfer of
+control within R.
+</p>
+
+<hr>
 <a name="Allowing-interrupts"></a>
 <div class="header">
 <p>
-Next: <a href="#Platform-and-version-information" accesskey="n" rel="next">Platform and version information</a>, Previous: <a href="#Re_002dencoding" accesskey="p" rel="prev">Re-encoding</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Platform-and-version-information" accesskey="n" rel="next">Platform and version information</a>, Previous: <a href="#Condition-handling-and-cleanup-code" accesskey="p" rel="prev">Condition handling and cleanup code</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Allowing-interrupts-1"></a>
-<h3 class="section">6.12 Allowing interrupts</h3>
+<h3 class="section">6.13 Allowing interrupts</h3>
 <a name="index-Interrupts"></a>
 
 <p>No port of R can be interrupted whilst running long computations in
@@ -14324,7 +14437,7 @@ void R_CheckUserInterrupt(void);
 </pre></div>
 
 <p>These check if the user has requested an interrupt, and if so branch to
-R&rsquo;s error handling functions.
+R&rsquo;s error signaling functions.
 </p>
 <p>Note that it is possible that the code behind one of the entry points
 defined here if called from your C or FORTRAN code could be interruptible
@@ -14338,7 +14451,7 @@ or generate an error and so not return to your code.
 Next: <a href="#Inlining-C-functions" accesskey="n" rel="next">Inlining C functions</a>, Previous: <a href="#Allowing-interrupts" accesskey="p" rel="prev">Allowing interrupts</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Platform-and-version-information-1"></a>
-<h3 class="section">6.13 Platform and version information</h3>
+<h3 class="section">6.14 Platform and version information</h3>
 <a name="index-Version-information-from-C"></a>
 <a name="index-OpenMP-1"></a>
 <a name="index-R_005fVersion"></a>
@@ -14402,7 +14515,7 @@ platforms.
 Next: <a href="#Controlling-visibility" accesskey="n" rel="next">Controlling visibility</a>, Previous: <a href="#Platform-and-version-information" accesskey="p" rel="prev">Platform and version information</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Inlining-C-functions-1"></a>
-<h3 class="section">6.14 Inlining C functions</h3>
+<h3 class="section">6.15 Inlining C functions</h3>
 <a name="index-R_005fINLINE"></a>
 
 <p>The C99 keyword <code>inline</code> should be recognized by all compilers
@@ -14436,7 +14549,7 @@ code.
 Next: <a href="#Standalone-Mathlib" accesskey="n" rel="next">Standalone Mathlib</a>, Previous: <a href="#Inlining-C-functions" accesskey="p" rel="prev">Inlining C functions</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Controlling-visibility-1"></a>
-<h3 class="section">6.15 Controlling visibility</h3>
+<h3 class="section">6.16 Controlling visibility</h3>
 <a name="index-Visibility"></a>
 
 <p>Header <samp>R_ext/Visibility.h</samp> has some definitions for controlling the
@@ -14501,7 +14614,7 @@ EXPORTS
 Next: <a href="#Organization-of-header-files" accesskey="n" rel="next">Organization of header files</a>, Previous: <a href="#Controlling-visibility" accesskey="p" rel="prev">Controlling visibility</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Using-these-functions-in-your-own-C-code"></a>
-<h3 class="section">6.16 Using these functions in your own C code</h3>
+<h3 class="section">6.17 Using these functions in your own C code</h3>
 
 <p>It is possible to build <code>Mathlib</code>, the R set of mathematical
 functions documented in <samp>Rmath.h</samp>, as a standalone library
@@ -14552,7 +14665,7 @@ points
 Previous: <a href="#Standalone-Mathlib" accesskey="p" rel="prev">Standalone Mathlib</a>, Up: <a href="#The-R-API" accesskey="u" rel="up">The R API</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Organization-of-header-files-1"></a>
-<h3 class="section">6.17 Organization of header files</h3>
+<h3 class="section">6.18 Organization of header files</h3>
 
 <p>The header files which R installs are in directory
 <samp><var>R_INCLUDE_DIR</var></samp> (default <samp><var>R_HOME</var>/include</samp>).  This
@@ -14603,7 +14716,7 @@ packages that need to share in the R event loops (not Windows)</td></tr>
 <tr><td width="30%"><samp>R_ext/Boolean.h</samp></td><td width="55%"><code>TRUE</code>/<code>FALSE</code> type</td></tr>
 <tr><td width="30%"><samp>R_ext/Complex.h</samp></td><td width="55%">C typedefs for R&rsquo;s <code>complex</code></td></tr>
 <tr><td width="30%"><samp>R_ext/Constants.h</samp></td><td width="55%">constants</td></tr>
-<tr><td width="30%"><samp>R_ext/Error.h</samp></td><td width="55%">error handling</td></tr>
+<tr><td width="30%"><samp>R_ext/Error.h</samp></td><td width="55%">error signaling</td></tr>
 <tr><td width="30%"><samp>R_ext/Memory.h</samp></td><td width="55%">memory allocation</td></tr>
 <tr><td width="30%"><samp>R_ext/Print.h</samp></td><td width="55%"><code>Rprintf</code> and variations.</td></tr>
 <tr><td width="30%"><samp>R_ext/RS.h</samp></td><td width="55%">definitions common to <samp>R.h</samp> and
@@ -15056,7 +15169,7 @@ include <samp>Makeconf</samp>, for example via recursive invocation of
 </p>
 <div class="example">
 <pre class="example">all:
-      $(MAKE) -f&quot;${R_HOME}/etc${R_ARCH}/Makeconf&quot; -fMakefile.inner
+      $(MAKE) -f &quot;${R_HOME}/etc${R_ARCH}/Makeconf&quot; -f Makefile.inner
 </pre></div>
   
 <p>Additional flags which <code>$(MAIN_LINK)</code> includes are, amongst others,
@@ -16307,7 +16420,9 @@ Previous: <a href="#Function-and-variable-index" accesskey="p" rel="prev">Functi
 <tr><td></td><td valign="top"><a href="#index-citation">citation</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Package-subdirectories">Package subdirectories</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-citation-1">citation</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Preparing-translations">Preparing translations</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Classes">Classes</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Classes">Classes</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Cleanup-code">Cleanup code</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Condition-handling-and-cleanup-code">Condition handling and cleanup code</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-cleanup-file">cleanup file</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Package-structure">Package structure</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Condition-handling">Condition handling</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Condition-handling-and-cleanup-code">Condition handling and cleanup code</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-conditionals">conditionals</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Conditional-text">Conditional text</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-configure-file">configure file</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Package-structure">Package structure</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Copying-objects">Copying objects</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Named-objects-and-copying">Named objects and copying</a></td></tr>
@@ -16329,8 +16444,9 @@ Previous: <a href="#Function-and-variable-index" accesskey="p" rel="prev">Functi
 <tr><th><a name="Concept-index_cp_letter-E">E</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Editing-Rd-files">Editing Rd files</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Editing-Rd-files">Editing Rd files</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-encoding">encoding</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Encoding">Encoding</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Error-handling-from-C">Error handling from C</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Error-handling">Error handling</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Error-handling-from-FORTRAN">Error handling from FORTRAN</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Error-handling-from-FORTRAN">Error handling from FORTRAN</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Error-handling">Error handling</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Condition-handling-and-cleanup-code">Condition handling and cleanup code</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Error-signaling-from-C">Error signaling from C</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Error-signaling">Error signaling</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Error-signaling-from-FORTRAN">Error signaling from FORTRAN</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Error-signaling-from-FORTRAN">Error signaling from FORTRAN</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Evaluating-R-expressions-from-C">Evaluating R expressions from C</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Evaluating-R-expressions-from-C">Evaluating R expressions from C</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-external-pointer">external pointer</a>:</td><td>&nbsp;</td><td valign="top"><a href="#External-pointers-and-weak-references">External pointers and weak references</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
@@ -16790,9 +16906,8 @@ may help explain some of the warnings from <code>gfortran -Wall
 <p>See
 <a href="http://people.ds.cam.ac.uk/nmm1/fortran/paper_07.pdf">http://people.ds.cam.ac.uk/nmm1/fortran/paper_07.pdf</a>.</p>
 <h3><a name="FOOT73" href="#DOCF73">(73)</a></h3>
-<p>These are
-optional because the corresponding types are, but must be provided if the
-types are.</p>
+<p>These are optional because the corresponding types are,
+but must be provided if the types are.</p>
 <h3><a name="FOOT74" href="#DOCF74">(74)</a></h3>
 <p>but note that <code>long long</code> is not a standard C++98 type,
 and C++ compilers set up for strict checking will reject it.</p>
