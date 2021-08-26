@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.1.1 (2014-07-10).
+<!-- This manual is for R, version 3.1.2 (2014-10-31).
 
-Copyright (C) 2001-2013 R Core Team
+Copyright (C) 2001-2014 R Core Team
 
 Permission is granted to make and distribute verbatim copies of this
 manual provided the copyright notice and this permission notice are
@@ -172,15 +172,13 @@ p {
       <li><a name="toc-Getting-the-source-files-1" href="#Getting-the-source-files">3.1.2 Getting the source files</a></li>
       <li><a name="toc-Building-the-core-files-1" href="#Building-the-core-files">3.1.3 Building the core files</a></li>
       <li><a name="toc-Building-the-bitmap-files-1" href="#Building-the-bitmap-files">3.1.4 Building the bitmap files</a></li>
-      <li><a name="toc-Building-the-cairo-devices" href="#Building-the-cairo-devices-files">3.1.5 Building the cairo devices</a>
-      <ul class="no-bullet">
-        <li><a name="toc-Using-ICU-for-collation-1" href="#Using-ICU-for-collation">3.1.5.1 Using ICU for collation</a></li>
-      </ul></li>
-      <li><a name="toc-Checking-the-build-1" href="#Checking-the-build">3.1.6 Checking the build</a></li>
-      <li><a name="toc-Building-the-manuals-1" href="#Building-the-manuals">3.1.7 Building the manuals</a></li>
-      <li><a name="toc-Building-the-Inno-Setup-installer-1" href="#Building-the-Inno-Setup-installer">3.1.8 Building the Inno Setup installer</a></li>
-      <li><a name="toc-Building-the-MSI-installer-1" href="#Building-the-MSI-installer">3.1.9 Building the MSI installer</a></li>
-      <li><a name="toc-64_002dbit-Windows-builds-1" href="#g_t64_002dbit-Windows-builds">3.1.10 64-bit Windows builds</a></li>
+      <li><a name="toc-Building-the-cairo-devices" href="#Building-the-cairo-devices-files">3.1.5 Building the cairo devices</a></li>
+      <li><a name="toc-Using-ICU-for-collation-1" href="#Using-ICU-for-collation">3.1.6 Using ICU for collation</a></li>
+      <li><a name="toc-Checking-the-build-1" href="#Checking-the-build">3.1.7 Checking the build</a></li>
+      <li><a name="toc-Building-the-manuals-1" href="#Building-the-manuals">3.1.8 Building the manuals</a></li>
+      <li><a name="toc-Building-the-Inno-Setup-installer-1" href="#Building-the-Inno-Setup-installer">3.1.9 Building the Inno Setup installer</a></li>
+      <li><a name="toc-Building-the-MSI-installer-1" href="#Building-the-MSI-installer">3.1.10 Building the MSI installer</a></li>
+      <li><a name="toc-64_002dbit-Windows-builds-1" href="#g_t64_002dbit-Windows-builds">3.1.11 64-bit Windows builds</a></li>
     </ul></li>
     <li><a name="toc-Testing-an-Installation-1" href="#Testing-a-Windows-Installation">3.2 Testing an Installation</a></li>
   </ul></li>
@@ -282,10 +280,11 @@ p {
       <li><a name="toc-Lion-1" href="#Lion">C.3.2 Lion</a></li>
       <li><a name="toc-Mountain-Lion-1" href="#Mountain-Lion">C.3.3 Mountain Lion</a></li>
       <li><a name="toc-Mavericks-1" href="#Mavericks">C.3.4 Mavericks</a></li>
-      <li><a name="toc-Tcl_002fTk-headers-and-libraries-1" href="#Tcl_002fTk-headers-and-libraries">C.3.5 Tcl/Tk headers and libraries</a></li>
-      <li><a name="toc-Java" href="#Java-_0028OS-X_0029">C.3.6 Java</a></li>
-      <li><a name="toc-Frameworks-1" href="#Frameworks">C.3.7 Frameworks</a></li>
-      <li><a name="toc-Building-R_002eapp-1" href="#Building-R_002eapp">C.3.8 Building R.app</a></li>
+      <li><a name="toc-Yosemite-1" href="#Yosemite">C.3.5 Yosemite</a></li>
+      <li><a name="toc-Tcl_002fTk-headers-and-libraries-1" href="#Tcl_002fTk-headers-and-libraries">C.3.6 Tcl/Tk headers and libraries</a></li>
+      <li><a name="toc-Java" href="#Java-_0028OS-X_0029">C.3.7 Java</a></li>
+      <li><a name="toc-Frameworks-1" href="#Frameworks">C.3.8 Frameworks</a></li>
+      <li><a name="toc-Building-R_002eapp-1" href="#Building-R_002eapp">C.3.9 Building R.app</a></li>
     </ul></li>
     <li><a name="toc-Solaris-1" href="#Solaris">C.4 Solaris</a>
     <ul class="no-bullet">
@@ -321,9 +320,9 @@ Next: <a href="#Obtaining-R" accesskey="n" rel="next">Obtaining R</a>, Previous:
 
 <p>This is a guide to installation and administration for R.
 </p>
-<p>This manual is for R, version 3.1.1 (2014-07-10).
+<p>This manual is for R, version 3.1.2 (2014-10-31).
 </p>
-<p>Copyright &copy; 2001&ndash;2013 R Core Team
+<p>Copyright &copy; 2001&ndash;2014 R Core Team
 </p>
 <blockquote>
 <p>Permission is granted to make and distribute verbatim copies of this
@@ -705,6 +704,13 @@ and the R <acronym>FAQ</acronym> (files <samp>FAQ</samp> or
 <a href="http://CRAN.R-project.org/doc/FAQ/R-FAQ.html">http://CRAN.R-project.org/doc/FAQ/R-FAQ.html</a> which always
 has the version for the latest release of R).
 </p>
+<p>Note: if you already have R installed, check that where you installed
+R replaces or comes earlier in your path than the previous
+installation.  Some systems are set up to have <samp>/usr/bin</samp> (the
+standard place for a system installation) ahead of <samp>/usr/local/bin</samp>
+(the default place for installation of R) in their default path, and
+some do not have <samp>/usr/local/bin</samp> on the default path.
+</p>
 <hr>
 <a name="Help-options"></a>
 <div class="header">
@@ -820,8 +826,7 @@ by <code>configure</code>) or <code>beramono</code>, which replace the Courier
 monospaced font by Inconsolata or Bera Sans mono respectively.  (You
 will need a recent version of the appropriate LaTeX package
 <strong>inconsolata</strong><a name="DOCF6" href="#FOOT6"><sup>6</sup></a> or
-<strong>bera</strong> installed: <strong>inconsolata</strong> is likely to require
-<strong>upquote</strong>.)
+<strong>bera</strong> installed.)
 </p>
 <p>Note that in most LaTeX installations this will not actually use the
 standard fonts for PDF, but rather embed the URW clones NimbusRom,
@@ -931,7 +936,8 @@ typing
 </pre></div>
 
 <p>A parallel make can be used (but run <code>make</code> before <code>make
-install</code>).
+install</code>).  Those using GNU <code>make</code> 4.0 or later may want to use
+<code>make -j <var>n</var> -O</code> to avoid interleaving of output.
 </p>
 <p>This will install to the following directories:
 </p>
@@ -961,15 +967,17 @@ the option <samp>--prefix</samp>, as in
 <p>This causes <code>make install</code> to install the R script to
 <samp>/where/you/want/R/to/go/bin</samp>, and so on.  The prefix of the
 installation directories can be seen in the status message that is
-displayed at the end of <code>configure</code>.  You can install into
-another directory tree by using
+displayed at the end of <code>configure</code>.  The installation may need
+to be done by the owner of <samp><var>prefix</var></samp>, often a root account.
+</p>
+<p>You can install into another directory tree by using
 </p>
 <div class="example">
 <pre class="example">make prefix=/path/to/here install
 </pre></div>
 
-<p>at least with <acronym>GNU</acronym> <code>make</code> (and current Solaris and
-FreeBSD <code>make</code>, but not some older Unix makes).
+<p>at least with <acronym>GNU</acronym> <code>make</code> (and current Solaris
+<code>make</code>, but not some older Unix makes).
 </p>
 <p>More precise control is available at configure time via options: see
 <code>configure --help</code> for details.  (However, most of the &lsquo;Fine
@@ -995,13 +1003,13 @@ specified on the <code>make install</code> command line (at least for
 <code>libdir</code>.  The C header files can be installed to the value of
 <code>rincludedir</code>: note that as the headers are not installed into a
 subdirectory you probably want something like
-<code>rincludedir=/usr/local/include/R-3.1.1</code>.
+<code>rincludedir=/usr/local/include/R-3.1.2</code>.
 </p>
 <p>If you want the R home to be something other than
 <samp><var>libdir</var>/R</samp>, use <samp>rhome</samp>: for example
 </p>
 <div class="example">
-<pre class="example">make install rhome=/usr/local/lib64/R-3.1.1
+<pre class="example">make install rhome=/usr/local/lib64/R-3.1.2
 </pre></div>
 
 <p>will use a version-specific R home on a non-Debian Linux 64-bit
@@ -1030,8 +1038,8 @@ supported, stripped libraries in directories <samp>lib</samp> and
 <samp>modules</samp> and in the standard packages.
 </p>
 <p>Note that installing R into a directory whose path contains spaces is
-not supported, and at least some aspects (such as installing source
-packages) will not work.
+not supported, and some aspects (such as installing source packages)
+will not work.
 </p>
 <a name="index-Manuals_002c-installing"></a>
 
@@ -1377,7 +1385,7 @@ from <acronym>CRAN</acronym> to run on Windows XP or later on ix86 <acronym>CPU<
 perhaps for some network-mounted systems).
 </p>
 <p>Installation is <em>via</em> the installer
-<samp>R-3.1.1-win.exe</samp>.  Just double-click on the icon and
+<samp>R-3.1.2-win.exe</samp>.  Just double-click on the icon and
 follow the instructions.  When installing on a 64-bit version of Windows
 the options will include 32- or 64-bit versions of R (and the default is
 to install both).  You can uninstall R from the Control Panel.
@@ -1429,13 +1437,15 @@ try to select a &lsquo;<samp>C</samp>&rsquo; locale; Windows may not honour this
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Building-the-cairo-devices-files" accesskey="5">Building the cairo devices files</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Checking-the-build" accesskey="6">Checking the build</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Using-ICU-for-collation" accesskey="6">Using ICU for collation</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Building-the-manuals" accesskey="7">Building the manuals</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Checking-the-build" accesskey="7">Checking the build</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Building-the-Inno-Setup-installer" accesskey="8">Building the Inno Setup installer</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Building-the-manuals" accesskey="8">Building the manuals</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Building-the-MSI-installer" accesskey="9">Building the MSI installer</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Building-the-Inno-Setup-installer" accesskey="9">Building the Inno Setup installer</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Building-the-MSI-installer">Building the MSI installer</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#g_t64_002dbit-Windows-builds">64-bit Windows builds</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -1472,12 +1482,12 @@ Next: <a href="#Building-the-core-files" accesskey="n" rel="next">Building the c
 
 <p>You need to collect the following sets of files:
 </p><ul>
-<li> Get the R source code tarball <samp>R-3.1.1.tar.gz</samp> from
+<li> Get the R source code tarball <samp>R-3.1.2.tar.gz</samp> from
 <acronym>CRAN</acronym>.  Open a command window (or another shell) at directory
 <var>R_HOME</var>, and run
 
 <div class="example">
-<pre class="example">tar -xf R-3.1.1.tar.gz
+<pre class="example">tar -xf R-3.1.2.tar.gz
 </pre></div>
 
 <p>to create the source tree in <var>R_HOME</var>.  <strong>Beware</strong>: do use
@@ -1486,7 +1496,7 @@ If you are using an account with administrative privileges you may get a
 lot of messages which can be suppressed by
 </p>
 <div class="example">
-<pre class="example">tar --no-same-owner -xf R-3.1.1.tar.gz
+<pre class="example">tar --no-same-owner -xf R-3.1.2.tar.gz
 </pre></div>
 
 <a name="index-TAR_005fOPTIONS-1"></a>
@@ -1637,7 +1647,7 @@ not built automatically.
 <a name="Building-the-cairo-devices-files"></a>
 <div class="header">
 <p>
-Next: <a href="#Checking-the-build" accesskey="n" rel="next">Checking the build</a>, Previous: <a href="#Building-the-bitmap-files" accesskey="p" rel="prev">Building the bitmap files</a>, Up: <a href="#Building-from-source" accesskey="u" rel="up">Building from source</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Using-ICU-for-collation" accesskey="n" rel="next">Using ICU for collation</a>, Previous: <a href="#Building-the-bitmap-files" accesskey="p" rel="prev">Building the bitmap files</a>, Up: <a href="#Building-from-source" accesskey="u" rel="up">Building from source</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Building-the-cairo-devices"></a>
 <h4 class="subsection">3.1.5 Building the cairo devices</h4>
@@ -1657,19 +1667,14 @@ the macro &lsquo;<samp>CAIRO_HOME</samp>&rsquo; in <samp>MkRules.local</samp>.  
 tarball unpacks with a top-level directory <samp>src/</samp>:
 &lsquo;<samp>CAIRO_HOME</samp>&rsquo; needs to include that directory in its path.)
 </p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="#Using-ICU-for-collation" accesskey="1">Using ICU for collation</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
-
 <hr>
 <a name="Using-ICU-for-collation"></a>
 <div class="header">
 <p>
-Previous: <a href="#Building-the-cairo-devices-files" accesskey="p" rel="prev">Building the cairo devices files</a>, Up: <a href="#Building-the-cairo-devices-files" accesskey="u" rel="up">Building the cairo devices files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Checking-the-build" accesskey="n" rel="next">Checking the build</a>, Previous: <a href="#Building-the-cairo-devices-files" accesskey="p" rel="prev">Building the cairo devices files</a>, Up: <a href="#Building-from-source" accesskey="u" rel="up">Building from source</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Using-ICU-for-collation-1"></a>
-<h4 class="subsubsection">3.1.5.1 Using ICU for collation</h4>
+<h4 class="subsection">3.1.6 Using ICU for collation</h4>
 
 <p>It is possible (and even recommended) to build R to use ICU
 (International Components for Unicode,
@@ -1690,15 +1695,18 @@ at <a href="http://www.stats.ox.ac.uk/pub/Rtools/goodies/ICU_531.zip">http://www
 Depending on the build, it may be necessary to edit the macro
 <code>ICU_LIBS</code>.
 </p>
-
+<p>Unlike on a Unix-alike, it is currently necessary to call
+<code>icuSetCollate</code> to set a locale before ICU is actually used for
+collation.
+</p>
 <hr>
 <a name="Checking-the-build"></a>
 <div class="header">
 <p>
-Next: <a href="#Building-the-manuals" accesskey="n" rel="next">Building the manuals</a>, Previous: <a href="#Building-the-cairo-devices-files" accesskey="p" rel="prev">Building the cairo devices files</a>, Up: <a href="#Building-from-source" accesskey="u" rel="up">Building from source</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Building-the-manuals" accesskey="n" rel="next">Building the manuals</a>, Previous: <a href="#Using-ICU-for-collation" accesskey="p" rel="prev">Using ICU for collation</a>, Up: <a href="#Building-from-source" accesskey="u" rel="up">Building from source</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Checking-the-build-1"></a>
-<h4 class="subsection">3.1.6 Checking the build</h4>
+<h4 class="subsection">3.1.7 Checking the build</h4>
 
 <p>You can test a build by running
 </p>
@@ -1743,7 +1751,7 @@ run in parallel.
 Next: <a href="#Building-the-Inno-Setup-installer" accesskey="n" rel="next">Building the Inno Setup installer</a>, Previous: <a href="#Checking-the-build" accesskey="p" rel="prev">Checking the build</a>, Up: <a href="#Building-from-source" accesskey="u" rel="up">Building from source</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Building-the-manuals-1"></a>
-<h4 class="subsection">3.1.7 Building the manuals</h4>
+<h4 class="subsection">3.1.8 Building the manuals</h4>
 
 <p>The PDF manuals can be made by
 </p>
@@ -1781,7 +1789,7 @@ install <code>Perl</code>.)
 Next: <a href="#Building-the-MSI-installer" accesskey="n" rel="next">Building the MSI installer</a>, Previous: <a href="#Building-the-manuals" accesskey="p" rel="prev">Building the manuals</a>, Up: <a href="#Building-from-source" accesskey="u" rel="up">Building from source</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Building-the-Inno-Setup-installer-1"></a>
-<h4 class="subsection">3.1.8 Building the Inno Setup installer</h4>
+<h4 class="subsection">3.1.9 Building the Inno Setup installer</h4>
 
 <p>You need to have the files for a complete R build, including bitmap and
 Tcl/Tk support and the manuals, as well as the recommended packages and
@@ -1844,7 +1852,7 @@ source tree) in <samp>src/gnuwin32/installer</samp> run
 installation (in double quotes if it contains spaces or backslashes).
 </p>
 <p>Both methods create an executable with a standard name such as
-<samp>R-3.1.1-win.exe</samp>, so please rename it to indicate that
+<samp>R-3.1.2-win.exe</samp>, so please rename it to indicate that
 it is customized.  If you intend to <em>distribute</em> a customized
 installer please do check that license requirements are met &ndash; note that
 the installer will state that the contents are distributed under GPL-2
@@ -1884,7 +1892,7 @@ installer image.
 Next: <a href="#g_t64_002dbit-Windows-builds" accesskey="n" rel="next">64-bit Windows builds</a>, Previous: <a href="#Building-the-Inno-Setup-installer" accesskey="p" rel="prev">Building the Inno Setup installer</a>, Up: <a href="#Building-from-source" accesskey="u" rel="up">Building from source</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Building-the-MSI-installer-1"></a>
-<h4 class="subsection">3.1.9 Building the MSI installer</h4>
+<h4 class="subsection">3.1.10 Building the MSI installer</h4>
 
 <p>It is also possible to build an installer for use with Microsoft
 Installer.  This is intended for use by sysadmins doing automated
@@ -1908,21 +1916,21 @@ make msi
 </pre></div>
 
 <p>which will result in a file with a name like
-<samp>R-3.1.1-win32.msi</samp>.  This can be double-clicked to be
+<samp>R-3.1.2-win32.msi</samp>.  This can be double-clicked to be
 installed, but those who need it will know what to do with it (usually
 by running <code>msiexec /i</code> with additional options).  Properties
 that users might want to set from the <code>msiexec</code> command line
 include &lsquo;<samp>ALLUSERS</samp>&rsquo;, &lsquo;<samp>INSTALLDIR</samp>&rsquo; (something like
-<samp>c:\Program Files\R\R-3.1.1</samp>) and &lsquo;<samp>RMENU</samp>&rsquo; (the path
+<samp>c:\Program Files\R\R-3.1.2</samp>) and &lsquo;<samp>RMENU</samp>&rsquo; (the path
 to the &lsquo;<samp>R</samp>&rsquo; folder on the start menu) and &lsquo;<samp>STARTDIR</samp>&rsquo; (the
 starting directory for R shortcuts, defaulting to something like
 <samp>c:\Users\name\Documents\R</samp>).
 </p>
 <p>The MSI installer can be built both from a 32-bit build of R
-(<samp>R-3.1.1-win32.msi</samp>) and from a 64-bit build of R
-(<samp>R-3.1.1-win64.msi</samp>, optionally including 32-bit files
+(<samp>R-3.1.2-win32.msi</samp>) and from a 64-bit build of R
+(<samp>R-3.1.2-win64.msi</samp>, optionally including 32-bit files
 by setting the macro <code>HOME32</code>, when the name is
-<samp>R-3.1.1-win.msi</samp>).  Unlike the main installer, a 64-bit
+<samp>R-3.1.2-win.msi</samp>).  Unlike the main installer, a 64-bit
 MSI installer can only be run on 64-bit Windows.
 </p>
 <p>Thanks to David del Campo (Dept of Statistics, University of Oxford)
@@ -1935,7 +1943,7 @@ for suggesting WiX and building a prototype installer.
 Previous: <a href="#Building-the-MSI-installer" accesskey="p" rel="prev">Building the MSI installer</a>, Up: <a href="#Building-from-source" accesskey="u" rel="up">Building from source</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="g_t64_002dbit-Windows-builds-1"></a>
-<h4 class="subsection">3.1.10 64-bit Windows builds</h4>
+<h4 class="subsection">3.1.11 64-bit Windows builds</h4>
 
 <p>To build a 64-bit version of R you need a 64-bit toolchain: the only one
 discussed here is based on the work of the MinGW-w64 project
@@ -2003,17 +2011,17 @@ Next: <a href="#Running-R" accesskey="n" rel="next">Running R</a>, Previous: <a 
 
 <p>The front page of a <acronym>CRAN</acronym> site has a link &lsquo;Download R for OS
 X&rsquo;. Click on that, then download the file
-<samp>R-3.1.1-snowleopard.pkg</samp> and install it.  This runs on
+<samp>R-3.1.2-snowleopard.pkg</samp> and install it.  This runs on
 OS X 10.6 and later (Snow Leopard, Lion, Mountain Lion, Mavericks,
-&hellip;); it is a 64-bit (&lsquo;<samp>x86_64</samp>&rsquo;) build which should run on
-all Macs from mid-2008 on.  For older Intel Macs and some older versions
-of the OS you can install R from the sources.
+Yosemite, &hellip;); it is a 64-bit (&lsquo;<samp>x86_64</samp>&rsquo;) build which should
+run on all Macs from mid-2008 on.  For older Intel Macs and some older
+versions of the OS you can install R from the sources.
 </p>
 <p>There is a separate installer package,
-<samp>R-3.1.1-mavericks.pkg</samp>, for use on Mavericks only: the
-&lsquo;Snow Leopard&rsquo; installer package also works there and may have more
-binary packages available (but there are a few packages using C++11 and
-only available for the Mavericks build).
+<samp>R-3.1.2-mavericks.pkg</samp>, for use on Mavericks and
+Yosemite: the &lsquo;Snow Leopard&rsquo; installer package also works there and may
+have more binary packages available (but there are a few packages using
+C++11 and only available for the Mavericks build).
 </p>
 <p>It is important that if you use a binary installer package that your OS
 is fully updated: run &lsquo;Software Update&rsquo; from the Apple menu to be sure.
@@ -2023,7 +2031,8 @@ is fully updated: run &lsquo;Software Update&rsquo; from the Apple menu to be su
 At the &lsquo;Installation Type&rsquo; stage, note the option to &lsquo;Customize&rsquo;.  This
 currently shows three components.  Everyone will need the &lsquo;R Framework&rsquo;
 component: the &lsquo;R GUI&rsquo; and &lsquo;Tcl/Tk&rsquo; components are optional (the latter
-being needed to use package <strong>tcltk</strong>).
+being needed to use package <strong>tcltk</strong>, and requires an X sub-system to
+be installed: see <a href="#OS-X">OS X</a>).
 </p>
 <p>This is an Apple Installer package. If you encounter any problem during
 the installation, please check the Installer log by clicking on the
@@ -2035,6 +2044,7 @@ installer tailors the installation to the current version of the OS.
 </p>
 <p>For building R from source, see <a href="#OS-X">OS X</a>.
 </p>
+
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Running-R-under-OS-X" accesskey="1">Running R under OS X</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -2068,12 +2078,17 @@ can be viewed from  <small>R.APP</small>&rsquo;s &lsquo;Help&rsquo; menu.
 <p>You can run command-line R from a Terminal like any other Unix-alike:
 see the next chapter of this manual.  There are some small differences
 which may surprise users of R on other platforms, notably the default
-personal library directory (under <samp>~/Library/R</samp>,
+location of the personal library directory (under <samp>~/Library/R</samp>,
 e.g. <samp>~/Library/R/3.1/library</samp>), and that warnings, messages and
 other output to <samp>stderr</samp> are highlighted in bold.
 </p>
-<p>Users of <small>R.APP</small> under Mavericks need to be aware of its &lsquo;App Nap&rsquo;
-feature
+<p>%% https://stat.ethz.ch/pipermail/r-sig-mac/2014-October/011131.html
+It has been reported that running <small>R.APP</small> under Yosemite may fail if no
+preferences are stored, so if it fails when launched for the very first
+time, try it again (the first attempt will store some preferences).
+</p>
+<p>Users of <small>R.APP</small> under Mavericks and later need to be aware of the &lsquo;App
+Nap&rsquo; feature
 (<a href="https://developer.apple.com/library/mac/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_9.html">https://developer.apple.com/library/mac/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_9.html</a>)
 which can cause R tasks to appear to run very slowly when not
 producing output in the console.  Here are three ways to avoid it:
@@ -2082,7 +2097,7 @@ producing output in the console.  Here are three ways to avoid it:
 <li> Ensure that the console is completely visible (or at least the activity
 indicator at the top right corner is visible).
 
-</li><li> Call &lsquo;<samp>Get Info</samp>&rsquo; on the application (e.g. from Finder). This will
+</li><li> Call &lsquo;<samp>Get Info</samp>&rsquo; on the application (e.g. from Finder). This may
 have two tick boxes in the &lsquo;General&rsquo; panel: click the one named &lsquo;Prevent
 App Nap&rsquo; if it is not already ticked.  (This only available for builds
 made prior to Mavericks.)
@@ -2095,6 +2110,11 @@ made prior to Mavericks.)
 <p>(see <a href="https://developer.apple.com/library/mac/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_9.html">https://developer.apple.com/library/mac/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_9.html</a>).
 </p></li></ul>
 
+<p>Using the <code>X11</code> device or the X11-based versions of <code>View()</code>
+and <code>edit</code> for data frames and matrices (the latter are the default
+for command-line R but not <small>R.APP</small>) requires an X sub-system to be
+installed: see <a href="#OS-X">OS X</a>.  (So do some third-party packages.)
+</p>
 <hr>
 <a name="Uninstalling-under-OS-X"></a>
 <div class="header">
@@ -2386,7 +2406,7 @@ available.<a name="DOCF15" href="#FOOT15"><sup>15</sup></a>  On most systems &ls
 will allow packages to be selected from a list box (typically with
 several thousand items).
 </p>
-<p>To install packages from source on a Unix-alike use
+<p>To install packages from source on a Unix-alike use in a terminal
 </p>
 <div class="example">
 <pre class="example">R CMD INSTALL -l /path/to/library <var>pkg1</var> <var>pkg2</var> &hellip;
@@ -2401,9 +2421,9 @@ to see the current list.
 </p>
 <a name="index-install_002epackages"></a>
 <p>Alternatively, packages can be downloaded and installed from within
-R.  First set the option <code>CRAN</code> to your nearest <acronym>CRAN</acronym>
-mirror using <code>chooseCRANmirror()</code>.  Then download
-and install packages <strong>pkg1</strong> and <strong>pkg2</strong> by
+R.  First choose your nearest <acronym>CRAN</acronym> mirror using
+<code>chooseCRANmirror()</code>.  Then download and install packages
+<strong>pkg1</strong> and <strong>pkg2</strong> by
 </p>
 <div class="example">
 <pre class="example">&gt; install.packages(c(&quot;pkg1&quot;, &quot;pkg2&quot;))
@@ -2424,9 +2444,9 @@ that are not already installed, use e.g.
 </pre></div>
 
 <p><code>install.packages</code> can install a source package from a local
-<samp>.tar.gz</samp> file by setting argument <code>repos</code> to <code>NULL</code>:
-this will be selected automatically if the name given is a single
-<samp>.tar.gz</samp> file.
+<samp>.tar.gz</samp> file (or a URL to such a file) by setting argument
+<code>repos</code> to <code>NULL</code>: this will be selected automatically if the
+name given is a single <samp>.tar.gz</samp> file.
 </p>
 <p><code>install.packages</code> can look in several repositories, specified as a
 character vector by the argument <code>repos</code>: these can include a
@@ -2458,13 +2478,13 @@ although optionally it will also download and install a source package
 by setting the <code>type</code> argument.
 </p>
 <p>On Windows <code>install.packages</code> can also install a binary package
-from a local <samp>zip</samp> file by setting argument <code>repos</code> to
-<code>NULL</code>.   <code>Rgui.exe</code> has a menu <code>Packages</code> with a GUI
-interface to <code>install.packages</code>, <code>update.packages</code> and
-<code>library</code>.
+from a local <samp>zip</samp> file (or the URL of such a file) by setting
+argument <code>repos</code> to <code>NULL</code>.  <code>Rgui.exe</code> has a menu
+<code>Packages</code> with a GUI interface to <code>install.packages</code>,
+<code>update.packages</code> and <code>library</code>.
 </p>
 <p>Windows binary packages for R are distributed as a single binary
-containing either or both architectures.
+containing either or both architectures (32- and 64-bit).
 </p>
 <p>A few of the binary packages need other software to be installed on your
 system: see for example
@@ -2472,15 +2492,16 @@ system: see for example
 For 64-bit builds, packages using Gtk+ (<a href="http://CRAN.R-project.org/package=Cairo"><strong>Cairo</strong></a>,
 <a href="http://CRAN.R-project.org/package=RGtk2"><strong>RGtk2</strong></a>, <a href="http://CRAN.R-project.org/package=cairoDevice"><strong>cairoDevice</strong></a> and those that depend on them)
 need the <samp>bin</samp> directory of a bundled distribution from
-<a href="http://www.gtk.org/download-windows-64bit.html">http://www.gtk.org/download-windows-64bit.html</a> in the path: it
-should work to have both 32- and 64-bit Gtk+ <samp>bin</samp> directories in
-the path on a 64-bit version of R.
+<a href="http://www.gtk.org/download/win32.php">http://www.gtk.org/download/win32.php</a> or
+<a href="http://www.gtk.org/download/win64.php">http://www.gtk.org/download/win64.php</a> in the path: it should
+work to have both 32- and 64-bit Gtk+ <samp>bin</samp> directories in the path
+on a 64-bit version of R.
 </p>
 <p><code>R CMD INSTALL</code> works in Windows to install source packages.  No
 additional tools are needed if the package does not contain compiled
 code, and <code>install.packages(type=&quot;source&quot;)</code> will work for such
 packages (and for those with compiled code if the tools (see <a href="#The-Windows-toolset">The Windows toolset</a>) are in the path).  We have seen occasional permission
-problems after unpacking source packages on some Vista/Windows 7/Server
+problems after unpacking source packages on some Windows 7 and Server
 2008 systems: these have been circumvented by setting the environment
 variable <code>R_INSTALL_TAR</code> to &lsquo;<samp>tar.exe</samp>&rsquo;.
 <a name="index-R_005fINSTALL_005fTAR"></a>
@@ -2504,9 +2525,9 @@ appropriate to both architectures use<a name="DOCF16" href="#FOOT16"><sup>16</su
 will only succeed if both installs succeed.)
 </p>
 <p>If you have a package without compiled code and no Windows-specific
-help, you can zip up an installation on another OS and install from the
-that zip file on Windows.  However, such a package can be installed from
-the sources on Windows without any additional tools.
+help, you can zip up an installation on another OS and install from that
+zip file on Windows.  However, such a package can be installed from the
+sources on Windows without any additional tools.
 </p>
 
 <a name="index-LOCAL_005fSOFT"></a>
@@ -2531,7 +2552,7 @@ Next: <a href="#Customizing-package-compilation" accesskey="n" rel="next">Custom
 <p>On OS X <code>install.packages</code> works as it does on other Unix-alike
 systems, but there is an additional type <code>mac.binary</code> (the default
 in the <acronym>CRAN</acronym> distribution but not when compiling from source:
-<code>mac.binary.mavericks</code> for a Mavericks-only build) which can be
+<code>mac.binary.mavericks</code> for a Mavericks build) which can be
 passed to <code>install.packages</code> in order to download and install
 binary packages from a suitable repository.  These OS X binary package
 files have the extension &lsquo;<samp>.tgz</samp>&rsquo;.  The <small>R.APP</small> GUI provides menus
@@ -2540,6 +2561,10 @@ for installation of either binary or source packages, from
 </p>
 <p>Note that most binary packages including compiled code are tied to a
 particular series (e.g. R 3.0.x or 3.1.x) of R.
+</p>
+<p>You should not attempt to mix-and-match binary packages built for the
+&lsquo;Snow Leopard&rsquo; and &lsquo;Mavericks&rsquo; <acronym>CRAN</acronym> distributions: doing so is
+likely to lead to crashes or failures to load.
 </p>
 <p>Installing source packages which do not contain compiled code should
 work with no additional tools. For others you will need the
@@ -2550,7 +2575,7 @@ R.)
 </p>
 <p>Package <a href="http://CRAN.R-project.org/package=rJava"><strong>rJava</strong></a> and those which depend on it need a Java runtime
 installed and several packages need X11 installed, including those using
-Tk.  For Mountain Lion and Mavericks see <a href="#OS-X">OS X</a> and <a href="#Java-_0028OS-X_0029">Java (OS X)</a>.
+Tk.  For Mountain Lion and later see <a href="#OS-X">OS X</a> and <a href="#Java-_0028OS-X_0029">Java (OS X)</a>.
 </p>
 <p>Tcl/Tk extensions <code>BWidget</code> and <code>Tktable</code> are part of the
 Tcl/Tk contained in the R installer.  These are required by a number
@@ -2583,7 +2608,7 @@ CFLAGS=-mtune=native -g -O2 -Wall -pedantic -Wconversion
 CXXFLAGS=-mtune=native -g -O2 -Wall -pedantic -Wconversion
 </pre></div>
 
-<p>and for another version of <code>gfortran-4.2</code> we needed
+<p>and for a version of <code>gfortran-4.2</code> we needed
 </p><div class="example">
 <pre class="example">FLIBS=-lgfortran
 </pre></div>
@@ -2662,8 +2687,8 @@ packages for all sub-architectures.  The exceptions are
 <p>where there is a non-empty <samp>configure.win</samp> script, or a file
 <samp>src/Makefile.win</samp> (with some exceptions where the package is known
 to have an architecture-independent <samp>configure.win</samp>, or if
-<samp>--force-biarch</samp> or a field in the <samp>DESCRIPTION</samp> file is
-used to assert so).
+<samp>--force-biarch</samp> or field &lsquo;<samp>Biarch</samp>&rsquo; in the <samp>DESCRIPTION</samp>
+file is used to assert so).
 </p>
 </dd>
 </dl>
@@ -2811,7 +2836,7 @@ R versions <var>x.y.z</var> and containing <samp>.zip</samp> files for Windows.
 
 </li><li> <code>&quot;mac.binary.mavericks&quot;</code>: located at
 <samp>bin/macosx/mavericks/contrib/<var>3.y</var></samp> for R versions
-<var>3.1.z</var> to be run under OS X 10.9 (Mavericks) and containing
+<var>3.1.z</var> to be run under OS X 10.9 (Mavericks) and later, containing
 <samp>.tgz</samp> files.
 
 </li><li> <code>&quot;mac.binary.leopard&quot;</code>: located at
@@ -3054,10 +3079,10 @@ make this easier for users. See
 for how users can set their locales.  As with Windows, end users will
 generally only see lists of languages/territories.  Users of R in a
 terminal may need to set the locale to something like &lsquo;<samp>en_GB.UTF-8</samp>&rsquo;
-if it defaults to &lsquo;<samp>C</samp>&rsquo; (as it sometimes does when logging it
-remotely and in batch jobs: note whether <code>Terminal</code> sets the
-<code>LANG</code> environment variable is an (advanced) option, but the
-default).
+if it defaults to &lsquo;<samp>C</samp>&rsquo; (as it sometimes does when logging in
+remotely and for batch jobs: note whether <code>Terminal</code> sets the
+<code>LANG</code> environment variable is an (advanced) preference, but does so
+by default).
 </p>
 <p>Internally OS X uses a form similar to Linux: the main difference from
 other Unix-alikes is that where a character set is not specified it is
@@ -3561,11 +3586,10 @@ kept up-to-date.  A number of standard LaTeX packages are required
 (including <strong>fancyvrb</strong>, <strong>url</strong> and some of the font packages such
 as <strong>times</strong>, <strong>helvetic</strong>, <strong>ec</strong> and <strong>cm-super</strong>) and others
 such as <strong>hyperref</strong> and <strong>inconsolata</strong> are desirable (and without
-them you may need to change R&rsquo;s defaults: see <a href="#Making-the-manuals">Making the manuals</a>).  Note that most versions of <strong>inconsolata</strong> require package
-<strong>upquote</strong> and that <strong>hyperref</strong> (currently) requires packages
-<strong>kvoptions</strong>, <strong>ltxcmds</strong> and <strong>refcount</strong>.  For distributions
-based on TeXLive the simplest approach may be to install collections
-<strong>collection-latex</strong>, <strong>collection-fontsrecommended</strong>,
+them you may need to change R&rsquo;s defaults: see <a href="#Making-the-manuals">Making the manuals</a>).  Note that package <strong>hyperref</strong> (currently) requires
+packages <strong>kvoptions</strong>, <strong>ltxcmds</strong> and <strong>refcount</strong>.  For
+distributions based on TeXLive the simplest approach may be to install
+collections <strong>collection-latex</strong>, <strong>collection-fontsrecommended</strong>,
 <strong>collection-latexrecommended</strong>, <strong>collection-fontsextra</strong> and
 <strong>collection-latexextra</strong> (assuming they are not installed by
 default): Fedora uses names like <strong>texlive-collection-fontsextra</strong> and
@@ -4043,7 +4067,14 @@ way to use it.
 <p>Our understanding is that this project is now frozen and so will not be
 updated for CPUs released since mid-2010.  However, OpenBLAS
 (<a href="http://xianyi.github.com/OpenBLAS/">http://xianyi.github.com/OpenBLAS/</a>) is a descendant project with
-support for some current CPUs (e.g. Intel Sandy Bridge and AMD Bulldozer).
+support for some current CPUs (e.g. Intel Sandy Bridge).  Once
+installed it can be used by something like
+</p>
+<div class="example">
+<pre class="example">--with-blas=&quot;-lopenblas&quot;
+</pre></div>
+
+<p>or as a shared BLAS.
 </p>
 <hr>
 <a name="MKL"></a>
@@ -5304,8 +5335,8 @@ will need to register there: that allows you to download older versions
 available for your OS) or some versions of Xcode (from the App Store or
 from <a href="http://developer.apple.com/devcenter/mac/">http://developer.apple.com/devcenter/mac/</a>) you can install
 the command-line tools from within Xcode, from the &lsquo;<samp>Downloads</samp>&rsquo; pane
-in the &lsquo;<samp>Preferences</samp>&rsquo;.  For Mavericks, see the specific sub-section
-below.
+in the &lsquo;<samp>Preferences</samp>&rsquo;.  For Mavericks and later, see the specific
+sub-section below.
 </p>
 <p>Various compilers can be used.  The current <acronym>CRAN</acronym> &lsquo;Snow
 Leopard&rsquo; distribution of R is built using
@@ -5360,7 +5391,7 @@ OBJC=clang
 <p>with <code>clang</code> and <code>clang++</code> from Xcode 5, and the Fortran
 compiler from
 <a href="http://r.research.att.com/libs/gfortran-4.8.2-darwin13.tar.bz2">http://r.research.att.com/libs/gfortran-4.8.2-darwin13.tar.bz2</a>.<a name="DOCF45" href="#FOOT45"><sup>45</sup></a>  Apple&rsquo;s
-build of <code>clang</code> has no OpenMP support.
+builds of <code>clang</code> currently have little or no OpenMP support.
 </p>
 <p>Pre-compiled versions of many of the <a href="#Useful-libraries-and-programs">Useful libraries and programs</a>
 are available from <a href="http://r.research.att.com/libs/">http://r.research.att.com/libs/</a>.  You will
@@ -5417,13 +5448,15 @@ TeX packages.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Mavericks" accesskey="4">Mavericks</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Tcl_002fTk-headers-and-libraries" accesskey="5">Tcl/Tk headers and libraries</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Yosemite" accesskey="5">Yosemite</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Java-_0028OS-X_0029" accesskey="6">Java (OS X)</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Tcl_002fTk-headers-and-libraries" accesskey="6">Tcl/Tk headers and libraries</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Frameworks" accesskey="7">Frameworks</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Java-_0028OS-X_0029" accesskey="7">Java (OS X)</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Building-R_002eapp" accesskey="8">Building R.app</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Frameworks" accesskey="8">Frameworks</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Building-R_002eapp" accesskey="9">Building R.app</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -5497,7 +5530,7 @@ be installed afterwards.
 <a name="Mavericks"></a>
 <div class="header">
 <p>
-Next: <a href="#Tcl_002fTk-headers-and-libraries" accesskey="n" rel="next">Tcl/Tk headers and libraries</a>, Previous: <a href="#Mountain-Lion" accesskey="p" rel="prev">Mountain Lion</a>, Up: <a href="#OS-X" accesskey="u" rel="up">OS X</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Yosemite" accesskey="n" rel="next">Yosemite</a>, Previous: <a href="#Mountain-Lion" accesskey="p" rel="prev">Mountain Lion</a>, Up: <a href="#OS-X" accesskey="u" rel="up">OS X</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Mavericks-1"></a>
 <h4 class="subsection">C.3.4 Mavericks</h4>
@@ -5514,8 +5547,9 @@ command-line tools, or perhaps use the versions from Xcode.  However,
 after an update to Mavericks, you are advised to re-install them.)  They
 are not available under the &lsquo;<samp>Downloads</samp>&rsquo; preference pane in Xcode.
 </p>
-<p>To use the compilers from the command-line tools for Xcode 5 with the
-recommended Fortran compiler, have in <samp>config.site</samp> something like
+<p>To use the compilers from the command-line tools for Xcode 5 or 6 with
+the recommended Fortran compiler, have in <samp>config.site</samp> something
+like
 </p>
 <div class="example">
 <pre class="example">CC=clang
@@ -5540,13 +5574,29 @@ OBJCXX = g++ -arch x86_64
 <p>See the comments under Mountain Lion about X11 and GTK.
 </p>
 <hr>
+<a name="Yosemite"></a>
+<div class="header">
+<p>
+Next: <a href="#Tcl_002fTk-headers-and-libraries" accesskey="n" rel="next">Tcl/Tk headers and libraries</a>, Previous: <a href="#Mavericks" accesskey="p" rel="prev">Mavericks</a>, Up: <a href="#OS-X" accesskey="u" rel="up">OS X</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="Yosemite-1"></a>
+<h4 class="subsection">C.3.5 Yosemite</h4>
+
+<p>See the comments under &lsquo;Mavericks&rsquo;.
+</p>
+<p>Note that if you upgrade to Yosemite you should re-install any of
+XQuartz, the &lsquo;Command-line Tools for Xcode&rsquo; and Java which you have
+installed.
+</p>
+
+<hr>
 <a name="Tcl_002fTk-headers-and-libraries"></a>
 <div class="header">
 <p>
-Next: <a href="#Java-_0028OS-X_0029" accesskey="n" rel="next">Java (OS X)</a>, Previous: <a href="#Mavericks" accesskey="p" rel="prev">Mavericks</a>, Up: <a href="#OS-X" accesskey="u" rel="up">OS X</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Java-_0028OS-X_0029" accesskey="n" rel="next">Java (OS X)</a>, Previous: <a href="#Yosemite" accesskey="p" rel="prev">Yosemite</a>, Up: <a href="#OS-X" accesskey="u" rel="up">OS X</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Tcl_002fTk-headers-and-libraries-1"></a>
-<h4 class="subsection">C.3.5 Tcl/Tk headers and libraries</h4>
+<h4 class="subsection">C.3.6 Tcl/Tk headers and libraries</h4>
 
 <p>If you plan to use the <code>tcltk</code> package for R, you need to
 install a distribution of Tcl/Tk.  There are two alternatives.  If you
@@ -5561,16 +5611,17 @@ This may need
 <pre class="example">--with-tcl-config=/usr/local/lib/tclConfig.sh 
 --with-tk-config=/usr/local/lib/tkConfig.sh
 </pre></div>
-<p>Note that this expects a fully-updated X11 installation.
+<p>Note that this requires a fully-updated X11 installation (XQuartz for
+Mountain Lion and later).
 </p>
 <p>There is also a native (&lsquo;Aqua&rsquo;) version of Tcl/Tk which produces widgets
 in the native OS X style: this will not work with <small>R.APP</small> because of
-conflicting event loops, but for those only using command-line R this
-provides a much more intuitive interface to Tk for experienced Mac
-users. Most versions of OS X come with Aqua Tcl/Tk libraries, but these
-are not current versions of Tcl/Tk (8.5.9 in Mountain Lion and
-Mavericks).  It is better to install Tcl/Tk 8.6.x or 8.5.x from the
-sources or the binary distribution at
+conflicts over the OS X menu, but for those only using command-line R
+this provides a much more intuitive interface to Tk for experienced Mac
+users.  Most versions of OS X come with Aqua Tcl/Tk libraries, but these
+are not current (nor recent) versions of Tcl/Tk (8.5.9 in Mountain
+Lion and Mavericks).  It is better to install Tcl/Tk 8.6.x or 8.5.x from
+the sources or a binary distribution from
 <a href="http://www.activestate.com/activetcl/downloads">http://www.activestate.com/activetcl/downloads</a>.  Configure R
 with
 </p><div class="example">
@@ -5581,6 +5632,12 @@ with
 <p>(for the versions bundled with OS X, use paths starting with
 <samp>/System/Library</samp>).
 </p>
+<p>If you need to find out which version of Tk in use at run time, use
+</p><div class="example">
+<pre class="example">library(tcltk)
+tclvalue(.Tcl(&quot;tk windowingsystem&quot;))  # &quot;x11&quot; or &quot;aqua&quot;
+</pre></div>
+
 <hr>
 <a name="Java-_0028OS-X_0029"></a>
 <div class="header">
@@ -5588,21 +5645,21 @@ with
 Next: <a href="#Frameworks" accesskey="n" rel="next">Frameworks</a>, Previous: <a href="#Tcl_002fTk-headers-and-libraries" accesskey="p" rel="prev">Tcl/Tk headers and libraries</a>, Up: <a href="#OS-X" accesskey="u" rel="up">OS X</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Java"></a>
-<h4 class="subsection">C.3.6 Java</h4>
+<h4 class="subsection">C.3.7 Java</h4>
 
 <p>The situation with Java support on OS X is messy, with Apple essentially
 no longer supporting Java (and what it does support is Java 6, which has
 reached end-of-life).  Snow Leopard and Lion shipped with a Java 6
 runtime (JRE).
 </p>
-<p>Mountain Lion and Mavericks do not come with an installed JRE, and an
-upgrade to either removes one if already installed: it is intended to be
-installed at first use. Check if a JRE is installed by running
-<code>java -version</code> in a <code>Terminal</code> window: if Java is not
-installed this should prompt you to install it.
+<p>Mountain Lion and later do not come with an installed JRE, and an OS X
+upgrade removes one if already installed: it is intended to be installed
+at first use.  Check if a JRE is installed by running <code>java
+-version</code> in a <code>Terminal</code> window: if Java is not installed this
+should prompt you to install it.
 </p>
-<p>However, you may want/need to install the latest Java from Oracle
-(currently Java 7 from
+<p>You may want/need to install the latest Java from Oracle (currently Java
+8 from
 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>);
 this is for Lion and later.
 </p>
@@ -5632,7 +5689,7 @@ JAVA_LIBS=&quot;-framework JavaVM&quot;
 </pre></div>
 <p>The Oracle JDK can be specified explicitly by something like
 </p><div class="example">
-<pre class="example">JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
+<pre class="example">JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
 JAVA_CPPFLAGS=&quot;-I/${JAVA_HOME}/include -I/${JAVA_HOME}/include/darwin&quot;
 JAVA_LD_LIBRARY_PATH=&quot;${JAVA_HOME}/jre/lib/server&quot;
 JAVA_LIBS=&quot;-L/${JAVA_HOME}/jre/lib/server -ljvm&quot; 
@@ -5650,7 +5707,7 @@ to <code>1</code> to install many of the Java-using packages.
 Next: <a href="#Building-R_002eapp" accesskey="n" rel="next">Building R.app</a>, Previous: <a href="#Java-_0028OS-X_0029" accesskey="p" rel="prev">Java (OS X)</a>, Up: <a href="#OS-X" accesskey="u" rel="up">OS X</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Frameworks-1"></a>
-<h4 class="subsection">C.3.7 Frameworks</h4>
+<h4 class="subsection">C.3.8 Frameworks</h4>
 
 <p>The <acronym>CRAN</acronym> build of R is installed as a framework, which is
 selected by the default option
@@ -5686,7 +5743,7 @@ to <code>pkg-config</code>).
 Previous: <a href="#Frameworks" accesskey="p" rel="prev">Frameworks</a>, Up: <a href="#OS-X" accesskey="u" rel="up">OS X</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Building-R_002eapp-1"></a>
-<h4 class="subsection">C.3.8 Building R.app</h4>
+<h4 class="subsection">C.3.9 Building R.app</h4>
 
 <p>Note that building the <small>R.APP</small> GUI console is a separate project, using
 Xcode.  Before compiling <small>R.APP</small> make sure the current version of R
@@ -6246,7 +6303,8 @@ directory.
 many compilers these reduce the degree of compliance to the
 <acronym>IEEE</acronym> model.  For example, using <samp>-fast</samp> on the Solaris
 Studio compilers has caused R&rsquo;s <code>NaN</code> to be set incorrectly, and
-<code>gcc</code>&rsquo;s <samp>-ffast-math</samp> has given incorrect results.
+<code>gcc</code>&rsquo;s <samp>-ffast-math</samp> and <code>clang</code>&rsquo;s
+<samp>-Ofast</samp> have given incorrect results.
 </p>
 <p><strong>Shared Objects</strong>: There seems to be very little agreement
 across platforms on what needs to be done to build shared objects.
@@ -6394,7 +6452,7 @@ it (and the default).  The &lsquo;basic&rsquo; version of &lsquo;<samp>MiKTeX</s
 suffices: when last tested packages
 </p>
 <div class="example">
-<pre class="example">epsf fancyvrb inconsolata listings mptopdf natbib upquote url
+<pre class="example">epsf fancyvrb inconsolata listings mptopdf natbib url
 </pre></div>
 
 <p>needed to be added (on the fly or <em>via</em> the &lsquo;<samp>MiKTeX</samp>&rsquo; Package
@@ -6423,7 +6481,7 @@ Next: <a href="#The-command-line-tools" accesskey="n" rel="next">The command lin
 <a name="The-Inno-Setup-installer-1"></a>
 <h3 class="section">D.2 The Inno Setup installer</h3>
 
-<p>To make the installer package (<samp>R-3.1.1-win.exe</samp>) we
+<p>To make the installer package (<samp>R-3.1.2-win.exe</samp>) we
 currently require the Unicode version of Inno Setup 5.3.7 or later from
 <a href="http://jrsoftware.org/">http://jrsoftware.org/</a>. This is <em>not</em> included in
 <samp>Rtools*.exe</samp>.

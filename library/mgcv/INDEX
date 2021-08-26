@@ -42,6 +42,7 @@ gam.fit3                P-IRLS GAM estimation with GCV & UBRE/AIC or
 gam.models              Specifying generalized additive models
 gam.outer               Minimize GCV or UBRE score of a GAM using
                         'outer' iteration
+gam.scale               Scale parameter estimation in GAMs
 gam.selection           Generalized Additive Model Selection
 gam.side                Identifiability side conditions for a GAM
 gam.vcomp               Report gam smoothness estimates as variance

@@ -45,6 +45,7 @@ gam.fit3	gam.fit3
 gam.models	gam.models
 gam.outer	gam.outer
 gam.performance	gam.convergence
+gam.scale	gam.scale
 gam.selection	gam.selection
 gam.side	gam.side
 gam.vcomp	gam.vcomp

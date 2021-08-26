@@ -41,6 +41,7 @@ format.compactPDF	compactPDF
 getBibstyle	bibstyle
 getDepList	getDepList
 getVignetteInfo	getVignetteInfo
+GSC	find_gs_cmd
 help.ports	startDynamicHelp
 HTMLheader	HTMLheader
 installFoundDepends	installFoundDepends
@@ -84,6 +85,8 @@ Rd_parse	tools-defunct
 read.00Index	read.00Index
 readNEWS	tools-defunct
 resaveRdaFiles	checkRdaFiles
+R_DISABLE_HTTPD	startDynamicHelp
+R_GSCMD	find_gs_cmd
 showNonASCII	showNonASCII
 showNonASCIIfile	showNonASCII
 SIGCHLD	pskill
@@ -105,6 +108,7 @@ SweaveTeXFilter	SweaveTeXFilter
 testInstalledBasic	testInstalledPackage
 testInstalledPackage	testInstalledPackage
 testInstalledPackages	testInstalledPackage
+TEST_MC_CORES	testInstalledPackage
 texi2dvi	texi2dvi
 texi2pdf	texi2dvi
 toHTML	toHTML

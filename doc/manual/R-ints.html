@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.1.1 (2014-07-10).
+<!-- This manual is for R, version 3.1.2 (2014-10-31).
 
-Copyright (C) 1999-2013 R Core Team
+Copyright (C) 1999-2014 R Core Team
 
 Permission is granted to make and distribute verbatim copies of this
 manual provided the copyright notice and this permission notice are
@@ -270,9 +270,9 @@ Next: <a href="#R-Internal-Structures" accesskey="n" rel="next">R Internal Struc
 <p>This is a guide to the internal structures of R and coding standards for
 the core team working on R itself.
 </p>
-<p>This manual is for R, version 3.1.1 (2014-07-10).
+<p>This manual is for R, version 3.1.2 (2014-10-31).
 </p>
-<p>Copyright &copy; 1999&ndash;2013 R Core Team
+<p>Copyright &copy; 1999&ndash;2014 R Core Team
 </p>
 <blockquote>
 <p>Permission is granted to make and distribute verbatim copies of this
@@ -2396,7 +2396,7 @@ indicating if the serialized objects were compressed: compression is
 always used nowadays. We later added the values <code>compressed = 2</code>
 and <code>3</code> for <code>bzip2</code> and <code>xz</code> compression (with the
 possibility of future expansion to other methods): these formats add a
-fifth byte to the header for the type of compression, and stores
+fifth byte to the header for the type of compression, and store
 serialized objects uncompressed if compression expands them.
 </p>
 <p>The loader for a lazy-load database of code or data is function
@@ -2413,6 +2413,16 @@ entries is done by calls to <code>.Call(&quot;R_lazyLoadDBinsertValue&quot;,
 <p>Lazy-load databases of less than 10MB are cached in memory at first use:
 this was found necessary when using file systems with high latency
 (removable devices and network-mounted file systems on Windows).
+</p>
+<p>Lazy-load databases are loaded into the exports for a package, but not
+into the namespace environment itself.  Thus they are visible when the
+package is <em>attached</em>, and also <em>via</em> the <code>::</code> operator.
+This was a deliberate design decision, as packages mostly make datasets
+available for use by the end user (or other packages), and they should
+not be found preferentially from functions in the package, surprising
+users who expected the normal search path to be used.  (There is an
+alternative mechanism, <samp>sysdata.rda</samp>, for &lsquo;system datasets&rsquo; that
+are intended primarily to be used within the package.)
 </p>
 <p>The same database mechanism is used to store parsed <samp>Rd</samp> files.
 One or all of the parsed objects is fetched by a call to
@@ -2487,7 +2497,7 @@ return  function  quote  switch
 
 </li><li> Language elements and basic <em>operator</em>s (i.e., functions usually
 <em>not</em> called as <code>foo(a, b, ...)</code>) for subsetting, assignment,
-arithmetic and logic:
+arithmetic, comparison and logic:
 
 <div class="example">
 <pre class="example">               [    [[    $    @
@@ -2498,6 +2508,9 @@ arithmetic and logic:
 |    ||   &amp;    &amp;&amp;    !
 </pre></div>
 
+<p>When the arithmetic, comparison and logical operators are called as
+functions, any argument names are discarded so positional matching is used.
+</p>
 </li><li> &ldquo;Low level&rdquo; 0&ndash; and 1&ndash;argument functions which belong to one of the
 following groups of functions:
 
@@ -2626,8 +2639,9 @@ documentation: this is also done for replacement functions with one
 argument plus <code>value</code>.
 </p>
 <p>The net effect is that argument matching for primitives intended for
-end-user use is done in the same way as for interpreted functions except
-for the six exceptions where positional matching is required.
+end-user use <em>as functions</em> is done in the same way as for
+interpreted functions except for the six exceptions where positional
+matching is required.
 </p>
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Special-primitives" accesskey="1">Special primitives</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -4666,8 +4680,9 @@ with <code>.libPaths()</code> containing just a temporary library directory
 and <code>.Library</code>.  The temporary library is populated by symbolic
 links<a name="DOCF23" href="#FOOT23"><sup>23</sup></a> to the installed copies of
 all the Depends/Imports and (for the second only) Suggests packages
-which are not in <code>.Library</code>.  Default: false (but
-<code>_R_CHECK_SUGGESTS_ONLY_</code> is true for CRAN checks).
+which are not in <code>.Library</code>.  (As an exception, packages in a
+&lsquo;<samp>VignetteBuilder</samp>&rsquo; field are always made available.)
+Default: false (but <code>_R_CHECK_SUGGESTS_ONLY_</code> is true for CRAN checks).
 </p>
 </dd>
 <dt><code>_R_CHECK_NO_RECOMMENDED_</code>
@@ -4803,6 +4818,15 @@ set to &lsquo;<samp>warn</samp>&rsquo; gives a warning, to &lsquo;<samp>false</s
 check is skipped, and any other non-empty value gives an error when more
 than 2 children are spawned.
 Default: unset (but &lsquo;<samp>TRUE</samp>&rsquo; for CRAN submission checks).
+</p>
+</dd>
+<dt><code>_R_CHECK_CODE_USAGE_VIA_NAMESPACES_</code>
+<a name="index-_005fR_005fCHECK_005fCODE_005fUSAGE_005fVIA_005fNAMESPACES_005f"></a>
+</dt>
+<dd><p>If set, check code usage (via <a href="http://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a>) directly on the
+package namespace without loading and attaching the package and its
+suggests and enhances.
+Default: true (and true for CRAN submission checks).
 </p></dd>
 </dl>
 
@@ -4820,6 +4844,7 @@ _R_CHECK_DOC_SIZES2_=TRUE
 _R_CHECK_CODE_ASSIGN_TO_GLOBALENV_=TRUE
 _R_CHECK_CODE_ATTACH_=TRUE
 _R_CHECK_CODE_DATA_INTO_GLOBALENV_=TRUE
+_R_CHECK_CODE_USAGE_VIA_NAMESPACES_=TRUE
 _R_CHECK_DOT_FIRSTLIB_=TRUE
 _R_CHECK_DEPRECATED_DEFUNCT_=TRUE
 _R_CHECK_REPLACING_IMPORTS_=TRUE
@@ -5107,8 +5132,7 @@ to 2^48 on unserialization.
 </li><li> The type <code>R_xlen_t</code> is made available to packages in C header
 <samp>Rinternals.h</samp>: this should be fine in C code since C99 is
 required.  People do try to use R internals in C++, but C++98
-compilers are not required to support these types (and there are
-currently no C++11 compilers).
+compilers are not required to support these types.
 
 </li><li> Indexing can be done via the use of doubles.  The internal indexing code
 used to work with positive integer indices (and negative, logical and
@@ -5191,9 +5215,9 @@ Previous: <a href="#g_t64_002dbit-types" accesskey="p" rel="prev">64-bit types</
 <h3 class="section">12.3 Large matrices</h3>
 
 <p>Matrices are stored as vectors and so were also limited to 2^31-1
-elements.  Now longer vectors are allowed, matrices with more elements
-are supported provided that each of the dimensions is no more than
-2^31-1.  However, not all applications can be supported.
+elements.  Now longer vectors are allowed on 64-bit platforms, matrices
+with more elements are supported provided that each of the dimensions is
+no more than 2^31-1.  However, not all applications can be supported.
 </p>
 <p>The main problem is linear algebra done by FORTRAN code compiled
 with 32-bit <code>INTEGER</code>.  Although not guaranteed, it seems that all
@@ -5289,6 +5313,7 @@ Next: <a href="#Concept-index" accesskey="n" rel="next">Concept index</a>, Previ
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCODE_005fASSIGN_005fTO_005fGLOBALENV_005f"><code>_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCODE_005fATTACH_005f"><code>_R_CHECK_CODE_ATTACH_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCODE_005fDATA_005fINTO_005fGLOBALENV_005f"><code>_R_CHECK_CODE_DATA_INTO_GLOBALENV_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCODE_005fUSAGE_005fVIA_005fNAMESPACES_005f"><code>_R_CHECK_CODE_USAGE_VIA_NAMESPACES_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCODOC_005fS4_005fMETHODS_005f"><code>_R_CHECK_CODOC_S4_METHODS_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCOMPACT_005fDATA_005f"><code>_R_CHECK_COMPACT_DATA_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCRAN_005fINCOMING_005f"><code>_R_CHECK_CRAN_INCOMING_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>

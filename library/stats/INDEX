@@ -163,6 +163,7 @@ ksmooth                 Kernel Regression Smoother
 lag                     Lag a Time Series
 lag.plot                Time Series Lag Plots
 line                    Robust Line Fitting
+listof                  A Class for Lists of (Parts of) Model Fits
 lm                      Fitting Linear Models
 lm.fit                  Fitter Functions for Linear Models
 lm.influence            Regression Diagnostics

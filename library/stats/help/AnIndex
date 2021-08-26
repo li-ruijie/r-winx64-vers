@@ -300,6 +300,7 @@ line	line
 lines.isoreg	plot.isoreg
 lines.stepfun	plot.stepfun
 lines.ts	plot.ts
+listof	listof
 lm	lm
 lm.fit	lmfit
 lm.fit.null	stats-defunct
@@ -402,6 +403,7 @@ NLSstRtAsymptote	NLSstRtAsymptote
 NLSstRtAsymptote.sortedXyData	NLSstRtAsymptote
 nobs	nobs
 nobs.default	nobs
+nobs.dendrogram	dendrogram
 Normal	Normal
 numericDeriv	numericDeriv
 offset	offset

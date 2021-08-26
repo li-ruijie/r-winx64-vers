@@ -404,6 +404,7 @@ c.noquote	noquote
 c.numeric_version	numeric_version
 c.POSIXct	DateTimeClasses
 c.POSIXlt	DateTimeClasses
+c.warnings	warnings
 call	call
 callCC	callCC
 capabilities	capabilities
@@ -682,6 +683,7 @@ httpclient	base-defunct
 I	AsIs
 iconv	iconv
 iconvlist	iconv
+icuGetCollate	icuSetCollate
 icuSetCollate	icuSetCollate
 identical	identical
 identity	identity
@@ -872,6 +874,7 @@ matmult	matmult
 matrix	matrix
 max	Extremes
 max.col	maxCol
+MC_CORES	options
 mean	mean
 mean.Date	Dates
 mean.default	mean
@@ -1094,6 +1097,7 @@ rbind	cbind
 rbind.data.frame	cbind
 rcond	kappa
 Rd2pdf	RdUtils
+RD2PDF_INPUTENC	RdUtils
 Rdconv	RdUtils
 Re	complex
 read.dcf	dcf
@@ -1171,6 +1175,8 @@ Rprofile.site	Startup
 R_BATCH	EnvVar
 R_BROWSER	EnvVar
 R_COMPLETION	EnvVar
+R_C_BOUNDS_CHECK	options
+R_DEFAULT_DEVICE	options
 R_DEFAULT_PACKAGES	Startup
 R_DOC_DIR	EnvVar
 R_ENVIRON	Startup
@@ -1182,7 +1188,10 @@ R_GSCMD	EnvVar
 R_HISTFILE	EnvVar
 R_HISTSIZE	EnvVar
 R_HOME	Rhome
+R_ICU_LOCALE	icuSetCollate
 R_INCLUDE_DIR	EnvVar
+R_INTERACTIVE_DEVICE	options
+R_KEEP_PKG_SOURCE	options
 R_LIBS	libPaths
 R_LIBS_SITE	libPaths
 R_LIBS_USER	libPaths
@@ -1446,6 +1455,7 @@ unique.default	unique
 unique.matrix	unique
 unique.numeric_version	numeric_version
 unique.POSIXlt	DateTimeClasses
+unique.warnings	warnings
 units	difftime
 units.difftime	difftime
 units<-	difftime

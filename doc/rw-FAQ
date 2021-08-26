@@ -1,6 +1,6 @@
 R for Windows FAQ
 Frequently Asked Questions on R for Windows
-Version for R-3.1.1
+Version for R-3.1.2
 B. D. Ripley and D. J. Murdoch
 
 
@@ -21,7 +21,7 @@ Table of Contents
   2.10 How can I keep workspaces for different projects in different directories?
   2.11 How do I print from R?
   2.12 Can I use `R CMD BATCH'?
-  2.13 Can I use R-3.1.1 with ESS and Emacs?
+  2.13 Can I use R-3.1.2 with ESS and Emacs?
   2.14 What are HOME and working directories?
   2.15 How do I set environment variables?
   2.16 R can't find my file, but I know it is there!
@@ -49,7 +49,7 @@ Table of Contents
   3.7 The dialog buttons are not translated.
 4 Packages
   4.1 Can I install packages into libraries in this version?
-  4.2 I don't have permission to write to the `R-3.1.1\library' directory.
+  4.2 I don't have permission to write to the `R-3.1.2\library' directory.
   4.3 The packages I installed do not appear in the HTML help system.
   4.4 My functions are not found by the HTML help search system.
   4.5 Loading a package fails.
@@ -110,7 +110,7 @@ The information here applies only to recent versions of R for Windows,
 Go to any CRAN site (see `http://cran.r-project.org/mirrors.html' for a
 list), navigate to the `bin/windows/base' directory and collect the
 file(s) you need.  The current release is distributed as an installer
-`R-3.1.1-win.exe' of about 54Mb.
+`R-3.1.2-win.exe' of about 60Mb.
 
 There are also links on that page to the `r-patched' and `r-devel'
 snapshots.  These are frequently updated builds of development versions
@@ -131,7 +131,8 @@ mainly 64-bit Windows 7 and Server 2008.
 
 Your file system must allow case-honouring long file names (as is likely
 except perhaps for some network-mounted systems).  A installation takes
-75-100Mb of disk space.
+75-105Mb of disk space (up to 145Mb if ICU was included in the build,
+which is not currently the default).
 
 If you want to be able to build packages from sources, we recommend that
 you choose an installation path not containing spaces.  (Using a path
@@ -142,7 +143,7 @@ non-system area (such as `C:\R').  Installing to a network share (a
 filepath starting with `\\machine\...') is not supported: such paths
 will need to mapped to a network drive.
 
-To install use `R-3.1.1-win.exe'.  Just double-click on the icon and
+To install use `R-3.1.2-win.exe'.  Just double-click on the icon and
 follow the instructions.  If you have an account with Administrator
 privileges you will be able to install R in the `Program Files' area
 and to set all the optional registry entries; otherwise you will only
@@ -254,12 +255,11 @@ without creating a shortcut starting in a writable folder.
 2.7 How do I UNinstall R?
 =========================
 
-Normally you can do this from the `Add/Remove Programs' (XP) or
-`Programs and Features' group in the Control Panel.  If it does not
-appear there, run `unins000.exe' in the top-level installation
-directory.  On recent versions of Windows you may well be asked to
-confirm that you wish to run a program from an `unknown' or
-`unidentified' publisher.
+Normally you can do this from the `Programs and Features' group in the
+Control Panel.  If it does not appear there, run `unins000.exe' in the
+top-level installation directory.  On recent versions of Windows you
+may well be asked to confirm that you wish to run a program from an
+`unknown' or `unidentified' publisher.
 
 Uninstalling R only removes files from the initial installation, not
 (for example) packages you have installed or updated.
@@ -356,7 +356,7 @@ file might contain (as one line)
 The purpose of `2>&1' is to redirect warnings and errors to the same
 file as normal output.
 
-2.13 Can I use R-3.1.1 with ESS and Emacs?
+2.13 Can I use R-3.1.2 with ESS and Emacs?
 ==========================================
 
 Yes.  ESS has for a long time supported R under Windows: it does so by
@@ -379,12 +379,11 @@ The home directory is set as follows: If environment variable `R_USER'
 is set, its value is used.  Otherwise if environment variable `HOME' is
 set, its value is used.  After those two user-controllable settings, R
 tries to find system-defined home directories.  It first tries to use
-the Windows "personal" directory (typically `C:\Documents and
-Settings\username\My Documents' on Windows XP and
-`C:\Users\username\Documents' nowadays).  If that fails, if both
-environment variables `HOMEDRIVE' and `HOMEPATH' are set (and they
-normally are), the value is `${HOMEDRIVE}${HOMEPATH}'.  If all of these
-fail, the current working directory is used.
+the Windows "personal" directory (typically
+`C:\Users\username\Documents').  If that fails, if both environment
+variables `HOMEDRIVE' and `HOMEPATH' are set (and they normally are),
+the value is `${HOMEDRIVE}${HOMEPATH}'.  If all of these fail, the
+current working directory is used.
 
 You can find this from R code by `Sys.getenv("R_USER")' or
 `normalizePath("~")', `~' being Unix notation for the home directory.
@@ -427,7 +426,7 @@ which these options are listed, that is the command line then
 
 How did you specify it?  Backslashes have to be doubled in R character
 strings, so for example one needs
-`"d:\\R-3.1.1\\library\\xgobi\\scripts\\xgobi.bat"'.  You can make life
+`"d:\\R-3.1.2\\library\\xgobi\\scripts\\xgobi.bat"'.  You can make life
 easier for yourself by using forward slashes as path separators: they
 do work under Windows.  You should include the file extension (e.g.
 `"xgobi.bat"' rather than just `"xgobi"'); sometimes this isn't shown
@@ -458,10 +457,10 @@ Administrator installs) `Associate R with .RData files'.
 If you tick the first option, the following string entries are added to
 the Windows registry:
    * `HKEY_LOCAL_MACHINE\Software\R-core\R\Current Version'
-     contains the version number, currently 3.1.1.
+     contains the version number, currently 3.1.2.
 
    * `HKEY_LOCAL_MACHINE\Software\R-core\R\[version]\InstallPath'
-     (where `[version]' is currently 3.1.1) contains the path to the R
+     (where `[version]' is currently 3.1.2) contains the path to the R
        home directory.
 If you do not have administrative privileges on the machine while
 running the installer, then the entries are created under
@@ -644,7 +643,7 @@ without credentials.)  There are several ways around this.
 
      For an installation to be used by a single user, the simplest way
      is to make use of a `personal library': *Note I don't have
-     permission to write to the R-3.1.1\library directory::.
+     permission to write to the R-3.1.2\library directory::.
 
      For a site installation, you can create a site-wide library
      directory anywhere convenient, and add it to the default package
@@ -814,12 +813,10 @@ The element you want to add to the path is something like
 
 for 64-bit `Rcmd.exe', replacing `x64' by `i386' for 32-bit.
 
-How you set the path depends on your OS version.  On Windows XP/Server
-2003 you can use `System' in the control panel or the properties of `My
-Computer' (under the `Advanced' tab).  Under more recent versions, go to
-`User Accounts' in the Control Panel, and select your account and then
-`Change my environment variables'.  (System policies can prevent end
-users making changes.)
+How you set the path depends on your OS version.  Under recent versions,
+go to `User Accounts' in the Control Panel, and select your account and
+then `Change my environment variables'.  (System policies can prevent
+end users making changes.)
 
 An alternative is to set the `PATH' in the shell you are running
 (`Rcmd.exe' is  a command-line program).  For those using the standard
@@ -1006,7 +1003,7 @@ If you have a source package that is known to work on a Unix-alike
 system, you can try the automated Windows binary package builder
 documented at `http://win-builder.r-project.org'.
 
-4.2 I don't have permission to write to the `R-3.1.1\library' directory.
+4.2 I don't have permission to write to the `R-3.1.2\library' directory.
 ========================================================================
 
 You can install packages anywhere and use the environment variable
@@ -1277,7 +1274,7 @@ be tested.
 5.2 I hear about some nifty features: please tell me about them!
 ================================================================
 
-You have read the file `README.R-3.1.1'? There are file menus on the R
+You have read the file `README.R-3.1.2'? There are file menus on the R
 console, pager and graphics windows.  You can source and save from
 those menus, and copy the graphics to `png', `jpeg', `bmp',
 `postscript', `PDF' or `metafile'.  There are right-click menus giving
@@ -1287,7 +1284,7 @@ shortcuts to frequent operations.
 If you resize the R console the `options(width=)' is automatically set
 to the console width (unless disabled in the configuration file).
 
-The graphics has a history mechanism.  As `README.R-3.1.1' says:
+The graphics has a history mechanism.  As `README.R-3.1.2' says:
 
      `The History menu allows the recording of plots.  When plots have
      been recorded they can be reviewed by <PgUp> and <PgDn>, saved and
@@ -1519,13 +1516,13 @@ and make a debug version of your package by
 You will need a suitable version of `gdb' which matches your compiler.
 Then you can debug by
 
-     gdb /path/to/R-3.1.1/bin/x64/Rgui.exe
+     gdb /path/to/R-3.1.2/bin/x64/Rgui.exe
 
 (or use `Rterm.exe'.)  However, note
 
    * `gdb' may only be able to find the source code if we run in the
-     location where the source was compiled (`R-3.1.1/src/gnuwin32' for
-     the main system, `R-3.1.1/src/library/mypkg/src' for a package),
+     location where the source was compiled (`R-3.1.2/src/gnuwin32' for
+     the main system, `R-3.1.2/src/library/mypkg/src' for a package),
      unless told otherwise by the `directory' command.  It is most
      convenient to set a list of code locations via `directory' commands
      in the file `.gdbinit' in the directory from which `gdb' is run.

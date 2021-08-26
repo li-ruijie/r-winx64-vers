@@ -87,7 +87,7 @@ from the standard installer even on a 32-bit version of Windows.
 <li><p> As the current toolchain uses only 32-bit executables, it is
 possible to compile a package for both architectures on 32-bit
 Windows provided both architectures of <font face="Courier New,Courier" color="#666666"><b>R</b></font> have been installed: use
-<CODE>Rcmd INSTALL --compile-both</CODE>.
+<CODE>Rcmd INSTALL &ndash;compile-both</CODE>.
 </p>
 </li>
 <li> <p><code>Rcmd INSTALL --merge-multiarch</code> will work (but do a
@@ -224,7 +224,7 @@ architecture-specific sub-directories &lsquo;<span class="file">lib/i386</span>&
 
 <ul>
 <li><p> The fix for <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=14543">PR#14543</a> caused stack problems with outputting
-large <font face="Courier New,Courier" color="#666666"><b>R</b></font> objects (e.g. data frames of 25,000 items).  (<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=14698">PR#14698</a>)
+large <font face="Courier New,Courier" color="#666666"><b>R</b></font> objects (e.g., data frames of 25,000 items).  (<a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=14698">PR#14698</a>)
 </p>
 </li>
 <li><p> In a double-byte locale (Chinese, Japanese, Korean),
@@ -472,7 +472,7 @@ the factory-fresh defaults were the same).
 <li><p> Shutting down the <font face="Courier New,Courier" color="#666666"><b>R</b></font> session cleaned up the temporary
 directory before closing all graphics devices.  On Windows this
 necessitated changing the working directory, so some devices
-(e.g. <code>tiff()</code>) could write files in the wrong directory if
+(e.g., <code>tiff()</code>) could write files in the wrong directory if
 closed during shutdown.  The order has been reversed.      
 </p>
 </li></ul>
@@ -537,7 +537,7 @@ for files &gt; 2GB.
 </li>
 <li><p> The versions of <CODE>R.exe</CODE> in
 &lsquo;<span class="file">R_HOME/bin/i386,x64/bin</span>&rsquo; now support options such as
-<CODE>R --vanilla CMD</CODE>: there is no comparable interface for
+<CODE>R &ndash;vanilla CMD</CODE>: there is no comparable interface for
 &lsquo;<span class="file">Rcmd.exe</span>&rsquo;.
 </p>
 </li>
@@ -698,7 +698,7 @@ now support for 64-bit builds.  (Unlike the Inno Setup installer,
 there are separate MSI installers for 32- and 64-bit Windows.)
 </p>
 <p>It is now built using <CODE>WiX 3.x</CODE> rather than <CODE>WiX
-	2.0</CODE>.  (As a result it is about 25% smaller.)
+2.0</CODE>.  (As a result it is about 25% smaller.)
 </p>
 </li></ul>
 
@@ -1079,7 +1079,7 @@ incorrect.
 
 
 <ul>
-<li><p> Some of the MDI toolbar buttons (e.g. <code>"Open Script"</code>)
+<li><p> Some of the MDI toolbar buttons (e.g., <code>"Open Script"</code>)
 did not return the focus to the console if the user cancelled the
 action.
 </p>
@@ -1171,7 +1171,7 @@ and &lsquo;<span class="file">.pl</span>&rsquo; (Perl) scripts anywhere on the p
 
 <ul>
 <li> <p><CODE>Rcmd SHLIB</CODE> (which is used by <CODE>Rcmd
-       INSTALL</CODE>) now calls <code>make</code> without a target, rather than
+INSTALL</CODE>) now calls <code>make</code> without a target, rather than
 target <code>'all'</code>.  This is now the same as on Unix, and was
 announced in the &lsquo;<span class="file">NEWS</span>&rsquo; file for 2.9.0.
 </p>
