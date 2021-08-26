@@ -14,25 +14,25 @@ tools::texi2pdf("example-1.tex")
 
 
 ###################################################
-### code chunk number 3: Sweave.Rnw:370-371
+### code chunk number 3: Sweave.Rnw:374-375
 ###################################################
 SweaveSyntConv(rnwfile, SweaveSyntaxLatex)
 
 
 ###################################################
-### code chunk number 4: Sweave.Rnw:481-482 (eval = FALSE)
+### code chunk number 4: Sweave.Rnw:485-486 (eval = FALSE)
 ###################################################
 ## help("Sweave")
 
 
 ###################################################
-### code chunk number 5: Sweave.Rnw:491-492 (eval = FALSE)
+### code chunk number 5: Sweave.Rnw:495-496 (eval = FALSE)
 ###################################################
 ## help("RweaveLatex")
 
 
 ###################################################
-### code chunk number 6: Sweave.Rnw:605-606 (eval = FALSE)
+### code chunk number 6: Sweave.Rnw:609-610 (eval = FALSE)
 ###################################################
 ## help("Rtangle")
 

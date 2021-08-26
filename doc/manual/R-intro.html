@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.1.0 (2014-04-10).
+<!-- This manual is for R, version 3.1.1 (2014-07-10).
 
 Copyright (C) 1990 W. N. Venables
 
@@ -386,7 +386,7 @@ analysis, classification, clustering, ...).
 <p>This manual provides information on data types, programming elements,
 statistical modelling and graphics.
 </p>
-<p>This manual is for R, version 3.1.0 (2014-04-10).
+<p>This manual is for R, version 3.1.1 (2014-07-10).
 </p>
 <p>Copyright &copy; 1990 W. N. Venables<br>
 Copyright &copy; 1992 W. N. Venables &amp; D. M. Smith<br>
@@ -1225,12 +1225,12 @@ beginning and end of the sequence, and if these are the only two
 arguments given the result is the same as the colon operator.  That is
 <code>seq(2,10)</code> is the same vector as <code>2:10</code>.
 </p>
-<p>Parameters to <code>seq()</code>, and to many other R functions, can also
+<p>Arguments to <code>seq()</code>, and to many other R functions, can also
 be given in named form, in which case the order in which they appear is
-irrelevant.  The first two parameters may be named
+irrelevant.  The first two arguments may be named
 <code>from=<var>value</var></code> and <code>to=<var>value</var></code>; thus
 <code>seq(1,30)</code>, <code>seq(from=1, to=30)</code> and <code>seq(to=30,
-from=1)</code> are all the same as <code>1:30</code>.  The next two parameters to
+from=1)</code> are all the same as <code>1:30</code>.  The next two arguments to
 <code>seq()</code> may be named <code>by=<var>value</var></code> and
 <code>length=<var>value</var></code>, which specify a step size and a length for
 the sequence respectively.  If neither of these is given, the default
@@ -1251,8 +1251,8 @@ the sequence respectively.  If neither of these is given, the default
 
 <p>generates the same vector in <code>s4</code>.
 </p>
-<p>The fifth parameter may be named <code>along=<var>vector</var></code>, which is
-normally used as the only parameter to create the sequence <code>1, 2,
+<p>The fifth argument may be named <code>along=<var>vector</var></code>, which is
+normally used as the only argument to create the sequence <code>1, 2,
 &hellip;, length(<var>vector</var>)</code>, or the empty sequence if the vector is
 empty (as it can be).
 </p>
@@ -1423,7 +1423,7 @@ concatenates them one by one into character strings.  Any numbers given
 among the arguments are coerced into character strings in the evident
 way, that is, in the same way they would be if they were printed.  The
 arguments are by default separated in the result by a single blank
-character, but this can be changed by the named parameter,
+character, but this can be changed by the named argument,
 <code>sep=<var>string</var></code>, which changes it to <code><var>string</var></code>,
 possibly empty.
 </p>
@@ -1464,7 +1464,7 @@ brackets immediately after the expression.
 <p>Such index vectors can be any of four distinct types.
 </p>
 <ol>
-<li> <strong>A logical vector</strong>.  In this case the index vector must be of the
+<li> <strong>A logical vector</strong>.  In this case the index vector is recycled to the
 same length as the vector from which elements are to be selected.
 Values corresponding to <code>TRUE</code> in the index vector are selected and
 those corresponding to <code>FALSE</code> are omitted.  For example
@@ -9490,8 +9490,8 @@ different.  See <a href="#Concatenating-lists">Concatenating lists</a>.</p>
 <code>.Last.value</code> before any other statements are executed.</p>
 <h3><a name="FOOT9" href="#DOCF9">(9)</a></h3>
 <p><code>paste(..., collapse=<var>ss</var>)</code> joins the
-arguments into a single character string putting <var>ss</var> in between.
-There are more tools for character manipulation, see the help
+arguments into a single character string putting <var>ss</var> in between, e.g.,
+<code>ss &lt;- &quot;|&quot;</code>.  There are more tools for character manipulation, see the help
 for <code>sub</code> and <code>substring</code>.</p>
 <h3><a name="FOOT10" href="#DOCF10">(10)</a></h3>
 <p><em>numeric</em> mode is

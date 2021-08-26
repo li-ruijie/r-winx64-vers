@@ -3,6 +3,7 @@ stats-package	stats-package
 .getXlevels	checkMFClasses
 .lm.fit	lmfit
 .MFclass	checkMFClasses
+.nknots.smspl	smooth.spline
 .preformat.ts	print.ts
 acf	acf
 acf2AR	acf2AR

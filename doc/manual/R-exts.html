@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.1.0 (2014-04-10).
+<!-- This manual is for R, version 3.1.1 (2014-07-10).
 
 Copyright (C) 1999-2013 R Core Team
 
@@ -193,7 +193,8 @@ p {
       <li><a name="toc-PDF-size-1" href="#PDF-size">1.6.1 PDF size</a></li>
       <li><a name="toc-Check-timing-1" href="#Check-timing">1.6.2 Check timing</a></li>
       <li><a name="toc-Encoding-issues-1" href="#Encoding-issues">1.6.3 Encoding issues</a></li>
-      <li><a name="toc-Binary-distribution-1" href="#Binary-distribution">1.6.4 Binary distribution</a></li>
+      <li><a name="toc-Portable-C-and-C_002b_002b-code-1" href="#Portable-C-and-C_002b_002b-code">1.6.4 Portable C and C++ code</a></li>
+      <li><a name="toc-Binary-distribution-1" href="#Binary-distribution">1.6.5 Binary distribution</a></li>
     </ul></li>
     <li><a name="toc-Diagnostic-messages-1" href="#Diagnostic-messages">1.7 Diagnostic messages</a></li>
     <li><a name="toc-Internationalization-1" href="#Internationalization">1.8 Internationalization</a>
@@ -265,8 +266,9 @@ p {
       <li><a name="toc-Using-valgrind-1" href="#Using-valgrind">4.3.2 Using valgrind</a></li>
       <li><a name="toc-Using-the-Address-Sanitizer" href="#Using-Address-Sanitizer">4.3.3 Using the Address Sanitizer</a></li>
       <li><a name="toc-Using-the-Undefined-Behaviour-Sanitizer" href="#Using-Undefined-Behaviour-Sanitizer">4.3.4 Using the Undefined Behaviour Sanitizer</a></li>
-      <li><a name="toc-Using-_0060Dr_002e-Memory_0027-1" href="#Using-_0060Dr_002e-Memory_0027">4.3.5 Using &lsquo;Dr. Memory&rsquo;</a></li>
-      <li><a name="toc-Fortran-array-bounds-checking-1" href="#Fortran-array-bounds-checking">4.3.6 Fortran array bounds checking</a></li>
+      <li><a name="toc-Other-analyses-with-_0060clang_0027-1" href="#Other-analyses-with-_0060clang_0027">4.3.5 Other analyses with &lsquo;clang&rsquo;</a></li>
+      <li><a name="toc-Using-_0060Dr_002e-Memory_0027-1" href="#Using-_0060Dr_002e-Memory_0027">4.3.6 Using &lsquo;Dr. Memory&rsquo;</a></li>
+      <li><a name="toc-Fortran-array-bounds-checking-1" href="#Fortran-array-bounds-checking">4.3.7 Fortran array bounds checking</a></li>
     </ul></li>
     <li><a name="toc-Debugging-compiled-code-1" href="#Debugging-compiled-code">4.4 Debugging compiled code</a>
     <ul class="no-bullet">
@@ -405,7 +407,7 @@ Next: <a href="#Acknowledgements" accesskey="n" rel="next">Acknowledgements</a>,
 R add-on packages, writing R documentation, R&rsquo;s system and
 foreign language interfaces, and the R <acronym>API</acronym>.
 </p>
-<p>This manual is for R, version 3.1.0 (2014-04-10).
+<p>This manual is for R, version 3.1.1 (2014-07-10).
 </p>
 <p>Copyright &copy; 1999&ndash;2013 R Core Team
 </p>
@@ -560,9 +562,10 @@ various ways for consistency and portability.
 source package which contains C, C++ or Fortran code will involve
 compiling that code.  There is also the possibility of &lsquo;byte&rsquo; compiling
 the R code in a package (using the facilities of package
-<strong>compiler</strong>): already the base and recommended packages are
-byte-compiled.  At some future time this might be done routinely, so
-<em>compiling</em> a package may come to mean compiling its R code.
+<strong>compiler</strong>): already base and recommended packages are normally
+byte-compiled and this can be specified for other packages.  So
+<em>compiling</em> a package may come to mean byte-compiling its R
+code.
 
 </li><li> It used to be unambiguous to talk about <em>loading</em> an installed
 package using <code>library()</code>, but since the advent of package
@@ -658,7 +661,6 @@ shell) script files which are, respectively, executed before and
 Unix-alikes, see <a href="#Configure-and-cleanup">Configure and cleanup</a>.  The analogues on Windows
 are <samp>configure.win</samp> and <samp>cleanup.win</samp>.
 </p>
-
 <p>For the conventions for files <samp>NEWS</samp> and <samp>ChangeLog</samp> in the
 <acronym>GNU</acronym> project see
 <a href="http://www.gnu.org/prep/standards/standards.html#Documentation">http://www.gnu.org/prep/standards/standards.html#Documentation</a>.
@@ -1391,8 +1393,8 @@ can be used together and mixing C and C++ seems to be widely successful.
 </p>
 <p>If your code needs to depend on the platform there are certain defines
 which can used in C or C++.  On all Windows builds (even 64-bit ones)
-&lsquo;<samp>WIN32</samp>&rsquo; will be defined: on 64-bit Windows builds also
-&lsquo;<samp>WIN64</samp>&rsquo;, and on OS X &lsquo;<samp>__APPLE__</samp>&rsquo; is defined.<a name="DOCF14" href="#FOOT14"><sup>14</sup></a>
+&lsquo;<samp>_WIN32</samp>&rsquo; will be defined: on 64-bit Windows builds also
+&lsquo;<samp>_WIN64</samp>&rsquo;, and on OS X &lsquo;<samp>__APPLE__</samp>&rsquo; is defined.<a name="DOCF14" href="#FOOT14"><sup>14</sup></a>
 </p>
 <p>The default rules can be tweaked by setting macros<a name="DOCF15" href="#FOOT15"><sup>15</sup></a> in a file
 <samp>src/Makevars</samp> (see <a href="#Using-Makevars">Using Makevars</a>).  Note that this mechanism
@@ -1451,6 +1453,9 @@ if ( any(file.exists(execs)) ) {
 }
 </pre></div>
 
+<p>Note the use of architecture-specific subdirectories if <samp>bin</samp> where
+needed.
+</p>
 <p>The <samp>data</samp> subdirectory is for data files: See <a href="#Data-in-packages">Data in packages</a>.
 </p>
 <p>The <samp>demo</samp> subdirectory is for R scripts (for running <em>via</em>
@@ -1526,10 +1531,11 @@ numbers will need to set the seed to obtain reproducible results (and it
 can be helpful to do so in all cases, to avoid occasional failures when
 tests are run).
 </p>
-<p>If <samp>tests</samp> has a subdirectory <samp>Examples</samp> containing a file
-<code><var>pkg</var>-Ex.Rout.save</code>, this is compared to the output file for
-running the examples when the latter are checked.  Reference output
-should be produced without having the <samp>--timings</samp> option set.
+<p>If directory <samp>tests</samp> has a subdirectory <samp>Examples</samp> containing
+a file <code><var>pkg</var>-Ex.Rout.save</code>, this is compared to the output
+file for running the examples when the latter are checked.  Reference
+output should be produced without having the <samp>--timings</samp> option
+set (and note that <samp>--as-cran</samp> sets it).
 </p>
 <p>Subdirectory <samp>exec</samp> could contain additional executable scripts the
 package needs, typically scripts for interpreters such as the shell,
@@ -1538,13 +1544,16 @@ packages.  NB: only files (and not directories) under <samp>exec</samp> are
 installed (and those with names starting with a dot are ignored), and
 they are all marked as executable (mode <code>755</code>, moderated by
 &lsquo;<samp>umask</samp>&rsquo;) on POSIX platforms.  Note too that this is not suitable
-for executable <em>programs</em> since some platforms (including OS X and
-Windows) support multiple architectures using the same installed package
-directory.  The suggestion is that programs are installed under
-<samp>bin</samp> in a sub-directory which depends on the architecture.
+for executable <em>programs</em> since some platforms (including Windows)
+support multiple architectures using the same installed package
+directory.
 </p>
 <p>Subdirectory <samp>po</samp> is used for files related to <em>localization</em>:
 see <a href="#Internationalization">Internationalization</a>.
+</p>
+<p>Subdirectory <samp>tools</samp> is the preferred place for auxiliary files
+needed during configuration, and also for sources need to re-create
+scripts (e.g. M4 files for <code>autoconf</code>).
 </p>
 
 <hr>
@@ -2231,11 +2240,11 @@ PKG_LIBS = $(SHLIB_OPENMP_CFLAGS)
 <p>There is nothing to say what version of OpenMP is supported: version 3.0
 (May 2008) is supported by recent versions of the Linux, Windows and
 Solaris platforms, but portable packages cannot assume that end users
-have recent versions.  The compilers currently used on OS X have partial
-support for OpenMP 2.5, but this is not enabled in the <acronym>CRAN</acronym>
-build. (Apple have discontinued support for those compilers, and their
-preferred alternative, <code>clang</code>, currently has no OpenMP
-support.  A project to add it has been announced at
+have recent versions.  The compilers used on OS X 10.6 (&lsquo;Snow Leopard&rsquo;)
+had partial support for OpenMP 2.5, but this is not enabled in the
+<acronym>CRAN</acronym> build of R. (Apple have discontinued support for those
+compilers, and their alternative as from OS X 10.9, <code>clang</code>, has
+no OpenMP support.  A project to add it has been announced at
 <a href="http://clang-omp.github.io/">http://clang-omp.github.io/</a>, but it is unknown when or even if
 the Apple builds will incorporate it.)
 </p>
@@ -2259,8 +2268,8 @@ nested, although it is common to use only a single thread below the
 first level.  The correctness of the detected number of &lsquo;CPUs&rsquo; and the
 assumption that the R process is entitled to use them all are both
 dubious assumptions.  The best way to limit resources is to limit the
-overall number of threads available to OpenMP in the R process: this can
-be done via environment variable <code>OMP_THREAD_LIMIT</code>, where
+overall number of threads available to OpenMP in the R process: this
+can be done via environment variable <code>OMP_THREAD_LIMIT</code>, where
 implemented.<a name="DOCF22" href="#FOOT22"><sup>22</sup></a>  Alternatively, the number of
 threads per region can be limited by the environment variable
 <code>OMP_NUM_THREADS</code> or API call <code>omp_set_num_threads</code>, or,
@@ -2566,8 +2575,9 @@ extension <samp>.f90</samp> or <samp>.f95</samp>.  For platforms using
 <samp>-std=f2008</samp> in <code>PKG_FCFLAGS</code>: the default is &lsquo;GNU Fortran&rsquo;,
 Fortran 95 with non-standard extensions.  The Solaris <code>f95</code>
 compiler &lsquo;accepts some Fortran 2003 features&rsquo;.  Note that the compiler
-used for OS X is <code>gfortran 4.2.3</code> which has limited Fortran 2003
-support (<a href="http://gcc.gnu.org/onlinedocs/gcc-4.2.3/gfortran/">http://gcc.gnu.org/onlinedocs/gcc-4.2.3/gfortran/</a>).
+used for OS X &lt;= 10.8 is <code>gfortran 4.2.3</code> which has limited
+Fortran 2003 support
+(<a href="http://gcc.gnu.org/onlinedocs/gcc-4.2.3/gfortran/">http://gcc.gnu.org/onlinedocs/gcc-4.2.3/gfortran/</a>).
 </p>
 <p>Modern versions of Fortran support modules, whereby compiling one source
 file creates a module file which is then included in others. (Module
@@ -2608,7 +2618,7 @@ implemented in C++, and C++ compilers commonly accept C99 extensions to
 C++98.
 </p>
 <p>From version 3.1.0, R provides support for C++11 in packages, in
-addition to C++98.  This support is not consistent across platforms as
+addition to C++98.  This support is not uniform across platforms as
 it depends on the capabilities of the compiler (see below).  When R
 is configured, it will determine whether the C++ compiler supports C++11
 and which compiler flags, if any, are required to enable C++11 support.
@@ -2626,8 +2636,8 @@ file (or <samp>Makevars.win</samp> on Windows) should include the line
 
 <p>Compilation and linking will then be done with the C++11 compiler.  If
 any other value is given to the &lsquo;<samp>CXX_STD</samp>&rsquo; macro it will be ignored.
-(Further options may become available in the future depending on the
-evolution of the C++ standard.)
+(Further options may become available in the future as the C++ standard
+evolves.)
 </p>
 <p>Packages without a <samp>Makevars</samp> file may specify that they require
 C++11 by including &lsquo;<samp>C++11</samp>&rsquo; in the &lsquo;<samp>SystemRequirements</samp>&rsquo; field
@@ -2654,15 +2664,15 @@ See <a href=" R-admin.html#Customizing-package-compilation">Customizing package 
 If C++11 support is not available then these macros are both
 empty. Otherwise, &lsquo;<samp>CXX1X</samp>&rsquo; defaults to the same value as the C++
 compiler &lsquo;<samp>CXX</samp>&rsquo; and the flag &lsquo;<samp>CXX1XSTD</samp>&rsquo; defaults to
-<samp>-std=c++11</samp> or <samp>-std=c++0x</samp> (the latter on Windows).
-It is possible to specify &lsquo;<samp>CXX1X</samp>&rsquo; to be a distinct compiler just
-for C++11&ndash;using packages, e.g. <code>g++ 4.8.x</code> on Solaris.
-Note however that different C++ compilers (and even different versions
-of the same compiler) often differ in their ABI so their outputs can
-rarely be mixed. By setting &lsquo;<samp>CXX1XSTD</samp>&rsquo; it is also possible to
-choose a different dialect of the standard, such as
-<samp>-std=gnu++11</samp>, or enable experimental support for the next
-revision (tentatively planned for 2017) <samp>-std=c++1y</samp>.
+<samp>-std=c++11</samp> or <samp>-std=c++0x</samp> (the latter on Windows).  It
+is possible to specify &lsquo;<samp>CXX1X</samp>&rsquo; to be a distinct compiler just for
+C++11&ndash;using packages, e.g. <code>g++ 4.8.x</code> on Solaris.  Note
+however that different C++ compilers (and even different versions of the
+same compiler) often differ in their ABI so their outputs can rarely be
+mixed. By setting &lsquo;<samp>CXX1XSTD</samp>&rsquo; it is also possible to choose a
+different dialect of the standard, such as <samp>-std=gnu++11</samp>, or
+enable experimental support for the next revision (tentatively planned
+for 2017) using something like <samp>-std=c++1y</samp>.
 </p>
 <p>As noted above, support for C++11 varies across platforms.  The default
 compiler<a name="DOCF26" href="#FOOT26"><sup>26</sup></a> for OS X (&lt;=
@@ -2762,8 +2772,8 @@ operating system platforms.
 (Unix-alikes only).
 
 </li><li> The files are checked for binary executables, using a suitable version
-of <code>file</code> if available<a name="DOCF28" href="#FOOT28"><sup>28</sup></a>.  (There may
-be rare false positives.)
+of <code>file</code> if available<a name="DOCF28" href="#FOOT28"><sup>28</sup></a>.  (There may be
+rare false positives.)
 
 </li><li> The <samp>DESCRIPTION</samp> file is checked for completeness, and some of its
 entries for correctness.  Unless installation tests are skipped,
@@ -2928,8 +2938,11 @@ Internet access is available<a name="DOCF32" href="#FOOT32"><sup>32</sup></a>). 
 need to set environment variable <code>R_WIN_NO_JUNCTIONS</code> to a non-empty
 value.  The test of cyclic declarations<a name="DOCF33" href="#FOOT33"><sup>33</sup></a>in <samp>DESCRIPTION</samp> files needs
 repositories (including <acronym>CRAN</acronym>) set: do this in
-<samp>~/.Rprofile</samp>.
-</p>
+<samp>~/.Rprofile</samp>, by e.g
+</p><div class="example">
+<pre class="example">options(repos = c(CRAN=&quot;http://cran.r-project.org&quot;))
+</pre></div>
+
 <p>You do need to ensure that the package is checked in a suitable locale
 if it contains non-<acronym>ASCII</acronym> characters.  Such packages are likely
 to fail some of the checks in a <code>C</code> locale, and <code>R CMD
@@ -3413,7 +3426,7 @@ to change the search order.
 <p>Note that a package with non-Sweave vignettes should always have a
 &lsquo;<samp>VignetteBuilder</samp>&rsquo; field in the <samp>DESCRIPTION</samp> file, since this
 is how <code>R CMD check</code> recognizes that there are vignettes to be
-checked.
+checked: packages listed there are required when the package is checked.
 </p>
 <p>The vignette engine can produce <samp>.tex</samp>, <samp>.pdf</samp>, or <samp>.html</samp>
 files as output.  If it produces <samp>.tex</samp> files, R will
@@ -4059,7 +4072,9 @@ repository such as <acronym>CRAN</acronym>).
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Encoding-issues" accesskey="3">Encoding issues</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Binary-distribution" accesskey="4">Binary distribution</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Portable-C-and-C_002b_002b-code" accesskey="4">Portable C and C++ code</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Binary-distribution" accesskey="5">Binary distribution</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -4071,7 +4086,7 @@ allowed under Windows which are mentioned above.
 (aka <code>x11()</code>) which although emulated on Windows may not be
 available on a Unix-alike (and is not the preferred screen device on OS
 X).  It is rarely necessary for package code or examples to open a new
-device, but if essential, use <code>dev.new()</code>.
+device, but if essential,<a name="DOCF48" href="#FOOT48"><sup>48</sup></a> use <code>dev.new()</code>.
 </p>
 <p>Use <code>R CMD build</code> to make the release <samp>.tar.gz</samp> file.
 </p>
@@ -4102,7 +4117,7 @@ results.
 <pre class="example">PKG_CPPFLAGS = `gsl-config --cflags`
 </pre></div>
 
-<p>which works in all versions of <code>make</code> known<a name="DOCF48" href="#FOOT48"><sup>48</sup></a> to be used
+<p>which works in all versions of <code>make</code> known<a name="DOCF49" href="#FOOT49"><sup>49</sup></a> to be used
 with R.
 </p>
 <p>If you really must assume GNU make, declare it in the <samp>DESCRIPTION</samp>
@@ -4116,7 +4131,7 @@ file by
 use GNU extensions in files <samp>Makevars.win</samp> or <samp>Makefile.win</samp>.
 </p>
 <p>Moreover, Bash extensions also need to be avoided in shell scripts,
-including expression in Makefiles (which are passed to the shell for
+including expressions in Makefiles (which are passed to the shell for
 processing).  Some R platforms use strictly POSIX-conformant Bourne
 shells, and Windows and some Unix-alike OSes use <code>ash</code>
 (<a href="http://en.wikipedia.org/wiki/Almquist_shell">http://en.wikipedia.org/wiki/Almquist_shell</a>), a rather minimal
@@ -4128,7 +4143,7 @@ One particular issue is the use of <code>echo</code>, for which two
 behaviours are allowed
 (<a href="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/echo.html">http://pubs.opengroup.org/onlinepubs/9699919799/utilities/echo.html</a>)
 and both occur as defaults on R platforms: portable applications
-should not use <samp>-n</samp> (as the first argument) or escape sequences.
+should not use <samp>-n</samp> (as the first argument) nor escape sequences.
 </p>
 </li><li> Make use of the abilities of your compilers to check the
 standards-conformance of your code.  For example, <code>gcc</code> can be
@@ -4156,7 +4171,7 @@ on some R platforms (including 64-bit Windows), but 64-bit on most
 modern Unix and Linux platforms.  It is rather unlikely that the use of
 <code>long</code> in C code has been thought through: if you need a longer
 type than <code>int</code> you should use a configure test for a C99 type such
-as <code>int_fast64_t</code> (and failing that, <code>long long</code> <a name="DOCF49" href="#FOOT49"><sup>49</sup></a>) and typedef your own type
+as <code>int_fast64_t</code> (and failing that, <code>long long</code> <a name="DOCF50" href="#FOOT50"><sup>50</sup></a>) and typedef your own type
 to be <code>long</code> or <code>long long</code>, or use another suitable type
 (such as <code>size_t</code>).
 
@@ -4190,14 +4205,14 @@ package authors are often mistaken about that.
 
 </li><li> Errors in memory allocation and reading/writing outside arrays are very
 common causes of crashes (e.g., segfaults) on some machines.
-See <a href="#Using-valgrind">Using valgrind</a> for a tool which can be used to look for this.
+See <a href="#Checking-memory-access">Checking memory access</a> for tools which can be used to look for this.
 
 </li><li> Many platforms will allow unsatisfied entry points in compiled code, but
 will crash the application (here R) if they are ever used.  Some
 (notably Windows) will not.  Looking at the output of
 
 <div class="example">
-<pre class="example">nm -pg mypkg.so  # <span class="roman">or other extension such as <samp>.sl</samp></span>
+<pre class="example">nm -pg mypkg.so
 </pre></div>
 
 <p>and checking if any of the symbols marked <code>U</code> is unexpected is a
@@ -4248,9 +4263,10 @@ for routine use.  Most R platforms use &lsquo;<samp>ix86</samp>&rsquo; or
 but not all of their FPU instructions.  Thus the achieved precision can
 depend on the compiler version and optimization flags&mdash;our experience
 is that 32-bit builds tend to be less precise than 64-bit ones.  But not
-all platforms use those CPUs, and not all<a name="DOCF50" href="#FOOT50"><sup>50</sup></a> which use them configure them to
+all platforms use those CPUs, and not all<a name="DOCF51" href="#FOOT51"><sup>51</sup></a> which use them configure them to
 allow the use of extended precision.  In particular, ARM CPUs do not
-(currently) have extended precision nor long doubles.
+(currently) have extended precision nor long doubles, and long double
+was 64-bit on HP/PA Linux.
 
 <p>If you must try to establish a tolerance empirically, configure and
 build R with <samp>--disable-long-double</samp> and use appropriate
@@ -4276,23 +4292,23 @@ viewer and take many minutes to print (if they can be printed at all).
 </p>
 <p><code>qpdf</code> (<a href="http://qpdf.sourceforge.net/">http://qpdf.sourceforge.net/</a>) can compress
 losslessly.  It is fairly readily available (e.g. it has binaries for
-Windows and packages in Debian/Ubuntu/Fedora 17, and is installed as
-part of the <acronym>CRAN</acronym> OS X distribution of R).  <code>R CMD
-build</code> has an option to run <code>qpdf</code> over PDF files under
-<samp>inst/doc</samp> and replace them if at least 10Kb and 10% is saved.  The
-full path to the <code>qpdf</code> command can be supplied as environment
-variable <code>R_QPDF</code> (and is on the CRAN binary of R for OS X).  It
-seems MiKTeX does not use PDF object compression and so <code>qpdf</code>
-can reduce considerably the files it outputs: MiKTeX can be overridden by
-code in the preamble of an Sweave or LaTeX file &mdash; see how this is done
-for the R reference manual at
+Windows and packages in Debian/Ubuntu/Fedora, and is installed as part
+of the <acronym>CRAN</acronym> OS X distribution of R).  <code>R CMD build</code>
+has an option to run <code>qpdf</code> over PDF files under <samp>inst/doc</samp>
+and replace them if at least 10Kb and 10% is saved.  The full path to
+the <code>qpdf</code> command can be supplied as environment variable
+<code>R_QPDF</code> (and is on the CRAN binary of R for OS X).  It seems
+MiKTeX does not use PDF object compression and so <code>qpdf</code> can
+reduce considerably the files it outputs: MiKTeX can be overridden by
+code in the preamble of an Sweave or LaTeX file &mdash; see how this is
+done for the R reference manual at
 <a href="https://svn.r-project.org/R/trunk/doc/manual/refman.top">https://svn.r-project.org/R/trunk/doc/manual/refman.top</a>.
 </p>
 <p>Other tools can reduce the size of PDFs containing bitmap images at
 excessively high resolution.  These are often best re-generated (for
 example <code>Sweave</code> defaults to 300 ppi, and 100&ndash;150 is more
 appropriate for a package manual).  These tools include Adobe Acrobat
-(not Reader), Apple&rsquo;s Preview<a name="DOCF51" href="#FOOT51"><sup>51</sup></a>  and Ghostscript (which
+(not Reader), Apple&rsquo;s Preview<a name="DOCF52" href="#FOOT52"><sup>52</sup></a>  and Ghostscript (which
 converts PDF to PDF by
 </p>
 <div class="example">
@@ -4306,10 +4322,10 @@ converts PDF to PDF by
 -dPDFSETTINGS=/screen
 </pre></div>
 
-<p>; see <a href="http://www.ghostscript.com/doc/9.07/Ps2pdf.htm">http://www.ghostscript.com/doc/9.07/Ps2pdf.htm</a> for
+<p>; see <a href="http://www.ghostscript.com/doc/current/Ps2pdf.htm">http://www.ghostscript.com/doc/current/Ps2pdf.htm</a> for
 more such and consider all the options for image downsampling).  There
 have been examples in <acronym>CRAN</acronym> packages for which Ghostscript 9.06
-and later produced dramatically better reductions than 9.05 or earlier.
+and later produced much better reductions than 9.05 or earlier.
 </p>
 <p>We come across occasionally large PDF files containing excessively
 complicated figures using PDF vector graphics: such figures are often
@@ -4359,7 +4375,7 @@ are only retained if environment variable
 <a name="Encoding-issues"></a>
 <div class="header">
 <p>
-Next: <a href="#Binary-distribution" accesskey="n" rel="next">Binary distribution</a>, Previous: <a href="#Check-timing" accesskey="p" rel="prev">Check timing</a>, Up: <a href="#Writing-portable-packages" accesskey="u" rel="up">Writing portable packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Portable-C-and-C_002b_002b-code" accesskey="n" rel="next">Portable C and C++ code</a>, Previous: <a href="#Check-timing" accesskey="p" rel="prev">Check timing</a>, Up: <a href="#Writing-portable-packages" accesskey="u" rel="up">Writing portable packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Encoding-issues-1"></a>
 <h4 class="subsection">1.6.3 Encoding issues</h4>
@@ -4372,7 +4388,7 @@ possible to mark the encoding used in the <samp>DESCRIPTION</samp> file and in
 <p>First, consider carefully if you really need non-<acronym>ASCII</acronym> text.
 Many users of R will only be able to view correctly text in their
 native language group (e.g. Western European, Eastern European,
-Simplified Chinese) and <acronym>ASCII</acronym>.<a name="DOCF52" href="#FOOT52"><sup>52</sup></a>.  Other characters may not be rendered at all,
+Simplified Chinese) and <acronym>ASCII</acronym>.<a name="DOCF53" href="#FOOT53"><sup>53</sup></a>.  Other characters may not be rendered at all,
 rendered incorrectly, or cause your R code to give an error.  For
 <samp>.Rd</samp> documentation, marking the encoding and including
 <acronym>ASCII</acronym> transliterations is likely to do a reasonable job.  The
@@ -4402,7 +4418,7 @@ this, make sure you have &lsquo;<samp>R (&gt;= 2.10)</samp>&rsquo; (or later) in
 <p>R sessions running in non-UTF-8 locales will if possible re-encode
 such strings for display (and this is done by <code>RGui</code> on Windows,
 for example).  Suitable fonts will need to be selected or made
-available<a name="DOCF53" href="#FOOT53"><sup>53</sup></a>  both for the console/terminal and graphics devices such as
+available<a name="DOCF54" href="#FOOT54"><sup>54</sup></a>  both for the console/terminal and graphics devices such as
 &lsquo;<samp>X11()</samp>&rsquo; and &lsquo;<samp>windows()</samp>&rsquo;.  Using &lsquo;<samp>postscript</samp>&rsquo; or
 &lsquo;<samp>pdf</samp>&rsquo; will choose a default 8-bit encoding depending on the
 language of the UTF-8 locale, and your users would need to be told how
@@ -4422,13 +4438,74 @@ the current locale is UTF-8 then the package code is translated to UTF-8
 for syntax checking.
 </p>
 <hr>
+<a name="Portable-C-and-C_002b_002b-code"></a>
+<div class="header">
+<p>
+Next: <a href="#Binary-distribution" accesskey="n" rel="next">Binary distribution</a>, Previous: <a href="#Encoding-issues" accesskey="p" rel="prev">Encoding issues</a>, Up: <a href="#Writing-portable-packages" accesskey="u" rel="up">Writing portable packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="Portable-C-and-C_002b_002b-code-1"></a>
+<h4 class="subsection">1.6.4 Portable C and C++ code</h4>
+
+<p>Writing portable C and C++ code is mainly a matter of observing the
+standards (C99, C++98 or where declared C++11) and testing that
+extensions (such as POSIX functions) are supported.  However, some
+common errors are worth pointing out here.  It can be helpful to look up
+functions at <a href="http://www.cplusplus.com/reference/">http://www.cplusplus.com/reference/</a> or
+<a href="http://en.cppreference.com/w/">http://en.cppreference.com/w/</a> and compare what is defined in the
+various standards.
+</p>
+<ul>
+<li> Mathematical functions such as <code>sqrt</code> are defined in C++ for
+floating-point arguments.  It is legitimate in C++ to overload these
+with versions for types <code>float</code>, <code>double</code>, <code>long double</code>
+and possibly more.  This means that calling <code>sqrt</code> on an integer
+type may have &lsquo;overloading ambiguity&rsquo; as it could be promoted to any of the
+supported floating-point types: this is commonly seen on Solaris.
+(C++11 requires additional overloads for integer types.)
+
+</li><li> Function <code>fabs</code> is defined for only for floating-point types,
+except in C++11 which has overloads in <samp>&lt;cmath&gt;</samp> for integer types.
+Function <code>abs</code> is defined in C99&rsquo;s <samp>&lt;stdlib.h&gt;</samp> for <code>int</code>
+and in C++98&rsquo;s <samp>&lt;cstdlib&gt;</samp> for integer types, overloaded in
+<samp>&lt;cmath&gt;</samp> for floating-point types.  C++11 has additional overloads
+for <code>abs</code> in <samp>&lt;cmath&gt;</samp> for integer types.
+
+</li><li> Functions/macros such as <code>isnan</code>, <code>isinf</code> and <code>isfinite</code>
+are not required by C++98: where compilers support them they may be only
+in the <code>std</code> namespace or only in the main namespace.  There is no
+way to make use of these functions which works with all C++ compilers
+currently in use on R platforms: use R&rsquo;s versions such as
+<code>ISNAN</code> and <code>R_FINITE</code> instead.
+
+<p>It is an error (and make little sense, although has been seen) to call
+these functions for integer arguments.
+</p>
+</li><li> Variable-length arrays are C99, not supported by C++98 nor by the C++
+compilers in use with R on some platforms.
+
+</li><li> Macros defined by the compiler/OS can cause problems.  Macros starting
+with an underscore followed by an upper-case letter or another
+underscore are reserved and should not be used in portable code.  Other
+macros, typically upper-case, may be defined by the compiler or system
+headers and can cause problems. 
+The most common issue involves the names of the Intel CPU registers such
+as <code>CS</code>, <code>DS</code> and <code>SS</code> defined on i586/x64 Solaris in
+<samp>&lt;sys/regset.h&gt;</samp> and often included indirectly by <samp>&lt;stdlib.h&gt;</samp>
+and other core headers.
+</li></ul>
+
+<p>Some additional information for C++ is available at
+<a href="http://journal.r-project.org/archive/2011-2/RJournal_2011-2_Plummer.pdf">http://journal.r-project.org/archive/2011-2/RJournal_2011-2_Plummer.pdf</a>
+by Martyn Plummer.
+</p>
+<hr>
 <a name="Binary-distribution"></a>
 <div class="header">
 <p>
-Previous: <a href="#Encoding-issues" accesskey="p" rel="prev">Encoding issues</a>, Up: <a href="#Writing-portable-packages" accesskey="u" rel="up">Writing portable packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="#Portable-C-and-C_002b_002b-code" accesskey="p" rel="prev">Portable C and C++ code</a>, Up: <a href="#Writing-portable-packages" accesskey="u" rel="up">Writing portable packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Binary-distribution-1"></a>
-<h4 class="subsection">1.6.4 Binary distribution</h4>
+<h4 class="subsection">1.6.5 Binary distribution</h4>
 
 <p>If you want to distribute a binary version of a package on Windows or OS
 X, there are further checks you need to do to check it is portable: it
@@ -5009,7 +5086,7 @@ header is mandatory.
 </p>
 <p>Information is given within a series of <em>sections</em> with standard
 names (and user-defined sections are also allowed).  Unless otherwise
-specified<a name="DOCF54" href="#FOOT54"><sup>54</sup></a> these should occur only once in an <samp>Rd</samp>
+specified<a name="DOCF55" href="#FOOT55"><sup>55</sup></a> these should occur only once in an <samp>Rd</samp>
 file (in any order), and the processing software will retain only the
 first occurrence of a standard section in the file, with a warning.
 </p>
@@ -5080,7 +5157,7 @@ particular, functions) are given in this subsection.
 <dl compact="compact">
 <dt><code>\name{<var>name</var>}</code></dt>
 <dd><a name="index-_005cname"></a>
-<p><var>name</var> typically<a name="DOCF55" href="#FOOT55"><sup>55</sup></a> is the basename of
+<p><var>name</var> typically<a name="DOCF56" href="#FOOT56"><sup>56</sup></a> is the basename of
 the <samp>Rd</samp> file containing the documentation.  It is the &ldquo;name&rdquo; of
 the <samp>Rd</samp> object represented by the file and has to be unique in a
 package.  To avoid problems with indexing the package manual, it may not
@@ -5089,7 +5166,7 @@ with the <acronym>HTML</acronym> help system it should not contain &lsquo;<samp>
 (LaTeX special characters are allowed, but may not be collated
 correctly in the index.)  There can only be one <code>\name</code> entry in a
 file, and it must not contain any markup.  Entries in the package manual
-will be in alphabetic<a name="DOCF56" href="#FOOT56"><sup>56</sup></a> order
+will be in alphabetic<a name="DOCF57" href="#FOOT57"><sup>57</sup></a> order
 of the <code>\name</code> entries.
 </p>
 </dd>
@@ -5269,7 +5346,7 @@ form
 </pre></div>
 
 <p>for each component of the list returned.  Optional text may
-precede<a name="DOCF57" href="#FOOT57"><sup>57</sup></a> this
+precede<a name="DOCF58" href="#FOOT58"><sup>58</sup></a> this
 list (see for example the help for <code>rle</code>).  Note that <code>\value</code>
 is implicitly a <code>\describe</code> environment, so that environment should
 not be used for listing components, just individual <code>\item{}{}</code>
@@ -5744,7 +5821,7 @@ second argument of LaTeX-like text displayed to the user.
 <dt><code>\var{<var>metasyntactic_variable</var>}</code></dt>
 <dd><a name="index-_005cvar"></a>
 <p>Indicate a metasyntactic variable.  In some cases this will be rendered
-distinctly, e.g. in italic, but not in all<a name="DOCF58" href="#FOOT58"><sup>58</sup></a>. LaTeX-like.
+distinctly, e.g. in italic, but not in all<a name="DOCF59" href="#FOOT59"><sup>59</sup></a>. LaTeX-like.
 </p></dd>
 <dt><code>\env{<var>environment_variable</var>}</code></dt>
 <dd><a name="index-_005cenv"></a>
@@ -5886,7 +5963,7 @@ given above.
 <samp><var>bar</var>.html</samp> respectively.  These are rarely needed, perhaps to
 refer to not-yet-installed packages (but there the <acronym>HTML</acronym> help system
 will resolve the link at run time) or in the normally undesirable event
-that more than one package offers help on a topic<a name="DOCF59" href="#FOOT59"><sup>59</sup></a> (in
+that more than one package offers help on a topic<a name="DOCF60" href="#FOOT60"><sup>60</sup></a> (in
 which case the present package has precedence so this is only needed to
 refer to other packages).  They are currently only used in <acronym>HTML</acronym> help
 (and ignored for hyperlinks in LaTeX conversions of help pages), and
@@ -6016,7 +6093,7 @@ Next: <a href="#Indices" accesskey="n" rel="next">Indices</a>, Previous: <a href
 for the dots in function argument lists &lsquo;<samp>&hellip;</samp>&rsquo;, and
 <code>\ldots</code>
 <a name="index-_005cldots"></a>
-for ellipsis dots in ordinary text.<a name="DOCF60" href="#FOOT60"><sup>60</sup></a>  These can be followed by
+for ellipsis dots in ordinary text.<a name="DOCF61" href="#FOOT61"><sup>61</sup></a>  These can be followed by
 <code>{}</code>, and should be unless followed by whitespace.
 </p>
 <p>After an unescaped &lsquo;<samp>%</samp>&rsquo;, you can put your own comments regarding the
@@ -6027,7 +6104,7 @@ of the &ldquo;help&rdquo; invisible.
 <p>You can produce a backslash (&lsquo;<samp>\</samp>&rsquo;) by escaping it by another
 backslash.  (Note that <code>\cr</code> is used for generating line breaks.)
 </p>
-<p>The &ldquo;comment&rdquo; character &lsquo;<samp>%</samp>&rsquo; and unpaired braces<a name="DOCF61" href="#FOOT61"><sup>61</sup></a>
+<p>The &ldquo;comment&rdquo; character &lsquo;<samp>%</samp>&rsquo; and unpaired braces<a name="DOCF62" href="#FOOT62"><sup>62</sup></a>
 <em>almost always</em> need to be escaped by &lsquo;<samp>\</samp>&rsquo;, and &lsquo;<samp>\\</samp>&rsquo; can
 be used for backslash and needs to be when there two or more adjacent
 backslashes).  In R-like code quoted strings are handled slightly
@@ -6350,7 +6427,7 @@ in finding non-<acronym>ASCII</acronym> bytes in the files.)
 <p>For convenience, encoding names &lsquo;<samp>latin1</samp>&rsquo; and &lsquo;<samp>latin2</samp>&rsquo; are
 always recognized: these and &lsquo;<samp>UTF-8</samp>&rsquo; are likely to work fairly
 widely.  However, this does not mean that all characters in UTF-8 will
-be recognized, and the coverage of non-Latin characters<a name="DOCF62" href="#FOOT62"><sup>62</sup></a> is fairly low.  Using LaTeX
+be recognized, and the coverage of non-Latin characters<a name="DOCF63" href="#FOOT63"><sup>63</sup></a> is fairly low.  Using LaTeX
 <code>inputenx</code> (see <code>?Rd2pdf</code> in R) will give greater coverage
 of UTF-8.
 </p>
@@ -6560,12 +6637,12 @@ Next: <a href="#Profiling-R-code-for-memory-use" accesskey="n" rel="next">Profil
 <a name="index-Profiling"></a>
 <a name="index-Rprof"></a>
 
-<p>It is possible to profile R code on Windows and most<a name="DOCF63" href="#FOOT63"><sup>63</sup></a> Unix-alike versions of
+<p>It is possible to profile R code on Windows and most<a name="DOCF64" href="#FOOT64"><sup>64</sup></a> Unix-alike versions of
 R.
 </p>
 <p>The command <code>Rprof</code> is used to control profiling, and its help
 page can be consulted for full details.  Profiling works by recording
-at fixed intervals<a name="DOCF64" href="#FOOT64"><sup>64</sup></a> (by default every 20 msecs)
+at fixed intervals<a name="DOCF65" href="#FOOT65"><sup>65</sup></a> (by default every 20 msecs)
 which line in which R function is being used, and recording the
 results in a file (default <samp>Rprof.out</samp> in the working directory).
 Then the function <code>summaryRprof</code> or the command-line utility
@@ -7175,7 +7252,7 @@ Browse[1]&gt;
 
 <p>At the browser prompt one can enter any R expression, so for example
 <code>ls()</code> lists the objects in the current frame, and entering the
-name of an object will<a name="DOCF65" href="#FOOT65"><sup>65</sup></a> print it.  The following commands are
+name of an object will<a name="DOCF66" href="#FOOT66"><sup>66</sup></a> print it.  The following commands are
 also accepted
 </p>
 <ul>
@@ -7559,9 +7636,11 @@ some are related to passing characters to Fortran.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Using-Undefined-Behaviour-Sanitizer" accesskey="4">Using Undefined Behaviour Sanitizer</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Using-_0060Dr_002e-Memory_0027" accesskey="5">Using ‘Dr. Memory’</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Other-analyses-with-_0060clang_0027" accesskey="5">Other analyses with ‘clang’</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Fortran-array-bounds-checking" accesskey="6">Fortran array bounds checking</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Using-_0060Dr_002e-Memory_0027" accesskey="6">Using ‘Dr. Memory’</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Fortran-array-bounds-checking" accesskey="7">Fortran array bounds checking</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -7626,7 +7705,7 @@ message.
 </li></ul>
 
 <p><code>R CMD check --use-gct</code> can be set to use
-<code>gctorture2(<var>n</var>)</code> rather than <code>gctorture(TRUE)</code> by
+<code>gctorture2(<var>n</var>)</code> rather than <code>gctorture(TRUE)</code> by setting
 environment variable <code>_R_CHECK_GCT_N_</code> to a positive integer value
 to be used as <code><var>n</var></code>.
 </p>
@@ -7643,10 +7722,11 @@ Next: <a href="#Using-Address-Sanitizer" accesskey="n" rel="next">Using Address 
 <a name="Using-valgrind-1"></a>
 <h4 class="subsection">4.3.2 Using valgrind</h4>
 
-<p>If you have access to Linux on a common CPU type or OS X<a name="DOCF66" href="#FOOT66"><sup>66</sup></a> you can use <code>valgrind</code>
-(<a href="http://www.valgrind.org/">http://www.valgrind.org/</a>, pronounced to rhyme with &lsquo;tinned&rsquo;) to
-check for possible problems.  To run some examples under <code>valgrind</code>
-use something like
+<p>If you have access to Linux on a common CPU type or supported versions
+of OS X<a name="DOCF67" href="#FOOT67"><sup>67</sup></a> you can use
+<code>valgrind</code> (<a href="http://www.valgrind.org/">http://www.valgrind.org/</a>, pronounced to rhyme
+with &lsquo;tinned&rsquo;) to check for possible problems.  To run some examples
+under <code>valgrind</code> use something like
 </p>
 <div class="example">
 <pre class="example">R -d valgrind --vanilla &lt; mypkg-Ex.R
@@ -7699,7 +7779,7 @@ slower).
 ...
 </pre></div>
 <p>This example is from an instrumented version of R, while tracking
-down a bug in the <a href="http://CRAN.R-project.org/package=Matrix"><strong>Matrix</strong></a> package in January, 2006.  The first line
+down a bug in the <a href="http://CRAN.R-project.org/package=Matrix"><strong>Matrix</strong></a> package in 2006.  The first line
 indicates that R has tried to read 4 bytes from a memory address that
 it does not have access to. This is followed by a C stack trace showing
 where the error occurred. Next is a description of the memory that was
@@ -7718,7 +7798,7 @@ C code can be inspected (see <a href="#Inspecting-R-objects">Inspecting R object
 <p><code>valgrind</code> is good at spotting the use of uninitialized values:
 use option <samp>--track-origins=yes</samp> to show where these originated
 from.  What it cannot detect is the misuse of arrays allocated on the
-stack: this includes C automatic variables and some<a name="DOCF67" href="#FOOT67"><sup>67</sup></a>
+stack: this includes C automatic variables and some<a name="DOCF68" href="#FOOT68"><sup>68</sup></a>
 Fortran arrays.
 </p>
 <p>It is possible to run all the examples, tests and vignettes covered by
@@ -7755,58 +7835,81 @@ Next: <a href="#Using-Undefined-Behaviour-Sanitizer" accesskey="n" rel="next">Us
 
 <p><code>AddressSanitizer</code> (&lsquo;ASan&rsquo;) is a tool with similar aims to the
 memory checker in <code>valgrind</code>.  It is available with suitable
-builds<a name="DOCF68" href="#FOOT68"><sup>68</sup></a> of
-<code>gcc</code> 4.8.0 or <code>clang</code> 3.1 and later on common Linux and
-OS X platforms.  See
+builds<a name="DOCF69" href="#FOOT69"><sup>69</sup></a> of <code>gcc</code> 4.8.0 or
+<code>clang</code> 3.1 and later on common Linux and OS X platforms.  See
 <a href="http://clang.llvm.org/docs/UsersManual.html#controlling-code-generation">http://clang.llvm.org/docs/UsersManual.html#controlling-code-generation</a>,
 <a href="http://clang.llvm.org/docs/AddressSanitizer.html">http://clang.llvm.org/docs/AddressSanitizer.html</a> and
 <a href="https://code.google.com/p/address-sanitizer/">https://code.google.com/p/address-sanitizer/</a>.
 </p>
 <p>It requires code to have been compiled <em>and linked</em> with
-<samp>-fsanitize=address</samp><a name="DOCF69" href="#FOOT69"><sup>69</sup></a>, and using <code>-fno-omit-frame-pointer</code> will give
-more legible reports.  It has a runtime penalty of 2&ndash;3x, extended
-compilation times and uses substantially more memory, often 1&ndash;2GB, at
-run time.  By comparison with <code>valgrind</code>, it can detect misuse
-of stack and global variables but not the use of uninitialized memory.
+<samp>-fsanitize=address</samp><a name="DOCF70" href="#FOOT70"><sup>70</sup></a>, and compiling with <code>-fno-omit-frame-pointer</code>
+will give more legible reports.  It has a runtime penalty of 2&ndash;3x,
+extended compilation times and uses substantially more memory, often
+1&ndash;2GB, at run time.  On 64-bit platforms it reserves (but does not
+allocate) 16&ndash;20TB of virtual memory: restrictive shell settings can
+cause problems.
 </p>
-<p>Most versions<a name="DOCF70" href="#FOOT70"><sup>70</sup></a> do not
-return symbolic addresses for the location of the error.  One
-possibility is to use an external symbolizer such as
-<code>asan_symbolize.py</code><a name="DOCF71" href="#FOOT71"><sup>71</sup></a>.  For example,
-the check output can be piped through <code>asan_symbolize.py</code> and
+<p>By comparison with <code>valgrind</code>, ASan can
+detect misuse of stack and global variables but not the use of
+uninitialized memory.
+</p>
+<p><code>gcc</code> as from version 4.9.0 returns symbolic addresses for the
+location of the error, but most other versions do not.  For the latter,
+one possibility is to use an external symbolizer.  Depending on the
+version, this can be done <em>via</em> an environment variable, e.g.
+</p>
+<div class="example">
+<pre class="example">ASAN_SYMBOLIZER_PATH=/path/to/llvm-symbolizer
+</pre></div>
+
+<p>or by piping the output through
+<code>asan_symbolize.py</code><a name="DOCF71" href="#FOOT71"><sup>71</sup></a> and
 perhaps then (for compiled C++ code) <code>c++filt</code>.
 </p>
 <p>The simplest way to make use of this is to build a version of R with
 something like
 </p>
 <div class="example">
-<pre class="example">CC=&quot;gcc-4.8 -std=gnu99 -fsanitize=address&quot;
-CFLAGS=&quot;-fno-omit-frame-pointer -O2 -Wall -pedantic -mtune=native&quot;
+<pre class="example">CC=&quot;gcc-4.9 -std=gnu99 -fsanitize=address&quot;
+CFLAGS=&quot;-fno-omit-frame-pointer -g -O2 -Wall -pedantic -mtune=native&quot;
 </pre></div>
 
 <p>which will ensure that the <code>libasan</code> run-time library is compiled
 into the R executable.  However this check can be enabled on a
 per-package basis by using a <samp>~/.R/Makevars</samp> file like
 </p><div class="example">
-<pre class="example">CC = gcc-4.8 -std=gnu99 -fsanitize=address -fno-omit-frame-pointer
-CXX = g++-4.8 -fsanitize=address -fno-omit-frame-pointer
-F77 = gfortran-4.8 -fsanitize=address
-FC = gfortran-4.8 -fsanitize=address
+<pre class="example">CC = gcc-4.9 -std=gnu99 -fsanitize=address -fno-omit-frame-pointer
+CXX = g++-4.9 -fsanitize=address -fno-omit-frame-pointer
+F77 = gfortran-4.9 -fsanitize=address
+FC = gfortran-4.9 -fsanitize=address
 </pre></div>
 <p>(Note that <code>-fsanitize=address</code> has to be part of the compiler
 specification to ensure it is used for linking.  These settings will not
 be honoured by packages which ignore <samp>~/.R/Makevars</samp>.)  It will
-likely be necessary to build R with
+be necessary to build R with
 </p>
 <div class="example">
 <pre class="example">MAIN_LDFLAGS = -fsanitize=address
 </pre></div>
 
-<p>to link the required libraries into the R executable.
+<p>to link the runtime libraries into the R executable if it was not
+specified as part of &lsquo;<samp>CC</samp>&rsquo; when R was built.
 </p>
-<p>For options available <em>via</em> an environment variable see
+<p>For options available <em>via</em> the environment variable
+<code>ASAN_OPTIONS</code> see
 <a href="https://code.google.com/p/address-sanitizer/wiki/Flags#Run-time_flags">https://code.google.com/p/address-sanitizer/wiki/Flags#Run-time_flags</a>.
+With <code>gcc</code> additional control is available <em>via</em> the
+<samp>--params</samp> flag: see its <code>man</code> page.  For some builds on
+<code>x86_64</code> Linux this includes enabling the leak sanitizer
+(<a href="https://code.google.com/p/address-sanitizer/wiki/LeakSanitizer">https://code.google.com/p/address-sanitizer/wiki/LeakSanitizer</a>),
+which might even be enabled by default: this means any leaks give the
+process a failure error status (by default <code>23</code>).  To disable this
+and some strict checking use
 </p>
+<div class="example">
+<pre class="example">setenv ASAN_OPTIONS ‘alloc_dealloc_mismatch=0:detect_leaks=0’
+</pre></div>
+
 <p>For more detailed information R can be run under a debugger with a
 breakpoint set before the address sanitizer report is produced: for
 <code>gdb</code> or <code>lldb</code> you could use
@@ -7816,30 +7919,18 @@ breakpoint set before the address sanitizer report is produced: for
 <p>(See
 <a href="http://code.google.com/p/address-sanitizer/wiki/AddressSanitizer#gdb">http://code.google.com/p/address-sanitizer/wiki/AddressSanitizer#gdb</a>.)
 </p>
-<p>Some versions of <code>clang</code> also have a (currently experimental)
-memory sanitizer invoked by <samp>-fsanitize=memory</samp> which detects
-uses of uninitialized memory. See
-<a href="http://clang.llvm.org/docs/MemorySanitizer.html">http://clang.llvm.org/docs/MemorySanitizer.html</a>.  And some have
-an experimental leak sanitizer for <code>x86_64</code> Linux: see
-<a href="https://code.google.com/p/address-sanitizer/wiki/LeakSanitizer">https://code.google.com/p/address-sanitizer/wiki/LeakSanitizer</a>.
-</p>
-<p>Clang also has a Static Analyser run on the source files during
-compilation: see <a href="http://clang-analyzer.llvm.org/">http://clang-analyzer.llvm.org/</a>.
-</p>
 <hr>
 <a name="Using-Undefined-Behaviour-Sanitizer"></a>
 <div class="header">
 <p>
-Next: <a href="#Using-_0060Dr_002e-Memory_0027" accesskey="n" rel="next">Using ‘Dr. Memory’</a>, Previous: <a href="#Using-Address-Sanitizer" accesskey="p" rel="prev">Using Address Sanitizer</a>, Up: <a href="#Checking-memory-access" accesskey="u" rel="up">Checking memory access</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Other-analyses-with-_0060clang_0027" accesskey="n" rel="next">Other analyses with ‘clang’</a>, Previous: <a href="#Using-Address-Sanitizer" accesskey="p" rel="prev">Using Address Sanitizer</a>, Up: <a href="#Checking-memory-access" accesskey="u" rel="up">Checking memory access</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Using-the-Undefined-Behaviour-Sanitizer"></a>
 <h4 class="subsection">4.3.4 Using the Undefined Behaviour Sanitizer</h4>
 
 <p>&lsquo;UBSanitizer&rsquo; is a tool for C/C++ source code selected by
-&lsquo;<samp>-fsanitize=undefined</samp>&rsquo; (or with the address sanitizer by
-&lsquo;<samp>-fsanitize=undefined,address</samp>&rsquo; where supported) in suitable builds
-of <code>clang</code>, and will appear in GCC 4.9.0.  (It can be enabled in
-a similar way to the address sanitizer: see the previous subsection.)
+<samp>-fsanitize=undefined</samp> in suitable builds
+of <code>clang</code>, and GCC as from 4.9.0.
 </p>
 <p>&lsquo;Undefined behaviour&rsquo; is where the language standard does not require
 particular behaviour from the compiler.  Examples include division by
@@ -7852,6 +7943,11 @@ are attempts to coerce a <code>NaN</code> to type <code>int</code> or
 <code>NA_INTEGER</code> to an unsigned type such as <code>size_t</code>.  Also
 common is <code>y[x - 1]</code> forgetting that <code>x</code> might be
 <code>NA_INTEGER</code>.
+</p>
+<p>This sanitizer can be combined with the Address Sanitizer by
+<samp>-fsanitize=undefined,address</samp>.  Its runtime library is linked
+into each package&rsquo;s DLL, so it is less often needed to be included in
+<code>MAIN_LDFLAGS</code>.
 </p>
 <p>Finer control of what is checked can be achieved by other options: for
 <code>clang</code> see
@@ -7870,23 +7966,80 @@ like
 <pre class="example">-fsanitize=undefined -fno-sanitize=float-divide-by-zero
 </pre></div>
 
-<p>There is also the compiler flag <samp>-fcatch-undefined-behavior</samp>,
-said to be more reliable in <code>clang</code> than <code>gcc</code>.
+<p>In addition,
+</p><div class="example">
+<pre class="example">-fsanitize=unsigned-integer-overflow
+</pre></div>
+<p>is available as a separate option in some versions of <code>clang</code>
+(not enabled by <samp>-fsanitize=undefined</samp>).
+</p>
+<p>A smaller selection is available for GCC, currently defaulting to
+</p><div class="example">
+<pre class="example">-fsanitize=integer-divide-by-zero,null,return,shift,signed-integer-overflow,unreachable,vla-bound
+</pre></div>
+
+<p>with
+</p><div class="example">
+<pre class="example">-fsanitize=float-divide-by-zero
+</pre></div>
+
+<p>as a separate option not enabled by <code>-fsanitize=undefined</code>.  
+</p>
+<p>Other useful flags include
+</p><div class="example">
+<pre class="example">-no-fsanitize=recover
+</pre></div>
+
+<p>which causes the first report to be fatal (it always is for the
+<code>unreachable</code> and <code>return</code> suboptions).
+</p>
+
+<p>There are also the compiler flags <samp>-fcatch-undefined-behavior</samp>
+and <samp>-ftrapv</samp>, said to be more reliable in <code>clang</code> than
+<code>gcc</code>.
 </p>
 <p>For more details on the topic see
 <a href="http://blog.regehr.org/archives/213">http://blog.regehr.org/archives/213</a> and
-<a href="http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html">http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html</a>.
+<a href="http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html">http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html</a>
+(which has 3 parts).
 </p>
 <p>This option does not currently compile OpenMP code.
 </p>
 <hr>
+<a name="Other-analyses-with-_0060clang_0027"></a>
+<div class="header">
+<p>
+Next: <a href="#Using-_0060Dr_002e-Memory_0027" accesskey="n" rel="next">Using ‘Dr. Memory’</a>, Previous: <a href="#Using-Undefined-Behaviour-Sanitizer" accesskey="p" rel="prev">Using Undefined Behaviour Sanitizer</a>, Up: <a href="#Checking-memory-access" accesskey="u" rel="up">Checking memory access</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="Other-analyses-with-_0060clang_0027-1"></a>
+<h4 class="subsection">4.3.5 Other analyses with &lsquo;clang&rsquo;</h4>
+
+
+<p><code>clang</code> has a &lsquo;Static Analyser&rsquo; run on the source files during
+compilation: see <a href="http://clang-analyzer.llvm.org/">http://clang-analyzer.llvm.org/</a>.
+</p>
+<p>Some versions of <code>clang</code> have a (currently experimental) memory
+sanitizer invoked by <samp>-fsanitize=memory</samp> which detects uses of
+uninitialized memory. See
+<a href="http://clang.llvm.org/docs/MemorySanitizer.html">http://clang.llvm.org/docs/MemorySanitizer.html</a>.  
+</p>
+<p>For <code>x86_64</code> Linux there is a leak sanitizer: see
+<a href="https://code.google.com/p/address-sanitizer/wiki/LeakSanitizer">https://code.google.com/p/address-sanitizer/wiki/LeakSanitizer</a>:
+one way to invoke this from an ASAN-enabled build is by the environment
+variable
+</p>
+<div class="example">
+<pre class="example">ASAN_OPTIONS='detect_leaks=1'
+</pre></div>
+
+<hr>
 <a name="Using-_0060Dr_002e-Memory_0027"></a>
 <div class="header">
 <p>
-Next: <a href="#Fortran-array-bounds-checking" accesskey="n" rel="next">Fortran array bounds checking</a>, Previous: <a href="#Using-Undefined-Behaviour-Sanitizer" accesskey="p" rel="prev">Using Undefined Behaviour Sanitizer</a>, Up: <a href="#Checking-memory-access" accesskey="u" rel="up">Checking memory access</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Fortran-array-bounds-checking" accesskey="n" rel="next">Fortran array bounds checking</a>, Previous: <a href="#Other-analyses-with-_0060clang_0027" accesskey="p" rel="prev">Other analyses with ‘clang’</a>, Up: <a href="#Checking-memory-access" accesskey="u" rel="up">Checking memory access</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Using-_0060Dr_002e-Memory_0027-1"></a>
-<h4 class="subsection">4.3.5 Using &lsquo;Dr. Memory&rsquo;</h4>
+<h4 class="subsection">4.3.6 Using &lsquo;Dr. Memory&rsquo;</h4>
 
 <p>&lsquo;Dr. Memory&rsquo; from <a href="http://www.drmemory.org/">http://www.drmemory.org/</a> is a memory checker
 for (currently) 32-bit Windows and Linux with similar aims to
@@ -7900,7 +8053,7 @@ and detects memory access errors, uninitialized reads and memory leaks.
 Previous: <a href="#Using-_0060Dr_002e-Memory_0027" accesskey="p" rel="prev">Using ‘Dr. Memory’</a>, Up: <a href="#Checking-memory-access" accesskey="u" rel="up">Checking memory access</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Function-and-variable-index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Fortran-array-bounds-checking-1"></a>
-<h4 class="subsection">4.3.6 Fortran array bounds checking</h4>
+<h4 class="subsection">4.3.7 Fortran array bounds checking</h4>
 
 <p>Most of the Fortran compilers used with R allow code to be compiled
 with checking of array bounds: for example <code>gfortran</code> has option
@@ -8223,7 +8376,7 @@ ATTRIB:
 </pre></div>
 
 <p>For a more fine-grained control over the the depth of the recursion
-and the output of vectors <code>R_inspect3</code> takes additional two integer
+and the output of vectors <code>R_inspect3</code> takes additional two character()
 parameters: maximum depth and the maximal number of elements that will
 be printed for scalar vectors. The defaults in <code>R_inspect</code> are
 currently -1 (no limit) and 5 respectively.
@@ -9017,9 +9170,9 @@ DLL.  An example is <samp>stats-win.def</samp> for the <strong>stats</strong> pa
 mechanisms, please resist.  Far too much developer time has been wasted
 in chasing down errors caused by failures to follow this documentation,
 and even more by package authors demanding explanations as to why their
-packages not longer work.
-In particular, undocumented environment or make variables are not for
-use by package writers and are subject to change without notice.
+packages no longer work.
+In particular, undocumented environment or <code>make</code> variables are
+not for use by package writers and are subject to change without notice.
 </p>
 <hr>
 <a name="Interfacing-C_002b_002b-code"></a>
@@ -9192,6 +9345,9 @@ Windows.
 desirable that the API provided by package <strong>packB</strong> remains
 backwards-compatible.
 </p>
+<p>Shipping a static library in package <strong>packB</strong> for other packages to
+link to avoids most of the difficulties.
+</p>
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Unix_002dalikes" accesskey="1">Unix-alikes</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -9214,46 +9370,51 @@ on a Unix-alike OS.  There are severe portability issues, so this is not
 recommended for a distributed package.
 </p>
 <p>This is easiest if <strong>packB</strong> provides a static library
-<samp>packB/libs/libpackB.a</samp>.  (This will need to be compiled with
+<samp>packB/lib/libpackB.a</samp>.  (Note using directory <samp>lib</samp> rather
+than <samp>libs</samp> is conventional, and architecture-specific
+sub-directories may be needed and are assumed in the sample code
+below. The code in the static library will need to be compiled with
 <code>PIC</code> flags on platforms where it matters.)  Then as the code from
 package <strong>packB</strong> is incorporated when package <strong>packA</strong> is
 installed, we only need to find the static library at install time for
-package <strong>packB</strong>.  The only issue is to find package <strong>packB</strong>, and
-for that we can ask R by something like (long lines broken for display here)
+package <strong>packA</strong>.  The only issue is to find package <strong>packB</strong>, and
+for that we can ask R by something like (long lines broken for
+display here)
 </p>
 <div class="example">
 <pre class="example">PKGB_PATH=‘echo ’library(packB);
-  cat(system.file(&quot;libs&quot;,  package=&quot;packB&quot;, mustWork=TRUE))' \
+  cat(system.file(&quot;lib&quot;,  package=&quot;packB&quot;, mustWork=TRUE))' \
  | &quot;${R_HOME}/bin/R&quot; --vanilla --slave`
 PKG_LIBS=&quot;$(PKGB_PATH)$(R_ARCH)/libpackB.a&quot;
 </pre></div>
 
-<p>For a dynamic library <samp>packB/libs/libpackB.so</samp>
-(<samp>packB/libs/libpackB.dylib</samp> on OS X: note that you cannot link to
-a shared object, <samp>.so</samp> on that platform) we could use
+<p>For a dynamic library <samp>packB/lib/libpackB.so</samp>
+(<samp>packB/lib/libpackB.dylib</samp> on OS X: note that you cannot link to
+a shared object, <samp>.so</samp>, on that platform) we could use
 </p>
 <div class="example">
 <pre class="example">PKGB_PATH=‘echo ’library(packB);
-  cat(system.file(&quot;libs&quot;, package=&quot;packB&quot;, mustWork=TRUE))' \
+  cat(system.file(&quot;lib&quot;, package=&quot;packB&quot;, mustWork=TRUE))' \
  | &quot;${R_HOME}/bin/R&quot; --vanilla --slave`
 PKG_LIBS=-L&quot;$(PKGB_PATH)$(R_ARCH)&quot; -lpackB
 </pre></div>
 
 <p>This will work for installation, but very likely not when package
-<code>packB</code> is loaded, as the path to package <strong>packB</strong>&rsquo;s <samp>libs</samp>
+<code>packB</code> is loaded, as the path to package <strong>packB</strong>&rsquo;s <samp>lib</samp>
 directory is not in the <code>ld.so</code><a name="DOCF79" href="#FOOT79"><sup>79</sup></a>  search path.  You can arrange to
 put it there <strong>before</strong> R is launched by setting (on some
 platforms) <code>LD_RUN_PATH</code> or <code>LD_LIBRARY_PATH</code> or adding to the
 <code>ld.so</code> cache (see <code>man ldconfig</code>).  On platforms that
-support it, the path to the dynamic library can be hardcoded at install
-time (which assumes that the location of package <strong>packB</strong> will not be
-changed) nor the package updated to a changed API).  On systems with the
-<code>gcc</code> or <code>clang</code> and the <acronym>GNU</acronym> linker (e.g.
-Linux) and some others (e.g. OS X) this can be done by e.g.
+support it, the path to the directory containing the dynamic library can
+be hardcoded at install time (which assumes that the location of package
+<strong>packB</strong> will not be changed nor the package updated to a changed
+API).  On systems with the <code>gcc</code> or <code>clang</code> and the
+<acronym>GNU</acronym> linker (e.g. Linux) and some others (e.g. OS X) this
+can be done by e.g.
 </p>
 <div class="example">
 <pre class="example">PKGB_PATH=‘echo ’library(packB);
-  cat(system.file(&quot;libs&quot;, package=&quot;packB&quot;, mustWork=TRUE)))' \
+  cat(system.file(&quot;lib&quot;, package=&quot;packB&quot;, mustWork=TRUE)))' \
  | &quot;${R_HOME}/bin/R&quot; --vanilla --slave`
 PKG_LIBS=-L&quot;$(PKGB_PATH)$(R_ARCH)&quot; -Wl,-rpath,&quot;$(PKGB_PATH)$(R_ARCH)&quot; -lpackB
 </pre></div>
@@ -9265,7 +9426,8 @@ the compiler as well as the linker).
 <p>It may be possible to figure out what is required semi-automatically
 from the result of <code>R CMD libtool --config</code> (look for
 &lsquo;<samp>hardcode</samp>&rsquo;), although that does not currently know the spell for OS
-X (as given in the example above).
+X (as given in the example above, as <samp>-rpath</samp> is only supported for
+shared objects and not for executables).
 </p>
 <p>Making headers provided by package <strong>packB</strong> available to the code to
 be compiled in package <strong>packA</strong> can be done by the <code>LinkingTo</code>
@@ -13285,9 +13447,11 @@ library can be found by
 R CMD config --ldflags
 </pre></div>
 
-<p>If R is installed, <code>pkg-config</code> is available and
-sub-architectures have not been used, alternatives for a shared R
-library are
+<p>(These apply only to an uninstalled copy or a standard install.)
+</p>
+<p>If R is installed, <code>pkg-config</code> is available and neither
+sub-architectures nor an OS X framework have been used, alternatives for
+a shared R library are
 </p>
 <div class="example">
 <pre class="example">pkg-config --cflags libR
@@ -13301,6 +13465,10 @@ pkg-config --libs libR
 pkg-config --libs --static libR
 </pre></div>
 
+<p>(This may work for an installed OS framework if <code>pkg-config</code> is
+taught where to look for <samp>libR.pc</samp>: it is installed inside the
+framework.)
+</p>
 <p>However, a more comprehensive way is to set up a <samp>Makefile</samp> to
 compile the front-end.  Suppose file <samp>myfe.c</samp> is to be compiled to
 <samp>myfe</samp>. A suitable <samp>Makefile</samp> might be
@@ -14810,8 +14978,8 @@ platforms</p>
 <p>Using <samp>.hpp</samp> is not guaranteed to be
 portable.</p>
 <h3><a name="FOOT14" href="#DOCF14">(14)</a></h3>
-<p>There is
-also &lsquo;<samp>__APPLE_CC__</samp>&rsquo;, but that indicates a compiler with
+<p>There
+is also &lsquo;<samp>__APPLE_CC__</samp>&rsquo;, but that indicates a compiler with
 Apple-specific features, not the OS.  It is used in
 <samp>Rinlinedfuns.h</samp>.</p>
 <h3><a name="FOOT15" href="#DOCF15">(15)</a></h3>
@@ -14863,7 +15031,8 @@ take precedence.</p>
 <p>A suitable <code>file.exe</code> is
 part of the Windows toolset: it checks for <code>gfile</code> if a suitable
 <code>file</code> is not found: the latter is available in the OpenCSW
-collection for Solaris at <a href="http://www.opencsw.org">http://www.opencsw.org</a>.</p>
+collection for Solaris at <a href="http://www.opencsw.org">http://www.opencsw.org</a>.  The source
+repository is <a href="ftp://ftp.astron.com/pub/file/">ftp://ftp.astron.com/pub/file/</a>.</p>
 <h3><a name="FOOT29" href="#DOCF29">(29)</a></h3>
 <p>An exception is made
 for subdirectories with names starting &lsquo;<samp>win</samp>&rsquo; or &lsquo;<samp>Win</samp>&rsquo;.</p>
@@ -14934,92 +15103,95 @@ pattern as <code>exportPattern</code>: use something like
 <p>if it does, there will be opaque warnings about
 replacing imports if the classes/methods are also imported.</p>
 <h3><a name="FOOT48" href="#DOCF48">(48)</a></h3>
+<p>People use <code>dev.new()</code> to open a
+device at a particular size: that is not portable but using
+<code>dev.new(noRStudioGD = TRUE)</code> helps.</p>
+<h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
 <p>GNU make,
 BSD make as in FreeBSD, AT&amp;T make as implemented on Solaris.</p>
-<h3><a name="FOOT49" href="#DOCF49">(49)</a></h3>
+<h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
 <p>but
 note that <code>long long</code> is not a standard C++ type, and C++ compilers
 set up for strict checking will reject it.</p>
-<h3><a name="FOOT50" href="#DOCF50">(50)</a></h3>
+<h3><a name="FOOT51" href="#DOCF51">(51)</a></h3>
 <p>Not doing so is the
 default on Windows, overridden for the R executables.  It is also the
 default on some Solaris compilers.</p>
-<h3><a name="FOOT51" href="#DOCF51">(51)</a></h3>
+<h3><a name="FOOT52" href="#DOCF52">(52)</a></h3>
 <p>Select &lsquo;Save as&rsquo;, and select
 &lsquo;Reduce file size&rsquo; from the &lsquo;Quartz filter&rsquo; menu&rsquo;: this can be accessed
 in other ways, for example by Automator.</p>
-<h3><a name="FOOT52" href="#DOCF52">(52)</a></h3>
+<h3><a name="FOOT53" href="#DOCF53">(53)</a></h3>
 <p>except perhaps some
 special characters such as backslash and hash which may be taken over
 for currency symbols.</p>
-<h3><a name="FOOT53" href="#DOCF53">(53)</a></h3>
+<h3><a name="FOOT54" href="#DOCF54">(54)</a></h3>
 <p>Typically on a Unix-alike this is done by telling
 <code>fontconfig</code> where to find suitable fonts to select glyphs
 from.</p>
-<h3><a name="FOOT54" href="#DOCF54">(54)</a></h3>
+<h3><a name="FOOT55" href="#DOCF55">(55)</a></h3>
 <p>e.g. <code>\alias</code>, <code>\keyword</code> and
 <code>\note</code> sections.</p>
-<h3><a name="FOOT55" href="#DOCF55">(55)</a></h3>
+<h3><a name="FOOT56" href="#DOCF56">(56)</a></h3>
 <p>There can be exceptions: for example
 <samp>Rd</samp> files are not allowed to start with a dot, and have to be
 uniquely named on a case-insensitive file system.</p>
-<h3><a name="FOOT56" href="#DOCF56">(56)</a></h3>
+<h3><a name="FOOT57" href="#DOCF57">(57)</a></h3>
 <p>in the current locale, and with special
 treatment for LaTeX special characters and with any
 &lsquo;<samp><var>pkgname</var>-package</samp>&rsquo; topic moved to the top of the list.</p>
-<h3><a name="FOOT57" href="#DOCF57">(57)</a></h3>
-<p>Text between or after list items is discouraged.</p>
 <h3><a name="FOOT58" href="#DOCF58">(58)</a></h3>
+<p>Text between or after list items is discouraged.</p>
+<h3><a name="FOOT59" href="#DOCF59">(59)</a></h3>
 <p>Currently it is
 rendered differently only in <acronym>HTML</acronym> conversions, and LaTeX conversion
 outside &lsquo;<samp>\usage</samp>&rsquo; and &lsquo;<samp>\examples</samp>&rsquo; environments.</p>
-<h3><a name="FOOT59" href="#DOCF59">(59)</a></h3>
+<h3><a name="FOOT60" href="#DOCF60">(60)</a></h3>
 <p>a common
 example in <acronym>CRAN</acronym> packages is <code>\link[mgcv]{gam}</code>.</p>
-<h3><a name="FOOT60" href="#DOCF60">(60)</a></h3>
+<h3><a name="FOOT61" href="#DOCF61">(61)</a></h3>
 <p>There is only a fine
 distinction between <code>\dots</code> and <code>\ldots</code>.  It is technically
 incorrect to use <code>\ldots</code> in code blocks and <code>tools::checkRd</code>
 will warn about this&mdash;on the other hand the current converters treat
 them the same way in code blocks, and elsewhere apart from the small
 distinction between the two in LaTeX.</p>
-<h3><a name="FOOT61" href="#DOCF61">(61)</a></h3>
+<h3><a name="FOOT62" href="#DOCF62">(62)</a></h3>
 <p>See the
 examples section in the file <samp>Paren.Rd</samp> for an example.</p>
-<h3><a name="FOOT62" href="#DOCF62">(62)</a></h3>
+<h3><a name="FOOT63" href="#DOCF63">(63)</a></h3>
 <p>R
 2.9.0 added support for UTF-8 Cyrillic characters in LaTeX, but on
 some OSes this will need Cyrillic support added to LaTeX, so
 environment variable <code>_R_CYRILLIC_TEX_</code> may need to be set to a
 non-empty value to enable this.</p>
-<h3><a name="FOOT63" href="#DOCF63">(63)</a></h3>
+<h3><a name="FOOT64" href="#DOCF64">(64)</a></h3>
 <p>R
 has to be built to enable this, but the option
 <samp>--enable-R-profiling</samp> is the default.</p>
-<h3><a name="FOOT64" href="#DOCF64">(64)</a></h3>
+<h3><a name="FOOT65" href="#DOCF65">(65)</a></h3>
 <p>For Unix-alikes these are intervals of CPU
 time, and for Windows of elapsed time.</p>
-<h3><a name="FOOT65" href="#DOCF65">(65)</a></h3>
+<h3><a name="FOOT66" href="#DOCF66">(66)</a></h3>
 <p>With the exceptions of the commands
 listed below: an object of such a name can be printed <em>via</em> an
 explicit call to <code>print</code>.</p>
-<h3><a name="FOOT66" href="#DOCF66">(66)</a></h3>
-<p>at the
-time of writing mainly for 10.7 with some support for 10.8, none for the
-current 10.9.</p>
 <h3><a name="FOOT67" href="#DOCF67">(67)</a></h3>
+<p>at the time of writing mainly for 10.7 with some
+support for 10.8, none for the current 10.9.</p>
+<h3><a name="FOOT68" href="#DOCF68">(68)</a></h3>
 <p>small
 fixed-size arrays by default in <code>gfortran</code>, for example.</p>
-<h3><a name="FOOT68" href="#DOCF68">(68)</a></h3>
+<h3><a name="FOOT69" href="#DOCF69">(69)</a></h3>
 <p>not including the versions distributed by Apple in
 <code>Xcode</code> 4.6 or 5, nor of <code>clang</code> in Fedora prior to an
 update in Fedora 19. On some platforms, e.g. Fedora, the runtime
-library, <strong>libasan</strong>, needs to be installed separately.</p>
-<h3><a name="FOOT69" href="#DOCF69">(69)</a></h3>
+library, <strong>libasan</strong>, needs to be installed separately. OS X users can
+install a suitable <code>clang</code> from the sources or possibly
+distributions such as MacPorts or Homebrew.</p>
+<h3><a name="FOOT70" href="#DOCF70">(70)</a></h3>
 <p><samp>-faddress-sanitizer</samp> in
 <code>clang</code> 3.1</p>
-<h3><a name="FOOT70" href="#DOCF70">(70)</a></h3>
-<p><code>gcc</code> will from version 4.9.0.</p>
 <h3><a name="FOOT71" href="#DOCF71">(71)</a></h3>
 <p>installed on some Linux systems as
 <code>asan_symbolize</code>, and obtainable from

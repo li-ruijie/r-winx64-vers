@@ -187,6 +187,7 @@ prompt	prompt
 prompt.data.frame	prompt
 prompt.default	prompt
 promptData	promptData
+promptImport	prompt
 promptPackage	promptPackage
 Question	Question
 rc.getOption	rcompgen

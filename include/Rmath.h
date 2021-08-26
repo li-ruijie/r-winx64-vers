@@ -41,7 +41,7 @@
 /*-- Mathlib as part of R --  define this for standalone : */
 /* #undef MATHLIB_STANDALONE */
 
-#define R_VERSION_STRING "3.1.0"
+#define R_VERSION_STRING "3.1.1"
 
 #ifndef HAVE_EXPM1
 # define HAVE_EXPM1 1
@@ -649,7 +649,7 @@ double  logspace_sub(double logx, double logy);
 # define R_FINITE(x)    R_finite(x)
 int R_finite(double);
 
-# ifdef WIN32  /* not Win32 as no config information */
+# ifdef _WIN32  /* not Win32 as no config information */
 #  ifdef RMATH_DLL
 #   define R_EXTERN extern __declspec(dllimport)
 #  else

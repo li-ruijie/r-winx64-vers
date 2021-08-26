@@ -120,6 +120,7 @@ $<-.data.frame	Extract.data.frame
 .makeMessage	message
 .make_numeric_version	numeric_version
 .mapply	base-internal
+.maskedMsg	base-internal
 .mergeExportMethods	ns-internal
 .mergeImportMethods	ns-internal
 .Method	UseMethod
@@ -589,6 +590,7 @@ file.show	file.show
 file.symlink	files
 files	files
 Filter	funprog
+finalizer	reg.finalizer
 Find	funprog
 find.package	find.package
 findInterval	findInterval
@@ -785,6 +787,8 @@ La.svd	svd
 labels	labels
 labels.default	labels
 LANGUAGE	EnvVar
+language object	is.language
+language objects	is.language
 lapply	lapply
 last.warning	warnings
 lazyLoad	lazyload

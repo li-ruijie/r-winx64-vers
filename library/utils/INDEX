@@ -115,7 +115,7 @@ promptData              Generate Outline Documentation for a Data Set
 promptPackage           Generate a Shell for Documentation of a Package
 rcompgen                A Completion Generator for R
 read.DIF                Data Input from Spreadsheet
-read.fortran            Read Fixed-Format Data
+read.fortran            Read Fixed-Format Data in a Fortran-like Style
 read.fwf                Read Fixed Width Format Files
 read.socket             Read from or Write to a Socket
 read.table              Data Input
