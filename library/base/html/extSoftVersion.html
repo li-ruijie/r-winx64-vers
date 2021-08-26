@@ -71,7 +71,11 @@ library in use (if known).</p>
 <tr valign="top"><td><code>readline</code></td>
 <td>
 <p>The version of <code>readline</code> in use (if any,
-otherwise <code>""</code>).</p>
+otherwise <code>""</code>).  If using the emulation by <code>libedit</code> aka
+<code>editline</code> this will be <code>"EditLine wrapper"</code> preceded by
+the <code>readline</code> version it emulates: that is most likely to be
+seen on macOS.
+</p>
 </td></tr>
 <tr valign="top"><td><code>BLAS</code></td>
 <td>
@@ -124,5 +128,5 @@ extSoftVersion()
 sub(" .*", "", extSoftVersion()["PCRE"])
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.0.2 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.0.3 <a href="00Index.html">Index</a>]</div>
 </body></html>

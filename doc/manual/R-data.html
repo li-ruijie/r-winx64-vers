@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 4.0.2 (2020-06-22).
+<!-- This manual is for R, version 4.0.3 (2020-10-10).
 
-Copyright (C) 2000-2018 R Core Team
+Copyright (C) 2000-2020 R Core Team
 
 Permission is granted to make and distribute verbatim copies of this
 manual provided the copyright notice and this permission notice are
@@ -242,9 +242,9 @@ Next: <a href="#Acknowledgements" accesskey="n" rel="next">Acknowledgements</a> 
 
 <p>This is a guide to importing and exporting data to and from R.
 </p>
-<p>This manual is for R, version 4.0.2 (2020-06-22).
+<p>This manual is for R, version 4.0.3 (2020-10-10).
 </p>
-<p>Copyright &copy; 2000&ndash;2018 R Core Team
+<p>Copyright &copy; 2000&ndash;2020 R Core Team
 </p>
 <blockquote>
 <p>Permission is granted to make and distribute verbatim copies of this
@@ -1444,7 +1444,7 @@ Previous: <a href="#EpiInfo-Minitab-SAS-S_002dPLUS-SPSS-Stata-Systat" accesskey=
 <a name="index-read_002eoctave"></a>
 
 <p>Octave is a numerical linear algebra system
-(<a href="http://www.octave.org">http://www.octave.org</a>), and function <code>read.octave</code> in
+(<a href="https://www.gnu.org/software/octave/">https://www.gnu.org/software/octave/</a>), and function <code>read.octave</code> in
 package <a href="https://CRAN.R-project.org/package=foreign"><strong>foreign</strong></a> can read in files in Octave text data format
 created using the Octave command <code>save -ascii</code>, with support for
 most of the common types of variables, including the standard atomic
@@ -1537,8 +1537,10 @@ Next: <a href="#R-interface-packages" accesskey="n" rel="next">R interface packa
 <h3 class="section">4.2 Overview of RDBMSs</h3>
 
 <p>Traditionally there had been large (and expensive) commercial RDBMSs
-(<a href="http://www.informix.com">Informix</a>; <a href="https://www.oracle.com">Oracle</a>; <a href="http://www.sybase.com">Sybase</a>;
-<a href="http://www.ibm.com/db2">IBM&rsquo;s DB2</a>;
+(<a href="https://www.ibm.com/software/data/informix/">Informix</a>;
+<a href="https://www.oracle.com">Oracle</a>; 
+Sybase;
+<a href="https://www.ibm.com/db2">IBM&rsquo;s DB2</a>;
 <a href="https://www.microsoft.com/sql-server/">Microsoft <acronym>SQL</acronym>
 Server</a> on Windows) and academic and small-system databases (such as
 MySQL<a name="DOCF4" href="#FOOT4"><sup>4</sup></a>, PostgreSQL, Microsoft
@@ -1720,7 +1722,7 @@ data frame or in pieces (usually as groups of rows).
 </p>
 <p>All except <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> are tied to one DBMS, but there has been a
 proposal for a unified &lsquo;front-end&rsquo; package <a href="https://CRAN.R-project.org/package=DBI"><strong>DBI</strong></a>
-(<a href="https://developer.r-project.org/db">https://developer.r-project.org/db</a>) in conjunction with a
+(<a href="https://developer.r-project.org/db/">https://developer.r-project.org/db/</a>) in conjunction with a
 &lsquo;back-end&rsquo;, the most developed of which is <a href="https://CRAN.R-project.org/package=RMySQL"><strong>RMySQL</strong></a>.  Also on
 <acronym>CRAN</acronym> are the back-ends <a href="https://CRAN.R-project.org/package=ROracle"><strong>ROracle</strong></a>,
 <a href="https://CRAN.R-project.org/package=RPostgreSQL"><strong>RPostgreSQL</strong></a> and <a href="https://CRAN.R-project.org/package=RSQLite"><strong>RSQLite</strong></a> (which works with the
@@ -1729,7 +1731,7 @@ bundled DBMS <code>SQLite</code>, <a href="https://www.sqlite.org">https://www.s
 JDBC driver).
 </p>
 
-<p><strong>PL/R</strong> (<a href="http://joeconway.com/plr"><code>http://joeconway.com/plr</code></a>) is a project to embed R into
+<p><strong>PL/R</strong> (<a href="http://joeconway.com/plr/"><code>http://joeconway.com/plr</code></a>) is a project to embed R into
 PostgreSQL.
 </p>
 <p>Package <a href="https://CRAN.R-project.org/package=RMongo"><strong>RMongo</strong></a> provides an R interface to a Java client for
@@ -2058,7 +2060,7 @@ Next: <a href="#dBase-files-_0028DBF_0029" accesskey="n" rel="next">dBase files 
 HDF5 (Hierarchical Data Format, see
 <a href="https://www.hdfgroup.org/HDF5/">https://www.hdfgroup.org/HDF5/</a>) and to UCAR&rsquo;s netCDF data files
 (network Common Data Form, see
-<a href="http://www.unidata.ucar.edu/software/netcdf/">http://www.unidata.ucar.edu/software/netcdf/</a>).
+<a href="https://www.unidata.ucar.edu/software/netcdf/">https://www.unidata.ucar.edu/software/netcdf/</a>).
 </p>
 <p>Both of these are systems to store scientific data in array-oriented
 ways, including descriptions, labels, formats, units, &hellip;.  HDF5 also
@@ -2096,9 +2098,9 @@ a header and then a series of fields and so is most similar to an R
 data frame.  The data itself is stored in text format, and can include
 character, logical and numeric fields, and other types in later versions
 (see for example
-<a href="http://www.digitalpreservation.gov/formats/fdd/fdd000325.shtml">http://www.digitalpreservation.gov/formats/fdd/fdd000325.shtml</a>
+<a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000325.shtml">https://www.loc.gov/preservation/digital/formats/fdd/fdd000325.shtml</a>
 and
-<a href="http://www.clicketyclick.dk/databases/xbase/format/index.html">http://www.clicketyclick.dk/databases/xbase/format/index.html</a>).
+<a href="https://www.clicketyclick.dk/databases/xbase/format/index.html">https://www.clicketyclick.dk/databases/xbase/format/index.html</a>).
 </p>
 <a name="index-read_002edbf"></a>
 <a name="index-write_002edbf"></a>
@@ -2752,7 +2754,7 @@ with C++.</em> Addison-Wesley.
 </p>
 <p>B. Momjian (2000) <em>PostgreSQL: Introduction and Concepts.</em>
 Addison-Wesley.
-Also available at <a href="http://momjian.us/main/writings/pgsql/aw_pgsql_book/">http://momjian.us/main/writings/pgsql/aw_pgsql_book/</a>.
+Also available at <a href="https://momjian.us/main/writings/pgsql/aw_pgsql_book/">https://momjian.us/main/writings/pgsql/aw_pgsql_book/</a>.
 </p>
 <p>B. D. Ripley (2001) Connections. <em>R News</em>, <strong>1/1</strong>, 16&ndash;7.
   <a href="https://www.r-project.org/doc/Rnews/Rnews_2001-1.pdf">https://www.r-project.org/doc/Rnews/Rnews_2001-1.pdf</a>

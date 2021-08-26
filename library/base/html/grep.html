@@ -281,7 +281,7 @@ versions of PCRE2), it might also be wise to set the option
 
 <p>The C code for POSIX-style regular expression matching has changed
 over the years.  As from <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 2.10.0 (Oct 2009) the TRE library of Ville
-Laurikari (<a href="http://laurikari.net/tre/">http://laurikari.net/tre/</a>) is used.  The POSIX
+Laurikari (<a href="https://laurikari.net/tre/">https://laurikari.net/tre/</a>) is used.  The POSIX
 standard does give some room for interpretation, especially in the
 handling of invalid regular expressions and the collation of character
 ranges, so the results will have changed slightly over the years.
@@ -357,10 +357,15 @@ txt &lt;- c("The", "licenses", "for", "most", "software", "are",
 ( i &lt;- grep("[gu]", txt) ) # indices
 stopifnot( txt[i] == grep("[gu]", txt, value = TRUE) )
 
-## Note that in locales such as en_US this includes B as the
-## collation order is aAbBcCdDe ...
+## Note that for some implementations character ranges are
+## locale-dependent (but not currently).  Then [b-e] in locales such as
+## en_US may include B as the collation order is aAbBcCdDe ...
 (ot &lt;- sub("[b-e]",".", txt))
 txt[ot != gsub("[b-e]",".", txt)]#- gsub does "global" substitution
+## In caseless matching, ranges include both cases:
+a &lt;- grep("[b-e]", txt, value = TRUE)
+b &lt;- grep("[b-e]", txt, ignore.case = TRUE, value = TRUE)
+setdiff(b, a)
 
 txt[gsub("g","#", txt) !=
     gsub("g","#", txt, ignore.case = TRUE)] # the "G" words
@@ -442,5 +447,5 @@ lapply(regmatches(s, gregexpr(pattern, s)),
        function(e) regmatches(e, regexec(pattern, e)))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.0.2 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.0.3 <a href="00Index.html">Index</a>]</div>
 </body></html>

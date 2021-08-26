@@ -439,6 +439,31 @@ not restore previous versions.
 </p>
 
 
+<h3>Version requirements on source installs</h3>
+
+<p>If you are not running an up-to-date version of <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> you may see a
+message like
+</p>
+<pre>
+   package 'RODBC' is not available (for R version 3.5.3)
+</pre>
+<p>One possibility is that the package is not available in any of the
+selected repositories; another is that is available but only for
+current or recent versions of <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span>.  For <acronym><span class="acronym">CRAN</span></acronym> packages take
+a look at the package's CRAN page (e.g.,
+<a href="https://cran.r-project.org/package=RODBC">https://cran.r-project.org/package=RODBC</a>). If that indicates in
+the <span class="samp">Depends</span> field a dependence on a later version of <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> you
+will need to look in the <span class="samp">Old sources</span> section and select the URL
+of a version of comparable age to your <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span>.  Then you can supply that
+URL as the first argument of <code>install.packages()</code>: you may
+need to first manually install its dependencies.
+</p>
+<p>For other repositories, using <code>available.packages(filters =
+    "OS_type")[<var>pkgname</var>, ]</code> will show if the package is available
+for any <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> version (for your OS).
+</p>
+
+
 <h3>Note</h3>
 
 
@@ -498,5 +523,5 @@ install.packages(c("ncdf4", "RNetCDF"),
 
 ## End(Not run)</pre>
 
-<hr /><div style="text-align: center;">[Package <em>utils</em> version 4.0.2 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>utils</em> version 4.0.3 <a href="00Index.html">Index</a>]</div>
 </body></html>

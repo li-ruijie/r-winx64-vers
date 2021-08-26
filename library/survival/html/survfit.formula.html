@@ -135,15 +135,16 @@ standard error computations are omitted.
 </dd>
 <dt>conf.type</dt><dd>
 <p>One of <code>"none"</code>, <code>"plain"</code>, <code>"log"</code> (the default),
-<code>"log-log"</code> or <code>"logit"</code>.  Only
+<code>"log-log"</code>, <code>"logit"</code> or <code>"arcsin"</code>.  Only
 enough of the string to uniquely identify it is necessary.
 The first option causes confidence intervals not to be
 generated.  The second causes the standard intervals
 <code>curve +- k *se(curve)</code>, where k is determined from
 <code>conf.int</code>.  The log option calculates intervals based on the
 cumulative hazard or log(survival). The log-log option bases the
-intervals on the log hazard or log(-log(survival)), and the
-logit option on log(survival/(1-survival)). 
+intervals on the log hazard or log(-log(survival)), the
+logit option on log(survival/(1-survival))
+and arcsin on arcsin(survival). 
 </p>
 </dd>
 <dt>conf.lower</dt><dd>
@@ -379,5 +380,5 @@ text(5480, .30,"KM:prog")
 ## End(Not run)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.1-12 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>survival</em> version 3.2-7 <a href="00Index.html">Index</a>]</div>
 </body></html>

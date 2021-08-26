@@ -7,6 +7,180 @@
 
 <h2>R News</h2>
 
+<h3><img src="../help/figures/../../html/Rlogo.svg" class="toplogo" alt="[R logo]" /> CHANGES IN R 4.0.3</h3>
+
+
+
+<h4>NEW FEATURES</h4>
+
+
+<ul>
+<li><p> On platforms using <code>configure</code> option
+<span class="option">--with-internal-tzcode</span>, additional values
+<code>"internal"</code> and (on macOS only) <code>"macOS"</code> are accepted
+for the environment variable <span class="env">TZDIR</span>.  (See <code>?TZDIR</code>.)
+</p>
+<p>On macOS, <code>"macOS"</code> is used by default if the system timezone
+database is a newer version than that in the <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> installation.
+</p>
+</li>
+<li><p> When <code>install.packages(type = "source")</code> fails to find
+a package in a repository it mentions package versions which are
+excluded by their <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> version requirement and links to hints on
+why a package might not be found.
+</p>
+</li>
+<li><p> The default value for <code>options("timeout")</code> can be set
+from enviromnent variable <span class="env">R_DEFAULT_INTERNET_TIMEOUT</span>, still
+defaulting to 60 (seconds) if that is not set or invalid.
+</p>
+<p>This may be needed when child <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> processes are doing downloads,
+for example during the installation of source packages which
+download jars or other forms of data.
+</p>
+</li></ul>
+
+
+
+
+<h4>LINK-TIME OPTIMIZATION on a UNIX-ALIKE</h4>
+
+
+<ul>
+<li><p> There is now support for parallelized Link-Time Optimization
+(LTO) with GCC and for &lsquo;thin&rsquo; LTO with
+<code>clang</code> <em>via</em> setting the <span class="samp">LTO</span> macro.
+</p>
+</li>
+<li><p> There is support for setting a different LTO flag for the
+Fortran compiler, including to empty when mixing <code>clang</code>
+and <code>gfortran</code> (as on macOS).  See file &lsquo;<span class="file">config.site</span>&rsquo;.
+</p>
+</li>
+<li><p> There is a new <span class="samp">LTO_LD</span> macro to set linker options for
+LTO compilation, for example to select an alternative linker or
+to parallelize thin LTO.
+</p>
+</li></ul>
+
+
+
+
+<h4>DEPRECATED AND DEFUNCT</h4>
+
+
+<ul>
+<li><p> The <code>LINPACK</code> argument to <code>chol.default()</code>,
+<code>chol2inv()</code>, <code>solve.default()</code> and <code>svd()</code> has been
+defunct since <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 3.1.0.  Using it now gives a warning which will
+become an error in <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 4.1.0.
+</p>
+</li></ul>
+
+
+
+
+<h4>BUG FIXES</h4>
+
+
+<ul>
+<li><p> The code mitigating stack overflow with PCRE regexps on very
+long strings is enabled for PCRE2 &lt; 10.30 also when JIT is enabled,
+since stack overflows have been seen in that case.
+
+</p>
+</li>
+<li><p> Fix to correctly show the group labels in <code>dotchart()</code>
+(which where lost in the <code>ylab</code> improvement for <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 4.0.0).
+</p>
+</li>
+<li> <p><code>addmargins(*, ..)</code> now also works when <code>fn()</code> is a
+local function, thanks to bug report and patch <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17124">PR#17124</a> from Alex
+Bertram.
+</p>
+</li>
+<li> <p><code>rank(x)</code> and hence <code>sort(x)</code> now work when <code>x</code>
+is an object (as per <code>is.object(x)</code>) of type <code>"raw"</code>
+<em>and</em> provides a valid <code>`[`</code> method, e.g., for
+<code>gmp::as.bigz(.)</code> numbers.
+</p>
+</li>
+<li> <p><code>chisq.test(*, simulate.p.value=TRUE)</code> and
+<code>r2dtable()</code> now work correctly for large table entries (in the
+millions).  Reported by Sebastian Meyer and investigated by more
+helpers in <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=16184">PR#16184</a>.
+</p>
+</li>
+<li><p> Low-level socket read/write operations have been fixed to
+correctly signal communication errors. Previously, such errors could
+lead to a segfault due to invalid memory access. Reported
+and debugged by Dmitriy Selivanov in <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17850">PR#17850</a>.
+</p>
+</li>
+<li> <p><code>quantile(x, pr)</code> works more consistently for <code>pr</code>
+values slightly outside [0,1], thanks to Suharto Anggono's <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17891">PR#17891</a>.
+</p>
+<p>Further, <code>quantile(x, prN, names=FALSE)</code> now works even when
+<code>prN</code> contains <code>NA</code>s, thanks to Anggono's <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17892">PR#17892</a>.
+Ditto for ordered factors or <code>Date</code> objects
+when <code>type = 1</code> or <code>3</code>, thanks to <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17899">PR#17899</a>.
+</p>
+</li>
+<li><p> Libcurl-based internet access, including
+<code>curlGetHeaders()</code>, was not respecting the <code>"timeout"</code>
+option.  If this causes unanticipated timeouts, consider
+increasing the default by setting <span class="env">R_DEFAULT_INTERNET_TIMEOUT</span>.
+</p>
+</li>
+<li> <p><code>as.Date(&lt;char&gt;)</code> now also works with an initial
+<code>""</code>, thanks to Michael Chirico's <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17909">PR#17909</a>.
+</p>
+</li>
+<li> <p><code>isS3stdGeneric(f)</code> now detects an S3 generic also when it
+it is <code>trace()</code>d, thanks to Gabe Becker's <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17917">PR#17917</a>.
+</p>
+</li>
+<li> <p><code>R_allocLD()</code> has been fixed to return memory aligned for
+long double type <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=16534">PR#16534</a>.
+</p>
+</li>
+<li> <p><code>fisher.test()</code> no longer segfaults when called again after
+its internal stack has been exceeded <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17904">PR#17904</a>.
+</p>
+</li>
+<li><p> Accessing a long vector represented by a compact integer
+sequence no longer segfaults (reported and debugged by Hugh
+Parsonage).
+</p>
+</li>
+<li> <p><code>duplicated()</code> now works also for strings with multiple
+encodings inside a single vector <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17809">PR#17809</a>.
+</p>
+</li>
+<li> <p><code>phyper(11, 15, 0, 12, log.p=TRUE)</code> no longer gives
+<code>NaN</code>; reported as <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17271">PR#17271</a> by Alexey Stukalov.
+</p>
+</li>
+<li><p> Fix incorrect calculation in <code>logLik.nls()</code> <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=16100">PR#16100</a>, patch
+from Sebastian Meyer.
+</p>
+</li>
+<li><p> A very old bug could cause a segfault in <code>model.matrix()</code>
+when terms involved logical variables.  Part of <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17879">PR#17879</a>.
+</p>
+</li>
+<li> <p><code>model.frame.default()</code> allowed <code>data = 1</code>, leading to
+involuntary variable capture (rest of <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17879">PR#17879</a>).
+</p>
+</li>
+<li> <p><code>tar()</code> no longer skips non-directory files, thanks to a
+patch by Sebastian Meyer, fixing the remaining part of <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=16716">PR#16716</a>.
+</p>
+</li></ul>
+
+
+
+
 <h3><img src="../help/figures/../../html/Rlogo.svg" class="toplogo" alt="[R logo]" /> CHANGES IN R 4.0.2</h3>
 
 
@@ -27,7 +201,7 @@ warning) if the <span class="samp">VignetteBuilder</span> package(s) are not ava
 
 
 <ul>
-<li><p> Paths with non-ASCII characters caused problems for 
+<li><p> Paths with non-ASCII characters caused problems for
 package loading on Windows <a href="https://bugs.R-project.org/bugzilla3/show_bug.cgi?id=17833">PR#17833</a>.
 </p>
 </li>

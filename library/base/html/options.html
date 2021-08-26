@@ -435,9 +435,13 @@ necessary, that environment variable can be set to
 </dd> </dl>
 
 </dd>
-<dt><code>timeout</code>:</dt><dd><p>integer.  The timeout for some Internet
-operations, in seconds.  Default 60 seconds.  See
-<code><a href="../../utils/html/download.file.html">download.file</a></code> and <code><a href="connections.html">connections</a></code>.</p>
+<dt><code>timeout</code>:</dt><dd><p>positive integer.  The timeout for some
+Internet operations, in seconds.  Default 60 (seconds) but can be
+set from environment variable
+<span class="env">R_DEFAULT_INTERNET_TIMEOUT</span>. (Invalid values of the option or
+the variable are silently ignored: non-integer numeric values will
+be truncated.)  See <code><a href="../../utils/html/download.file.html">download.file</a></code> and
+<code><a href="connections.html">connections</a></code>.</p>
 </dd>
 <dt><code>topLevelEnvironment</code>:</dt><dd><p>see <code><a href="ns-topenv.html">topenv</a></code> and
 <code><a href="sys.source.html">sys.source</a></code>.</p>
@@ -1015,5 +1019,5 @@ if(tmp)
 
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>base</em> version 4.0.2 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>base</em> version 4.0.3 <a href="00Index.html">Index</a>]</div>
 </body></html>
