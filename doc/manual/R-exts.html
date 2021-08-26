@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 4.0.1 (2020-06-06).
+<!-- This manual is for R, version 4.0.2 (2020-06-22).
 
 Copyright (C) 1999-2018 R Core Team
 
@@ -448,7 +448,7 @@ Next: <a href="#Acknowledgements" accesskey="n" rel="next">Acknowledgements</a> 
 R add-on packages, writing R documentation, R&rsquo;s system and
 foreign language interfaces, and the R <acronym>API</acronym>.
 </p>
-<p>This manual is for R, version 4.0.1 (2020-06-06).
+<p>This manual is for R, version 4.0.2 (2020-06-22).
 </p>
 <p>Copyright &copy; 1999&ndash;2018 R Core Team
 </p>
@@ -1350,9 +1350,10 @@ be common practice to use <code>require</code> calls for packages listed in
 nowadays it is better to access such functionality <em>via</em> <code>::</code>
 calls.
 </p>
-<p>A package that wishes to make use of header files in other packages needs
-to declare them as a comma-separated list in the field &lsquo;<samp>LinkingTo</samp>&rsquo;
-in the <samp>DESCRIPTION</samp> file.  For example
+<p>A package that wishes to make use of header files in other packages to
+compile its C/C++ code needs to declare them as a comma-separated list
+in the field &lsquo;<samp>LinkingTo</samp>&rsquo; in the <samp>DESCRIPTION</samp> file.  For
+example
 </p>
 <div class="example">
 <pre class="example">LinkingTo: link1, link2
@@ -1361,12 +1362,15 @@ in the <samp>DESCRIPTION</samp> file.  For example
 <p>The &lsquo;<samp>LinkingTo</samp>&rsquo; field can have a version requirement which is
 checked at installation.
 </p>
-<p>Specifying a package in &lsquo;<samp>LinkingTo</samp>&rsquo; suffices if these are C++
+<p>Specifying a package in &lsquo;<samp>LinkingTo</samp>&rsquo; suffices if these are C/C++
 headers containing source code or static linking is done at
 installation: the packages do not need to be (and usually should not be)
 listed in the &lsquo;<samp>Depends</samp>&rsquo; or &lsquo;<samp>Imports</samp>&rsquo; fields.  This includes
 <acronym>CRAN</acronym> package <a href="https://CRAN.R-project.org/package=BH"><strong>BH</strong></a> and almost all users of
-<a href="https://CRAN.R-project.org/package=RcppArmadillo"><strong>RcppArmadillo</strong></a> and <a href="https://CRAN.R-project.org/package=RcppEigen"><strong>RcppEigen</strong></a>.
+<a href="https://CRAN.R-project.org/package=RcppArmadillo"><strong>RcppArmadillo</strong></a> and <a href="https://CRAN.R-project.org/package=RcppEigen"><strong>RcppEigen</strong></a>.  Note that
+&lsquo;<samp>LinkingTo</samp>&rsquo; applies only to installation: if a packages wishes to
+use headers to compile code in tests or vignettes the package providing
+them needs to be listed in &lsquo;<samp>Suggests</samp>&rsquo; or perhaps &lsquo;<samp>Depends</samp>&rsquo;.
 </p>
 <p>For another use of &lsquo;<samp>LinkingTo</samp>&rsquo; see <a href="#Linking-to-native-routines-in-other-packages">Linking to native routines in other packages</a>.
 </p>
