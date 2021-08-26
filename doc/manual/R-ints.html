@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.3.3 (2017-03-06).
+<!-- This manual is for R, version 3.4.0 (2017-04-21).
 
 Copyright (C) 1999-2016 R Core Team
 
@@ -288,7 +288,7 @@ Next: <a href="#R-Internal-Structures" accesskey="n" rel="next">R Internal Struc
 <p>This is a guide to the internal structures of R and coding standards for
 the core team working on R itself.
 </p>
-<p>This manual is for R, version 3.3.3 (2017-03-06).
+<p>This manual is for R, version 3.4.0 (2017-04-21).
 </p>
 <p>Copyright &copy; 1999&ndash;2016 R Core Team
 </p>
@@ -3041,7 +3041,8 @@ Next: <a href="#Help" accesskey="n" rel="next">Help</a>, Previous: <a href="#Pac
 
 <p>Directory <samp>Meta</samp> contains several files in <code>.rds</code> format, that
 is serialized R objects written by <code>saveRDS</code>.  All packages
-have files <samp>Rd.rds</samp>, <samp>hsearch.rds</samp>, <samp>links.rds</samp> and
+have files <samp>Rd.rds</samp>, <samp>hsearch.rds</samp>, <samp>links.rds</samp>,
+<samp>features.rds</samp>, and
 <samp>package.rds</samp>.  Packages with namespaces have a file
 <samp>nsInfo.rds</samp>, and those with data, demos or vignettes have
 <samp>data.rds</samp>, <samp>demo.rds</samp> or <samp>vignette.rds</samp> files.
@@ -3986,8 +3987,7 @@ names: the 657 known names are given in the character vector
 <p>Integer or character <code>NA</code> colours are mapped internally to
 transparent white, as is the character string <code>&quot;NA&quot;</code>.
 </p>
-<p>The handling of negative colour numbers was undefined (and inconsistent)
-prior to R 3.0.0, which made them an error.  Colours greater than
+<p>Negative colour numbers are an error.  Colours greater than
 &lsquo;<samp><var>N</var></samp>&rsquo; are wrapped around, so that for example with the default
 palette of size 8, colour &lsquo;<samp>10</samp>&rsquo; is colour &lsquo;<samp>2</samp>&rsquo; in the palette.
 </p>
@@ -4145,10 +4145,10 @@ parameters) multiply.
 Generally these are errors when used in <code>par</code> but cause the
 corresponding element of the plot to be omitted when used as an element
 of a vector argument.  Originally the interpretation of arguments was
-mainly left to the device, but as from R 3.0.0 some of this is
-pre-empted in the graphics engine (but for example the handling of
-<code>lwd = 0</code> remains device-specific, with some interpreting it as a
-&lsquo;thinnest possible&rsquo; line).
+mainly left to the device, but nowadays some of this is pre-empted in
+the graphics engine (but for example the handling of <code>lwd = 0</code>
+remains device-specific, with some interpreting it as a &lsquo;thinnest
+possible&rsquo; line).
 </p>
 <hr>
 <a name="Grid-graphics"></a>
@@ -4226,8 +4226,7 @@ standard distribution there are separate applications for 32- and 64-bit
 Intel architectures.
 </p>
 <p>Originally the R sources contained quite a lot of code used only by
-the macOS GUI, but by R 3.0.0 this was been migrated to the
-<code>R.app</code> sources.
+the macOS GUI, but this was migrated to the <code>R.app</code> sources.
 </p>
 <p><code>R.app</code> starts R as an embedded application with a
 command-line which includes <samp>--gui=aqua</samp> (see below).  It uses
@@ -4432,8 +4431,9 @@ Default: true.
 <dt><code>_R_CHECK_VIGNETTES_NLINES_</code>
 <a name="index-_005fR_005fCHECK_005fVIGNETTES_005fNLINES_005f"></a>
 </dt>
-<dd><p>Maximum number of lines to show at the bottom of the output when reporting
-errors in running or re-building vignettes.
+<dd><p>Maximum number of lines to show from the bottom of the output when
+reporting errors in running or re-building vignettes. (As from R
+3.4.0, <code>0</code> means all lines will be shown.)
 Default: 10 for running, 25 for re-building.
 </p></dd>
 <dt><code>_R_CHECK_CODOC_S4_METHODS_</code>
@@ -4617,8 +4617,8 @@ Default: false (but true for CRAN submission checks).
 <a name="index-_005fR_005fCHECK_005fALWAYS_005fLOG_005fVIGNETTE_005fOUTPUT_005f"></a>
 </dt>
 <dd><p>By default the output from running the R code in the vignettes is
-kept only if there is an error.  As from R 3.2.4 this also applies to
-the <samp>build_vignettes.log</samp> log from the re-building of vignettes.
+kept only if there is an error.  This also applies to the
+<samp>build_vignettes.log</samp> log from the re-building of vignettes.
 Default: false.
 </p></dd>
 <dt><code>_R_CHECK_CLEAN_VIGN_TEST_</code>
@@ -4723,6 +4723,13 @@ TRUE</code>.
 </dt>
 <dd><p>Check whether package is suitable for publication on CRAN.
 Default: false, except for CRAN submission checks.
+</p>
+</dd>
+<dt><code>_R_CHECK_CRAN_INCOMING_REMOTE_</code>
+<a name="index-_005fR_005fCHECK_005fCRAN_005fINCOMING_005fREMOTE_005f"></a>
+</dt>
+<dd><p>Include checks that require remote access among the above.
+Default: same as <code>_R_CHECK_CRAN_INCOMING_</code>
 </p>
 </dd>
 <dt><code>_R_CHECK_XREFS_USE_ALIASES_FROM_CRAN_</code>
@@ -4875,6 +4882,18 @@ Default: false (but true for CRAN submission checks).
 <dd><p>Number of trailing lines of test output to reproduce in the log.  If
 <code>0</code> all lines except the R preamble are reproduced.
 Default: 13.
+</p>
+</dd>
+<dt><code>_R_CHECK_NATIVE_ROUTINE_REGISTRATION_</code>
+<a name="index-_005fR_005fCHECK_005fNATIVE_005fROUTINE_005fREGISTRATION_005f"></a>
+</dt>
+<dd><p>If set to a true value, report if the entry points to register native
+routines and to suppress dynamic search are not found in a package&rsquo;s
+DLL.  (<strong>NB:</strong> this requires system commands <code>nm</code> and on
+Windows, <code>objdump.exe</code> to be on the <code>PATH</code>.  This would be
+normal when using a package with compiled code (which are the only ones
+this checks), but Windows&rsquo; users should check.)
+Default: false (but true for CRAN submission checks).
 </p></dd>
 </dl>
 
@@ -4882,6 +4901,7 @@ Default: 13.
 </p>
 <div class="example">
 <pre class="example">_R_CHECK_CRAN_INCOMING_=TRUE
+_R_CHECK_CRAN_INCOMING_REMOTE_=TRUE
 _R_CHECK_VC_DIRS_=TRUE
 _R_CHECK_TIMINGS_=10
 _R_CHECK_INSTALL_DEPENDS_=TRUE
@@ -4911,7 +4931,16 @@ checks also use
 <p>since some packages do suggest other packages not available on CRAN or
 other commonly-used repositories.
 </p>
-
+<p>Another variable which enables stricter checks is to set
+<code>R_CHECK_CONSTANTS</code> to <code>5</code>.  This checks that
+nothing<a name="DOCF24" href="#FOOT24"><sup>24</sup></a> changes the values of &lsquo;constants&rsquo;<a name="DOCF25" href="#FOOT25"><sup>25</sup></a> in R
+code.  This is best used in conjunction with setting
+<code>R_JIT_STRATEGY</code> to <code>3</code>, which checks code on first use (by
+default most code is only checked after byte-compilation on second use).
+Unfortunately these checks slow down checking of examples, tests and
+vignettes, typically two-fold but in the worst cases at least a
+hundred-fold.
+</p>
 <hr>
 <a name="R-coding-standards"></a>
 <div class="header">
@@ -5094,7 +5123,7 @@ a sequence of <code>(pdf)latex</code>, <code>bibtex</code> and
 </p>
 <p>This process has been rather vulnerable to the versions of the external
 software used: particular issues have been <code>texi2dvi</code> and
-<samp>texinfo.tex</samp> updates, mismatches between the two<a name="DOCF24" href="#FOOT24"><sup>24</sup></a>,
+<samp>texinfo.tex</samp> updates, mismatches between the two<a name="DOCF26" href="#FOOT26"><sup>26</sup></a>,
 versions of the LaTeX package &lsquo;<samp>hyperref</samp>&rsquo; and quirks in index
 production.  The licenses used for LaTeX and latterly &lsquo;<samp>texinfo</samp>&rsquo;
 prohibit us from including &lsquo;known good&rsquo; versions in the R
@@ -5248,7 +5277,7 @@ vectors.
 <p>The remaining interfaces will need to cope with the changed
 <code>VECTOR_SEXPREC</code> types.  It seems likely that in most cases lengths
 are accessed by the <code>length</code> and <code>LENGTH</code>
-functions<a name="DOCF25" href="#FOOT25"><sup>25</sup></a>  The current approach is to keep these returning 32-bit lengths and
+functions<a name="DOCF27" href="#FOOT27"><sup>27</sup></a>  The current approach is to keep these returning 32-bit lengths and
 introduce &lsquo;long&rsquo; versions <code>xlength</code> and <code>XLENGTH</code> which return
 <code>R_xlen_t</code> values.
 </p>
@@ -5368,6 +5397,7 @@ Next: <a href="#Concept-index" accesskey="n" rel="next">Concept index</a>, Previ
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCODOC_005fS4_005fMETHODS_005f"><code>_R_CHECK_CODOC_S4_METHODS_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCOMPACT_005fDATA_005f"><code>_R_CHECK_COMPACT_DATA_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCRAN_005fINCOMING_005f"><code>_R_CHECK_CRAN_INCOMING_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fCRAN_005fINCOMING_005fREMOTE_005f"><code>_R_CHECK_CRAN_INCOMING_REMOTE_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fDEPENDS_005fONLY_005f"><code>_R_CHECK_DEPENDS_ONLY_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fDEPRECATED_005fDEFUNCT_005f"><code>_R_CHECK_DEPRECATED_DEFUNCT_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fDOC_005fSIZES2_005f"><code>_R_CHECK_DOC_SIZES2_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
@@ -5384,6 +5414,7 @@ Next: <a href="#Concept-index" accesskey="n" rel="next">Concept index</a>, Previ
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fINSTALL_005fDEPENDS_005f"><code>_R_CHECK_INSTALL_DEPENDS_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fLICENSE_005f"><code>_R_CHECK_LICENSE_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fLIMIT_005fCORES_005f"><code>_R_CHECK_LIMIT_CORES_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fNATIVE_005fROUTINE_005fREGISTRATION_005f"><code>_R_CHECK_NATIVE_ROUTINE_REGISTRATION_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fNO_005fRECOMMENDED_005f"><code>_R_CHECK_NO_RECOMMENDED_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fOVERWRITE_005fREGISTERED_005fS3_005fMETHODS_005f"><code>_R_CHECK_OVERWRITE_REGISTERED_S3_METHODS_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005fR_005fCHECK_005fPERMISSIONS_005f"><code>_R_CHECK_PERMISSIONS_</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Tools">Tools</a></td></tr>
@@ -5797,9 +5828,16 @@ environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p>
 <h3><a name="FOOT23" href="#DOCF23">(23)</a></h3>
 <p>see the previous footnote.</p>
 <h3><a name="FOOT24" href="#DOCF24">(24)</a></h3>
+<p>The usual culprits are calls to compiled code
+<em>via</em> <code>.Call</code> or <code>.External</code> which alter their
+arguments.</p>
+<h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
+<p>things which the
+byte compiler assumes do not change, e.g. function bodies.</p>
+<h3><a name="FOOT26" href="#DOCF26">(26)</a></h3>
 <p>Linux
 distributions tend to unbundle <samp>texinfo.tex</samp> from &lsquo;<samp>texinfo</samp>&rsquo;.</p>
-<h3><a name="FOOT25" href="#DOCF25">(25)</a></h3>
+<h3><a name="FOOT27" href="#DOCF27">(27)</a></h3>
 <p>but <code>LENGTH</code> is a macro under some internal
 uses.</p>
 </div>

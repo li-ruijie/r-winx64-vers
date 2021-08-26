@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.3.3 (2017-03-06).
+<!-- This manual is for R, version 3.4.0 (2017-04-21).
 
 Copyright (C) 2000-2016 R Core Team
 
@@ -342,7 +342,7 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
 parsing, object oriented programming, computing on the language, and so
 forth.
 </p>
-<p>This manual is for R, version 3.3.3 (2017-03-06).
+<p>This manual is for R, version 3.4.0 (2017-04-21).
 </p>
 <p>Copyright &copy; 2000&ndash;2016 R Core Team
 </p>
@@ -2065,12 +2065,11 @@ string <code>&quot;NA&quot;</code>.  Programmers who need to specify an explicit
 <code>NA</code> should use &lsquo;<samp>as.character(NA)</samp>&rsquo; rather than <code>&quot;NA&quot;</code>, or
 set elements to <code>NA</code> using <code>is.na&lt;-</code>.
 </p>
-<p>As from R 2.5.0 there are constants <code>NA_integer_</code>,
-<code>NA_real_</code>, <code>NA_complex_</code> and <code>NA_character_</code> which will
-generate (in the parser) an <code>NA</code> value of the appropriate type,
-and will be used in deparsing when it is not otherwise possible to
-identify the type of an <code>NA</code> (and the <code>control</code> options ask
-for this to be done).
+<p>There are constants <code>NA_integer_</code>, <code>NA_real_</code>,
+<code>NA_complex_</code> and <code>NA_character_</code> which will generate (in the
+parser) an <code>NA</code> value of the appropriate type, and will be used in
+deparsing when it is not otherwise possible to identify the type of an
+<code>NA</code> (and the <code>control</code> options ask for this to be done).
 </p>
 <p>There is no <code>NA</code> value for raw vectors.
 </p>
@@ -2128,9 +2127,8 @@ that component, and so on. The result is still a single element.
 <p>The form using <code>$</code> applies to recursive objects such as lists and
 pairlists.  It allows only a literal character string or a symbol as the
 index.  That is, the index is not computable: for cases where you need
-to evaluate an expression to find the index, use <code>x[[expr]]</code>.  When
-<code>$</code> is applied to a non-recursive object the result used to be
-always <code>NULL</code>: as from R 2.6.0 this is an error.
+to evaluate an expression to find the index, use <code>x[[expr]]</code>.
+Applying <code>$</code> to a non-recursive object is an error.
 </p>
 <table summary="" class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Indexing-by-vectors" accesskey="1">Indexing by vectors</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -5155,10 +5153,10 @@ eight hex digits.
 <p>A single quote may also be embedded directly in a double-quote delimited
 string and vice versa.
 </p>
-<p>As from R 2.8.0, a &lsquo;nul&rsquo; (<code>\0</code>) is not allowed in a character
-string, so using <code>\0</code> in a string constant terminates the constant
-(usually with a warning): further characters up to the closing quote are
-scanned but ignored.
+<p>A &lsquo;nul&rsquo; (<code>\0</code>) is not allowed in a character string, so using
+<code>\0</code> in a string constant terminates the constant (usually with a
+warning): further characters up to the closing quote are scanned but
+ignored.
 </p>
 <hr>
 <a name="Identifiers"></a>

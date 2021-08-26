@@ -1,6 +1,7 @@
 Surv                    Create a Survival Object
 aareg                   Aalen's additive regression model for censored
                         data
+aeqSurv                 Adjudicate near ties in a Surv object
 agreg.fit               Cox model fitting functions
 aml                     Acute Myelogenous Leukemia survival data
 anova.coxph             Analysis of Deviance for a Cox model.
@@ -11,13 +12,14 @@ cch                     Fits proportional hazards regression model to
                         case-cohort data
 cgd                     Chronic Granulotomous Disease data
 cgd0                    Chronic Granulotomous Disease data
+cipoisson               Confidence limits for the Poisson
 clogit                  Conditional logistic regression
 cluster                 Identify clusters.
 colon                   Chemotherapy for Stage B/C colon cancer
 cox.zph                 Test the Proportional Hazards Assumption of a
                         Cox Regression
 coxph                   Fit Proportional Hazards Regression Model
-coxph.control           Ancillary arguments for controling coxph fits
+coxph.control           Ancillary arguments for controlling coxph fits
 coxph.detail            Details of a Cox Model Fit
 coxph.object            Proportional Hazards Regression Object
 coxph.wtest             Compute a quadratic form
@@ -73,6 +75,7 @@ statefig                Draw a state space figure.
 strata                  Identify Stratification Variables
 summary.aareg           Summarize an aareg fit
 summary.coxph           Summary method for Cox models
+summary.pyears          Summary function for pyears objecs
 summary.survexp         Summary function for a survexp object
 summary.survfit         Summary of a Survival Curve
 survConcordance         Compute a concordance measure.

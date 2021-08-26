@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for R, version 3.3.3 (2017-03-06).
+<!-- This manual is for R, version 3.4.0 (2017-04-21).
 
 Copyright (C) 1990 W. N. Venables
 
@@ -404,7 +404,7 @@ analysis, classification, clustering, ...).
 <p>This manual provides information on data types, programming elements,
 statistical modelling and graphics.
 </p>
-<p>This manual is for R, version 3.3.3 (2017-03-06).
+<p>This manual is for R, version 3.4.0 (2017-04-21).
 </p>
 <p>Copyright &copy; 1990 W. N. Venables<br>
 Copyright &copy; 1992 W. N. Venables &amp; D. M. Smith<br>
@@ -1977,7 +1977,7 @@ is a very simple one liner, specified by the assignment:
 After this assignment, the standard errors are calculated by
 </p>
 <div class="example">
-<pre class="example">&gt; incster &lt;- tapply(incomes, statef, stderr)
+<pre class="example">&gt; incster &lt;- tapply(incomes, statef, stdError)
 </pre></div>
 
 <p>and the values calculated are then
@@ -7440,12 +7440,11 @@ Previous: <a href="#Contributed-packages-and-CRAN" accesskey="p" rel="prev">Cont
 <a name="index-_003a_003a"></a>
 <a name="index-_003a_003a_003a"></a>
 
-<p>All packages have <em>namespaces</em>, and have since R 2.14.0.
-Namespaces do three things: they allow the package writer to hide
-functions and data that are meant only for internal use, they prevent
-functions from breaking when a user (or other package writer) picks a
-name that clashes with one in the package, and they provide a way to
-refer to an object within a particular package.
+<p>Packages have <em>namespaces</em>, which do three things: they allow the
+package writer to hide functions and data that are meant only for
+internal use, they prevent functions from breaking when a user (or other
+package writer) picks a name that clashes with one in the package, and
+they provide a way to refer to an object within a particular package.
 </p>
 <p>For example, <code>t()</code> is the transpose function in R, but users
 might define their own function named <code>t</code>.  Namespaces prevent

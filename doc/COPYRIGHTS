@@ -286,17 +286,20 @@ THE SOFTWARE.
 src/modules/lapack/dlapack.f, cmplx.f, dlamc.f
 
   Extracted from
-  *  -- LAPACK computational routine (version 3.6.1) --
+  *  -- LAPACK computational routine (version 3.7.0) --
   *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
   *  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..--
   *     June 2016
 
   where the version number, providers and date vary by subroutine.
+  For version 3.7.0, many of the copyright dates have been updated
+  even for routines which have not been changed for years.
 
-  LAPACK 3.6.1 contains a LICENSE file, copied to src/modules/lapack
+  LAPACK 3.7.0 contains a LICENSE file, copied to src/modules/lapack
   (but many of these routines were originally copied from earlier
   versions of LAPACK).  For binary distributions it is reproduced here:
 
+  --- src/modules/lapack/LICENSE ---
   Copyright (c) 1992-2016 The University of Tennessee and The University
                           of Tennessee Research Foundation.  All rights
                           reserved.
@@ -345,6 +348,7 @@ src/modules/lapack/dlapack.f, cmplx.f, dlamc.f
   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  --- end of src/modules/lapack/LICENSE ---
 
 src/extra/xdr/*
 
@@ -721,7 +725,7 @@ Based on files which are
 
 R_HOME/Tcl:
 
-Files compiled and installed from Tcl 8.5.8 and Tk 8.5.8.
+Files compiled and installed from Tcl 8.6.4 and Tk 8.6.4.
 see R_HOME/Tcl/license.terms for the license.
 
     This software is copyrighted by the Regents of the University of
@@ -796,9 +800,10 @@ at http://www.murdoch-sutherland.com/Rtools/;
 http://www.murdoch-sutherland.com/Rtools/Rtools.txt lists the current
 contents.
 
-The build of Tcl/Tk contained in the binary installer is taken via
-Rtools from https://www.stats.ox.ac.uk/pub/Rtools/, which hosts the
-sources used and links to the scripts used for the build.
+The build of Tcl/Tk contained in the binary installer was produced
+by Adrian Waddell; see https://github.com/waddella/Tclbuild for 
+instructions.  Sources are available via links on that page, or on
+request from R-windows@r-project.org.
 
 Rbitmap.dll is built against static libraries for libpng, jpeg and
 libtiff: the Makefiles and configuration headers used are in the

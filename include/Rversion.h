@@ -6,17 +6,17 @@
 extern "C" {
 #endif
 
-#define R_VERSION 197379
-#define R_NICK "Another Canoe"
+#define R_VERSION 197632
+#define R_NICK "You Stupid Darkness"
 #define R_Version(v,p,s) (((v) * 65536) + ((p) * 256) + (s))
 #define R_MAJOR  "3"
-#define R_MINOR  "3.3"
+#define R_MINOR  "4.0"
 #define R_STATUS ""
 #define R_YEAR   "2017"
-#define R_MONTH  "03"
-#define R_DAY    "06"
-#define R_SVN_REVISION 72310
-#define R_FILEVERSION    3,33,72310,0
+#define R_MONTH  "04"
+#define R_DAY    "21"
+#define R_SVN_REVISION 72570
+#define R_FILEVERSION    3,40,72570,0
 
 #ifdef __cplusplus
 }

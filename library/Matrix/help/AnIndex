@@ -375,6 +375,7 @@ BunchKaufman,dsyMatrix-method	BunchKaufman-methods
 BunchKaufman-class	Cholesky-class
 BunchKaufman-methods	BunchKaufman-methods
 c.abIndex	abIseq
+c.sparseVector	sparseVector-class
 CAex	CAex
 cBind	cBind
 cbind2,ANY,Matrix-method	Matrix-class
@@ -2100,14 +2101,15 @@ USCounties	USCounties
 which,ldenseMatrix-method	ldenseMatrix-class
 which,ldiMatrix-method	diagonalMatrix-class
 which,lgTMatrix-method	lsparseMatrix-classes
+which,lMatrix-method	dMatrix-class
 which,lsparseMatrix-method	lsparseMatrix-classes
-which,lsparseVector-method	lsparseMatrix-classes
+which,lsparseVector-method	sparseVector-class
 which,lsTMatrix-method	lsparseMatrix-classes
 which,ltTMatrix-method	lsparseMatrix-classes
 which,ndenseMatrix-method	ndenseMatrix-class
 which,ngTMatrix-method	nsparseMatrix-classes
 which,nsparseMatrix-method	nsparseMatrix-classes
-which,nsparseVector-method	nsparseMatrix-classes
+which,nsparseVector-method	sparseVector-class
 which,nsTMatrix-method	nsparseMatrix-classes
 which,ntTMatrix-method	nsparseMatrix-classes
 writeMM	externalFormats
